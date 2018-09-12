@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1536765771 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+
+1536766730 source:c:\users\eric\gamedev\simplegameengine\src\basecomponent.cpp
+	"BaseComponent.h"
+
+1536769631 c:\users\eric\gamedev\simplegameengine\include\basecomponent.h
+
+1536768784 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
+	"Entity.h"
+	<list>
+	"BaseComponent.h"
+
+1536768097 c:\users\eric\gamedev\simplegameengine\include\entity.h
+	<list>
+	"BaseComponent.h"
+
