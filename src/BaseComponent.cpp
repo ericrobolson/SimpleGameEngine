@@ -6,6 +6,10 @@ int BaseComponent::GetId() const{
     return _id;
 }
 
+int BaseComponent::GetType(){
+    return 0;
+}
+
 BaseComponent::BaseComponent()
 {
     // Set the Id and increment the global id. This allows uniqueness checks for components.
@@ -15,6 +19,7 @@ BaseComponent::BaseComponent()
 
 BaseComponent::~BaseComponent()
 {
+    //todo: cleanup
     //dtor
 }
 

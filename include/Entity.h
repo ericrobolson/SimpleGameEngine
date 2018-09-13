@@ -1,6 +1,7 @@
 #ifndef ENTITY_H
 #define ENTITY_H
-#include <list>
+#include <vector>
+#include <memory>
 #include "BaseComponent.h"
 
 class Entity
@@ -9,12 +10,15 @@ class Entity
         Entity();
         virtual ~Entity();
 
-        void AddComponent(BaseComponent &component);
-        void RemoveComponent(BaseComponent &component);
+        void AddComponent(std::shared_ptr<BaseComponent> &component);
+        void RemoveComponent(int index);
+
+        std::vector<std::shared_ptr<BaseComponent>> GetComponents();
+
     protected:
 
     private:
-        std::list<BaseComponent> _components;
+        std::vector<std::shared_ptr<BaseComponent>> _components;
 };
 
 #endif // ENTITY_H

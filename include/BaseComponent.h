@@ -6,11 +6,10 @@ class BaseComponent
 {
     public:
         BaseComponent();
+        virtual int GetType();
         virtual ~BaseComponent();
         int GetId() const;
         bool operator==(const BaseComponent &c1);
-
-    protected:
 
     private:
         static int nextGlobalId;

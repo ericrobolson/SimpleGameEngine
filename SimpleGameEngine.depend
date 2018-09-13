@@ -1,17 +1,25 @@
 # depslib dependency file v1.0
 1536765771 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 
-1536766730 source:c:\users\eric\gamedev\simplegameengine\src\basecomponent.cpp
+1536818772 source:c:\users\eric\gamedev\simplegameengine\src\basecomponent.cpp
 	"BaseComponent.h"
 
-1536769631 c:\users\eric\gamedev\simplegameengine\include\basecomponent.h
+1536818708 c:\users\eric\gamedev\simplegameengine\include\basecomponent.h
 
-1536768784 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
+1536800624 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
 	"Entity.h"
-	<list>
+	"BaseComponent.h"
+	<vector>
+	<memory>
+
+1536800682 c:\users\eric\gamedev\simplegameengine\include\entity.h
+	<vector>
+	<memory>
 	"BaseComponent.h"
 
-1536768097 c:\users\eric\gamedev\simplegameengine\include\entity.h
-	<list>
-	"BaseComponent.h"
+1536818804 source:c:\users\eric\gamedev\simplegameengine\src\positioncomponent.cpp
+	"PositionComponent.h"
+
+1536818847 c:\users\eric\gamedev\simplegameengine\include\positioncomponent.h
+	<BaseComponent.h>
 
