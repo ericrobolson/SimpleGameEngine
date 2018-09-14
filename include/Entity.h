@@ -15,6 +15,8 @@ class Entity
 
         std::vector<std::shared_ptr<BaseComponent>> GetComponents();
 
+        template <class tComponent>
+        tComponent GetComponent();
     protected:
 
     private:

@@ -29,3 +29,16 @@ void Entity::RemoveComponent(int index){
 
     // todo: _components.erase[index];
 }
+
+
+template <class tComponent>
+tComponent Entity::GetComponent(){
+
+    int num = _components.size();
+    for (int i = 0; i < num; i++){
+        // iterate over components, then return the first element of the type of tEntity
+    }
+
+
+    return nullptr;
+}
