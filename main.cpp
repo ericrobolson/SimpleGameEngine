@@ -16,7 +16,9 @@ int main( int argc, char* args[] )
 
 
 
-    PositionComponent* testGet;
+
+
+    PositionComponent* testGet = nullptr;
     entity.GetComponent(testGet);
 
     cout << "testing:" << endl;
@@ -25,7 +27,7 @@ int main( int argc, char* args[] )
         cout << "womp womp" << endl;
     }
 
-    cout << nullptr << endl;
+//    cout << nullptr << endl;
     cout << testGet << endl;
     cout << "/testing:" << endl;
 
