@@ -40,11 +40,13 @@
 		</Linker>
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
+		<Unit filename="include/BaseWorld.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/PositionComponent.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
+		<Unit filename="src/BaseWorld.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/PositionComponent.cpp" />
 		<Extensions>
