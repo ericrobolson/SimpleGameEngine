@@ -31,7 +31,7 @@ class Entity
             }
 
             _components.push_back(componentPtr);
-    };
+        };
 
         template <class tComponent>
         void RemoveComponent(tComponent component){

@@ -23,7 +23,7 @@ void Entity::DeleteComponent(int index){
 }
 
 bool Entity::IsEmpty(){
-return _components.empty();
+    return _components.empty();
 }
 
 

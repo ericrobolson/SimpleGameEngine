@@ -3,13 +3,12 @@
 
 #include <BaseComponent.h>
 
-
 class PositionComponent : public BaseComponent
 {
     public:
         PositionComponent();
         virtual ~PositionComponent();
-        int GetType();
+
         unsigned int PositionX;
         unsigned int PositionY;
 };
