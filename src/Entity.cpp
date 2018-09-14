@@ -12,33 +12,67 @@ Entity::~Entity()
 {
     //dtor
 }
+/*
+template <class tComponent>
+void Entity::AddComponent(std::shared_ptr<BaseComponent> &componentPtr){
+    // go thru existing components
+    // if there exists a component that has a matching type, remove it and replace it with this one
+    // otherwise add it
 
-std::vector<std::shared_ptr<BaseComponent>> Entity::GetComponents(){
-    return _components;
+    if (!IsEmpty()){
+        int numberOfComponents = _components.size();
+
+        for (int i = 0; i < numberOfComponents; i++){
+            BaseComponent baseComponent = _components[i].get();
+
+            tComponent castedComponent = dynamic_cast<tComponent>(baseComponent);
+
+            if (castedComponent != nullptr){
+                DeleteComponent(i);
+                break;
+            }
+        }
+    }
+
+    _components.push_back(componentPtr);
 }
 
-
-void Entity::AddComponent(std::shared_ptr<BaseComponent> &component){
-    _components.push_back(component);
-}
-
-void Entity::RemoveComponent(int index){
+template <class tComponent>
+void Entity<tComponent>::RemoveComponent(){
     if (_components.empty()){
         return;
     }
 
-    // todo: _components.erase[index];
-}
+    int numberOfComponents = _components.size();
 
+    for (int i = 0; i < numberOfComponents; i++){
+        BaseComponent baseComponent = _components[i].get();
 
-template <class tComponent>
-tComponent Entity::GetComponent(){
+        tComponent castedComponent = dynamic_cast<tComponent>(baseComponent);
 
-    int num = _components.size();
-    for (int i = 0; i < num; i++){
-        // iterate over components, then return the first element of the type of tEntity
+        if (castedComponent != nullptr){
+            DeleteComponent(i);
+            break;
+        }
     }
 
-
-    return nullptr;
 }
+
+template <class tComponent>
+void Entity<tComponent>::DeleteComponent(int index){
+
+    std::shared_ptr<BaseComponent> componentToErase = _components.at(index);
+
+    _components.erase(_components.begin() + index);
+
+    componentToErase.reset();
+}
+
+template <class tComponent>
+bool Entity<tComponent>::IsEmpty(){
+return _components.empty();
+}
+
+*/
+
+

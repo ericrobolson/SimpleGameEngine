@@ -40,9 +40,11 @@
 		</Linker>
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/Entity.h" />
+		<Unit filename="include/PositionComponent.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/PositionComponent.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
