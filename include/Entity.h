@@ -3,6 +3,8 @@
 #include <vector>
 #include <memory>
 #include "BaseComponent.h"
+#include <iostream>
+
 class Entity
 {
     public:
@@ -12,29 +14,15 @@ class Entity
 
         template <class tComponent>
         void AddComponent(std::shared_ptr<tComponent> &componentPtr){
-            // go thru existing components
-            // if there exists a component that has a matching type, remove it and replace it with this one
-            // otherwise add it
             if (!IsEmpty()){
-                int numberOfComponents = _components.size();
-
-                for (int i = 0; i < numberOfComponents; i++){
-                    BaseComponent* baseComponent = _components[i].get();
-
-                    tComponent* castedComponent = dynamic_cast<tComponent*>(baseComponent);
-
-                    if (castedComponent != nullptr){
-                        DeleteComponent(i);
-                        break;
-                    }
-                }
+                // Remove any components that have the same type so that only one component of a type can be added
+                RemoveComponent(componentPtr);
             }
-
             _components.push_back(componentPtr);
         };
 
         template <class tComponent>
-        void RemoveComponent(tComponent component){
+        void RemoveComponent(std::shared_ptr<tComponent> component){
             if (_components.empty()){
                 return;
             }
@@ -42,9 +30,9 @@ class Entity
             int numberOfComponents = _components.size();
 
             for (int i = 0; i < numberOfComponents; i++){
-                BaseComponent* baseComponent = _components[i].get();
+                std::shared_ptr<BaseComponent> baseComponent = _components[i];
 
-                tComponent* castedComponent = dynamic_cast<tComponent*>(baseComponent);
+                std::shared_ptr<tComponent> castedComponent = std::dynamic_pointer_cast<tComponent>(baseComponent);
 
                 if (castedComponent != nullptr){
                     DeleteComponent(i);
@@ -54,15 +42,15 @@ class Entity
         };
 
         template <class tComponent>
-        void GetComponent(tComponent*& component){
-            component = nullptr;
+        void GetComponent(std::shared_ptr<tComponent>& component){
+            component.reset();
 
             int numberOfComponents = _components.size();
             for (int i = 0; i < numberOfComponents; i++){
                 // iterate over components, then return the first element of the type of tEntity
-                BaseComponent* baseComponent = _components[i].get();
+                std::shared_ptr<BaseComponent> baseComponent = _components[i];
 
-                tComponent* castedComponent = dynamic_cast<tComponent*>(baseComponent);
+                std::shared_ptr<tComponent> castedComponent = std::dynamic_pointer_cast<tComponent>(baseComponent);
 
                 if (castedComponent != nullptr){
                     component = castedComponent;
