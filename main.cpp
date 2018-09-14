@@ -14,10 +14,6 @@ int main( int argc, char* args[] )
 {
     Entity entity;
 
-
-
-
-
     PositionComponent* testGet = nullptr;
     entity.GetComponent(testGet);
 
