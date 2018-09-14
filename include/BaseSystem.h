@@ -8,7 +8,7 @@ class BaseSystem
         BaseSystem();
         virtual ~BaseSystem();
 
-        virtual void Process(std::vector<std::shared_ptr<Entity>>);
+        virtual void Process(std::vector<std::shared_ptr<Entity>>& entities);
 };
 
 #endif // BASESYSTEM_H
