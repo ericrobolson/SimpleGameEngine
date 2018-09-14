@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 #include "BaseComponent.h"
-#include <iostream>
 
 class Entity
 {
@@ -58,9 +57,12 @@ class Entity
             }
         };
 
-    protected:
+        int GetId();
 
     private:
+        int _id;
+        static int _nextId;
+
         void DeleteComponent(int index);
 
         std::vector<std::shared_ptr<BaseComponent>> _components;

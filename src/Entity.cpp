@@ -5,12 +5,19 @@
 
 Entity::Entity()
 {
-    //ctor
+    _id = _nextId;
+    _nextId++;
 }
 
 Entity::~Entity()
 {
     //dtor
+}
+
+int Entity::_nextId = 1;
+
+int Entity::GetId(){
+    return _id;
 }
 
 void Entity::DeleteComponent(int index){

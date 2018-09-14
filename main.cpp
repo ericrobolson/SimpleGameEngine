@@ -5,9 +5,10 @@
 #include <iostream>
 #include <memory>
 #include <typeinfo>
+#include <vector>
+
 
 using namespace std;
-
 
 
 int main( int argc, char* args[] )
@@ -40,6 +41,12 @@ int main( int argc, char* args[] )
     else{
         cout << testGet.get()->PositionX << endl;
     }
+
+    cout << "entityId: " << entity.GetId() << endl;;
+
+    Entity entity2;
+    cout << "entity2Id: " << entity2.GetId() << endl;;
+
 
     cout << "/testing:" << endl;
 
