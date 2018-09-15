@@ -29,6 +29,7 @@
 					<Add directory="include" />
 					<Add directory="include/Worlds" />
 					<Add directory="include/Systems" />
+					<Add directory="include/Components" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

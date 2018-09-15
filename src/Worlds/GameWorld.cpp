@@ -12,5 +12,5 @@ GameWorld::~GameWorld()
 
 void GameWorld::Process(){
     // Process the systems
-
+    _graphicsSystem.Process(_entities);
 }

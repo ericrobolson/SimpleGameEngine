@@ -2,6 +2,7 @@
 #define GAMEWORLD_H
 
 #include "BaseWorld.h"
+#include "GraphicsSystem.h"
 
 
 class GameWorld : public BaseWorld
@@ -15,6 +16,8 @@ class GameWorld : public BaseWorld
     protected:
 
     private:
+        GraphicsSystem _graphicsSystem;
+
 };
 
 #endif // GAMEWORLD_H

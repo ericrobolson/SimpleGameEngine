@@ -11,7 +11,7 @@ class BaseWorld
         virtual ~BaseWorld();
         virtual void Process();
 
-    private:
+    protected:
         std::vector<std::shared_ptr<Entity>> _entities;
 };
 
