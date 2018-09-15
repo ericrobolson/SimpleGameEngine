@@ -12,4 +12,13 @@ BaseWorld::~BaseWorld()
 
 void BaseWorld::Process(){
     // This is where systems are processed
+
+
+    // Ideal system order:
+
+        // InputSystem
+        // CollisionSystem?
+        // MovementSystem
+        // DrawSystem
+
 }

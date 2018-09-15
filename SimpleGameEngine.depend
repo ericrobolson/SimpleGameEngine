@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1536940872 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1537031794 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	"Entity.h"
-	"PositionComponent.h"
+	"Components/PositionComponent.h"
+	"Components/MovementComponent.h"
 	<iostream>
 	<memory>
 	<typeinfo>
@@ -36,11 +37,29 @@
 1536941087 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
 	"Entity.h"
 
-1536940551 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
+1536960035 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
 
 1536941149 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	<vector>
 	<memory>
 	"Entity.h"
+
+1537031388 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
+	"Components/MovementComponent.h"
+
+1536959633 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
+	<BaseComponent.h>
+
+1537032161 source:c:\users\eric\gamedev\simplegameengine\src\components\positioncomponent.cpp
+	"PositionComponent.h"
+
+1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
+	<BaseComponent.h>
+
+1537032226 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+	"GameWorld.h"
+
+1537032146 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+	"BaseWorld.h"
 

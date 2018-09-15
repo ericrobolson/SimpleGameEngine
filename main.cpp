@@ -1,7 +1,8 @@
 // Copyright (c) 2018, Eric Olson
 
 #include "Entity.h"
-#include "PositionComponent.h"
+#include "Components/PositionComponent.h"
+#include "Components/MovementComponent.h"
 #include <iostream>
 #include <memory>
 #include <typeinfo>
@@ -21,16 +22,14 @@ int main( int argc, char* args[] )
 
     entity.AddComponent(posCom);
 
-    std::shared_ptr<PositionComponent> posCom2 = std::make_shared<PositionComponent>();
+    std::shared_ptr<MovementComponent> posCom2 = std::make_shared<MovementComponent>();
 
-    posCom2.get()->PositionX = 1;
+    posCom2.get()->Direction = MovementComponent::LEFT;
+    cout << "enum: " << MovementComponent::LEFT << endl;
 
     entity.AddComponent(posCom2);
 
-    entity.RemoveComponent(posCom2);
-
-
-    std::shared_ptr<PositionComponent> testGet;
+    std::shared_ptr<MovementComponent> testGet;
     entity.GetComponent(testGet);
 
     cout << "testing:" << endl;
@@ -39,14 +38,9 @@ int main( int argc, char* args[] )
         cout << "womp womp" << endl;
     }
     else{
-        cout << testGet.get()->PositionX << endl;
+        cout << testGet.get()->Direction << endl;
+        cout << testGet.get()->Speed << endl;
     }
-
-    cout << "entityId: " << entity.GetId() << endl;;
-
-    Entity entity2;
-    cout << "entity2Id: " << entity2.GetId() << endl;;
-
 
     cout << "/testing:" << endl;
 
