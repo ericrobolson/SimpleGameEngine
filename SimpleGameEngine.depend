@@ -40,7 +40,7 @@
 1536960035 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
 
-1536941149 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
+1537032753 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	<vector>
 	<memory>
 	"Entity.h"
@@ -62,4 +62,10 @@
 
 1537032146 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
+
+1537032521 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+	"GraphicsSystem.h"
+
+1537032505 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+	"BaseSystem.h"
 

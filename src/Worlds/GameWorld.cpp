@@ -1,8 +1,10 @@
 #include "GameWorld.h"
+#include "PlayerAssemblage.h"
 
 GameWorld::GameWorld() : BaseWorld()
 {
-    //ctor
+    _entities.push_back(PlayerAssemblage::CreatePlayerEntity());
+
 }
 
 GameWorld::~GameWorld()
