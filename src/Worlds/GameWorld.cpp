@@ -3,8 +3,7 @@
 
 GameWorld::GameWorld() : BaseWorld()
 {
-    _entities.push_back(PlayerAssemblage::CreatePlayerEntity());
-
+    AddEntity(PlayerAssemblage::CreatePlayerEntity());
 }
 
 GameWorld::~GameWorld()

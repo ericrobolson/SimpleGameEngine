@@ -11,6 +11,9 @@ class BaseWorld
         virtual ~BaseWorld();
         virtual void Process();
 
+        void AddEntity(std::shared_ptr<Entity> entity);
+        void RemoveEntity(int entityId);
+
     protected:
         std::vector<std::shared_ptr<Entity>> _entities;
 };

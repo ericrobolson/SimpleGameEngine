@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1537031794 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1537045178 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	"Entity.h"
 	"Components/PositionComponent.h"
 	"Components/MovementComponent.h"
@@ -40,7 +40,7 @@
 1536960035 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
 
-1537032753 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
+1537044904 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	<vector>
 	<memory>
 	"Entity.h"
@@ -57,15 +57,28 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1537032226 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1537045047 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
+	"PlayerAssemblage.h"
 
-1537032146 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1537032642 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
+	"GraphicsSystem.h"
 
 1537032521 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	"GraphicsSystem.h"
 
 1537032505 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	"BaseSystem.h"
+
+1537033377 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+	"PlayerAssemblage.h"
+	<memory>
+	"Entity.h"
+	"PositionComponent.h"
+	"MovementComponent.h"
+
+1537033193 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
+	<memory>
+	"Entity.h"
 
