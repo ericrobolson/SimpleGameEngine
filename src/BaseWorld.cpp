@@ -1,3 +1,5 @@
+#include <memory>
+#include <vector>
 #include "BaseWorld.h"
 
 BaseWorld::BaseWorld()
@@ -22,15 +24,20 @@ void BaseWorld::RemoveEntity(int entityId){
 
     int indexToRemove = 0;
 
+    std::shared_ptr<Entity> entityToDelete = nullptr;
+
     for (int i = 0; i < _entities.size(); i++){
         indexToRemove = i;
 
-        if (_entities[i].get()->GetId() == entityId){
+        entityToDelete = _entities[i];
+
+        if (entityToDelete.get()->GetId() == entityId){
             break;
         }
     }
 
     _entities.erase(_entities.begin() + indexToRemove);
+    entityToDelete.reset();
 };
 
 

@@ -18,6 +18,7 @@
 					<Add directory="include/Components" />
 					<Add directory="include/Systems" />
 					<Add directory="include/Assemblages" />
+					<Add directory="include/Components/GrapicsComponents" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -50,6 +51,7 @@
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
+		<Unit filename="include/Components/GrapicsComponents/StaticSpriteComponent.h" />
 		<Unit filename="include/Components/MovementComponent.h" />
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Entity.h" />
@@ -60,6 +62,7 @@
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
+		<Unit filename="src/Components/GrapicsComponents/StaticSpriteComponent.cpp" />
 		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Entity.cpp" />

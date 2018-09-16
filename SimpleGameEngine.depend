@@ -37,7 +37,9 @@
 1536941087 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
 	"Entity.h"
 
-1536960035 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
+1537118074 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
+	<memory>
+	<vector>
 	"BaseWorld.h"
 
 1537044904 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
