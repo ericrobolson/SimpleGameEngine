@@ -5,6 +5,7 @@
 StaticSpriteComponent::StaticSpriteComponent() : BaseComponent()
 {
     _rotation = 0;
+    ZIndex = 100;
     //ctor
 }
 
@@ -12,6 +13,8 @@ StaticSpriteComponent::~StaticSpriteComponent()
 {
     //dtor
 }
+
+
 
 double StaticSpriteComponent::GetRotation(){
     return _rotation;

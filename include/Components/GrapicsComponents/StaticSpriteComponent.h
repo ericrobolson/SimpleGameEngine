@@ -12,6 +12,7 @@ class StaticSpriteComponent : public BaseComponent
 
         double GetRotation();
         double SetRotation(double angle);
+        int ZIndex;
 
     protected:
         double _rotation;
