@@ -9,7 +9,7 @@ class BaseWorld
     public:
         BaseWorld();
         virtual ~BaseWorld();
-        virtual void Process();
+        virtual bool Process();
 
         void AddEntity(std::shared_ptr<Entity> entity);
         void RemoveEntity(int entityId);

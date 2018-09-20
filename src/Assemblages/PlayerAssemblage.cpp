@@ -12,16 +12,14 @@ namespace PlayerAssemblage{
         std::shared_ptr<Entity> playerEntity;
 
 
-        std::shared_ptr<PositionComponent> positionComponent = std::make_shared<PositionComponent>();
-        std::shared_ptr<MovementComponent> movementComponent = std::make_shared<MovementComponent>();
-        std::shared_ptr<StaticSpriteComponent> spriteComponent = std::make_shared<StaticSpriteComponent>();
+        PositionComponent positionComponent;
+        MovementComponent movementComponent;
+        StaticSpriteComponent spriteComponent;
 
 
-        std::shared_ptr<HealthComponent> healthComponent = std::make_shared<HealthComponent>();
+        HealthComponent healthComponent;
 
-
-
-        std::shared_ptr<PlayerComponent> playerComponent = std::make_shared<PlayerComponent>();
+        PlayerComponent playerComponent;
 
         playerEntity->AddComponent(positionComponent);
         playerEntity->AddComponent(healthComponent);

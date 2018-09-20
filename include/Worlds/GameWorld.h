@@ -11,13 +11,12 @@ class GameWorld : public BaseWorld
         GameWorld();
         virtual ~GameWorld();
 
-        void Process();
+        virtual bool Process();
 
     protected:
 
     private:
         GraphicsSystem _graphicsSystem;
-
 };
 
 #endif // GAMEWORLD_H

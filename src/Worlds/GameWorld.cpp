@@ -1,9 +1,12 @@
 #include "GameWorld.h"
 #include "PlayerAssemblage.h"
+#include <string>
 
 GameWorld::GameWorld() : BaseWorld()
 {
-    AddEntity(PlayerAssemblage::CreatePlayerEntity());
+    printf("Initializing GameWorld.\n");
+//    AddEntity(PlayerAssemblage::CreatePlayerEntity());
+    printf("Do player assemblage");
 }
 
 GameWorld::~GameWorld()
@@ -11,7 +14,11 @@ GameWorld::~GameWorld()
     //dtor
 }
 
-void GameWorld::Process(){
+bool GameWorld::Process(){
     // Process the systems
-    _graphicsSystem.Process(_entities);
+    if (!_graphicsSystem.Process(_entities)){
+        return false;
+    }
+
+    return true;
 }

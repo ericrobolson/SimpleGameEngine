@@ -19,7 +19,6 @@
 					<Add directory="include/Systems" />
 					<Add directory="include/Assemblages" />
 					<Add directory="include/Components/GrapicsComponents" />
-					<Add directory="include/" />
 				</Compiler>
 			</Target>
 			<Target title="Release">

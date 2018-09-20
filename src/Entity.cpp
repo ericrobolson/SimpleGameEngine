@@ -2,11 +2,12 @@
 #include "BaseComponent.h"
 #include <vector>
 #include <memory>
-
+#include <string>
 Entity::Entity()
 {
     _id = _nextId;
     _nextId++;
+    _components.clear();
 }
 
 Entity::~Entity()
@@ -21,15 +22,16 @@ int Entity::GetId(){
 }
 
 void Entity::DeleteComponent(int index){
-
-    std::shared_ptr<BaseComponent> componentToErase = _components.at(index);
-
     _components.erase(_components.begin() + index);
-
-    componentToErase.reset();
 }
 
 bool Entity::IsEmpty(){
+    printf("TESTING COMPONENTS: \n");
+
+    if (_components.empty()){
+        printf("isnull");
+    }
+    printf("notnull");
     return _components.empty();
 }
 

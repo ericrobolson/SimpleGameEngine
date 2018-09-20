@@ -41,7 +41,7 @@ void BaseWorld::RemoveEntity(int entityId){
 };
 
 
-void BaseWorld::Process(){
+bool BaseWorld::Process(){
     // This is where systems are processed
 
 
@@ -51,5 +51,5 @@ void BaseWorld::Process(){
         // CollisionSystem?
         // MovementSystem
         // DrawSystem
-
+    return true;
 }
