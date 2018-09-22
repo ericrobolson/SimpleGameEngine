@@ -61,9 +61,10 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1537582423 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1537585284 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	<string>
+	"InputState.h"
 
 1537582216 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
@@ -781,7 +782,13 @@
 1537582314 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
 
-1537582449 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
-	"InputSystem.h"
+1537585204 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
+	"InputSystem.h"
+	"InputState.h"
+
+1537583971 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
+	"InputState.h"
+
+1537585424 c:\users\eric\gamedev\simplegameengine\include\state\inputstate.h
 

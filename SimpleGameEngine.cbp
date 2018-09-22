@@ -19,12 +19,13 @@
 					<Add directory="include/Systems" />
 					<Add directory="include/Assemblages" />
 					<Add directory="include/Components/GrapicsComponents" />
+					<Add directory="include/State" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/SimpleGameEngine" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
@@ -34,6 +35,7 @@
 					<Add directory="include/Components" />
 					<Add directory="include/Assemblages" />
 					<Add directory="include/" />
+					<Add directory="include/State" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -57,6 +59,7 @@
 		<Unit filename="include/Components/PlayerComponent.h" />
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Entity.h" />
+		<Unit filename="include/State/InputState.h" />
 		<Unit filename="include/Systems/GraphicsSystem.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
@@ -70,6 +73,7 @@
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Entity.cpp" />
+		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />

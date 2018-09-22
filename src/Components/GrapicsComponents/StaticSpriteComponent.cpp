@@ -1,5 +1,5 @@
-#include "StaticSpriteComponent.h"
 #include <math.h>
+#include "StaticSpriteComponent.h"
 
 
 StaticSpriteComponent::StaticSpriteComponent() : BaseComponent()

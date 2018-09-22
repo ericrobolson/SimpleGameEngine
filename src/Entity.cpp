@@ -1,7 +1,8 @@
-#include "Entity.h"
-#include "BaseComponent.h"
 #include <vector>
 #include <memory>
+#include "Entity.h"
+#include "BaseComponent.h"
+
 Entity::Entity()
 {
     _id = _nextId;

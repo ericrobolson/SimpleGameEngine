@@ -1,5 +1,5 @@
 #include "GameWorld.h"
-#include <string>
+#include "InputState.h"
 
 GameWorld::GameWorld() : BaseWorld()
 {
@@ -13,11 +13,11 @@ GameWorld::~GameWorld()
 bool GameWorld::Process(){
     // Process the systems
 
-    if (!_inputSystem.Process(_entities)){
-        return false;
-    }
+    _inputSystem.Process(_entities);
 
-    if (!_graphicsSystem.Process(_entities)){
+    _graphicsSystem.Process(_entities);
+
+    if (InputState::Instance().Exit == true){
         return false;
     }
 
