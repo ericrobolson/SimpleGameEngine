@@ -1,12 +1,8 @@
 #include "GameWorld.h"
-#include "PlayerAssemblage.h"
 #include <string>
 
 GameWorld::GameWorld() : BaseWorld()
 {
-    printf("Initializing GameWorld.\n");
-//    AddEntity(PlayerAssemblage::CreatePlayerEntity());
-    printf("Do player assemblage");
 }
 
 GameWorld::~GameWorld()
@@ -16,6 +12,8 @@ GameWorld::~GameWorld()
 
 bool GameWorld::Process(){
     // Process the systems
+
+    printf("\nGrapics system:");
     if (!_graphicsSystem.Process(_entities)){
         return false;
     }

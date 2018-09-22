@@ -18,25 +18,6 @@ using namespace std;
 
 int main( int argc, char* args[] )
 {
-/*
-    Entity entity;
-
-    std::shared_ptr<PositionComponent> posCom = std::make_shared<PositionComponent>();
-
-    posCom.get()->PositionX = 3;
-
-    entity.AddComponent(posCom);
-
-    std::shared_ptr<MovementComponent> posCom2 = std::make_shared<MovementComponent>();
-
-    entity.AddComponent(posCom2);
-
-    std::shared_ptr<MovementComponent> testGet;
-    entity.GetComponent(testGet);
-
-    cout << "testing:" << endl;
-*/
-
     GameWorld gameWorld;
 
     while(gameWorld.Process()){}

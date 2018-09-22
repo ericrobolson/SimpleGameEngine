@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1537402698 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1537580535 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	"Entity.h"
 	"Components/PositionComponent.h"
 	"Components/MovementComponent.h"
@@ -63,21 +63,20 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1537409686 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1537580692 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
-	"PlayerAssemblage.h"
 	<string>
 
 1537402455 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
 	"GraphicsSystem.h"
 
-1537403519 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1537580429 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	"GraphicsSystem.h"
 	<SDL.h>
 	<string>
 
-1537403322 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1537580828 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 

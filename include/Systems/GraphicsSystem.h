@@ -14,8 +14,9 @@ class GraphicsSystem : public BaseSystem
     protected:
 
     private:
+        bool _exit;
         SDL_Window* _window;
-        SDL_Surface* _screenSurface;
+        SDL_Renderer* _renderer;  // Holds rendering surface properties.
 };
 
 #endif // GRAPHICSSYSTEM_H

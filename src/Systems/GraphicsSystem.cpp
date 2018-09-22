@@ -11,15 +11,18 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 {
     printf("Initializing SDL.\n");
 
+    _exit = false;
     _window = nullptr;
-    _screenSurface = nullptr;
+    _renderer = nullptr;
 
-    if (SDL_Init(SDL_INIT_VIDEO) < 0){
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
         printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
     }
     else{
 
-        _window = SDL_CreateWindow( "SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+        _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+
+
         if( _window == nullptr )
         {
             printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
@@ -27,31 +30,46 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
         else
         {
             //Get window surface
-            _screenSurface = SDL_GetWindowSurface(_window);
-
-            //Fill the surface white
-            SDL_FillRect( _screenSurface, nullptr, SDL_MapRGB( _screenSurface->format, 0xFF, 0xFF, 0xFF ) );
-
-
+            _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
         }
     }
 }
 
 bool GraphicsSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
-    if (_window == nullptr){
+
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        if (event.type == SDL_QUIT) {
+            _exit = true;
+        }
+
+        if (event.type == SDL_KEYDOWN) {
+            switch (event.key.keysym.sym) {
+                case SDLK_ESCAPE:
+                    _exit = true;
+                    break;
+
+            }
+
+
+        }
+
+    }
+
+
+    SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);  // Dark grey.
+    SDL_RenderClear(_renderer);
+
+
+
+
+    // Swap buffers.
+    SDL_RenderPresent(_renderer);
+
+    if (_exit == true){
         return false;
     }
-
-    //Get window surface
-    _screenSurface = SDL_GetWindowSurface(_window);
-
-    if (_screenSurface != nullptr){
-        //Fill the surface white
-        SDL_FillRect( _screenSurface, nullptr, SDL_MapRGB( _screenSurface->format, 0xFF, 0xFF, 0xFF ) );
-    }
-
-    //Update the surface
-    SDL_UpdateWindowSurface(_window);
 
     return true;
 }
@@ -60,12 +78,13 @@ bool GraphicsSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
 GraphicsSystem::~GraphicsSystem()
 {
     // Cleanup SDL
-    if (_window != nullptr){
-        SDL_DestroyWindow(_window);
+    if (_renderer != nullptr){
+            SDL_DestroyRenderer(_renderer);
     }
 
-    if (_screenSurface != nullptr){
-        delete _screenSurface;
+    if (_window != nullptr){
+        SDL_DestroyWindow(_window);
+        _window = nullptr;
     }
 
     SDL_Quit();
