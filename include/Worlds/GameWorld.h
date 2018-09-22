@@ -3,20 +3,18 @@
 
 #include "BaseWorld.h"
 #include "GraphicsSystem.h"
-
+#include "InputSystem.h"
 
 class GameWorld : public BaseWorld
 {
     public:
         GameWorld();
         virtual ~GameWorld();
-
         virtual bool Process();
-
-    protected:
 
     private:
         GraphicsSystem _graphicsSystem;
+        InputSystem _inputSystem;
 };
 
 #endif // GAMEWORLD_H

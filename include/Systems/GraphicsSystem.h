@@ -11,10 +11,7 @@ class GraphicsSystem : public BaseSystem
         virtual ~GraphicsSystem();
         bool Process(std::vector<std::shared_ptr<Entity>>& entities);
 
-    protected:
-
     private:
-        bool _exit;
         SDL_Window* _window;
         SDL_Renderer* _renderer;  // Holds rendering surface properties.
 };

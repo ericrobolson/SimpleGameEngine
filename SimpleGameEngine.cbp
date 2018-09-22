@@ -58,6 +58,7 @@
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Entity.h" />
 		<Unit filename="include/Systems/GraphicsSystem.h" />
+		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
@@ -70,6 +71,7 @@
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
+		<Unit filename="src/Systems/InputSystem.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
 		<Extensions>
 			<code_completion />

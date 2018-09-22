@@ -13,7 +13,10 @@ GameWorld::~GameWorld()
 bool GameWorld::Process(){
     // Process the systems
 
-    printf("\nGrapics system:");
+    if (!_inputSystem.Process(_entities)){
+        return false;
+    }
+
     if (!_graphicsSystem.Process(_entities)){
         return false;
     }
