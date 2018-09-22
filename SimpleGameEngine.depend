@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1537580535 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1537581857 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	"Entity.h"
 	"Components/PositionComponent.h"
 	"Components/MovementComponent.h"
@@ -15,18 +15,16 @@
 
 1536916306 c:\users\eric\gamedev\simplegameengine\include\basecomponent.h
 
-1537406167 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
+1537582676 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
 	"Entity.h"
 	"BaseComponent.h"
 	<vector>
 	<memory>
-	<string>
 
-1537409654 c:\users\eric\gamedev\simplegameengine\include\entity.h
+1537582702 c:\users\eric\gamedev\simplegameengine\include\entity.h
 	<vector>
 	<memory>
 	"BaseComponent.h"
-	<iostream>
 
 1536916431 source:c:\users\eric\gamedev\simplegameengine\src\positioncomponent.cpp
 	"PositionComponent.h"
@@ -63,20 +61,20 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1537580692 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1537582423 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	<string>
 
-1537402455 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1537582216 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
 	"GraphicsSystem.h"
+	"InputSystem.h"
 
-1537580429 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1537582640 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	"GraphicsSystem.h"
 	<SDL.h>
-	<string>
 
-1537580828 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1537582168 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 
@@ -779,4 +777,11 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1537582314 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
+	"BaseSystem.h"
+
+1537582449 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+	"InputSystem.h"
+	<SDL.h>
 

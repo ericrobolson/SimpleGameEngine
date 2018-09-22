@@ -1,6 +1,5 @@
 #include "GraphicsSystem.h"
 #include <SDL.h>
-#include <string>
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -9,8 +8,6 @@ const int SCREEN_BITSPERPIXEL = 32;
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
 {
-    printf("Initializing SDL.\n");
-
     if (SDL_WasInit(SDL_INIT_VIDEO) == 0){
         SDL_Init(SDL_INIT_VIDEO);
     }
@@ -19,16 +16,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = nullptr;
 
     _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
-
-    if( _window == nullptr )
-    {
-        printf( "Window could not be created! SDL_Error: %s\n", SDL_GetError() );
-    }
-    else
-    {
-        //Get window surface
-        _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    }
+    _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 bool GraphicsSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
@@ -47,7 +35,7 @@ GraphicsSystem::~GraphicsSystem()
 {
     // Cleanup SDL
     if (_renderer != nullptr){
-            SDL_DestroyRenderer(_renderer);
+        SDL_DestroyRenderer(_renderer);
     }
 
     if (_window != nullptr){

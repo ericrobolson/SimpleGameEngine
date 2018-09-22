@@ -2,7 +2,6 @@
 #include "BaseComponent.h"
 #include <vector>
 #include <memory>
-#include <string>
 Entity::Entity()
 {
     _id = _nextId;
@@ -26,12 +25,6 @@ void Entity::DeleteComponent(int index){
 }
 
 bool Entity::IsEmpty(){
-    printf("TESTING COMPONENTS: \n");
-
-    if (_components.empty()){
-        printf("isnull");
-    }
-    printf("notnull");
     return _components.empty();
 }
 

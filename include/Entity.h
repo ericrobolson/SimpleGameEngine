@@ -3,7 +3,6 @@
 #include <vector>
 #include <memory>
 #include "BaseComponent.h"
-#include <iostream>
 
 class Entity
 {
@@ -22,9 +21,6 @@ class Entity
         void AddComponent(tComponent& componentPtr){
             _components.push_back(componentPtr);
 
-            std::cout << "balal";
-            std::cout << "components ";
-            std::cout << _components.empty() << std::endl;
             if (!_components.empty()){
                 // Remove any components that have the same type so that only one component of a type can be added
                 RemoveComponent(componentPtr);
