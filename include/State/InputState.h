@@ -30,6 +30,8 @@ class InputState
         bool Button9IsPressed;
 
         bool Exit;
+
+        void Reset();
     private:
         InputState();
         virtual ~InputState();

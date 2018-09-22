@@ -11,7 +11,10 @@ InputSystem::InputSystem() : BaseSystem()
 }
 
 bool InputSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
+    InputState::Instance().Reset();
+
     SDL_Event event;
+
     while (SDL_PollEvent(&event))
     {
         if (event.type == SDL_QUIT) {
@@ -24,6 +27,28 @@ bool InputSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
                 case SDLK_ESCAPE:
                     InputState::Instance().Exit = true;
                     _exit = true;
+                    break;
+                case SDLK_w:
+                    InputState::Instance().ButtonUpIsPressed = true;
+                    break;
+                case SDLK_a:
+                    InputState::Instance().ButtonLeftIsPressed = true;
+                    break;
+                case SDLK_s:
+                    InputState::Instance().ButtonDownIsPressed = true;
+                    break;
+                case SDLK_d:
+                    InputState::Instance().ButtonRightIsPressed = true;
+                    break;
+            }
+        }
+        else if (event.type == SDL_MOUSEBUTTONDOWN){
+            switch (event.button.button){
+                case SDL_BUTTON_LEFT:
+                    InputState::Instance().Button1IsPressed = true;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    InputState::Instance().Button2IsPressed = true;
                     break;
             }
         }

@@ -1,25 +1,18 @@
 # depslib dependency file v1.0
-1537581857 source:c:\users\eric\gamedev\simplegameengine\main.cpp
-	"Entity.h"
-	"Components/PositionComponent.h"
-	"Components/MovementComponent.h"
-	"Worlds/GameWorld.h"
-	<iostream>
-	<memory>
-	<typeinfo>
-	<vector>
+1537585475 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	<SDL.h>
+	"Worlds/GameWorld.h"
 
 1536916497 source:c:\users\eric\gamedev\simplegameengine\src\basecomponent.cpp
 	"BaseComponent.h"
 
 1536916306 c:\users\eric\gamedev\simplegameengine\include\basecomponent.h
 
-1537582676 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
-	"Entity.h"
-	"BaseComponent.h"
+1537585436 source:c:\users\eric\gamedev\simplegameengine\src\entity.cpp
 	<vector>
 	<memory>
+	"Entity.h"
+	"BaseComponent.h"
 
 1537582702 c:\users\eric\gamedev\simplegameengine\include\entity.h
 	<vector>
@@ -61,9 +54,8 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1537585284 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1537585494 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
-	<string>
 	"InputState.h"
 
 1537582216 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
@@ -71,9 +63,9 @@
 	"GraphicsSystem.h"
 	"InputSystem.h"
 
-1537582640 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
-	"GraphicsSystem.h"
+1537585888 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
+	"GraphicsSystem.h"
 
 1537582168 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
@@ -102,9 +94,9 @@
 1537339984 c:\users\eric\gamedev\simplegameengine\include\components\healthcomponent.h
 	"BaseComponent.h"
 
-1537144292 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\staticspritecomponent.cpp
-	"StaticSpriteComponent.h"
+1537585357 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\staticspritecomponent.cpp
 	<math.h>
+	"StaticSpriteComponent.h"
 
 1537339966 source:c:\users\eric\gamedev\simplegameengine\src\components\healthcomponent.cpp
 	"HealthComponent.h"
@@ -787,8 +779,8 @@
 	"InputSystem.h"
 	"InputState.h"
 
-1537583971 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
+1537658502 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
 
-1537585424 c:\users\eric\gamedev\simplegameengine\include\state\inputstate.h
+1537658506 c:\users\eric\gamedev\simplegameengine\include\state\inputstate.h
 

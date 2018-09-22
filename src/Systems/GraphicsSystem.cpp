@@ -12,6 +12,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
         SDL_Init(SDL_INIT_VIDEO);
     }
 
+    // Possibly move the renderer & window out to a static object, so there's only one? but then, why would we need more than one graphics system?
     _window = nullptr;
     _renderer = nullptr;
 
