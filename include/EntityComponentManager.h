@@ -1,19 +1,26 @@
 #ifndef ENTITYCOMPONENTMANAGER_H
 #define ENTITYCOMPONENTMANAGER_H
+#include <typeindex>
+#include <typeinfo>
+#include <unordered_map>
+#include "BaseComponent.h"
 
+
+// !!! Todo: Refactor the componentsTable into an array, where the type is hashed. Should be more memory effecient when performing lookups and allows static allocation on things
+// use this solution: https://stackoverflow.com/a/9859605
+
+typedef std::unordered_map<std::type_index, BaseComponent[]> TypeMap;
 
 class EntityComponentManager
 {
     public:
         const int MAXNUMBEROFENTITIES = 1'000'000; // Should be smaller than 2147483647, the maximum int size as that's what's used to declare the size of arrays of components
-
+        const int MAXNUMBEROFCOMPONENTTABLES = 200;
         EntityComponentManager();
         virtual ~EntityComponentManager();
 
         int? AddEntity(){
             // get first available id from id pool
-
-
         }; // Returns the id of the added entity; if no entity was added, return null. This may be the case if there are no available free ids
 
         // Add that component to the entity.
@@ -25,13 +32,21 @@ class EntityComponentManager
         // Return the component
         template <class TComponent>
         TComponent& AddComponent(int entityId){
-            TComponent[]  componentTable = _componentTables.Find(typeid(TComponent).name());
+            TComponent[]  componentTable = _componentTables[typeid(TComponent)];
 
             if (componentTable == nullptr){
+                if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
+                    throw "component types added has exceeded maximum number of component types in memory.";
+                }
+
+                _componentTypesAdded++;
                 componentTable = new TComponent[MAXNUMBEROFENTITIES];
                 for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
                     componentTable[i] = nullptr;
                 }
+
+                _componentTables[typeid(TComponent)] = componentTable;
+
             } else{
                 TComponent component = componentTable[entityId];
 
@@ -45,7 +60,8 @@ class EntityComponentManager
             return componentTable[entityId];
         };
 
-        TComponent& GetComponent(int entityId, TComponentType) // gets the type of component for that entity, returns null if that component was not found
+        template <class TComponent>
+        TComponent& GetComponent(int entityId) // gets the type of component for that entity, returns null if that component was not found
 
         void MarkEntityInactive(int entityId); // marks the given entity as inactive and adds it to the list of inactiveEntityIds
 
@@ -72,9 +88,10 @@ class EntityComponentManager
     protected:
 
     private:
+        TypeMap _componentTables;
         list <BaseComponent[], componenttypename> _componentTables; // a list of tuples, one containing the typeid(componentTye).name() string and one containing an array of those pointers
         list TypesOfComponentsToSearch _typesOfComponentsToSearch; // the list of types of components to search for; implemented as a queue
-
+        int _componentTypesAdded = 0;
         list int inactiveEntityIds; // a list of all entity ids to cleanup
 
         list int availableEntityIds; // a list of all available entity ids
