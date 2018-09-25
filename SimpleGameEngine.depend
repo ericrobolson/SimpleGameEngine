@@ -63,7 +63,7 @@
 	"GraphicsSystem.h"
 	"InputSystem.h"
 
-1537585888 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1537743310 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	"GraphicsSystem.h"
 
@@ -774,10 +774,12 @@
 1537582314 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
 
-1537724755 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1537725390 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
+	<string>
+	<iostream>
 
 1537658502 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
