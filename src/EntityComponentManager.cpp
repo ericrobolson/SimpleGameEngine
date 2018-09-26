@@ -24,14 +24,29 @@ EntityComponentManager::~EntityComponentManager()
 
     DeleteAllInactiveEntities();
 
-    // delete other misc memory shit
-
-    //dtor
+    // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    // todo: delete other misc memory shit
 
 }
 
 void EntityComponentManager::DeleteAllInactiveEntities(){
-    // todo: remove inactive entities and clean up components
+    int entityId = -1;
+
+    while (_inactiveEntityIds.empty() == false){
+        entityId = _inactiveEntityIds.front();
+
+        // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        // todo: remove inactive entities and clean up components
+
+        _inactiveEntityIds.pop_front();
+        _availableEntityIds.push_back(entityId);
+        _takenEntityIds.remove(entityId);
+    }
+}
+
+/// Check to see if the given id is valid
+bool EntityComponentManager::IsValidId(int id){
+    return id >= 0;
 }
 
 /// Get a count of active entities

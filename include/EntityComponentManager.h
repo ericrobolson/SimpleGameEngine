@@ -6,17 +6,18 @@
 #include <list>
 #include "BaseComponent.h"
 
-
 // !!! Todo: Refactor the componentsTable into an array, where the type is hashed. Should be more memory effecient when performing lookups and allows static allocation on things
 // use this solution: https://stackoverflow.com/a/9859605
 
-typedef std::unordered_map<std::type_index, BaseComponent*> TypeMap;
+typedef std::unordered_map<std::type_index, BaseComponent*> ComponentTypeMap;
 
 class EntityComponentManager
 {
     public:
         static const int MAXNUMBEROFENTITIES = 100'000; // Should be smaller than 2147483647, the maximum int size as that's what's used to declare the size of arrays of components
         static const int MAXNUMBEROFCOMPONENTTABLES = 200;
+        static bool IsValidId(int id); // returns whether the id is valid or not
+
         EntityComponentManager();
         virtual ~EntityComponentManager();
 
@@ -30,7 +31,6 @@ class EntityComponentManager
         // clears the inactiveEntityIds and takenEntityIds after processing and adds them back to the availableEntityIds
         void DeleteAllInactiveEntities();
 
-
         // Add that component to the entity.
         // See if that 'table', or the place in memory for that component type exists.
         // If 'table' does exist, check to see if GetComponent() exists. if so, then return that item.
@@ -40,10 +40,7 @@ class EntityComponentManager
         // Return the component
         template <class TComponent>
         TComponent& AddComponent(int entityId){
-
-            ///todo: Ensure that references/pointers are used properly
-
-            TComponent* componentTable = _componentTables[typeid(TComponent)];
+            TComponent* componentTable = &_componentTables[typeid(TComponent)];
 
             if (componentTable == nullptr){
                 if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
@@ -68,48 +65,53 @@ class EntityComponentManager
 
             componentTable[entityId] = new TComponent();
 
-            return componentTable[entityId];
+            return &componentTable[entityId];
         };
 
-        /*
-
+        // gets the type of component for that entity, returns null if that component was not found
         template <class TComponent>
-        TComponent& GetComponent(int entityId) // gets the type of component for that entity, returns null if that component was not found
+        TComponent& GetComponent(int entityId){
+            TComponent* componentTable = &_componentTables[typeid(TComponent)];
 
-        void AddSearch(TComponent) // adds to the end of _typesOfComponentsToSearch the type of component to search on
-        list int ExecuteSearch() // returns a list of entity ids with the given search; starts off by calling ExecuteSearch(list int idsToSearch) on all entity ids
-        {
-            list int matchingIds = ExecuteSearch(takenEntityIds);
+            if (componentTable == nullptr){
+                return nullptr;
+            }
 
-            // Always reset the search, in case the list of matching entities was empty and there are still search terms left. This allows it to always start fresh so other classes don't have to call reset.
-            _typesOfComponentsToSearch.clear();
+            return &componentTable[entityId];
+        };
 
 
-            return matchingIds;
+        /// Get a list of entityIds that have the given component
+        template <class TComponent>
+        std::list<int> Search(){
+            return Search<TComponent>(_takenEntityIds);
         }
-        */
 
-    protected:
+        /// Get a list of entityIds that have the given component from a list of entities
+        template <class TComponent>
+        std::list<int> Search(std::list<int> entityIds){
+            std::list<int> matchingEntityIds;
+
+            int entityId = -1;
+
+            while (entityIds.empty() == false){
+                entityId = entityIds.front();
+                entityIds.pop_front();
+
+                if (GetComponent<TComponent>(entityId) != nullptr){
+                    matchingEntityIds.push_back(entityId);
+                }
+            }
+
+            return matchingEntityIds;
+        }
 
     private:
         std::list<int> _inactiveEntityIds; // a list of all entity ids to cleanup
         std::list<int> _availableEntityIds; // a list of all available entity ids
         std::list<int>  _takenEntityIds; // a list of entity ids that are taken
         int _componentTypesAdded;
-        TypeMap _componentTables;
-
-
-        /*
-        list TypesOfComponentsToSearch _typesOfComponentsToSearch; // the list of types of components to search for; implemented as a queue
-
-
-        // given the list of ids to search, dequeue the the next _typesOfComponentsToSearch item,
-        // then return a subset of idsToSearch that meet the _typesOfComponentsToSearch item.
-        // Use the GetComponent(entityId, TComponentTYpe) to see if the entity has that component
-        // If _typepsOfComponentsToSearch is empty, reeturn the entity ids. If the idsToSearch is empty, then return empty list
-        list int ExecuteSearch(list int idsToSearch)
-
-        */
+        ComponentTypeMap _componentTables;
 };
 
 #endif // ENTITYCOMPONENTMANAGER_H

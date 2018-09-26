@@ -786,3 +786,14 @@
 
 1537658506 c:\users\eric\gamedev\simplegameengine\include\state\inputstate.h
 
+1537924065 source:c:\users\eric\gamedev\simplegameengine\src\entitycomponentmanager.cpp
+	<list>
+	"EntityComponentManager.h"
+
+1537924093 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+	<typeindex>
+	<typeinfo>
+	<unordered_map>
+	<list>
+	"BaseComponent.h"
+
