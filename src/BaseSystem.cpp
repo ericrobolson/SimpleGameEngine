@@ -11,7 +11,7 @@ BaseSystem::~BaseSystem()
     //dtor
 }
 
-bool BaseSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
+bool BaseSystem::Process(EntityComponentManager &ecs){
     // this is where a system processes entities
     return true;
 };

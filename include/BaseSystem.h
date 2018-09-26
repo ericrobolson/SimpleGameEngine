@@ -1,6 +1,6 @@
 #ifndef BASESYSTEM_H
 #define BASESYSTEM_H
-#include "Entity.h"
+#include "EntityComponentManager.h"
 
 class BaseSystem
 {
@@ -8,7 +8,7 @@ class BaseSystem
         BaseSystem();
         virtual ~BaseSystem();
 
-        virtual bool Process(std::vector<std::shared_ptr<Entity>>& entities);
+        virtual bool Process(EntityComponentManager &ecs);
 };
 
 #endif // BASESYSTEM_H

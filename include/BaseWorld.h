@@ -1,8 +1,6 @@
 #ifndef BASEWORLD_H
 #define BASEWORLD_H
-#include <vector>
-#include <memory>
-#include "Entity.h"
+#include "EntityComponentManager.h"
 
 class BaseWorld
 {
@@ -11,11 +9,7 @@ class BaseWorld
         virtual ~BaseWorld();
         virtual bool Process();
 
-        void AddEntity(std::shared_ptr<Entity> entity);
-        void RemoveEntity(int entityId);
-
-    protected:
-        std::vector<std::shared_ptr<Entity>> _entities;
+        EntityComponentManager entityComponentManager;
 };
 
 #endif // BASEWORLD_H

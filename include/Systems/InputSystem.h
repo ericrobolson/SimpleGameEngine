@@ -2,14 +2,14 @@
 #define INPUTSYSTEM_H
 
 #include "BaseSystem.h"
-
+#include "EntityComponentManager.h"
 
 class InputSystem : public BaseSystem
 {
     public:
         InputSystem();
         virtual ~InputSystem();
-        bool Process(std::vector<std::shared_ptr<Entity>>& entities);
+        bool Process(EntityComponentManager &ecs);
 
     private:
         bool _exit;

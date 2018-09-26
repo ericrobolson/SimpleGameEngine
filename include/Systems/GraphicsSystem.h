@@ -2,6 +2,7 @@
 #define GRAPHICSSYSTEM_H
 #include <SDL.h>
 #include "BaseSystem.h"
+#include "EntityComponentManager.h"
 
 
 class GraphicsSystem : public BaseSystem
@@ -9,7 +10,7 @@ class GraphicsSystem : public BaseSystem
     public:
         GraphicsSystem();
         virtual ~GraphicsSystem();
-        bool Process(std::vector<std::shared_ptr<Entity>>& entities);
+        bool Process(EntityComponentManager &ecs);
 
     private:
         SDL_Window* _window;

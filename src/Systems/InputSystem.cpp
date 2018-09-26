@@ -3,6 +3,7 @@
 #include "InputState.h"
 #include <string>
 #include <iostream>
+#include "EntityComponentManager.h"
 #define DEBUG
 
 void DebugMessage(std::string message){
@@ -19,7 +20,7 @@ InputSystem::InputSystem() : BaseSystem()
     _exit = false;
 }
 
-bool InputSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
+bool InputSystem::Process(EntityComponentManager &ecs){
     InputState::Instance().Reset();
 
     SDL_Event event;

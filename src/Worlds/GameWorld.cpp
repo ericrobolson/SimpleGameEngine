@@ -13,9 +13,9 @@ GameWorld::~GameWorld()
 bool GameWorld::Process(){
     // Process the systems
 
-    _inputSystem.Process(_entities);
+    _inputSystem.Process(&entityComponentManager);
 
-    _graphicsSystem.Process(_entities);
+    _graphicsSystem.Process(&entityComponentManager);
 
     if (InputState::Instance().Exit == true){
         return false;

@@ -6,9 +6,6 @@
 #include <list>
 #include "BaseComponent.h"
 
-// !!! Todo: Refactor the componentsTable into an array, where the type is hashed. Should be more memory effecient when performing lookups and allows static allocation on things
-// use this solution: https://stackoverflow.com/a/9859605
-
 typedef std::unordered_map<std::type_index, BaseComponent*> ComponentTypeMap;
 
 class EntityComponentManager

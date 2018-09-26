@@ -25,22 +25,18 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\positioncomponent.h
 	<BaseComponent.h>
 
-1537402770 source:c:\users\eric\gamedev\simplegameengine\src\basesystem.cpp
+1537925920 source:c:\users\eric\gamedev\simplegameengine\src\basesystem.cpp
 	"BaseSystem.h"
 	"Entity.h"
 
-1537402749 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
-	"Entity.h"
+1537925843 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
+	"EntityComponentManager.h"
 
-1537402490 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
-	<memory>
-	<vector>
+1537925735 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
 
-1537402526 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
-	<vector>
-	<memory>
-	"Entity.h"
+1537925715 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
+	"EntityComponentManager.h"
 
 1537031388 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
 	"Components/MovementComponent.h"
@@ -63,13 +59,15 @@
 	"GraphicsSystem.h"
 	"InputSystem.h"
 
-1537743310 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1537925991 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	"GraphicsSystem.h"
+	"EntityComponentManager.h"
 
-1537582168 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1537925984 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
+	"EntityComponentManager.h"
 
 1537404938 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
@@ -771,15 +769,17 @@
 	"begin_code.h"
 	"close_code.h"
 
-1537582314 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
+1537926013 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
+	"EntityComponentManager.h"
 
-1537725390 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1537926045 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
 	<string>
 	<iostream>
+	"EntityComponentManager.h"
 
 1537658502 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
@@ -790,7 +790,7 @@
 	<list>
 	"EntityComponentManager.h"
 
-1537924093 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1537925542 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<typeindex>
 	<typeinfo>
 	<unordered_map>

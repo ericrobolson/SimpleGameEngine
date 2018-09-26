@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include "GraphicsSystem.h"
+#include "EntityComponentManager.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -20,7 +21,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-bool GraphicsSystem::Process(std::vector<std::shared_ptr<Entity>>& entities){
+bool GraphicsSystem::Process(EntityComponentManager &ecs){
     SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);  // Dark grey.
     SDL_RenderClear(_renderer);
 
