@@ -1,5 +1,5 @@
 #include "BaseSystem.h"
-#include "Entity.h"
+#include "EntityComponentManager.h"
 
 BaseSystem::BaseSystem()
 {
