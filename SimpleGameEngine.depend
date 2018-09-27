@@ -25,9 +25,9 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\positioncomponent.h
 	<BaseComponent.h>
 
-1537925920 source:c:\users\eric\gamedev\simplegameengine\src\basesystem.cpp
+1538061098 source:c:\users\eric\gamedev\simplegameengine\src\basesystem.cpp
 	"BaseSystem.h"
-	"Entity.h"
+	"EntityComponentManager.h"
 
 1537925843 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
 	"EntityComponentManager.h"
@@ -50,9 +50,10 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1537585494 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1538063911 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
+	"PlayerAssemblage.h"
 
 1537582216 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
@@ -69,19 +70,16 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1537404938 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1538062031 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
-	<memory>
-	"Entity.h"
-	"PositionComponent.h"
-	"MovementComponent.h"
-	"StaticSpriteComponent.h"
+	"EntityComponentManager.h"
 	"PlayerComponent.h"
-	"HealthComponent.h"
+	"ColorComponent.h"
+	"PositionComponent.h"
+	"RectangleComponent.h"
 
-1537033193 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
-	<memory>
-	"Entity.h"
+1538061673 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
+	"EntityComponentManager.h"
 
 1537144278 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\staticspritecomponent.h
 	"BaseComponent.h"
@@ -790,10 +788,24 @@
 	<list>
 	"EntityComponentManager.h"
 
-1537925542 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1538064176 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<typeindex>
 	<typeinfo>
 	<unordered_map>
 	<list>
+	"BaseComponent.h"
+
+1538061208 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\colorcomponent.cpp
+	"ColorComponent.h"
+
+1538061453 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\colorcomponent.h
+	<cstdint>
+	<SDL.h>
+	"BaseComponent.h"
+
+1538061524 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\rectanglecomponent.cpp
+	"RectangleComponent.h"
+
+1538061564 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\rectanglecomponent.h
 	"BaseComponent.h"
 

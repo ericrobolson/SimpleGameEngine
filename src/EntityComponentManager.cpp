@@ -4,7 +4,7 @@
 EntityComponentManager::EntityComponentManager()
 {
     // Initialize the list of free entity ids
-    for (int i = 0; i < EntityComponentManager::MAXNUMBEROFENTITIES; i++){
+    for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
         _availableEntityIds.push_back(i);
     }
 

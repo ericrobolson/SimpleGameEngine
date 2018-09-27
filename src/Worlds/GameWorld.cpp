@@ -1,8 +1,11 @@
 #include "GameWorld.h"
 #include "InputState.h"
+#include "PlayerAssemblage.h"
+
 
 GameWorld::GameWorld() : BaseWorld()
 {
+    PlayerAssemblage::GeneratePlayer(entityComponentManager);
 }
 
 GameWorld::~GameWorld()
