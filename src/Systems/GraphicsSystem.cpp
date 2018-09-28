@@ -1,6 +1,5 @@
 #include <SDL.h>
 #include <list>
-#include <iostream>
 #include "GraphicsSystem.h"
 #include "EntityComponentManager.h"
 #include "ColorComponent.h"
@@ -52,8 +51,6 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
             rectangle.w = rectangleComponent->Width;
             rectangle.x = positionComponent->PositionX;
             rectangle.y = positionComponent->PositionY;
-
-            std::cout << std::endl << "Rectangle X: " << rectangleComponent->Height << " Y: " << rectangle.y << std::endl;
 
             SDL_RenderFillRect(_renderer, &rectangle);
         }

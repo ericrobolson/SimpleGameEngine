@@ -50,20 +50,20 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1538063911 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1538166336 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	"PlayerAssemblage.h"
 
-1537582216 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1538166317 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
 	"GraphicsSystem.h"
 	"InputSystem.h"
+	"MovementSystem.h"
 
-1538165371 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1538176130 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
-	<iostream>
 	"GraphicsSystem.h"
 	"EntityComponentManager.h"
 	"ColorComponent.h"
@@ -75,7 +75,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538165355 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1538165865 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	<memory>
 	"PlayerAssemblage.h"
 	"EntityComponentManager.h"
@@ -830,4 +830,17 @@
 	<unordered_map>
 	<list>
 	"BaseComponent.h"
+
+1538166369 c:\users\eric\gamedev\simplegameengine\include\systems\movementsystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+
+1538176189 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+	<list>
+	<memory>
+	"InputState.h"
+	"MovementSystem.h"
+	"EntityComponentManager.h"
+	"PositionComponent.h"
+	"PlayerComponent.h"
 
