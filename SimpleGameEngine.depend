@@ -60,7 +60,7 @@
 	"GraphicsSystem.h"
 	"InputSystem.h"
 
-1538149314 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1538155583 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -74,7 +74,8 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538147061 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1538155557 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+	<memory>
 	"PlayerAssemblage.h"
 	"EntityComponentManager.h"
 	"PlayerComponent.h"
@@ -793,7 +794,7 @@
 	<list>
 	"EntityComponentManager.h"
 
-1538154463 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1538155528 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>

@@ -20,7 +20,7 @@ InputSystem::InputSystem() : BaseSystem()
     _exit = false;
 }
 
-bool InputSystem::Process(EntityComponentManager &ecs){
+bool InputSystem::Process(ECS::EntityComponentManager &ecs){
     InputState::Instance().Reset();
 
     SDL_Event event;

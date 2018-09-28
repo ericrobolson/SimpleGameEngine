@@ -38,9 +38,9 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
         int entityId = entityIds.front();
         entityIds.pop_front();
 
-        ColorComponent *colorComponent = ecs.GetComponent<ColorComponent>(entityId);
-        RectangleComponent *rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
-        PositionComponent *positionComponent = ecs.GetComponent<PositionComponent>(entityId);
+        std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
+        std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
+        std::shared_ptr<PositionComponent> positionComponent = ecs.GetComponent<PositionComponent>(entityId);
 
         if (rectangleComponent != nullptr && positionComponent != nullptr){
             if (colorComponent != nullptr){

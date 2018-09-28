@@ -21,7 +21,7 @@ namespace ECS{
 
             /// gets the type of component for that entity, returns null if that component was not found
             template <class TComponent>
-            std::shared_ptr<TComponent>& GetComponent(int entityId){
+            std::shared_ptr<TComponent> GetComponent(int entityId){
                 std::shared_ptr<BaseComponent> componentTable[MAXNUMBEROFENTITIES] = _componentTables[typeid(TComponent)];
 
                 if (componentTable == nullptr){
@@ -63,7 +63,7 @@ namespace ECS{
 
             template <class TComponent>
             TComponent& AddComponent(int entityId){
-                std::shared_ptr<BaseComponent*> componentTable = _componentTables[typeid(TComponent)];
+                std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
 
                 if (componentTable == nullptr){
                     if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
@@ -71,26 +71,24 @@ namespace ECS{
                     }
 
                     _componentTypesAdded++;
-                    BaseComponent *newTable = new TComponent[MAXNUMBEROFENTITIES];
 
-                    componentTable = newTable;
                     for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
-                       componentTable[i] = nullptr;
+                       _componentTables[typeid(TComponent)][i] = nullptr;
                     }
-
-                    _componentTables[typeid(TComponent)] = &componentTable;
 
                 } else{
                     std::shared_ptr<TComponent> component = GetComponent<TComponent>(entityId);
 
                     if (component != nullptr){
-                        return component;
+                        return *component.get();
                     }
                 }
 
                 componentTable[entityId] = std::make_shared<TComponent>();
 
-                return dynamic_cast<TComponent>(componentTable[entityId]);
+                std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
+
+                return *component.get();
             };
 
             std::shared_ptr<int> AddEntity();
