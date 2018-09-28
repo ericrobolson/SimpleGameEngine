@@ -9,7 +9,7 @@
 static const int MAXNUMBEROFENTITIES = 100'000; // Should be smaller than 2147483647, the maximum int size as that's what's used to declare the size of arrays of components
 
 
-typedef std::unordered_map<std::type_index, BaseComponent[MAXNUMBEROFENTITIES]> ComponentTypeMap;
+typedef std::unordered_map<std::type_index, BaseComponent *[MAXNUMBEROFENTITIES]> ComponentTypeMap;
 
 class EntityComponentManager
 {
@@ -39,7 +39,7 @@ class EntityComponentManager
         // Return the component
         template <class TComponent>
         TComponent& AddComponent(int entityId){
-            BaseComponent *componentTable = _componentTables[typeid(TComponent)];
+            BaseComponent **componentTable = _componentTables[typeid(TComponent)];
 
             if (componentTable == nullptr){
                 if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
@@ -47,18 +47,18 @@ class EntityComponentManager
                 }
 
                 _componentTypesAdded++;
-                BaseComponent *newTable = new TComponent[MAXNUMBEROFENTITIES];
+                BaseComponent *newTable[MAXNUMBEROFENTITIES] = new TComponent[MAXNUMBEROFENTITIES];
 
                 componentTable = newTable;
                 for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
 
-//                    componentTable[i] = nullptr;
+                    componentTable[i] = nullptr;
                 }
 
                 //_componentTables[typeid(TComponent)] = componentTable;
 
             } else{
-                TComponent *component = &dynamic_cast<TComponent&>(componentTable[entityId]);
+                TComponent *component = dynamic_cast<TComponent*>(&componentTable[entityId]);
 
                 if (component != nullptr){
                     return *component;
@@ -72,14 +72,17 @@ class EntityComponentManager
 
         // gets the type of component for that entity, returns null if that component was not found
         template <class TComponent>
-        TComponent& GetComponent(int entityId){
-            TComponent* componentTable = &_componentTables[typeid(TComponent)];
+        TComponent* GetComponent(int entityId){
+            BaseComponent* componentTable = _componentTables[typeid(TComponent)];
 
             if (componentTable == nullptr){
                 return nullptr;
             }
 
-            return &componentTable[entityId];
+            TComponent *component = &dynamic_cast<TComponent&>(componentTable[entityId]);
+
+
+            return component;
         };
 
 

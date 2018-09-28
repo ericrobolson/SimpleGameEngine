@@ -1,6 +1,10 @@
 #include <SDL.h>
+#include <list>
 #include "GraphicsSystem.h"
 #include "EntityComponentManager.h"
+#include "ColorComponent.h"
+#include "RectangleComponent.h"
+#include "PositionComponent.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -26,6 +30,35 @@ bool GraphicsSystem::Process(EntityComponentManager &ecs){
     SDL_RenderClear(_renderer);
 
     // Do component rendering??
+
+    std::list<int> entityIds = ecs.Search<RectangleComponent>();
+    entityIds = ecs.Search<PositionComponent>(entityIds);
+
+    while (entityIds.empty() == false){
+        int entityId = entityIds.front();
+        entityIds.pop_front();
+
+        ColorComponent *colorComponent = ecs.GetComponent<ColorComponent>(entityId);
+        RectangleComponent *rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
+        PositionComponent *positionComponent = ecs.GetComponent<PositionComponent>(entityId);
+
+        if (rectangleComponent != nullptr && positionComponent != nullptr){
+            if (colorComponent != nullptr){
+                SDL_SetRenderDrawColor(_renderer, colorComponent->Red, colorComponent->Green, colorComponent->Blue, colorComponent->Alpha);
+            }
+            SDL_Rect rectangle;
+            rectangle.h = rectangleComponent->Height;
+            rectangle.w = rectangleComponent->Width;
+            rectangle.x = positionComponent->PositionX;
+            rectangle.y = positionComponent->PositionY;
+
+            SDL_RenderFillRect(_renderer, &rectangle);
+        }
+    }
+
+
+
+
 
     // Swap buffers.
     SDL_RenderPresent(_renderer);

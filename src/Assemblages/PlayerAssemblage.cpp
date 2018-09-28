@@ -19,9 +19,9 @@ int PlayerAssemblage::GeneratePlayer(EntityComponentManager &ec){
     int entityId = -1;
 
     entityId = ec.AddEntity();
-
     if (EntityComponentManager::IsValidId(entityId)){
         PlayerComponent playerComponent = ec.AddComponent<PlayerComponent>(entityId);
+    printf("here");
 
         ColorComponent colorComponent = ec.AddComponent<ColorComponent>(entityId);
 
