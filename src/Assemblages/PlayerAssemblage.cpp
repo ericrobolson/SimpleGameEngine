@@ -5,7 +5,7 @@
 #include "ColorComponent.h"
 #include "PositionComponent.h"
 #include "RectangleComponent.h"
-
+#include <iostream>
 PlayerAssemblage::PlayerAssemblage()
 {
     //ctor
@@ -23,16 +23,18 @@ std::shared_ptr<int> PlayerAssemblage::GeneratePlayer(ECS::EntityComponentManage
     if (entityIdPtr != nullptr){
         int entityId = *entityIdPtr.get();
 
+        PlayerComponent& playerComponent = ec.AddComponent<PlayerComponent>(entityId);
+        ColorComponent& colorComponent = ec.AddComponent<ColorComponent>(entityId);
+        colorComponent.Red = 50;
+        colorComponent.Green = 205;
+        colorComponent.Blue = 50;
 
-        PlayerComponent playerComponent = ec.AddComponent<PlayerComponent>(entityId);
-        ColorComponent colorComponent = ec.AddComponent<ColorComponent>(entityId);
-
-        PositionComponent positionComponent = ec.AddComponent<PositionComponent>(entityId);
+        PositionComponent& positionComponent = ec.AddComponent<PositionComponent>(entityId);
         positionComponent.PositionX = 300;
         positionComponent.PositionY = 300;
 
 
-        RectangleComponent rectComponent = ec.AddComponent<RectangleComponent>(entityId);
+        RectangleComponent& rectComponent = ec.AddComponent<RectangleComponent>(entityId);
         rectComponent.Height = 15;
         rectComponent.Width = 15;
     }
