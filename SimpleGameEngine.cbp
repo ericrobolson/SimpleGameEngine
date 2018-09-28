@@ -37,6 +37,7 @@
 					<Add directory="include/Assemblages" />
 					<Add directory="include/" />
 					<Add directory="include/State" />
+					<Add directory="include/Components/GrapicsComponents" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -51,31 +52,37 @@
 			<Add option="-lmingw32 -lSDL2main -lSDL2" />
 			<Add directory="C:/mingw_dev_lib/SDL2 Mingw/i686-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="include/Assemblages/PlayerAssemblage.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
+		<Unit filename="include/Components/GrapicsComponents/ColorComponent.h" />
+		<Unit filename="include/Components/GrapicsComponents/RectangleComponent.h" />
 		<Unit filename="include/Components/GrapicsComponents/StaticSpriteComponent.h" />
 		<Unit filename="include/Components/HealthComponent.h" />
 		<Unit filename="include/Components/MovementComponent.h" />
 		<Unit filename="include/Components/PlayerComponent.h" />
 		<Unit filename="include/Components/PositionComponent.h" />
-		<Unit filename="include/Entity.h" />
 		<Unit filename="include/EntityComponentManager.h" />
+		<Unit filename="include/NewEntityComponentManager.h" />
 		<Unit filename="include/State/InputState.h" />
 		<Unit filename="include/Systems/GraphicsSystem.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Assemblages/PlayerAssemblage.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
+		<Unit filename="src/Components/GrapicsComponents/ColorComponent.cpp" />
+		<Unit filename="src/Components/GrapicsComponents/RectangleComponent.cpp" />
 		<Unit filename="src/Components/GrapicsComponents/StaticSpriteComponent.cpp" />
 		<Unit filename="src/Components/HealthComponent.cpp" />
 		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
-		<Unit filename="src/Entity.cpp" />
 		<Unit filename="src/EntityComponentManager.cpp" />
+		<Unit filename="src/NewEntityComponentManager.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />

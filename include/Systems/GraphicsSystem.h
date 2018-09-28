@@ -10,7 +10,7 @@ class GraphicsSystem : public BaseSystem
     public:
         GraphicsSystem();
         virtual ~GraphicsSystem();
-        bool Process(EntityComponentManager &ecs);
+        bool Process(ECS::EntityComponentManager &ecs);
 
     private:
         SDL_Window* _window;

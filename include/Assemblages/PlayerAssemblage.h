@@ -1,5 +1,6 @@
 #ifndef PLAYERASSEMBLAGE_H
 #define PLAYERASSEMBLAGE_H
+#include <memory>
 #include "EntityComponentManager.h"
 
 class PlayerAssemblage
@@ -8,7 +9,7 @@ class PlayerAssemblage
         PlayerAssemblage();
         virtual ~PlayerAssemblage();
 
-        static int GeneratePlayer(EntityComponentManager &ec);
+        static std::shared_ptr<int> GeneratePlayer(ECS::EntityComponentManager &ec);
 
     protected:
 

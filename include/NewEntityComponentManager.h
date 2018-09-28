@@ -30,7 +30,6 @@ namespace ECS{
 
                 std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
 
-
                 return component;
             };
 
@@ -61,7 +60,43 @@ namespace ECS{
             }
 
 
+
+            template <class TComponent>
+            std::shared_ptr<TComponent>& AddComponent(int entityId){
+                BaseComponent *componentTable = _componentTables[typeid(TComponent)];
+
+                if (componentTable == nullptr){
+                    if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
+                        throw "component types added has exceeded maximum number of component types in memory.";
+                    }
+
+                    _componentTypesAdded++;
+                    BaseComponent *newTable = new TComponent[MAXNUMBEROFENTITIES];
+
+                    componentTable = newTable;
+                    for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
+                       componentTable[i] = nullptr;
+                    }
+
+                    _componentTables[typeid(TComponent)] = &componentTable;
+
+                } else{
+                    std::shared_ptr<TComponent> component = GetComponent<TComponent>(entityId);
+
+                    if (component != nullptr){
+                        return component;
+                    }
+                }
+
+                componentTable[entityId] = std::make_shared<TComponent>();
+
+                return componentTable[entityId];
+            };
+
             std::shared_ptr<int> AddEntity();
+
+            void MarkEntityInactive(int entityId); // marks the given entity as inactive and adds it to the list of inactiveEntityIds
+            void DeleteAllInactiveEntities();
 
         private:
             std::list<int> _inactiveEntityIds; // a list of all entity ids to cleanup

@@ -8,7 +8,7 @@ class BaseSystem
         BaseSystem();
         virtual ~BaseSystem();
 
-        virtual bool Process(EntityComponentManager &ecs);
+        virtual bool Process(ECS::EntityComponentManager &ecs);
 };
 
 #endif // BASESYSTEM_H

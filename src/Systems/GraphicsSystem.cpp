@@ -25,7 +25,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-bool GraphicsSystem::Process(EntityComponentManager &ecs){
+bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);  // Dark grey.
     SDL_RenderClear(_renderer);
 

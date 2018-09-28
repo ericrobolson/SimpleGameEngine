@@ -1,5 +1,6 @@
 #include <list>
 #include "EntityComponentManager.h"
+using namespace ECS;
 
 EntityComponentManager::EntityComponentManager()
 {
@@ -29,6 +30,31 @@ EntityComponentManager::~EntityComponentManager()
 
 }
 
+/// Return the id of the added entity
+std::shared_ptr<int> EntityComponentManager::AddEntity(){
+    int entityId = -1;
+
+    if (_availableEntityIds.empty() == false){
+        entityId = _availableEntityIds.front();
+
+        _availableEntityIds.pop_front();
+        _takenEntityIds.push_back(entityId);
+    }
+
+    if (entityId == -1){
+        return nullptr;
+    }
+
+    return std::make_shared<int>(entityId);
+}
+
+
+/// Mark the given entity as inactive.
+void EntityComponentManager::MarkEntityInactive(int entityId){
+    _inactiveEntityIds.push_back(entityId);
+}
+
+
 void EntityComponentManager::DeleteAllInactiveEntities(){
     int entityId = -1;
 
@@ -42,33 +68,4 @@ void EntityComponentManager::DeleteAllInactiveEntities(){
         _availableEntityIds.push_back(entityId);
         _takenEntityIds.remove(entityId);
     }
-}
-
-/// Check to see if the given id is valid
-bool EntityComponentManager::IsValidId(int id){
-    return id >= 0;
-}
-
-/// Get a count of active entities
-int EntityComponentManager::GetEntitiesCount(){
-    return _takenEntityIds.size();
-}
-
-/// Mark the given entity as inactive.
-void EntityComponentManager::MarkEntityInactive(int entityId){
-    _inactiveEntityIds.push_back(entityId);
-}
-
-/// Return the id of the added entity; if -1, an entity was not created. 0 is a valid id.
-int EntityComponentManager::AddEntity(){
-    int entityId = -1;
-
-    if (_availableEntityIds.empty() == false){
-        entityId = _availableEntityIds.front();
-
-        _availableEntityIds.pop_front();
-        _takenEntityIds.push_back(entityId);
-    }
-
-    return entityId;
 }

@@ -11,7 +11,7 @@ BaseSystem::~BaseSystem()
     //dtor
 }
 
-bool BaseSystem::Process(EntityComponentManager &ecs){
+bool BaseSystem::Process(ECS::EntityComponentManager &ecs){
     // this is where a system processes entities
     return true;
 };

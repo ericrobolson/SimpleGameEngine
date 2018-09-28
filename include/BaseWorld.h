@@ -9,7 +9,7 @@ class BaseWorld
         virtual ~BaseWorld();
         virtual bool Process();
 
-        EntityComponentManager entityComponentManager;
+        ECS::EntityComponentManager entityComponentManager;
 };
 
 #endif // BASEWORLD_H

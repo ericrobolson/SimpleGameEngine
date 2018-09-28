@@ -1,3 +1,4 @@
+#include <memory>
 #include "PlayerAssemblage.h"
 #include "EntityComponentManager.h"
 #include "PlayerComponent.h"
@@ -15,14 +16,15 @@ PlayerAssemblage::~PlayerAssemblage()
     //dtor
 }
 
-int PlayerAssemblage::GeneratePlayer(EntityComponentManager &ec){
-    int entityId = -1;
+std::shared_ptr<int> PlayerAssemblage::GeneratePlayer(ECS::EntityComponentManager &ec){
+    std::shared_ptr<int> entityIdPtr = nullptr;
 
-    entityId = ec.AddEntity();
-    if (EntityComponentManager::IsValidId(entityId)){
+    entityIdPtr = ec.AddEntity();
+    if (entityIdPtr != nullptr){
+        int entityId = *entityIdPtr.get();
+
+
         PlayerComponent playerComponent = ec.AddComponent<PlayerComponent>(entityId);
-    printf("here");
-
         ColorComponent colorComponent = ec.AddComponent<ColorComponent>(entityId);
 
         PositionComponent positionComponent = ec.AddComponent<PositionComponent>(entityId);
@@ -33,9 +35,7 @@ int PlayerAssemblage::GeneratePlayer(EntityComponentManager &ec){
         RectangleComponent rectComponent = ec.AddComponent<RectangleComponent>(entityId);
         rectComponent.Height = 15;
         rectComponent.Width = 15;
-
-
     }
 
-    return entityId;
+    return entityIdPtr;
 };

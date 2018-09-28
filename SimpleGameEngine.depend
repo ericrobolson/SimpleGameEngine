@@ -25,17 +25,17 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\positioncomponent.h
 	<BaseComponent.h>
 
-1538061098 source:c:\users\eric\gamedev\simplegameengine\src\basesystem.cpp
+1538153811 source:c:\users\eric\gamedev\simplegameengine\src\basesystem.cpp
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1537925843 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
+1538153792 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
 	"EntityComponentManager.h"
 
 1537925735 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
 
-1537925715 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
+1538153803 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
 1537031388 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
@@ -69,7 +69,7 @@
 	"RectangleComponent.h"
 	"PositionComponent.h"
 
-1537925984 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1538153817 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
@@ -82,7 +82,8 @@
 	"PositionComponent.h"
 	"RectangleComponent.h"
 
-1538061673 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
+1538154381 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
+	<memory>
 	"EntityComponentManager.h"
 
 1537144278 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\staticspritecomponent.h
@@ -771,7 +772,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1537926013 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
+1538153878 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
@@ -788,11 +789,12 @@
 
 1537658506 c:\users\eric\gamedev\simplegameengine\include\state\inputstate.h
 
-1538064188 source:c:\users\eric\gamedev\simplegameengine\src\entitycomponentmanager.cpp
+1538153871 source:c:\users\eric\gamedev\simplegameengine\src\entitycomponentmanager.cpp
 	<list>
 	"EntityComponentManager.h"
 
-1538149319 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1538154463 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+	<memory>
 	<typeindex>
 	<typeinfo>
 	<unordered_map>
@@ -813,10 +815,12 @@
 1538061564 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\rectanglecomponent.h
 	"BaseComponent.h"
 
-1538150011 source:c:\users\eric\gamedev\simplegameengine\src\newentitycomponentmanager.cpp
+1538153691 source:c:\users\eric\gamedev\simplegameengine\src\newentitycomponentmanager.cpp
 	"NewEntityComponentManager.h"
+	<memory>
+	<list>
 
-1538150110 c:\users\eric\gamedev\simplegameengine\include\newentitycomponentmanager.h
+1538153638 c:\users\eric\gamedev\simplegameengine\include\newentitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>

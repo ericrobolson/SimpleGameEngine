@@ -9,7 +9,7 @@ class InputSystem : public BaseSystem
     public:
         InputSystem();
         virtual ~InputSystem();
-        bool Process(EntityComponentManager &ecs);
+        bool Process(ECS::EntityComponentManager &ecs);
 
     private:
         bool _exit;
