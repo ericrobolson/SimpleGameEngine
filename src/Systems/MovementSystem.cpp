@@ -22,13 +22,19 @@ MovementSystem::~MovementSystem()
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
     std::list<int> entities = ecs.Search<MovementComponent>();
-    entities = ecs.Search<PositionComponent>(entities);
 
     const int moveSpeed = 5;
 
     for (int i = 0; i < entities.size(); i++){
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
-        PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
+
+        std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(i);
+
+        if (positionPtr == nullptr){
+            continue;
+        }
+
+        PositionComponent& positionComponent = *positionPtr.get();
 
         std::shared_ptr<PlayerComponent> playerComponent = ecs.GetComponent<PlayerComponent>(i);
         if (playerComponent != nullptr){

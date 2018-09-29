@@ -8,7 +8,7 @@
 #include "BaseComponent.h"
 
 namespace ECS{
-    static const int MAXNUMBEROFENTITIES = 100'000; // Should be smaller than 2147483647, the maximum int size as that's what's used to declare the size of arrays of components
+    static const int MAXNUMBEROFENTITIES = 100; // Until multithreading is implemented, acceptable limit is 100
     static const int MAXNUMBEROFCOMPONENTTABLES = 200;
 
     typedef std::unordered_map<std::type_index, std::shared_ptr<BaseComponent>[MAXNUMBEROFENTITIES]> ComponentTypeMap;
