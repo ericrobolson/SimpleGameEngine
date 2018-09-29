@@ -7,7 +7,7 @@
 #include "PositionComponent.h"
 #include "InputState.h"
 #include "Debugger.h"
-
+#include <memory.h>
 
 MovementSystem::MovementSystem() : BaseSystem()
 {
@@ -21,16 +21,18 @@ MovementSystem::~MovementSystem()
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
-    std::list<int> entities = ecs.Search<PlayerComponent>();
-    entities = ecs.Search<MovementComponent>(entities);
+    std::list<int> entities = ecs.Search<MovementComponent>();
     entities = ecs.Search<PositionComponent>(entities);
 
     const int moveSpeed = 5;
 
     for (int i = 0; i < entities.size(); i++){
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
+        PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
 
-        InputState& inputState = InputState::Instance();
+        std::shared_ptr<PlayerComponent> playerComponent = ecs.GetComponent<PlayerComponent>(i);
+        if (playerComponent != nullptr){
+            InputState& inputState = InputState::Instance();
 
         // Calculate horizontal and vertical movement
         if (inputState.ButtonUpIsPressed){
@@ -60,9 +62,11 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
         }
 
         // Calculate the angle based of the cursor
-        PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
 
         movementComponent.SetDirectionAngleFromCoordinates(positionComponent.PositionX, positionComponent.PositionY, inputState.CursorX, inputState.CursorY);
+        }
+
+
 
     }
 

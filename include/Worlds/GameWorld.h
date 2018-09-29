@@ -1,5 +1,6 @@
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
+#include <time.h>
 
 #include "BaseWorld.h"
 #include "GraphicsSystem.h"
@@ -19,6 +20,7 @@ class GameWorld : public BaseWorld
         InputSystem _inputSystem;
         MovementSystem _movementSystem;
         PositionSystem _positionSystem;
+        clock_t _cycleClock;
 
 };
 
