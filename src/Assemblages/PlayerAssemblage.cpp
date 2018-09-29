@@ -5,6 +5,7 @@
 #include "ColorComponent.h"
 #include "PositionComponent.h"
 #include "RectangleComponent.h"
+#include "MovementComponent.h"
 #include <iostream>
 PlayerAssemblage::PlayerAssemblage()
 {
@@ -32,6 +33,8 @@ std::shared_ptr<int> PlayerAssemblage::GeneratePlayer(ECS::EntityComponentManage
         PositionComponent& positionComponent = ec.AddComponent<PositionComponent>(entityId);
         positionComponent.PositionX = 300;
         positionComponent.PositionY = 300;
+
+        ec.AddComponent<MovementComponent>(entityId);
 
 
         RectangleComponent& rectComponent = ec.AddComponent<RectangleComponent>(entityId);

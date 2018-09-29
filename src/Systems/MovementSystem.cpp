@@ -1,10 +1,13 @@
 #include <list>
-#include <memory>
-#include "InputState.h"
+#include <math.h>
 #include "MovementSystem.h"
 #include "EntityComponentManager.h"
-#include "PositionComponent.h"
 #include "PlayerComponent.h"
+#include "MovementComponent.h"
+#include "PositionComponent.h"
+#include "InputState.h"
+#include "Debugger.h"
+
 
 MovementSystem::MovementSystem() : BaseSystem()
 {
@@ -18,38 +21,50 @@ MovementSystem::~MovementSystem()
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
-    std::list<int> playerEntities = ecs.Search<PositionComponent>();
+    std::list<int> entities = ecs.Search<PlayerComponent>();
+    entities = ecs.Search<MovementComponent>(entities);
+    entities = ecs.Search<PositionComponent>(entities);
 
-    for (int i = 0; i < playerEntities.size(); i++){
-        std::shared_ptr<PlayerComponent> playerComponent = ecs.GetComponent<PlayerComponent>(i);
-        PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
+    const int moveSpeed = 5;
 
-        if (playerComponent != nullptr){
-            int moveSpeed = 4;
+    for (int i = 0; i < entities.size(); i++){
+        MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
 
+        InputState& inputState = InputState::Instance();
 
-            if (InputState::Instance().ButtonUpIsPressed){
-                positionComponent.PositionY -= moveSpeed;
-            }
-
-            if (InputState::Instance().ButtonDownIsPressed){
-                positionComponent.PositionY += moveSpeed;
-            }
-
-            if (InputState::Instance().ButtonLeftIsPressed){
-                positionComponent.PositionX -= moveSpeed;
-            }
-
-             if (InputState::Instance().ButtonRightIsPressed){
-                positionComponent.PositionX += moveSpeed;
-            }
+        // Calculate horizontal and vertical movement
+        if (inputState.ButtonUpIsPressed){
+            movementComponent.ForwardSpeed = moveSpeed;
         }
 
+        if (inputState.ButtonDownIsPressed){
+            movementComponent.ForwardSpeed = -moveSpeed;
+        }
+
+        if (inputState.ButtonRightIsPressed){
+            movementComponent.HorizontalSpeed = moveSpeed;
+        }
+
+        if (inputState.ButtonLeftIsPressed){
+            movementComponent.HorizontalSpeed = -moveSpeed;
+        }
+
+        if ((!inputState.ButtonUpIsPressed && !inputState.ButtonDownIsPressed)
+            || (inputState.ButtonUpIsPressed && inputState.ButtonDownIsPressed)){
+            movementComponent.ForwardSpeed = 0;
+        }
+
+         if ((!inputState.ButtonRightIsPressed && !inputState.ButtonLeftIsPressed)
+            || (inputState.ButtonRightIsPressed && inputState.ButtonLeftIsPressed)){
+            movementComponent.HorizontalSpeed = 0;
+        }
+
+        // Calculate the angle based of the cursor
+        PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
+
+        movementComponent.SetDirectionAngleFromCoordinates(positionComponent.PositionX, positionComponent.PositionY, inputState.CursorX, inputState.CursorY);
 
     }
-
-
-
 
     return true;
 }

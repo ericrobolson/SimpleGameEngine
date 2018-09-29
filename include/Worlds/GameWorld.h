@@ -5,6 +5,7 @@
 #include "GraphicsSystem.h"
 #include "InputSystem.h"
 #include "MovementSystem.h"
+#include "PositionSystem.h"
 
 class GameWorld : public BaseWorld
 {
@@ -17,6 +18,7 @@ class GameWorld : public BaseWorld
         GraphicsSystem _graphicsSystem;
         InputSystem _inputSystem;
         MovementSystem _movementSystem;
+        PositionSystem _positionSystem;
 
 };
 

@@ -9,20 +9,23 @@ class MovementComponent : public BaseComponent
         MovementComponent();
         virtual ~MovementComponent();
 
-        enum MovementDirections {
-            NOTMOVING,
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
+        int GetXDelta();
+        int GetYDelta();
 
-        MovementDirections Direction;
-        int Speed;
+        double SetDirectionAngleInRadians(double radians);
 
-    protected:
+        double SetDirectionAngleFromCoordinates(int x1, int y1, int x2, int y2);
+
+        double GetAngleInRadians();
+
+        int ForwardSpeed; // Positive number for forward movement, negative for backward movement
+        int HorizontalSpeed; // Positive number for moving right, negative for moving left
 
     private:
+        double _directionRadians;
+        double GetAngleInRadians(int angle);
+        const double PerpindicularRadians = 1.5708; // This is used to calculate XDelta and YDelta for horizontal movement
+
 };
 
 #endif // MOVEMENTCOMPONENT_H

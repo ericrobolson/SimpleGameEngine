@@ -38,10 +38,11 @@
 1538153803 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
-1537031388 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
+1538253085 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
 	"Components/MovementComponent.h"
+	<math.h>
 
-1536959633 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
+1538252715 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
 	<BaseComponent.h>
 
 1537032161 source:c:\users\eric\gamedev\simplegameengine\src\components\positioncomponent.cpp
@@ -50,18 +51,19 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1538166336 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1538248519 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	"PlayerAssemblage.h"
 
-1538166317 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1538248618 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	"BaseWorld.h"
 	"GraphicsSystem.h"
 	"InputSystem.h"
 	"MovementSystem.h"
+	"PositionSystem.h"
 
-1538176130 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1538252400 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -69,13 +71,15 @@
 	"ColorComponent.h"
 	"RectangleComponent.h"
 	"PositionComponent.h"
+	"MovementComponent.h"
+	<math.h>
 
 1538153817 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538165865 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1538249055 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	<memory>
 	"PlayerAssemblage.h"
 	"EntityComponentManager.h"
@@ -83,6 +87,7 @@
 	"ColorComponent.h"
 	"PositionComponent.h"
 	"RectangleComponent.h"
+	"MovementComponent.h"
 	<iostream>
 
 1538154381 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
@@ -779,7 +784,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538155591 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1538251136 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -835,12 +840,28 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538176189 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1538253015 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
-	<memory>
-	"InputState.h"
+	<math.h>
 	"MovementSystem.h"
 	"EntityComponentManager.h"
-	"PositionComponent.h"
 	"PlayerComponent.h"
+	"MovementComponent.h"
+	"PositionComponent.h"
+	"InputState.h"
+	"Debugger.h"
+
+1538248577 c:\users\eric\gamedev\simplegameengine\include\systems\positionsystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+
+1538253048 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+	"PositionSystem.h"
+	"EntityComponentManager.h"
+	"PositionComponent.h"
+	"MovementComponent.h"
+
+1538250895 c:\users\eric\gamedev\simplegameengine\include\debugger.h
+	<string>
+	<iostream>
 

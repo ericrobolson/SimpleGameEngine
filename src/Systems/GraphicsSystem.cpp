@@ -5,6 +5,8 @@
 #include "ColorComponent.h"
 #include "RectangleComponent.h"
 #include "PositionComponent.h"
+#include "MovementComponent.h"
+#include <math.h>
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -41,7 +43,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
         std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
         std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
         std::shared_ptr<PositionComponent> positionComponent = ecs.GetComponent<PositionComponent>(entityId);
-
+        std::shared_ptr<MovementComponent> movementComponent = ecs.GetComponent<MovementComponent>(entityId);
         if (rectangleComponent != nullptr && positionComponent != nullptr){
             if (colorComponent != nullptr){
                 SDL_SetRenderDrawColor(_renderer, colorComponent->Red, colorComponent->Green, colorComponent->Blue, colorComponent->Alpha);
@@ -53,6 +55,18 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
             rectangle.y = positionComponent->PositionY;
 
             SDL_RenderFillRect(_renderer, &rectangle);
+
+
+        }
+
+        if (movementComponent != nullptr && positionComponent != nullptr){
+            int startX = positionComponent->PositionX;
+            int startY = positionComponent->PositionY;
+
+            int xDelta = cos(movementComponent->GetAngleInRadians()) * 100;
+            int yDelta = sin(movementComponent->GetAngleInRadians()) * 100;
+
+            SDL_RenderDrawLine(_renderer, startX, startY, startX + xDelta, startY + yDelta);
         }
     }
 

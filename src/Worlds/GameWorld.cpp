@@ -20,6 +20,8 @@ bool GameWorld::Process(){
 
     _movementSystem.Process(entityComponentManager);
 
+    _positionSystem.Process(entityComponentManager);
+
     _graphicsSystem.Process(entityComponentManager);
 
     if (InputState::Instance().Exit == true){
