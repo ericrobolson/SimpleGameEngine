@@ -18,6 +18,9 @@ class MovementComponent : public BaseComponent
 
         double GetAngleInRadians();
 
+        void TurnLeft(int degrees);
+        void TurnRight(int degrees);
+
         int ForwardSpeed; // Positive number for forward movement, negative for backward movement
         int HorizontalSpeed; // Positive number for moving right, negative for moving left
 

@@ -3,6 +3,7 @@
 #include "MovementSystem.h"
 #include "EntityComponentManager.h"
 #include "PlayerComponent.h"
+#include "EnemyComponent.h"
 #include "MovementComponent.h"
 #include "PositionComponent.h"
 #include "InputState.h"
@@ -19,62 +20,71 @@ MovementSystem::~MovementSystem()
     //dtor
 }
 
-bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
-    std::list<int> entities = ecs.Search<MovementComponent>();
-
+void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &positionComponent){
     const int moveSpeed = 5;
+
+
+    InputState& inputState = InputState::Instance();
+
+    // Calculate horizontal and vertical movement
+    if (inputState.ButtonUpIsPressed){
+        movementComponent.ForwardSpeed = moveSpeed;
+    }
+
+    if (inputState.ButtonDownIsPressed){
+        movementComponent.ForwardSpeed = -moveSpeed;
+    }
+
+    if (inputState.ButtonRightIsPressed){
+        movementComponent.HorizontalSpeed = moveSpeed;
+    }
+
+    if (inputState.ButtonLeftIsPressed){
+        movementComponent.HorizontalSpeed = -moveSpeed;
+    }
+
+    if ((!inputState.ButtonUpIsPressed && !inputState.ButtonDownIsPressed)
+        || (inputState.ButtonUpIsPressed && inputState.ButtonDownIsPressed)){
+        movementComponent.ForwardSpeed = 0;
+    }
+
+     if ((!inputState.ButtonRightIsPressed && !inputState.ButtonLeftIsPressed)
+        || (inputState.ButtonRightIsPressed && inputState.ButtonLeftIsPressed)){
+        movementComponent.HorizontalSpeed = 0;
+    }
+
+    // Calculate the angle based of the cursor
+
+    movementComponent.SetDirectionAngleFromCoordinates(positionComponent.PositionX, positionComponent.PositionY, inputState.CursorX, inputState.CursorY);
+}
+
+bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
+    std::list<int> entities = ecs.Search<MovementComponent>();
 
     for (int i = 0; i < entities.size(); i++){
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
 
-        std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(i);
 
-        if (positionPtr == nullptr){
-            continue;
+
+        if (ecs.GetComponent<PlayerComponent>(i) != nullptr){
+            std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(i);
+
+            if (positionPtr == nullptr){
+                continue;
+            }
+
+            PositionComponent& positionComponent = *positionPtr.get();
+
+            HandlePlayerInput(movementComponent, positionComponent);
         }
 
-        PositionComponent& positionComponent = *positionPtr.get();
-
-        std::shared_ptr<PlayerComponent> playerComponent = ecs.GetComponent<PlayerComponent>(i);
-        if (playerComponent != nullptr){
-            InputState& inputState = InputState::Instance();
-
-        // Calculate horizontal and vertical movement
-        if (inputState.ButtonUpIsPressed){
-            movementComponent.ForwardSpeed = moveSpeed;
+        if (ecs.GetComponent<EnemyComponent>(i) != nullptr){
+           movementComponent.ForwardSpeed = 3;
+           movementComponent.TurnLeft(2);
         }
-
-        if (inputState.ButtonDownIsPressed){
-            movementComponent.ForwardSpeed = -moveSpeed;
-        }
-
-        if (inputState.ButtonRightIsPressed){
-            movementComponent.HorizontalSpeed = moveSpeed;
-        }
-
-        if (inputState.ButtonLeftIsPressed){
-            movementComponent.HorizontalSpeed = -moveSpeed;
-        }
-
-        if ((!inputState.ButtonUpIsPressed && !inputState.ButtonDownIsPressed)
-            || (inputState.ButtonUpIsPressed && inputState.ButtonDownIsPressed)){
-            movementComponent.ForwardSpeed = 0;
-        }
-
-         if ((!inputState.ButtonRightIsPressed && !inputState.ButtonLeftIsPressed)
-            || (inputState.ButtonRightIsPressed && inputState.ButtonLeftIsPressed)){
-            movementComponent.HorizontalSpeed = 0;
-        }
-
-        // Calculate the angle based of the cursor
-
-        movementComponent.SetDirectionAngleFromCoordinates(positionComponent.PositionX, positionComponent.PositionY, inputState.CursorX, inputState.CursorY);
-        }
-
-
-
     }
 
     return true;
 }
+

@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include "EntityComponentManager.h"
-#include "PlayerAssemblage.h"
 
 InputSystem::InputSystem() : BaseSystem()
 {
@@ -42,10 +41,6 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                 case SDLK_d:
                     InputState::Instance().ButtonRightIsPressed = true;
                     break;
-                case SDLK_y:
-                    PlayerAssemblage::GeneratePlayer(ecs);
-                    break;
-
             }
         }
          if (event.type == SDL_KEYUP) {

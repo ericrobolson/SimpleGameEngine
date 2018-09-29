@@ -1,13 +1,14 @@
 #include "GameWorld.h"
 #include "InputState.h"
 #include "PlayerAssemblage.h"
-
+#include "EnemyAssemblage.h"
 #include <stdio.h>
 #include <time.h>
 
 GameWorld::GameWorld() : BaseWorld()
 {
     PlayerAssemblage::GeneratePlayer(entityComponentManager);
+    EnemyAssemblage::GenerateEnemy(entityComponentManager);
     _cycleClock = clock();
 }
 

@@ -38,11 +38,11 @@
 1538153803 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
-1538253085 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
+1538266546 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
 	"Components/MovementComponent.h"
 	<math.h>
 
-1538252715 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
+1538265420 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
 	<BaseComponent.h>
 
 1537032161 source:c:\users\eric\gamedev\simplegameengine\src\components\positioncomponent.cpp
@@ -51,10 +51,11 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1538262310 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1538263887 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	"PlayerAssemblage.h"
+	"EnemyAssemblage.h"
 	<stdio.h>
 	<time.h>
 
@@ -787,14 +788,13 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538263163 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1538265265 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
 	<string>
 	<iostream>
 	"EntityComponentManager.h"
-	"PlayerAssemblage.h"
 
 1537658502 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
@@ -844,12 +844,13 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538262822 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1538266573 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
 	"EntityComponentManager.h"
 	"PlayerComponent.h"
+	"EnemyComponent.h"
 	"MovementComponent.h"
 	"PositionComponent.h"
 	"InputState.h"
@@ -869,4 +870,26 @@
 1538250895 c:\users\eric\gamedev\simplegameengine\include\debugger.h
 	<string>
 	<iostream>
+
+1538263784 source:c:\users\eric\gamedev\simplegameengine\src\components\enemycomponent.cpp
+	"EnemyComponent.h"
+
+1538263767 c:\users\eric\gamedev\simplegameengine\include\components\enemycomponent.h
+	"BaseComponent.h"
+
+1538263861 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\enemyassemblage.cpp
+	<memory>
+	"EntityComponentManager.h"
+	"EnemyAssemblage.h"
+	"EntityComponentManager.h"
+	"PlayerComponent.h"
+	"ColorComponent.h"
+	"PositionComponent.h"
+	"RectangleComponent.h"
+	"MovementComponent.h"
+	"EnemyComponent.h"
+
+1538263694 c:\users\eric\gamedev\simplegameengine\include\assemblages\enemyassemblage.h
+	<memory>
+	"EntityComponentManager.h"
 
