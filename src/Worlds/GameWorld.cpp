@@ -26,7 +26,7 @@ bool GameWorld::Process(){
     */
 
 
-    int fps = 100;
+    int fps = 60;
 
     float idealClock = (float)CLOCKS_PER_SEC / fps;
 
@@ -35,6 +35,7 @@ bool GameWorld::Process(){
     if (deltaClock < idealClock){
         return true;
     }
+    EnemyAssemblage::GenerateEnemy(entityComponentManager);
 
     clock_t oldClock = _cycleClock;
     _cycleClock = clock();

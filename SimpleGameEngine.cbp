@@ -46,16 +46,19 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-std=c++14" />
 			<Add directory="C:/mingw_dev_lib/SDL2 Mingw/i686-w64-mingw32/include/SDL2" />
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDL2main -lSDL2" />
 			<Add directory="C:/mingw_dev_lib/SDL2 Mingw/i686-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="include/Assemblages/EnemyAssemblage.h" />
 		<Unit filename="include/Assemblages/PlayerAssemblage.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
+		<Unit filename="include/Components/EnemyComponent.h" />
 		<Unit filename="include/Components/GrapicsComponents/ColorComponent.h" />
 		<Unit filename="include/Components/GrapicsComponents/RectangleComponent.h" />
 		<Unit filename="include/Components/GrapicsComponents/StaticSpriteComponent.h" />
@@ -72,10 +75,12 @@
 		<Unit filename="include/Systems/PositionSystem.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Assemblages/EnemyAssemblage.cpp" />
 		<Unit filename="src/Assemblages/PlayerAssemblage.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
+		<Unit filename="src/Components/EnemyComponent.cpp" />
 		<Unit filename="src/Components/GrapicsComponents/ColorComponent.cpp" />
 		<Unit filename="src/Components/GrapicsComponents/RectangleComponent.cpp" />
 		<Unit filename="src/Components/GrapicsComponents/StaticSpriteComponent.cpp" />

@@ -8,7 +8,7 @@
 #include "BaseComponent.h"
 
 namespace ECS{
-    static const int MAXNUMBEROFENTITIES = 100; // Until multithreading is implemented, acceptable limit is 100
+    static const int MAXNUMBEROFENTITIES = 1000; // Until multithreading is implemented, acceptable limit is 100
     static const int MAXNUMBEROFCOMPONENTTABLES = 200;
 
     typedef std::unordered_map<std::type_index, std::shared_ptr<BaseComponent>[MAXNUMBEROFENTITIES]> ComponentTypeMap;

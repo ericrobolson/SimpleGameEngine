@@ -10,6 +10,10 @@
 #include "Debugger.h"
 #include <memory.h>
 
+
+#include <pthread.h>
+
+
 MovementSystem::MovementSystem() : BaseSystem()
 {
     //ctor
@@ -62,10 +66,11 @@ void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
     std::list<int> entities = ecs.Search<MovementComponent>();
 
-    for (int i = 0; i < entities.size(); i++){
+    while (entities.empty() == false){
+        int i = entities.front();
+        entities.pop_front();
+
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
-
-
 
         if (ecs.GetComponent<PlayerComponent>(i) != nullptr){
             std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(i);
@@ -84,6 +89,7 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
            movementComponent.TurnLeft(2);
         }
     }
+
 
     return true;
 }
