@@ -9,10 +9,7 @@
 #include "InputState.h"
 #include "Debugger.h"
 #include <memory.h>
-
-
-#include <pthread.h>
-
+#include "JobQueue.h"
 
 MovementSystem::MovementSystem() : BaseSystem()
 {

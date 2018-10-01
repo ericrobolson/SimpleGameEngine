@@ -844,7 +844,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538408707 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1538428737 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -856,7 +856,6 @@
 	"InputState.h"
 	"Debugger.h"
 	<memory.h>
-	<thread>
 
 1538248577 c:\users\eric\gamedev\simplegameengine\include\systems\positionsystem.h
 	"BaseSystem.h"
