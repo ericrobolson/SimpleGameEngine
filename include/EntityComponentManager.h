@@ -22,13 +22,12 @@ namespace ECS{
             /// gets the type of component for that entity, returns null if that component was not found
             template <class TComponent>
             std::shared_ptr<TComponent> GetComponent(int entityId){
-                std::shared_ptr<BaseComponent> componentTable[MAXNUMBEROFENTITIES] = _componentTables[typeid(TComponent)];
 
-                if (componentTable == nullptr){
+                if (_componentTables[typeid(TComponent)] == nullptr){
                     return nullptr;
                 }
 
-                std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
+                std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(_componentTables[typeid(TComponent)][entityId]);
 
                 return component;
             };

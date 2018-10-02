@@ -10,7 +10,6 @@
 #include "Debugger.h"
 #include <memory.h>
 #include "JobQueue.h"
-
 MovementSystem::MovementSystem() : BaseSystem()
 {
     //ctor

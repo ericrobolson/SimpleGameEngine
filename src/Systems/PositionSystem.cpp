@@ -1,3 +1,5 @@
+#include <cstddef>
+
 #include "PositionSystem.h"
 #include "EntityComponentManager.h"
 #include "PositionComponent.h"
@@ -18,7 +20,7 @@ bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
     std::list<int> entities = ecs.Search<PositionComponent>();
     entities = ecs.Search<MovementComponent>(entities);
 
-    for (int i = 0; i < entities.size(); i++){
+    for (std::size_t i = 0; i < entities.size(); i++){
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
         PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
 
