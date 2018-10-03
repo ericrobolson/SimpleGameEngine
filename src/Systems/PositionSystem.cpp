@@ -17,11 +17,16 @@ PositionSystem::~PositionSystem()
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
 
-    std::list<int> entities = ecs.Search<PositionComponent>();
-    entities = ecs.Search<MovementComponent>(entities);
+    std::vector<int> entities = ecs.SearchAll<PositionComponent>();
+
 
     for (std::size_t i = 0; i < entities.size(); i++){
-        MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
+        std::shared_ptr<MovementComponent> movementPtr = ecs.GetComponent<MovementComponent>(i);
+        if (movementPtr == nullptr){
+            continue;
+        }
+
+        MovementComponent& movementComponent = *movementPtr;
         PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(i);
 
         if (movementComponent.ForwardSpeed != 0 || movementComponent.HorizontalSpeed != 0){

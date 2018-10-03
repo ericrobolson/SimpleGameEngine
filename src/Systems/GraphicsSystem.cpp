@@ -1,5 +1,5 @@
 #include <SDL.h>
-#include <list>
+#include <vector>
 #include "GraphicsSystem.h"
 #include "EntityComponentManager.h"
 #include "ColorComponent.h"
@@ -32,13 +32,14 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_RenderClear(_renderer);
 
     // Do component rendering??
-
-    std::list<int> entityIds = ecs.Search<RectangleComponent>();
-    entityIds = ecs.Search<PositionComponent>(entityIds);
+    std::vector<int> entityIds = ecs.SearchAll<RectangleComponent>();
 
     while (entityIds.empty() == false){
-        int entityId = entityIds.front();
-        entityIds.pop_front();
+
+
+
+        int entityId = entityIds.back();
+        entityIds.pop_back();
 
         std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
         std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);

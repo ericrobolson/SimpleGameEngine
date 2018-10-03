@@ -4,11 +4,16 @@
 #include "EnemyAssemblage.h"
 #include <stdio.h>
 #include <time.h>
-
+#include <thread>
 GameWorld::GameWorld() : BaseWorld()
 {
     PlayerAssemblage::GeneratePlayer(entityComponentManager);
-    EnemyAssemblage::GenerateEnemy(entityComponentManager);
+
+    for (int i = 0; i < 100000; i++){
+            EnemyAssemblage::GenerateEnemy(entityComponentManager);
+
+    }
+
     _cycleClock = clock();
 }
 
@@ -35,7 +40,6 @@ bool GameWorld::Process(){
     if (deltaClock < idealClock){
         return true;
     }
-    EnemyAssemblage::GenerateEnemy(entityComponentManager);
 
     clock_t oldClock = _cycleClock;
     _cycleClock = clock();
@@ -74,6 +78,8 @@ bool GameWorld::Process(){
     printf("'Position' system: %f percent of load\n", ((float)positionClock)/totalClock);
     printf("'GFX' system: %f percent of load\n", ((float)gfxClock)/totalClock);
     printf("---- END LOOP ----\n");
+
+    printf("NumberOfThreads: %i\n", std::thread::hardware_concurrency());
 
     if (InputState::Instance().Exit == true){
         return false;

@@ -6,10 +6,13 @@
 #include <unordered_map>
 #include <list>
 #include "BaseComponent.h"
+#include <vector>
+#include <thread>
+#include <mutex>
 
 namespace ECS{
-    static const int MAXNUMBEROFENTITIES = 1000; // Until multithreading is implemented, acceptable limit is 100
-    static const int MAXNUMBEROFCOMPONENTTABLES = 200;
+    static const int MAXNUMBEROFENTITIES = 10000; // Until multithreading is implemented, acceptable limit is 100
+    static const int MAXNUMBEROFCOMPONENTTABLES = 2000;
 
     typedef std::unordered_map<std::type_index, std::shared_ptr<BaseComponent>[MAXNUMBEROFENTITIES]> ComponentTypeMap;
 
@@ -32,30 +35,59 @@ namespace ECS{
                 return component;
             };
 
-
             /// Get a list of entityIds that have the given component
             template <class TComponent>
-            std::list<int> Search(){
-                return Search<TComponent>(_takenEntityIds);
+            std::vector<int> SearchAll(){
+                std::vector<int> matchingEntityIds;
+                std::size_t quarterSize = _takenEntityIds.size() / 4;
+
+                std::thread t1([&]() {
+                              Search<TComponent>(_takenEntityIds, 0, quarterSize, matchingEntityIds);
+                              });
+
+                std::thread t2([&]() {
+                              Search<TComponent>(_takenEntityIds, quarterSize, 2 * quarterSize, matchingEntityIds);
+                              });
+
+               std::thread t3([&]() {
+                      Search<TComponent>(_takenEntityIds, 2 * quarterSize, 3 * quarterSize, matchingEntityIds);
+                      });
+
+                std::thread t4([&]() {
+                      Search<TComponent>(_takenEntityIds, 3 * quarterSize, 4 * quarterSize, matchingEntityIds);
+                      });
+
+
+                t1.join();
+                t2.join();
+                t3.join();
+                t4.join();
+
+                return matchingEntityIds;
             }
 
             /// Get a list of entityIds that have the given component from a list of entities
             template <class TComponent>
-            std::list<int> Search(std::list<int> entityIds){
-                std::list<int> matchingEntityIds;
+            void Search(std::vector<int> entityIds, int searchStartIndex, std::size_t searchEndIndex, std::vector<int>& matchingEntityIds){
+
 
                 int entityId = -1;
+                std::vector<int>::iterator ptr;
 
-                while (entityIds.empty() == false){
-                    entityId = entityIds.front();
-                    entityIds.pop_front();
+                for (ptr = entityIds.begin() + searchStartIndex; ptr < entityIds.begin() + searchEndIndex; ptr++){
+                    entityId = *ptr;
 
-                    if (GetComponent<TComponent>(entityId) != nullptr){
+                     if (GetComponent<TComponent>(entityId) != nullptr){
+
+                        std::lock_guard<std::mutex> guard(_searchMutex);
                         matchingEntityIds.push_back(entityId);
+
+
+                        //matchingEntityIds.insert(matchingEntityIds.begin() + insertIndex, entityId);
+                        //insertIndex++;
+
                     }
                 }
-
-                return matchingEntityIds;
             }
 
 
@@ -96,9 +128,10 @@ namespace ECS{
             void DeleteAllInactiveEntities();
 
         private:
-            std::list<int> _inactiveEntityIds; // a list of all entity ids to cleanup
-            std::list<int> _availableEntityIds; // a list of all available entity ids
-            std::list<int>  _takenEntityIds; // a list of entity ids that are taken
+            std::mutex _searchMutex;
+            std::vector<int> _inactiveEntityIds; // a list of all entity ids to cleanup
+            std::vector<int> _availableEntityIds; // a list of all available entity ids
+            std::vector<int>  _takenEntityIds; // a list of entity ids that are taken
             int _componentTypesAdded;
             ComponentTypeMap _componentTables;
     };

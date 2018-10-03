@@ -16,9 +16,9 @@ EntityComponentManager::~EntityComponentManager()
 {
     // mark all entities as inactive, so that they are marked for cleanup
     while(_takenEntityIds.empty() == false){
-        int entityId = _takenEntityIds.front();
+        int entityId = _takenEntityIds.back();
 
-        _takenEntityIds.pop_front();
+        _takenEntityIds.pop_back();
 
         MarkEntityInactive(entityId);
     }
@@ -35,9 +35,9 @@ std::shared_ptr<int> EntityComponentManager::AddEntity(){
     int entityId = -1;
 
     if (_availableEntityIds.empty() == false){
-        entityId = _availableEntityIds.front();
+        entityId = _availableEntityIds.back();
 
-        _availableEntityIds.pop_front();
+        _availableEntityIds.pop_back();
         _takenEntityIds.push_back(entityId);
     }
 
@@ -59,13 +59,14 @@ void EntityComponentManager::DeleteAllInactiveEntities(){
     int entityId = -1;
 
     while (_inactiveEntityIds.empty() == false){
-        entityId = _inactiveEntityIds.front();
+        entityId = _inactiveEntityIds.back();
 
         // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         // todo: remove inactive entities and clean up components
 
-        _inactiveEntityIds.pop_front();
+        _inactiveEntityIds.pop_back();
         _availableEntityIds.push_back(entityId);
-        _takenEntityIds.remove(entityId);
     }
+
+    _takenEntityIds.clear();
 }

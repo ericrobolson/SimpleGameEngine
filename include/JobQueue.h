@@ -1,6 +1,7 @@
 #ifndef JOBQUEUE_H
 #define JOBQUEUE_H
-#include <pthread.h>
+#include <thread>
+#include <chrono>
 #include <list>
 
     typedef void (*callback_function)(void*);
@@ -25,7 +26,7 @@ Todo:
     3)
 
 */
-/*
+
     class Job{
         public:
             Job();
@@ -34,15 +35,15 @@ Todo:
             void DecrementJobs();
 
             void Process(callback_function f, std::list<int>entityIds){
-
+/*
                 // Add a job for each entity id
                 for (std::list<int>::iterator entityId = entityIds.begin(); entityId != entityIds.end(); ++entityId){
                    // JobQueue::Instance().QueueJob(f, *entityId, DecrementJobs)
                 }
-
+*/
                 while (remainingJobs > 0){
                     // wait for jobs to finish
-                    std::this_thread::sleep_for(.01s); // possibly remove/change?
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1)); // possibly remove/change?
                 }
             }
 
@@ -52,7 +53,7 @@ Todo:
 
             int entityId;
     };
-
+/*
     class JobQueue
     {
         public:

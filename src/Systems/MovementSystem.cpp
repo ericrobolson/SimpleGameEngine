@@ -1,4 +1,4 @@
-#include <list>
+#include <vector>
 #include <math.h>
 #include "MovementSystem.h"
 #include "EntityComponentManager.h"
@@ -9,7 +9,7 @@
 #include "InputState.h"
 #include "Debugger.h"
 #include <memory.h>
-#include "JobQueue.h"
+
 MovementSystem::MovementSystem() : BaseSystem()
 {
     //ctor
@@ -60,11 +60,11 @@ void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &
 }
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
-    std::list<int> entities = ecs.Search<MovementComponent>();
+    std::vector<int> entities = ecs.SearchAll<MovementComponent>();
 
     while (entities.empty() == false){
-        int i = entities.front();
-        entities.pop_front();
+        int i = entities.back();
+        entities.pop_back();
 
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
 
