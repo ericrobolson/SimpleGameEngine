@@ -69,9 +69,6 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     }
 
 
-
-
-
     // Swap buffers.
     SDL_RenderPresent(_renderer);
 

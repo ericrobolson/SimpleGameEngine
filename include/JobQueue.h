@@ -10,11 +10,14 @@
 #include <future>
 #include <functional>
 #include <stdexcept>
+#include <tuple>
 
 // Based on https://github.com/progschj/ThreadPool
 
 class JobQueue {
 public:
+    const static int MaxBatches = 214748364;
+
     static JobQueue& Instance(){
             int threads = std::thread::hardware_concurrency() -1; // ensure we don't use more threads than needed
 
@@ -26,18 +29,59 @@ public:
             return *instance;
         };
 
+    int GetNextBatchId(){
+        // Boundary handling to prevent int overflow
+        if (_batchId >= MaxBatches){
+            _batchId = 0;
+        }
+
+        // Ensure we don't overwrite an existing batch
+        std::unique_lock<std::mutex> lock(this->_jobMapMutex);
+
+        while (_jobMap[_batchId] > 0){
+            _batchId++;
+        }
+
+        // Return the batchId
+        int batchId = _batchId;
+        _batchId++;
+
+        return batchId;
+    }
+
+    bool DoJobsRemain(int batchId){
+        std::unique_lock<std::mutex> lock(this->_jobMapMutex);
+
+        if (batchId > MaxBatches || batchId < 0){
+            return false;
+        }
+
+        return _jobMap[batchId] > 0;
+    }
+
+
     template<class F, class... Args>
     auto enqueue(F&& f, Args&&... args)
         -> std::future<typename std::result_of<F(Args...)>::type>;
+
+    template<class F, class... Args>
+    auto enqueue(int batchId, F&& f, Args&&... args)
+        -> std::future<typename std::result_of<F(Args...)>::type>;
+
     ~JobQueue();
 private:
     JobQueue(size_t);
 
+    int _batchId = 0;
+
+    int _jobMap[MaxBatches] = {0}; // The list of jobs remaining for each batch id
+
+    std::mutex _jobMapMutex;
 
     // need to keep track of threads so we can join them
     std::vector< std::thread > workers;
     // the task queue
-    std::queue< std::function<void()> > tasks;
+    std::queue< std::function<void()> > tasks; // Todo: change to a tuple with the batchId and the function
 
     // synchronization
     std::mutex queue_mutex;
@@ -78,6 +122,23 @@ template<class F, class... Args>
 auto JobQueue::enqueue(F&& f, Args&&... args)
     -> std::future<typename std::result_of<F(Args...)>::type>
 {
+    return enqueue(GetNextBatchId(), f, args...);
+}
+
+template<class F, class... Args>
+auto JobQueue::enqueue(int batchId, F&& f, Args&&... args)
+    -> std::future<typename std::result_of<F(Args...)>::type>
+{
+    // Ensure a valid batchid is used
+    if (batchId > MaxBatches || batchId < 0){
+        batchId = GetNextBatchId();
+    }
+
+    // Add the job to the job map
+    std::unique_lock<std::mutex> lock(_jobMapMutex);
+    _jobMap[batchId]++;
+
+    // enqueue and construct future
     using return_type = typename std::result_of<F(Args...)>::type;
 
     auto task = std::make_shared< std::packaged_task<return_type()> >(

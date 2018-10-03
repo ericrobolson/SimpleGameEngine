@@ -68,7 +68,7 @@
 	"MovementSystem.h"
 	"PositionSystem.h"
 
-1538584351 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1538590442 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -807,7 +807,7 @@
 	<list>
 	"EntityComponentManager.h"
 
-1538584606 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1538584689 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -816,7 +816,6 @@
 	"BaseComponent.h"
 	<vector>
 	<thread>
-	<mutex>
 	"JobQueue.h"
 
 1538061208 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\colorcomponent.cpp
@@ -867,12 +866,14 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538584344 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1538600025 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
 	"PositionComponent.h"
 	"MovementComponent.h"
+	"JobQueue.h"
+	<mutex>
 
 1538250895 c:\users\eric\gamedev\simplegameengine\include\debugger.h
 	<string>
@@ -905,7 +906,7 @@
 	<list>
 	<thread>
 
-1538584613 c:\users\eric\gamedev\simplegameengine\include\jobqueue.h
+1538600071 c:\users\eric\gamedev\simplegameengine\include\jobqueue.h
 	<vector>
 	<queue>
 	<memory>
@@ -915,6 +916,7 @@
 	<future>
 	<functional>
 	<stdexcept>
+	<tuple>
 
 1519925811 c:\mingw_dev_lib32bit\include\sdl2\sdl.h
 	"SDL_main.h"
