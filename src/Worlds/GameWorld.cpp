@@ -27,7 +27,7 @@ bool GameWorld::Process(){
     //todo:
         figure out your ideal fps, e.g. 60fps. Then, that means you need to process 60 loops per second. 30 fps means 30 loops per second, etc.
 
-
+        possibly make game systems run at 30fps, then gfx run at 60fps?
     */
 
 
@@ -53,15 +53,19 @@ bool GameWorld::Process(){
     cycleClock = clock() - cycleClock;
     clock_t inputClock = cycleClock;
 
+    cycleClock = clock();
+
     _movementSystem.Process(entityComponentManager);
 
     cycleClock = clock() - cycleClock;
     clock_t movementClock = cycleClock;
+    cycleClock = clock();
 
     _positionSystem.Process(entityComponentManager);
 
     cycleClock = clock() - cycleClock;
     clock_t positionClock = cycleClock;
+    cycleClock = clock();
 
     _graphicsSystem.Process(entityComponentManager);
 
@@ -79,7 +83,6 @@ bool GameWorld::Process(){
     printf("'GFX' system: %f percent of load\n", ((float)gfxClock)/totalClock);
     printf("---- END LOOP ----\n");
 
-    printf("NumberOfThreads: %i\n", std::thread::hardware_concurrency());
 
     if (InputState::Instance().Exit == true){
         return false;

@@ -1,79 +1,113 @@
 #ifndef JOBQUEUE_H
 #define JOBQUEUE_H
+
+#include <vector>
+#include <queue>
+#include <memory>
 #include <thread>
-#include <chrono>
-#include <list>
+#include <mutex>
+#include <condition_variable>
+#include <future>
+#include <functional>
+#include <stdexcept>
 
-    typedef void (*callback_function)(void*);
+// Based on https://github.com/progschj/ThreadPool
 
+class JobQueue {
+public:
+    static JobQueue& Instance(){
+            int threads = std::thread::hardware_concurrency() -1; // ensure we don't use more threads than needed
 
-    /*
-A thread is not some sort of magical object that can be made to do things. It is a separate path of execution through your code.
-Your code cannot be made to jump arbitrarily around its codebase unless you specifically program it to do so.
-And even then, it can only be done within the rules of C++ (ie: calling functions).
-You cannot kill a boost::thread because killing a thread would utterly wreck some of the most fundamental assumptions a programmer makes.
-You now have to take into account the possibility that the next line doesn't execute for reasons that you can neither predict nor prevent.
-This isn't like exception handling, where C++ specifically requires destructors to be called, and you have the ability to catch exceptions and do special cleanup.
-You're talking about executing one piece of code, then suddenly inserting a call to some random function in the middle of already compiled code. That's not going to work.
-
-If you want to be able to change the "task" of a thread, then you need to build that thread with "tasks" in mind.
-It needs to check every so often that it hasn't been given a new task, and if it has, then it switches to doing that.
-You will have to define when this switching is done, and what state the world is in when switching happens.
-
-Todo:
-    1) Spawn threads
-    2) Each thread calls the Jobs, and pulls the first job from the queue
-    3)
-
-*/
-
-    class Job{
-        public:
-            Job();
-            virtual ~Job();
-
-            void DecrementJobs();
-
-            void Process(callback_function f, std::list<int>entityIds){
-/*
-                // Add a job for each entity id
-                for (std::list<int>::iterator entityId = entityIds.begin(); entityId != entityIds.end(); ++entityId){
-                   // JobQueue::Instance().QueueJob(f, *entityId, DecrementJobs)
-                }
-*/
-                while (remainingJobs > 0){
-                    // wait for jobs to finish
-                    std::this_thread::sleep_for(std::chrono::milliseconds(1)); // possibly remove/change?
-                }
+            if (threads <= 0){
+                threads = 1;
             }
 
-        private:
-            int remainingJobs;
+            static JobQueue *instance = new JobQueue(threads);
+            return *instance;
+        };
+
+    template<class F, class... Args>
+    auto enqueue(F&& f, Args&&... args)
+        -> std::future<typename std::result_of<F(Args...)>::type>;
+    ~JobQueue();
+private:
+    JobQueue(size_t);
 
 
-            int entityId;
-    };
-/*
-    class JobQueue
+    // need to keep track of threads so we can join them
+    std::vector< std::thread > workers;
+    // the task queue
+    std::queue< std::function<void()> > tasks;
+
+    // synchronization
+    std::mutex queue_mutex;
+    std::condition_variable condition;
+    bool stop;
+};
+
+// the constructor just launches some amount of workers
+inline JobQueue::JobQueue(size_t threads)
+    :   stop(false)
+{
+    for(size_t i = 0;i<threads;++i)
+        workers.emplace_back(
+            [this]
+            {
+                for(;;)
+                {
+                    std::function<void()> task;
+
+                    {
+                        std::unique_lock<std::mutex> lock(this->queue_mutex);
+                        this->condition.wait(lock,
+                            [this]{ return this->stop || !this->tasks.empty(); });
+                        if(this->stop && this->tasks.empty())
+                            return;
+                        task = std::move(this->tasks.front());
+                        this->tasks.pop();
+                    }
+
+                    task();
+                }
+            }
+        );
+}
+
+// add new work item to the pool
+template<class F, class... Args>
+auto JobQueue::enqueue(F&& f, Args&&... args)
+    -> std::future<typename std::result_of<F(Args...)>::type>
+{
+    using return_type = typename std::result_of<F(Args...)>::type;
+
+    auto task = std::make_shared< std::packaged_task<return_type()> >(
+            std::bind(std::forward<F>(f), std::forward<Args>(args)...)
+        );
+
+    std::future<return_type> res = task->get_future();
     {
-        public:
-            static JobQueue& Instance(){
-                static JobQueue *instance = new JobQueue();
-                return *instance;
-            };
+        std::unique_lock<std::mutex> lock(queue_mutex);
 
-            void QueueJob(function processFunction, int processArg, function completedFunction)
-            void QueueJob(callback_function f, std::list<int> entityIds);
+        // don't allow enqueueing after stopping the pool
+        if(stop)
+            throw std::runtime_error("enqueue on stopped ThreadPool");
 
-        protected:
+        tasks.emplace([task](){ (*task)(); });
+    }
+    condition.notify_one();
+    return res;
+}
 
-        private:
-            JobQueue();
-            virtual ~JobQueue();
-            std::list<Job> _jobQueue; // queue of active jobs
-            std::list<Job> _waitQueue; // queue of jobs waiting on other jobs
-            int _maxThreads;
-            int _activeThreads;
-    };
-*/
+// the destructor joins all threads
+inline JobQueue::~JobQueue()
+{
+    {
+        std::unique_lock<std::mutex> lock(queue_mutex);
+        stop = true;
+    }
+    condition.notify_all();
+    for(std::thread &worker: workers)
+        worker.join();
+}
+
 #endif // JOBQUEUE_H

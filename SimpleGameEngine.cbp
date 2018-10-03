@@ -92,7 +92,6 @@
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/EntityComponentManager.cpp" />
-		<Unit filename="src/JobQueue.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />

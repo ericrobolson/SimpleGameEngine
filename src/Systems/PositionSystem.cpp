@@ -17,7 +17,7 @@ PositionSystem::~PositionSystem()
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
 
-    std::vector<int> entities = ecs.SearchAll<PositionComponent>();
+    std::list<int> entities = ecs.Search<PositionComponent>();
 
 
     for (std::size_t i = 0; i < entities.size(); i++){
