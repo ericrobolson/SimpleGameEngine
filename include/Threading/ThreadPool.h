@@ -11,7 +11,7 @@
 
 #include "SafeQueue.h"
 
-class ThreadPool2 {
+class ThreadPool {
     private:
         class ThreadWorker {
             private:
@@ -77,6 +77,10 @@ class ThreadPool2 {
             static ThreadPool *instance = new ThreadPool(threads);
             return *instance;
         };
+
+        bool IsEmpty(){
+            return _queue.empty();
+        }
 
         // Submit a function to be executed asynchronously by the pool
         template<typename F, typename...Args>

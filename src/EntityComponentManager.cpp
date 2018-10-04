@@ -5,12 +5,15 @@ using namespace ECS;
 
 EntityComponentManager::EntityComponentManager()
 {
+    _lockGuard = std::unique_lock(_resourceMutex);
         // Initialize the list of free entity ids
         for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
             _availableEntityIds.push_back(i);
         }
 
         _componentTypesAdded = 0;
+
+    _lockGuard.unlock();
 }
 
 EntityComponentManager::~EntityComponentManager()

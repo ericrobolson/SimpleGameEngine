@@ -31,6 +31,7 @@ bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
 
     // ignore everything else for not
 
+    ecs.Lock();
     std::vector<int> entities = ecs.Search<PositionComponent>();
     entities = ecs.SearchOn<MovementComponent>(entities);
 
@@ -42,6 +43,7 @@ bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
         ProcessJob(ecs, entityId);
     }
 
+    ecs.Unlock();
     return true;
 }
 

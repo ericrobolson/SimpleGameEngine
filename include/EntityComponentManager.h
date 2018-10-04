@@ -61,6 +61,20 @@ namespace ECS{
 
 
 
+            void Lock(){
+                _lockGuard.lock();
+            }
+
+            void Unlock(){
+                if (_lockGuard.owns_lock() == false){
+                    _lockGuard.lock();
+                }
+
+                _lockGuard.unlock();
+            }
+
+
+
             template <class TComponent>
             TComponent& AddComponent(int entityId){
                     std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
@@ -97,17 +111,14 @@ namespace ECS{
         private:
             /// Get a list of entityIds that have the given component from a list of entities
 
+            std::mutex _resourceMutex;
+            std::unique_lock<std::mutex> _lockGuard;
+
             std::vector<int> _inactiveEntityIds; // a list of all entity ids to cleanup
-
-
             std::vector<int> _availableEntityIds; // a list of all available entity ids
-
             std::vector<int>  _takenEntityIds; // a list of entity ids that are taken
 
-
             int _componentTypesAdded;
-
-
             ComponentTypeMap _componentTables;
     };
 }

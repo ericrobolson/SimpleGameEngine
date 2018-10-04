@@ -3,12 +3,15 @@
 #include "MovementSystem.h"
 #include "EntityComponentManager.h"
 #include "PlayerComponent.h"
+#include<future>
 #include "EnemyComponent.h"
 #include "MovementComponent.h"
 #include "PositionComponent.h"
 #include "InputState.h"
 #include "Debugger.h"
 #include <memory.h>
+#include "ThreadPool.h"
+#include <chrono>
 
 MovementSystem::MovementSystem() : BaseSystem()
 {
@@ -60,19 +63,27 @@ void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &
 }
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
-    std::vector<int> entities = ecs.Search<MovementComponent>();
 
-    while (entities.empty() == false){
-        int i = entities.back();
-        entities.pop_back();
+    ecs.Lock();
+        std::vector<int> entities = ecs.Search<MovementComponent>();
+    ecs.Unlock();
 
-        MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(i);
+    std::vector<int>::iterator ptr;
+    int index = 0;
+    for (ptr = entities.begin(); ptr < entities.end(); ptr++){
+        int entityId = *ptr;
 
-        if (ecs.GetComponent<PlayerComponent>(i) != nullptr){
-            std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(i);
+        ThreadPool::Instance().submit([&ecs, entityId](){
+
+        ecs.Lock();
+        MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
+
+
+        if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
+            std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
 
             if (positionPtr == nullptr){
-                continue;
+                return;
             }
 
             PositionComponent& positionComponent = *positionPtr.get();
@@ -80,13 +91,24 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
             HandlePlayerInput(movementComponent, positionComponent);
         }
 
-        if (ecs.GetComponent<EnemyComponent>(i) != nullptr){
+        else if (ecs.GetComponent<EnemyComponent>(entityId) != nullptr){
            movementComponent.ForwardSpeed = 3;
            movementComponent.TurnLeft(2);
         }
+
+        ecs.Unlock();
+
+        });
+
+        index++;
+
     }
 
 
-    return true;
+    std::future<bool> isDone = ThreadPool::Instance().submit([](){
+
+                                                        return true;
+                                                        });
+    return isDone.get();
 }
 

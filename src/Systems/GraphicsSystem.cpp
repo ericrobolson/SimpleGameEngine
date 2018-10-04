@@ -32,6 +32,8 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_RenderClear(_renderer);
 
     // Do component rendering??
+    ecs.Lock();
+
     std::vector<int> entityIds = ecs.Search<RectangleComponent>();
 
     while (entityIds.empty() == false){
@@ -68,6 +70,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
         }
     }
 
+    ecs.Unlock();
 
     // Swap buffers.
     SDL_RenderPresent(_renderer);
