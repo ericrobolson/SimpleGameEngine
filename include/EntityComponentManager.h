@@ -9,7 +9,7 @@
 #include <vector>
 #include <thread>
 #include "JobQueue.h"
-
+#include <mutex>
 
 
 namespace ECS{
@@ -18,6 +18,7 @@ namespace ECS{
 
     typedef std::unordered_map<std::type_index, std::shared_ptr<BaseComponent>[MAXNUMBEROFENTITIES]> ComponentTypeMap;
 
+    /// Threadsafe entity component manager
     class EntityComponentManager
     {
         public:
@@ -27,13 +28,12 @@ namespace ECS{
             /// gets the type of component for that entity, returns null if that component was not found
             template <class TComponent>
             std::shared_ptr<TComponent> GetComponent(int entityId){
+                std::unique_lock<std::mutex> lock(_componentTableMutex);
+                    if (_componentTables[typeid(TComponent)] == nullptr){
+                        return nullptr;
+                    }
 
-                if (_componentTables[typeid(TComponent)] == nullptr){
-                    return nullptr;
-                }
-
-                std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(_componentTables[typeid(TComponent)][entityId]);
-
+                    std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(_componentTables[typeid(TComponent)][entityId]);
                 return component;
             };
 
@@ -44,15 +44,14 @@ namespace ECS{
 
                 // split up all entities into sections to search on concurrently
                 const int sections = 4;
-                std::size_t sizeOfSection = _takenEntityIds.size() / sections;
+
+                std::unique_lock<std::mutex> takenEntityLock(_takenEntityMutex);
+                    std::size_t sizeOfSection = _takenEntityIds.size() / sections;
+                takenEntityLock.unlock();
 
                 std::future<std::list<int>> results[sections] = {};
-                std::vector<int> sectionsNotFinished;
-                sectionsNotFinished.reserve(sections);
 
                 for (int i = 0; i < sections; i++){
-                    sectionsNotFinished.push_back(i);
-
                     results[i] = JobQueue::Instance().enqueue([this, i,sizeOfSection](){
                                                             return Search<TComponent>(_takenEntityIds, i* sizeOfSection, (i + 1) * sizeOfSection);
                                                             });
@@ -68,30 +67,33 @@ namespace ECS{
 
             template <class TComponent>
             TComponent& AddComponent(int entityId){
-                std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
+                std::unique_lock<std::mutex> componentTableLock(_componentTableMutex);
+                    std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
 
-                if (componentTable == nullptr){
-                    if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
-                        throw "component types added has exceeded maximum number of component types in memory.";
+                    if (componentTable == nullptr){
+                        if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
+                            throw "component types added has exceeded maximum number of component types in memory.";
+                        }
+
+                        _componentTypesAdded++;
+
+                        for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
+                        _componentTables[typeid(TComponent)][i] = nullptr;
+                        }
+
+                    } else{
+                        componentTableLock.unlock();
+                        std::shared_ptr<TComponent> component = GetComponent<TComponent>(entityId);
+
+                        if (component != nullptr){
+                            return *component.get();
+                        }
+                        componentTableLock.lock();
                     }
 
-                    _componentTypesAdded++;
+                    componentTable[entityId] = std::make_shared<TComponent>();
 
-                    for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
-                       _componentTables[typeid(TComponent)][i] = nullptr;
-                    }
-
-                } else{
-                    std::shared_ptr<TComponent> component = GetComponent<TComponent>(entityId);
-
-                    if (component != nullptr){
-                        return *component.get();
-                    }
-                }
-
-                componentTable[entityId] = std::make_shared<TComponent>();
-
-                std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
+                    std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
 
                 return *component.get();
             };
@@ -121,10 +123,19 @@ namespace ECS{
                 return matchingEntityIds;
             }
 
+            std::mutex _inactiveEntityMutex;
             std::vector<int> _inactiveEntityIds; // a list of all entity ids to cleanup
+
+            std::mutex _availableEntityMutex;
             std::vector<int> _availableEntityIds; // a list of all available entity ids
+
+            std::mutex _takenEntityMutex;
             std::vector<int>  _takenEntityIds; // a list of entity ids that are taken
+
+            std::mutex _componentTypeMutex;
             int _componentTypesAdded;
+
+            std::mutex _componentTableMutex;
             ComponentTypeMap _componentTables;
     };
 }

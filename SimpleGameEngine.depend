@@ -807,7 +807,7 @@
 	<list>
 	"EntityComponentManager.h"
 
-1538584689 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1538608744 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -817,6 +817,7 @@
 	<vector>
 	<thread>
 	"JobQueue.h"
+	<mutex>
 
 1538061208 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\colorcomponent.cpp
 	"ColorComponent.h"
@@ -866,7 +867,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538600025 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1538609581 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -906,7 +907,7 @@
 	<list>
 	<thread>
 
-1538600071 c:\users\eric\gamedev\simplegameengine\include\jobqueue.h
+1538613198 c:\users\eric\gamedev\simplegameengine\include\jobqueue.h
 	<vector>
 	<queue>
 	<memory>
@@ -917,6 +918,14 @@
 	<functional>
 	<stdexcept>
 	<tuple>
+	<functional>
+	<future>
+	<mutex>
+	<queue>
+	<thread>
+	<utility>
+	<vector>
+	"SafeQueue.h"
 
 1519925811 c:\mingw_dev_lib32bit\include\sdl2\sdl.h
 	"SDL_main.h"
@@ -2284,4 +2293,8 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1538610655 c:\users\eric\gamedev\simplegameengine\include\threading\safequeue.h
+	<mutex>
+	<queue>
 

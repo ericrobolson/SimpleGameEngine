@@ -36,25 +36,31 @@ void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
 
-    return true;
     // ignore everything else for not
 
     std::list<int> entities = ecs.Search<PositionComponent>();
 
+    std::future<bool> finishedJobs[entities.size()];
 
-    int batchId = JobQueue::Instance().GetNextBatchId();
+    std::list<int>::iterator it;
 
-    for (std::size_t i = 0; i < entities.size(); i++){
+
+    for (it = entities.begin(); it != entities.end(); ++it){
+        int entityIndex = *it;
+            ProcessJob(ecs, entityIndex);
+/*
         // make enqueue
-        JobQueue::Instance().enqueue(batchId,[&ecs, i](){
-            ProcessJob(ecs, i);
+        JobQueue::Instance().enqueue([&ecs, entityIndex](){
+            printf("here %i\n", entityIndex);
         });
+        */
     }
-
-    while(JobQueue::Instance().DoJobsRemain(batchId)){
-        // wait for jobs to finish
+/*
+    for (int i = 0; i < entities.size(); i++){
+            printf("waiting\n");
+        bool x = finishedJobs[i].get();
     }
-
+*/
     return true;
 }
 
