@@ -1,5 +1,10 @@
 // Copyright (c) 2018, Eric Olson
 #include <SDL.h>
+#include <chrono>
+#include <thread>
+#include <exception>
+#include <iostream>
+
 #include "Worlds/GameWorld.h"
 
 using namespace std;
@@ -14,6 +19,8 @@ int main( int argc, char* args[] )
     GameWorld gameWorld;
 
     while(gameWorld.Process()){}
+
+
 
     SDL_Quit();
 

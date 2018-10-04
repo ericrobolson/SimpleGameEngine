@@ -60,7 +60,7 @@ void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &
 }
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
-    std::list<int> entities = ecs.Search<MovementComponent>();
+    std::vector<int> entities = ecs.Search<MovementComponent>();
 
     while (entities.empty() == false){
         int i = entities.back();

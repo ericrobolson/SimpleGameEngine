@@ -32,7 +32,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_RenderClear(_renderer);
 
     // Do component rendering??
-    std::list<int> entityIds = ecs.Search<RectangleComponent>();
+    std::vector<int> entityIds = ecs.Search<RectangleComponent>();
 
     while (entityIds.empty() == false){
         int entityId = entityIds.back();

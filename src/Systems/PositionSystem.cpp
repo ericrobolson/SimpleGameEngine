@@ -4,7 +4,6 @@
 #include "EntityComponentManager.h"
 #include "PositionComponent.h"
 #include "MovementComponent.h"
-#include "JobQueue.h"
 #include <mutex>
 
 PositionSystem::PositionSystem() : BaseSystem()
@@ -18,13 +17,7 @@ PositionSystem::~PositionSystem()
 }
 
 void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
-    std::shared_ptr<MovementComponent> movementPtr = ecs.GetComponent<MovementComponent>(entityIndex);
-
-    if (movementPtr == nullptr){
-        return;
-    }
-
-    MovementComponent& movementComponent = *movementPtr;
+    MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityIndex);
     PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(entityIndex);
 
     if (movementComponent.ForwardSpeed != 0 || movementComponent.HorizontalSpeed != 0){
@@ -38,29 +31,17 @@ bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
 
     // ignore everything else for not
 
-    std::list<int> entities = ecs.Search<PositionComponent>();
+    std::vector<int> entities = ecs.Search<PositionComponent>();
+    entities = ecs.SearchOn<MovementComponent>(entities);
 
-    std::future<bool> finishedJobs[entities.size()];
-
-    std::list<int>::iterator it;
-
+    std::vector<int>::iterator it;
 
     for (it = entities.begin(); it != entities.end(); ++it){
-        int entityIndex = *it;
-            ProcessJob(ecs, entityIndex);
-/*
-        // make enqueue
-        JobQueue::Instance().enqueue([&ecs, entityIndex](){
-            printf("here %i\n", entityIndex);
-        });
-        */
+        int entityId = *it;
+
+        ProcessJob(ecs, entityId);
     }
-/*
-    for (int i = 0; i < entities.size(); i++){
-            printf("waiting\n");
-        bool x = finishedJobs[i].get();
-    }
-*/
+
     return true;
 }
 

@@ -11,25 +11,25 @@
 
 #include "SafeQueue.h"
 
-class ThreadPool {
+class ThreadPool2 {
     private:
         class ThreadWorker {
             private:
-                int m_id;
-                ThreadPool * m_pool;
+                int _id;
+                ThreadPool * _threadPool;
             public:
-                ThreadWorker(ThreadPool * pool, const int id) : m_pool(pool), m_id(id) {}
+                ThreadWorker(ThreadPool * pool, const int id) : _threadPool(pool), _id(id) {}
 
                 void operator()() {
                     std::function<void()> func;
                     bool dequeued;
-                    while (!m_pool->m_shutdown) {
+                    while (!_threadPool->_shutdown) {
                         {
-                        std::unique_lock<std::mutex> lock(m_pool->m_conditional_mutex);
-                        if (m_pool->m_queue.empty()) {
-                        m_pool->m_conditional_lock.wait(lock);
+                        std::unique_lock<std::mutex> lock(_threadPool->_mutex);
+                        if (_threadPool->_queue.empty()) {
+                        _threadPool->_conditionalLock.wait(lock);
                         }
-                        dequeued = m_pool->m_queue.dequeue(func);
+                        dequeued = _threadPool->_queue.dequeue(func);
                         }
 
                     if (dequeued) {
@@ -39,40 +39,44 @@ class ThreadPool {
                 }
             };
 
-        bool m_shutdown;
-        SafeQueue<std::function<void()>> m_queue;
-        std::vector<std::thread> m_threads;
-        std::mutex m_conditional_mutex;
-        std::condition_variable m_conditional_lock;
+        bool _shutdown;
+        SafeQueue<std::function<void()>> _queue;
+        std::vector<std::thread> _threads;
+        std::mutex _mutex;
+        std::condition_variable _conditionalLock;
+
+        ///Ctor
+        ThreadPool(const int numThreads) : _threads(std::vector<std::thread>(numThreads)), _shutdown(false) {
+            for (int i = 0; i < _threads.size(); ++i) {
+                _threads[i] = std::thread(ThreadWorker(this, i));
+            }
+        }
+
+        ///Dtor
+        ~ThreadPool(){
+             _shutdown = true;
+            _conditionalLock.notify_all();
+
+            for (int i = 0; i < _threads.size(); ++i) {
+                if(_threads[i].joinable()) {
+                    _threads[i].join();
+                }
+            }
+        }
+
     public:
-        ThreadPool(const int n_threads)
-        : m_threads(std::vector<std::thread>(n_threads)), m_shutdown(false) {
-        }
+        static ThreadPool& Instance(){
+            int threads = std::thread::hardware_concurrency() -1; // ensure we don't use more threads than needed
 
-        ThreadPool(const ThreadPool &) = delete;
-        ThreadPool(ThreadPool &&) = delete;
+            if (threads <= 0){
+                threads = 1;
+            }
 
-        ThreadPool & operator=(const ThreadPool &) = delete;
-        ThreadPool & operator=(ThreadPool &&) = delete;
+            threads = 1;
 
-        // Inits thread pool
-        void init() {
-        for (int i = 0; i < m_threads.size(); ++i) {
-        m_threads[i] = std::thread(ThreadWorker(this, i));
-        }
-        }
-
-        // Waits until threads finish their current task and shutdowns the pool
-        void shutdown() {
-        m_shutdown = true;
-        m_conditional_lock.notify_all();
-
-        for (int i = 0; i < m_threads.size(); ++i) {
-        if(m_threads[i].joinable()) {
-        m_threads[i].join();
-        }
-        }
-        }
+            static ThreadPool *instance = new ThreadPool(threads);
+            return *instance;
+        };
 
         // Submit a function to be executed asynchronously by the pool
         template<typename F, typename...Args>
@@ -88,10 +92,10 @@ class ThreadPool {
             };
 
             // Enqueue generic wrapper function
-            m_queue.enqueue(wrapper_func);
+            _queue.enqueue(wrapper_func);
 
             // Wake up one thread if its waiting
-            m_conditional_lock.notify_one();
+            _conditionalLock.notify_one();
 
             // Return future from promise
             return task_ptr->get_future();
