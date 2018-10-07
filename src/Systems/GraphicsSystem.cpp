@@ -7,6 +7,8 @@
 #include "PositionComponent.h"
 #include "MovementComponent.h"
 #include <math.h>
+#include <future>
+#include "ThreadPool.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -15,6 +17,7 @@ const int SCREEN_BITSPERPIXEL = 32;
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
 {
+    std::unique_lock lock(_resourceMutex);
     if (SDL_WasInit(SDL_INIT_VIDEO) == 0){
         SDL_Init(SDL_INIT_VIDEO);
     }
@@ -27,59 +30,89 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
+void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
+    std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
+    std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
+    std::shared_ptr<PositionComponent> positionComponent = ecs.GetComponent<PositionComponent>(entityId);
+    std::shared_ptr<MovementComponent> movementComponent = ecs.GetComponent<MovementComponent>(entityId);
+    if (rectangleComponent != nullptr && positionComponent != nullptr){
+        std::unique_lock lock(_resourceMutex);
+
+        if (colorComponent != nullptr){
+            SDL_SetRenderDrawColor(_renderer, colorComponent->Red, colorComponent->Green, colorComponent->Blue, colorComponent->Alpha);
+
+        }
+        SDL_Rect rectangle;
+        rectangle.h = rectangleComponent->Height;
+        rectangle.w = rectangleComponent->Width;
+        rectangle.x = positionComponent->PositionX;
+        rectangle.y = positionComponent->PositionY;
+
+        SDL_RenderFillRect(_renderer, &rectangle);
+
+
+    }
+
+    if (movementComponent != nullptr && positionComponent != nullptr){
+        int startX = positionComponent->PositionX;
+        int startY = positionComponent->PositionY;
+
+        int xDelta = cos(movementComponent->GetAngleInRadians()) * 100;
+        int yDelta = sin(movementComponent->GetAngleInRadians()) * 100;
+
+        SDL_RenderDrawLine(_renderer, startX, startY, startX + xDelta, startY + yDelta);
+    }
+}
+
+
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
+    std::unique_lock lock(_resourceMutex);
+
     SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);  // Dark grey.
     SDL_RenderClear(_renderer);
+
+    lock.unlock();
 
     // Do component rendering??
     ecs.Lock();
 
     std::vector<int> entityIds = ecs.Search<RectangleComponent>();
+    ecs.Unlock();
 
     while (entityIds.empty() == false){
         int entityId = entityIds.back();
         entityIds.pop_back();
 
-        std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
-        std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
-        std::shared_ptr<PositionComponent> positionComponent = ecs.GetComponent<PositionComponent>(entityId);
-        std::shared_ptr<MovementComponent> movementComponent = ecs.GetComponent<MovementComponent>(entityId);
-        if (rectangleComponent != nullptr && positionComponent != nullptr){
-            if (colorComponent != nullptr){
-                SDL_SetRenderDrawColor(_renderer, colorComponent->Red, colorComponent->Green, colorComponent->Blue, colorComponent->Alpha);
-            }
-            SDL_Rect rectangle;
-            rectangle.h = rectangleComponent->Height;
-            rectangle.w = rectangleComponent->Width;
-            rectangle.x = positionComponent->PositionX;
-            rectangle.y = positionComponent->PositionY;
+        ThreadPool::Instance().submit([this, &ecs, entityId](){
+                                        ecs.Lock();
+                                            ProcessJob(ecs, entityId);
+                                        ecs.Unlock();
+                                        });
 
-            SDL_RenderFillRect(_renderer, &rectangle);
-
-
-        }
-
-        if (movementComponent != nullptr && positionComponent != nullptr){
-            int startX = positionComponent->PositionX;
-            int startY = positionComponent->PositionY;
-
-            int xDelta = cos(movementComponent->GetAngleInRadians()) * 100;
-            int yDelta = sin(movementComponent->GetAngleInRadians()) * 100;
-
-            SDL_RenderDrawLine(_renderer, startX, startY, startX + xDelta, startY + yDelta);
-        }
     }
 
-    ecs.Unlock();
+
+
+
+
+    std::future<bool> isDone = ThreadPool::Instance().submit([](){
+
+                                                        return true;
+                                                        });
+
+    isDone.get();
 
     // Swap buffers.
+    lock.lock();
     SDL_RenderPresent(_renderer);
+
 
     return true;
 }
 
 GraphicsSystem::~GraphicsSystem()
 {
+    std::unique_lock lock(_resourceMutex);
     // Cleanup SDL
     if (_renderer != nullptr){
         SDL_DestroyRenderer(_renderer);

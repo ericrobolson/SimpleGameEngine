@@ -3,7 +3,7 @@
 #include <SDL.h>
 #include "BaseSystem.h"
 #include "EntityComponentManager.h"
-
+#include <mutex>
 
 class GraphicsSystem : public BaseSystem
 {
@@ -11,8 +11,10 @@ class GraphicsSystem : public BaseSystem
         GraphicsSystem();
         virtual ~GraphicsSystem();
         bool Process(ECS::EntityComponentManager &ecs);
-
+        SDL_Renderer* GetRenderer();
     private:
+        void ProcessJob(ECS::EntityComponentManager &ecs, int entityId);
+        std::mutex _resourceMutex;
         SDL_Window* _window;
         SDL_Renderer* _renderer;  // Holds rendering surface properties.
 };

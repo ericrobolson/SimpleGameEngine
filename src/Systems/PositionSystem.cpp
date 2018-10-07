@@ -5,6 +5,7 @@
 #include "PositionComponent.h"
 #include "MovementComponent.h"
 #include <mutex>
+#include "ThreadPool.h"
 
 PositionSystem::PositionSystem() : BaseSystem()
 {
@@ -32,19 +33,27 @@ bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
     // ignore everything else for not
 
     ecs.Lock();
-    std::vector<int> entities = ecs.Search<PositionComponent>();
-    entities = ecs.SearchOn<MovementComponent>(entities);
+        std::vector<int> entities = ecs.Search<PositionComponent>();
+        entities = ecs.SearchOn<MovementComponent>(entities);
+    ecs.Unlock();
 
     std::vector<int>::iterator it;
 
     for (it = entities.begin(); it != entities.end(); ++it){
         int entityId = *it;
 
-        ProcessJob(ecs, entityId);
+        ThreadPool::Instance().submit([&ecs, entityId](){
+                                        ecs.Lock();
+                                          ProcessJob(ecs, entityId);
+                                        ecs.Unlock();
+                                      });
     }
 
-    ecs.Unlock();
-    return true;
+    std::future<bool> isDone = ThreadPool::Instance().submit([](){
+
+                                                        return true;
+                                                        });
+    return isDone.get();
 }
 
 
