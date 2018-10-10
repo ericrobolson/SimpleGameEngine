@@ -31,8 +31,8 @@ std::shared_ptr<int> PlayerAssemblage::GeneratePlayer(ECS::EntityComponentManage
         colorComponent.Blue = 50;
 
         PositionComponent& positionComponent = ec.AddComponent<PositionComponent>(entityId);
-        positionComponent.PositionX = 300;
-        positionComponent.PositionY = 300;
+        positionComponent.PositionX = 5;
+        positionComponent.PositionY = 5;
 
         ec.AddComponent<MovementComponent>(entityId);
 

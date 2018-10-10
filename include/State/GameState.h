@@ -9,8 +9,8 @@ class GameState
         GameState();
         virtual ~GameState();
 
-        const static int MaxXTiles = 100;
-        const static int MaxYTiles = 100;
+        const static int MaxXTiles = 120;
+        const static int MaxYTiles = 120;
 
     protected:
 

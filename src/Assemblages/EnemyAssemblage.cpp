@@ -33,8 +33,8 @@ std::shared_ptr<int> EnemyAssemblage::GenerateEnemy(ECS::EntityComponentManager 
         colorComponent.Blue = 0;
 
         PositionComponent& positionComponent = ec.AddComponent<PositionComponent>(entityId);
-        positionComponent.PositionX = 150;
-        positionComponent.PositionY = 150;
+        positionComponent.PositionX = 10;
+        positionComponent.PositionY = 10;
 
         ec.AddComponent<MovementComponent>(entityId);
 

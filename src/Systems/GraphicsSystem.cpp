@@ -18,6 +18,33 @@ const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 const int SCREEN_BITSPERPIXEL = 32;
 
+const int HexRadius = 64; // should be evenly divisible by 4
+
+bool IsOdd(int x){
+    return x %2;
+}
+
+int GetScreenPositionXFromCoordinates(int x, int y){
+    // returns x center of hex
+
+    int screenX = x * HexRadius + HexRadius /2;
+
+    if (IsOdd(y)){
+        screenX += HexRadius /2;
+    }
+
+    return screenX;
+}
+
+int GetScreenPositionYFromCoordinates(int x, int y){
+    // returns y center of hex
+        // returns x center of hex
+    int screenY = y * (HexRadius - HexRadius/4) + HexRadius/2;
+
+    return screenY;
+}
+
+
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
 {
@@ -50,8 +77,8 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
         SDL_Rect rectangle;
         rectangle.h = rectangleComponent->Height;
         rectangle.w = rectangleComponent->Width;
-        rectangle.x = positionComponent->PositionX;
-        rectangle.y = positionComponent->PositionY;
+        rectangle.x = GetScreenPositionXFromCoordinates(positionComponent->PositionX, positionComponent->PositionY);
+        rectangle.y = GetScreenPositionYFromCoordinates(positionComponent->PositionX, positionComponent->PositionY);
 
         SDL_RenderFillRect(_renderer, &rectangle);
 
@@ -79,31 +106,7 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     }
 }
 
-const int HexRadius = 64; // should be evenly divisible by 4
 
-bool IsOdd(int x){
-    return x %2;
-}
-
-int GetScreenPositionXFromCoordinates(int x, int y){
-    // returns x center of hex
-
-    int screenX = x * HexRadius + HexRadius /2;
-
-    if (IsOdd(y)){
-        screenX += HexRadius /2;
-    }
-
-    return screenX;
-}
-
-int GetScreenPositionYFromCoordinates(int x, int y){
-    // returns y center of hex
-        // returns x center of hex
-    int screenY = y * (HexRadius - HexRadius/4) + HexRadius/2;
-
-    return screenY;
-}
 
 
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
@@ -136,8 +139,18 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
             int cursorY = InputState::Instance().CursorY / (HexRadius - HexRadius/4);
 
-            int startX = GetScreenPositionXFromCoordinates(cursorX, cursorY);
+            // Add an additional offset to deal with odd number squares
+            if (IsOdd(cursorY) && cursorX != 0){
+                cursorX = (InputState::Instance().CursorX - HexRadius/2)/ HexRadius;
+            }
+
             int startY = GetScreenPositionYFromCoordinates(cursorX, cursorY);
+            int startX = GetScreenPositionXFromCoordinates(cursorX, cursorY);
+
+
+
+
+
 
             SDL_SetRenderDrawColor(_renderer, 255,255,255, 255);  // Dark green.
 

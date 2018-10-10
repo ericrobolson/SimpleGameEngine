@@ -25,7 +25,7 @@ MovementSystem::~MovementSystem()
 
 
 void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &positionComponent){
-    const int moveSpeed = 5;
+    const int moveSpeed = 2;
 
 
     InputState& inputState = InputState::Instance();
@@ -92,7 +92,7 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
         }
 
         else if (ecs.GetComponent<EnemyComponent>(entityId) != nullptr){
-           movementComponent.ForwardSpeed = 3;
+           movementComponent.ForwardSpeed = 1;
            movementComponent.TurnLeft(2);
         }
 
