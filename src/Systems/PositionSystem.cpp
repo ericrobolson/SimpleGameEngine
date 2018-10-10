@@ -18,6 +18,8 @@ PositionSystem::~PositionSystem()
 }
 
 void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
+    ecs.Lock();
+
     MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityIndex);
     PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(entityIndex);
 
@@ -26,6 +28,8 @@ void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
         positionComponent.PositionX = positionComponent.PositionX + movementComponent.GetXDelta();
         positionComponent.PositionY = positionComponent.PositionY + movementComponent.GetYDelta();
     }
+
+    ecs.Unlock();
 }
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
@@ -43,9 +47,7 @@ bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
         int entityId = *it;
 
         ThreadPool::Instance().submit([&ecs, entityId](){
-                                        ecs.Lock();
                                           ProcessJob(ecs, entityId);
-                                        ecs.Unlock();
                                       });
     }
 

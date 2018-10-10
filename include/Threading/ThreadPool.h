@@ -23,13 +23,17 @@ class ThreadPool {
                 void operator()() {
                     std::function<void()> func;
                     bool dequeued;
-                    while (!_threadPool->_shutdown) {
+                    //while (!_threadPool->_shutdown) {
+                    while(true){
                         {
                         std::unique_lock<std::mutex> lock(_threadPool->_mutex);
                         if (_threadPool->_queue.empty()) {
                         _threadPool->_conditionalLock.wait(lock);
                         }
                         dequeued = _threadPool->_queue.dequeue(func);
+                        if (_threadPool->_shutdown){
+                            break;
+                        }
                         }
 
                     if (dequeued) {
@@ -72,7 +76,7 @@ class ThreadPool {
                 threads = 1;
             }
 
-            threads = 1;
+            threads = 1; // todo: right now there's some sort of issue when threads > 1
 
             static ThreadPool *instance = new ThreadPool(threads);
             return *instance;

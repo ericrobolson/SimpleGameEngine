@@ -73,7 +73,7 @@
 	"MovementSystem.h"
 	"PositionSystem.h"
 
-1538952474 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1539120021 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -83,6 +83,11 @@
 	"PositionComponent.h"
 	"MovementComponent.h"
 	<math.h>
+	<future>
+	"ThreadPool.h"
+	"InputState.h"
+	"PlayerComponent.h"
+	<mutex>
 
 1538953241 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
@@ -814,7 +819,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1538952474 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1539032127 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -876,7 +881,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538952748 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1538953772 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -2307,7 +2312,7 @@
 	<mutex>
 	<queue>
 
-1538696605 c:\users\eric\gamedev\simplegameengine\include\threading\threadpool.h
+1539120092 c:\users\eric\gamedev\simplegameengine\include\threading\threadpool.h
 	<functional>
 	<future>
 	<mutex>
@@ -2316,4 +2321,10 @@
 	<utility>
 	<vector>
 	"SafeQueue.h"
+
+1539119406 source:c:\users\eric\gamedev\simplegameengine\src\state\gamestate.cpp
+	"GameState.h"
+
+1539185882 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
+	<vector>
 

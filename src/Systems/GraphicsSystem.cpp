@@ -9,6 +9,10 @@
 #include <math.h>
 #include <future>
 #include "ThreadPool.h"
+#include "InputState.h"
+#include "PlayerComponent.h"
+#include <mutex>
+#include "GameState.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -31,13 +35,14 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 }
 
 void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
+    std::unique_lock lock(_resourceMutex);
+
     std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
     std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
     std::shared_ptr<PositionComponent> positionComponent = ecs.GetComponent<PositionComponent>(entityId);
     std::shared_ptr<MovementComponent> movementComponent = ecs.GetComponent<MovementComponent>(entityId);
+    std::shared_ptr<PlayerComponent> playerComponent = ecs.GetComponent<PlayerComponent>(entityId);
     if (rectangleComponent != nullptr && positionComponent != nullptr){
-        std::unique_lock lock(_resourceMutex);
-
         if (colorComponent != nullptr){
             SDL_SetRenderDrawColor(_renderer, colorComponent->Red, colorComponent->Green, colorComponent->Blue, colorComponent->Alpha);
 
@@ -62,14 +67,72 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
 
         SDL_RenderDrawLine(_renderer, startX, startY, startX + xDelta, startY + yDelta);
     }
+
+    if (playerComponent != nullptr && positionComponent != nullptr){
+        if (InputState::Instance().Button1IsPressed){
+
+            int startX = positionComponent->PositionX;
+            int startY = positionComponent->PositionY;
+            SDL_RenderDrawLine(_renderer, startX, startY, InputState::Instance().CursorX, InputState::Instance().CursorY);
+
+        }
+    }
+}
+
+const int HexRadius = 32; // should be evenly divisible by 4
+
+bool IsOdd(int x){
+    return x %2;
+}
+
+int GetScreenPositionXFromCoordinates(int x, int y){
+    // returns x center of hex
+
+    int screenX = x * HexRadius + HexRadius /2;
+
+    if (IsOdd(y)){
+        screenX += HexRadius /2;
+    }
+
+    return screenX;
+}
+
+int GetScreenPositionYFromCoordinates(int x, int y){
+    // returns y center of hex
+        // returns x center of hex
+
+    int screenY = y * HexRadius + HexRadius /2;
+
+    return screenY;
 }
 
 
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     std::unique_lock lock(_resourceMutex);
 
-    SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);  // Dark grey.
+    SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
     SDL_RenderClear(_renderer);
+
+    // draw hexes
+    for (int xIndex = 0; xIndex < GameState::MaxXTiles; xIndex++){
+        for (int yIndex = 0; yIndex < GameState::MaxYTiles; yIndex++){
+            int startX = GetScreenPositionXFromCoordinates(xIndex, yIndex);
+            int startY = GetScreenPositionYFromCoordinates(xIndex, yIndex);
+
+            SDL_SetRenderDrawColor(_renderer, 0,0,0, 255);  // Dark green.
+
+            int lineLength = HexRadius / 4;
+
+            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX - 2 * lineLength, startY + lineLength);
+
+            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
+
+            SDL_RenderDrawLine(_renderer, startX + 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
+
+
+        }
+    }
+
 
     lock.unlock();
 
