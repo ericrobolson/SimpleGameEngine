@@ -79,7 +79,7 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     }
 }
 
-const int HexRadius = 32; // should be evenly divisible by 4
+const int HexRadius = 64; // should be evenly divisible by 4
 
 bool IsOdd(int x){
     return x %2;
@@ -101,7 +101,13 @@ int GetScreenPositionYFromCoordinates(int x, int y){
     // returns y center of hex
         // returns x center of hex
 
-    int screenY = y * HexRadius + HexRadius /2;
+    int screenY = y * (HexRadius - HexRadius/4) + HexRadius/2;
+
+
+
+
+
+
 
     return screenY;
 }
@@ -114,8 +120,8 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_RenderClear(_renderer);
 
     // draw hexes
-    for (int xIndex = 0; xIndex < GameState::MaxXTiles; xIndex++){
-        for (int yIndex = 0; yIndex < GameState::MaxYTiles; yIndex++){
+    for (int xIndex = -1; xIndex < GameState::MaxXTiles; xIndex++){
+        for (int yIndex = -1; yIndex < GameState::MaxYTiles; yIndex++){
             int startX = GetScreenPositionXFromCoordinates(xIndex, yIndex);
             int startY = GetScreenPositionYFromCoordinates(xIndex, yIndex);
 
