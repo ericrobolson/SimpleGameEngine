@@ -100,14 +100,7 @@ int GetScreenPositionXFromCoordinates(int x, int y){
 int GetScreenPositionYFromCoordinates(int x, int y){
     // returns y center of hex
         // returns x center of hex
-
     int screenY = y * (HexRadius - HexRadius/4) + HexRadius/2;
-
-
-
-
-
-
 
     return screenY;
 }
@@ -134,10 +127,33 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
             SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
 
             SDL_RenderDrawLine(_renderer, startX + 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
-
-
         }
     }
+
+    // outline hex around mouse
+    {
+            int cursorX = InputState::Instance().CursorX / HexRadius;
+
+            int cursorY = InputState::Instance().CursorY / (HexRadius - HexRadius/4);
+
+            int startX = GetScreenPositionXFromCoordinates(cursorX, cursorY);
+            int startY = GetScreenPositionYFromCoordinates(cursorX, cursorY);
+
+            SDL_SetRenderDrawColor(_renderer, 255,255,255, 255);  // Dark green.
+
+            int lineLength = HexRadius / 4;
+
+            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX - 2 * lineLength, startY + lineLength);
+
+            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
+
+            SDL_RenderDrawLine(_renderer, startX + 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
+    }
+
+
+
+
+
 
 
     lock.unlock();
