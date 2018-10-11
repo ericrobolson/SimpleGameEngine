@@ -73,7 +73,7 @@
 	"MovementSystem.h"
 	"PositionSystem.h"
 
-1539216704 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1539219856 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -89,8 +89,9 @@
 	"PlayerComponent.h"
 	<mutex>
 	"GameState.h"
+	"HexagonShape.h"
 
-1538953241 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1539218850 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
@@ -2328,4 +2329,11 @@
 
 1539216927 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
 	<vector>
+
+1539220096 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp
+	"HexagonShape.h"
+	<SDL.h>
+
+1539220072 c:\users\eric\gamedev\simplegameengine\include\systems\gfx\hexagonshape.h
+	<SDL.h>
 

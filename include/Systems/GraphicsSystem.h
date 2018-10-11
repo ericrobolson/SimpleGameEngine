@@ -13,7 +13,8 @@ class GraphicsSystem : public BaseSystem
         bool Process(ECS::EntityComponentManager &ecs);
         SDL_Renderer* GetRenderer();
     private:
-        void ProcessJob(ECS::EntityComponentManager &ecs, int entityId);
+        void ProcessEntities(ECS::EntityComponentManager &ecs, int entityId);
+        void DrawHexes();
         std::mutex _resourceMutex;
         SDL_Window* _window;
         SDL_Renderer* _renderer;  // Holds rendering surface properties.

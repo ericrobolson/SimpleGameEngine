@@ -13,12 +13,13 @@
 #include "PlayerComponent.h"
 #include <mutex>
 #include "GameState.h"
+#include "HexagonShape.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 const int SCREEN_BITSPERPIXEL = 32;
 
-const int HexRadius = 64; // should be evenly divisible by 4
+const int HexRadius = 32; // should be evenly divisible by 4
 
 bool IsOdd(int x){
     return x %2;
@@ -44,7 +45,6 @@ int GetScreenPositionYFromCoordinates(int x, int y){
     return screenY;
 }
 
-
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
 {
@@ -61,9 +61,9 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
+void GraphicsSystem::ProcessEntities(ECS::EntityComponentManager &ecs, int entityId){
     std::unique_lock lock(_resourceMutex);
-
+    ecs.Lock();
     std::shared_ptr<ColorComponent> colorComponent = ecs.GetComponent<ColorComponent>(entityId);
     std::shared_ptr<RectangleComponent> rectangleComponent = ecs.GetComponent<RectangleComponent>(entityId);
     std::shared_ptr<PositionComponent> positionComponent = ecs.GetComponent<PositionComponent>(entityId);
@@ -104,16 +104,16 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
 
         }
     }
+
+    ecs.Unlock();
 }
 
-
-
-
-bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
+void GraphicsSystem::DrawHexes(){
     std::unique_lock lock(_resourceMutex);
 
-    SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
-    SDL_RenderClear(_renderer);
+    HexagonShape hexagon;
+    hexagon.hexRadius = HexRadius;
+    hexagon.repeatable = true;
 
     // draw hexes
     for (int xIndex = -1; xIndex < GameState::MaxXTiles; xIndex++){
@@ -121,55 +121,46 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
             int startX = GetScreenPositionXFromCoordinates(xIndex, yIndex);
             int startY = GetScreenPositionYFromCoordinates(xIndex, yIndex);
 
-            SDL_SetRenderDrawColor(_renderer, 0,0,0, 255);  // Dark green.
+            SDL_SetRenderDrawColor(_renderer, 0,0,0, SDL_ALPHA_OPAQUE);  // Dark green.
 
-            int lineLength = HexRadius / 4;
-
-            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX - 2 * lineLength, startY + lineLength);
-
-            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
-
-            SDL_RenderDrawLine(_renderer, startX + 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
+            hexagon.x = startX;
+            hexagon.y = startY;
+            hexagon.Render(_renderer);
         }
     }
 
     // outline hex around mouse
-    {
-            int cursorX = InputState::Instance().CursorX / HexRadius;
+    int cursorX = InputState::Instance().CursorX / HexRadius;
+    int cursorY = InputState::Instance().CursorY / (HexRadius - HexRadius/4);
 
-            int cursorY = InputState::Instance().CursorY / (HexRadius - HexRadius/4);
-
-            // Add an additional offset to deal with odd number squares
-            if (IsOdd(cursorY) && cursorX != 0){
-                cursorX = (InputState::Instance().CursorX - HexRadius/2)/ HexRadius;
-            }
-
-            int startY = GetScreenPositionYFromCoordinates(cursorX, cursorY);
-            int startX = GetScreenPositionXFromCoordinates(cursorX, cursorY);
-
-
-
-
-
-
-            SDL_SetRenderDrawColor(_renderer, 255,255,255, 255);  // Dark green.
-
-            int lineLength = HexRadius / 4;
-
-            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX - 2 * lineLength, startY + lineLength);
-
-            SDL_RenderDrawLine(_renderer, startX - 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
-
-            SDL_RenderDrawLine(_renderer, startX + 2 * lineLength, startY - lineLength, startX, startY - 2* lineLength);
+    // Add an additional offset to deal with odd number squares
+    if (IsOdd(cursorY) && cursorX != 0){
+        cursorX = (InputState::Instance().CursorX - HexRadius/2)/ HexRadius;
     }
 
+    int startY = GetScreenPositionYFromCoordinates(cursorX, cursorY);
+    int startX = GetScreenPositionXFromCoordinates(cursorX, cursorY);
 
+    SDL_SetRenderDrawColor(_renderer, 255,255,255, SDL_ALPHA_OPAQUE);  // Dark green.
 
+    hexagon.repeatable = false;
+    hexagon.x = startX;
+    hexagon.y = startY;
+    hexagon.Render(_renderer);
+}
 
+bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
+    std::unique_lock lock(_resourceMutex);
 
-
+    SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
+    SDL_RenderClear(_renderer);
 
     lock.unlock();
+
+    ThreadPool::Instance().submit([this](){
+                                        DrawHexes();
+                                        });
+
 
     // Do component rendering??
     ecs.Lock();
@@ -182,9 +173,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
         entityIds.pop_back();
 
         ThreadPool::Instance().submit([this, &ecs, entityId](){
-                                        ecs.Lock();
-                                            ProcessJob(ecs, entityId);
-                                        ecs.Unlock();
+                                            ProcessEntities(ecs, entityId);
                                         });
 
     }
