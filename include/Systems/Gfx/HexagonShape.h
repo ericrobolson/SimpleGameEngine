@@ -1,7 +1,7 @@
 #ifndef HEXAGONSHAPE_H
 #define HEXAGONSHAPE_H
 #include <SDL.h>
-
+#include "Color.h"
 
 class HexagonShape
 {
@@ -14,6 +14,8 @@ class HexagonShape
         int hexRadius;
 
         bool repeatable;
+
+        Color LineColor;
 
         void Render(SDL_Renderer* render);
     private:

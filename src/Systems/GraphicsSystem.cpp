@@ -15,11 +15,9 @@
 #include "GameState.h"
 #include "HexagonShape.h"
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 720;
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
 const int SCREEN_BITSPERPIXEL = 32;
-
-const int HexRadius = 32; // should be evenly divisible by 4
 
 bool IsOdd(int x){
     return x %2;
@@ -28,10 +26,10 @@ bool IsOdd(int x){
 int GetScreenPositionXFromCoordinates(int x, int y){
     // returns x center of hex
 
-    int screenX = x * HexRadius + HexRadius /2;
+    int screenX = x * GameState::HextileSize + GameState::HextileSize /2;
 
     if (IsOdd(y)){
-        screenX += HexRadius /2;
+        screenX += GameState::HextileSize /2;
     }
 
     return screenX;
@@ -40,9 +38,9 @@ int GetScreenPositionXFromCoordinates(int x, int y){
 int GetScreenPositionYFromCoordinates(int x, int y){
     // returns y center of hex
         // returns x center of hex
-    int screenY = y * (HexRadius - HexRadius/4) + HexRadius/2;
+    int screenY = y * (GameState::HextileSize - GameState::HextileSize/4) + GameState::HextileSize/2;
 
-    return screenY;
+    return screenY * GameState::IsometricScaling;
 }
 
 // Initialize SDL
@@ -58,6 +56,10 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = nullptr;
 
     _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+
+    SDL_SetWindowFullscreen(_window,SDL_WINDOW_FULLSCREEN);
+
+
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
@@ -112,7 +114,7 @@ void GraphicsSystem::DrawHexes(){
     std::unique_lock lock(_resourceMutex);
 
     HexagonShape hexagon;
-    hexagon.hexRadius = HexRadius;
+    hexagon.hexRadius = GameState::HextileSize;
     hexagon.repeatable = true;
 
     // draw hexes
@@ -121,8 +123,6 @@ void GraphicsSystem::DrawHexes(){
             int startX = GetScreenPositionXFromCoordinates(xIndex, yIndex);
             int startY = GetScreenPositionYFromCoordinates(xIndex, yIndex);
 
-            SDL_SetRenderDrawColor(_renderer, 0,0,0, SDL_ALPHA_OPAQUE);  // Dark green.
-
             hexagon.x = startX;
             hexagon.y = startY;
             hexagon.Render(_renderer);
@@ -130,18 +130,21 @@ void GraphicsSystem::DrawHexes(){
     }
 
     // outline hex around mouse
-    int cursorX = InputState::Instance().CursorX / HexRadius;
-    int cursorY = InputState::Instance().CursorY / (HexRadius - HexRadius/4);
+    int cursorX = InputState::Instance().CursorX / GameState::HextileSize;
+    int cursorY = InputState::Instance().CursorY / (GameState::HextileSize - GameState::HextileSize/4) / GameState::IsometricScaling;
 
     // Add an additional offset to deal with odd number squares
     if (IsOdd(cursorY) && cursorX != 0){
-        cursorX = (InputState::Instance().CursorX - HexRadius/2)/ HexRadius;
+        cursorX = (InputState::Instance().CursorX - GameState::HextileSize/2)/ GameState::HextileSize;
     }
 
     int startY = GetScreenPositionYFromCoordinates(cursorX, cursorY);
     int startX = GetScreenPositionXFromCoordinates(cursorX, cursorY);
 
-    SDL_SetRenderDrawColor(_renderer, 255,255,255, SDL_ALPHA_OPAQUE);  // Dark green.
+    hexagon.LineColor.alpha = SDL_ALPHA_OPAQUE;
+    hexagon.LineColor.red = 255;
+    hexagon.LineColor.green = 255;
+    hexagon.LineColor.blue = 255;
 
     hexagon.repeatable = false;
     hexagon.x = startX;

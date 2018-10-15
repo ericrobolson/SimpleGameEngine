@@ -76,6 +76,7 @@
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/InputState.h" />
+		<Unit filename="include/Systems/Gfx/Color.h" />
 		<Unit filename="include/Systems/Gfx/HexagonShape.h" />
 		<Unit filename="include/Systems/GraphicsSystem.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
@@ -101,6 +102,7 @@
 		<Unit filename="src/EntityComponentManager.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
+		<Unit filename="src/Systems/Gfx/Color.cpp" />
 		<Unit filename="src/Systems/Gfx/HexagonShape.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />
