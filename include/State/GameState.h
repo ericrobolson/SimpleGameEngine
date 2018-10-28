@@ -11,8 +11,6 @@ class GameState
 
         const static int MaxXTiles = 120;
         const static int MaxYTiles = 120;
-        const static int HextileSize = 64; // should be divisible by 4
-        static constexpr float IsometricScaling = .577; // tan(30*), what's used to calculate the vertical scale of objects
 
     protected:
 

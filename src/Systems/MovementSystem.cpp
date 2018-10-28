@@ -2,9 +2,7 @@
 #include <math.h>
 #include "MovementSystem.h"
 #include "EntityComponentManager.h"
-#include "PlayerComponent.h"
 #include<future>
-#include "EnemyComponent.h"
 #include "MovementComponent.h"
 #include "PositionComponent.h"
 #include "InputState.h"
@@ -23,6 +21,45 @@ MovementSystem::~MovementSystem()
     //dtor
 }
 
+
+void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &positionComponent){
+    const int moveSpeed = 2;
+
+
+    InputState& inputState = InputState::Instance();
+
+    // Calculate horizontal and vertical movement
+    if (inputState.ButtonUpIsPressed){
+        movementComponent.ForwardSpeed = moveSpeed;
+    }
+
+    if (inputState.ButtonDownIsPressed){
+        movementComponent.ForwardSpeed = -moveSpeed;
+    }
+
+    if (inputState.ButtonRightIsPressed){
+        movementComponent.HorizontalSpeed = moveSpeed;
+    }
+
+    if (inputState.ButtonLeftIsPressed){
+        movementComponent.HorizontalSpeed = -moveSpeed;
+    }
+
+    if ((!inputState.ButtonUpIsPressed && !inputState.ButtonDownIsPressed)
+        || (inputState.ButtonUpIsPressed && inputState.ButtonDownIsPressed)){
+        movementComponent.ForwardSpeed = 0;
+    }
+
+     if ((!inputState.ButtonRightIsPressed && !inputState.ButtonLeftIsPressed)
+        || (inputState.ButtonRightIsPressed && inputState.ButtonLeftIsPressed)){
+        movementComponent.HorizontalSpeed = 0;
+    }
+
+    // Calculate the angle based of the cursor
+
+    movementComponent.SetDirectionAngleFromCoordinates(positionComponent.PositionX, positionComponent.PositionY, inputState.CursorX, inputState.CursorY);
+}
+
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
     ecs.Lock();
@@ -39,11 +76,19 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
         ecs.Lock();
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
 
-        if (ecs.GetComponent<EnemyComponent>(entityId) != nullptr){
-           movementComponent.ForwardSpeed = 2;
-           movementComponent.TurnLeft(15);
-        }
+/*
+        if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
+            std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
 
+            if (positionPtr == nullptr){
+                return;
+            }
+
+            PositionComponent& positionComponent = *positionPtr.get();
+
+            HandlePlayerInput(movementComponent, positionComponent);
+        }
+        */
         ecs.Unlock();
 
         });

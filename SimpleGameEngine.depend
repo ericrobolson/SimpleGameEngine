@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1538696159 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1540588005 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
@@ -43,7 +43,7 @@
 1538153803 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
-1538266699 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
 	"Components/MovementComponent.h"
 	<math.h>
 
@@ -56,11 +56,9 @@
 1536916315 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1538584025 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
-	"PlayerAssemblage.h"
-	"EnemyAssemblage.h"
 	<stdio.h>
 	<time.h>
 	<thread>
@@ -73,31 +71,27 @@
 	"MovementSystem.h"
 	"PositionSystem.h"
 
-1539277165 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
 	"EntityComponentManager.h"
-	"ColorComponent.h"
-	"RectangleComponent.h"
 	"PositionComponent.h"
 	"MovementComponent.h"
 	<math.h>
 	<future>
 	"ThreadPool.h"
 	"InputState.h"
-	"PlayerComponent.h"
 	<mutex>
 	"GameState.h"
-	"HexagonShape.h"
 
-1539218850 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 	<mutex>
 
-1539201924 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	<memory>
 	"PlayerAssemblage.h"
 	"EntityComponentManager.h"
@@ -108,27 +102,27 @@
 	"MovementComponent.h"
 	<iostream>
 
-1538154381 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
 	<memory>
 	"EntityComponentManager.h"
 
-1537144278 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\staticspritecomponent.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\staticspritecomponent.h
 	"BaseComponent.h"
 
-1537124400 c:\users\eric\gamedev\simplegameengine\include\components\playercomponent.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\components\playercomponent.h
 	"BaseComponent.h"
 
-1537339984 c:\users\eric\gamedev\simplegameengine\include\components\healthcomponent.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\components\healthcomponent.h
 	"BaseComponent.h"
 
-1537585357 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\staticspritecomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\staticspritecomponent.cpp
 	<math.h>
 	"StaticSpriteComponent.h"
 
-1537339966 source:c:\users\eric\gamedev\simplegameengine\src\components\healthcomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\healthcomponent.cpp
 	"HealthComponent.h"
 
-1537124490 source:c:\users\eric\gamedev\simplegameengine\src\components\playercomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\playercomponent.cpp
 	"PlayerComponent.h"
 
 1530424666 c:\mingw\include\sdl2\sdl.h
@@ -816,12 +810,12 @@
 
 1537658506 c:\users\eric\gamedev\simplegameengine\include\state\inputstate.h
 
-1538952474 source:c:\users\eric\gamedev\simplegameengine\src\entitycomponentmanager.cpp
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\entitycomponentmanager.cpp
 	<list>
 	"EntityComponentManager.h"
 	<mutex>
 
-1539032127 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -832,18 +826,18 @@
 	<thread>
 	<mutex>
 
-1538061208 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\colorcomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\colorcomponent.cpp
 	"ColorComponent.h"
 
-1538061453 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\colorcomponent.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\colorcomponent.h
 	<cstdint>
 	<SDL.h>
 	"BaseComponent.h"
 
-1538061524 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\rectanglecomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\grapicscomponents\rectanglecomponent.cpp
 	"RectangleComponent.h"
 
-1538061564 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\rectanglecomponent.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\components\grapicscomponents\rectanglecomponent.h
 	"BaseComponent.h"
 
 1538153691 source:c:\users\eric\gamedev\simplegameengine\src\newentitycomponentmanager.cpp
@@ -863,14 +857,12 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1539620666 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
 	"EntityComponentManager.h"
-	"PlayerComponent.h"
 	<future>
-	"EnemyComponent.h"
 	"MovementComponent.h"
 	"PositionComponent.h"
 	"InputState.h"
@@ -883,7 +875,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1539277118 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -891,20 +883,18 @@
 	"MovementComponent.h"
 	<mutex>
 	"ThreadPool.h"
-	"InputState.h"
-	"PlayerComponent.h"
 
 1538250895 c:\users\eric\gamedev\simplegameengine\include\debugger.h
 	<string>
 	<iostream>
 
-1538263784 source:c:\users\eric\gamedev\simplegameengine\src\components\enemycomponent.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\components\enemycomponent.cpp
 	"EnemyComponent.h"
 
-1538263767 c:\users\eric\gamedev\simplegameengine\include\components\enemycomponent.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\components\enemycomponent.h
 	"BaseComponent.h"
 
-1539201933 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\enemyassemblage.cpp
+1540666549 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\enemyassemblage.cpp
 	<memory>
 	"EntityComponentManager.h"
 	"EnemyAssemblage.h"
@@ -916,7 +906,7 @@
 	"MovementComponent.h"
 	"EnemyComponent.h"
 
-1538263694 c:\users\eric\gamedev\simplegameengine\include\assemblages\enemyassemblage.h
+1540666549 c:\users\eric\gamedev\simplegameengine\include\assemblages\enemyassemblage.h
 	<memory>
 	"EntityComponentManager.h"
 
@@ -2329,22 +2319,529 @@
 1539119406 source:c:\users\eric\gamedev\simplegameengine\src\state\gamestate.cpp
 	"GameState.h"
 
-1539620759 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
+1540755077 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
 	<vector>
 
-1539620804 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp
+1540666601 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp
 	"HexagonShape.h"
 	<SDL.h>
-	"GameState.h"
 
-1539222843 c:\users\eric\gamedev\simplegameengine\include\systems\gfx\hexagonshape.h
-	<SDL.h>
-	"Color.h"
-
-1539222143 c:\users\eric\gamedev\simplegameengine\include\systems\gfx\color.h
+1540666601 c:\users\eric\gamedev\simplegameengine\include\systems\gfx\hexagonshape.h
 	<SDL.h>
 
-1539221877 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\color.cpp
-	"Color.h"
-	<SDL.h>
+1341010380 c:\tdm-gcc-32\include\sys\types.h
+	<_mingw.h>
+	<stddef.h>
+
+1341010371 c:\tdm-gcc-32\include\_mingw.h
+
+1341010376 c:\tdm-gcc-32\include\stdio.h
+	<_mingw.h>
+	<stddef.h>
+	<stdarg.h>
+	<sys/types.h>
+
+1341010377 c:\tdm-gcc-32\include\stdlib.h
+	<_mingw.h>
+	<stddef.h>
+
+1341010374 c:\tdm-gcc-32\include\malloc.h
+	<_mingw.h>
+	<stdlib.h>
+
+1341010375 c:\tdm-gcc-32\include\memory.h
+	<string.h>
+
+1341010377 c:\tdm-gcc-32\include\string.h
+	<_mingw.h>
+	<stddef.h>
+
+1341010377 c:\tdm-gcc-32\include\strings.h
+	<string.h>
+
+1341010378 c:\tdm-gcc-32\include\wchar.h
+	<_mingw.h>
+	<stddef.h>
+	<stdarg.h>
+	<wctype.h>
+	<sys/types.h>
+	<stdio.h>
+	<stdint.h>
+	<stdint.h>
+
+1341010378 c:\tdm-gcc-32\include\wctype.h
+	<_mingw.h>
+	<stddef.h>
+
+1341010376 c:\tdm-gcc-32\include\stdint.h
+	<stddef.h>
+
+1341010373 c:\tdm-gcc-32\include\inttypes.h
+	<_mingw.h>
+	<stdint.h>
+	<stddef.h>
+
+1341010371 c:\tdm-gcc-32\include\ctype.h
+	<_mingw.h>
+	<stddef.h>
+
+1341010374 c:\tdm-gcc-32\include\math.h
+	<_mingw.h>
+
+1341010373 c:\tdm-gcc-32\include\float.h
+	<_mingw.h>
+
+1341010376 c:\tdm-gcc-32\include\signal.h
+	<_mingw.h>
+
+1341010375 c:\tdm-gcc-32\include\process.h
+	<_mingw.h>
+	<sys/types.h>
+	<stdint.h>
+
+1341010377 c:\tdm-gcc-32\include\time.h
+	<_mingw.h>
+	<stddef.h>
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_assert.h"
+	"SDL_atomic.h"
+	"SDL_audio.h"
+	"SDL_clipboard.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_filesystem.h"
+	"SDL_gamecontroller.h"
+	"SDL_haptic.h"
+	"SDL_hints.h"
+	"SDL_joystick.h"
+	"SDL_loadso.h"
+	"SDL_log.h"
+	"SDL_messagebox.h"
+	"SDL_mutex.h"
+	"SDL_power.h"
+	"SDL_render.h"
+	"SDL_rwops.h"
+	"SDL_shape.h"
+	"SDL_system.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_version.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<wchar.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<math.h>
+	<float.h>
+	<sal.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_config.h
+	"SDL_platform.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_platform.h
+	"AvailabilityMacros.h"
+	"TargetConditionals.h"
+	<winapifamily.h>
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\begin_code.h
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\close_code.h
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_assert.h
+	"SDL_config.h"
+	"begin_code.h"
+	<signal.h>
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+	"SDL_stdinc.h"
+	"SDL_platform.h"
+	"begin_code.h"
+	<mbarrier.h>
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_atomic.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	<process.h>
+	<stdlib.h>
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	<intrin.h>
+	<intrin.h>
+	<altivec.h>
+	<mm3dnow.h>
+	<immintrin.h>
+	<mmintrin.h>
+	<xmmintrin.h>
+	<emmintrin.h>
+	<pmmintrin.h>
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_gamecontroller.h"
+	"SDL_quit.h"
+	"SDL_gesture.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+	"SDL_stdinc.h"
+	"SDL_endian.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_rect.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_pixels.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_surface.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_blendmode.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keycode.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+	"SDL_stdinc.h"
+	"SDL_scancode.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+	"SDL_stdinc.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"SDL_touch.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_touch.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_joystick.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_hints.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_log.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+	"SDL_stdinc.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_power.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_render.h
+	"SDL_stdinc.h"
+	"SDL_rect.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_shape.h
+	"SDL_stdinc.h"
+	"SDL_pixels.h"
+	"SDL_rect.h"
+	"SDL_surface.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_system.h
+	"SDL_stdinc.h"
+	"SDL_keyboard.h"
+	"SDL_render.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\controlled\aicomponent.cpp
+	"AiComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\controlled\aicomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\controlled\playercomponent.cpp
+	"PlayerComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\controlled\playercomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\state\deadcomponent.cpp
+	"DeadComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\state\deadcomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\state\livingcomponent.cpp
+	"LivingComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\state\livingcomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\state\undeadcomponent.cpp
+	"UndeadComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\state\undeadcomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\types\carnivorecomponent.cpp
+	"CarnivoreComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\types\carnivorecomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\types\ghostcomponent.cpp
+	"GhostComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\types\ghostcomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\types\herbivorecomponent.cpp
+	"HerbivoreComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\types\herbivorecomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\creatures\types\scavengercomponent.cpp
+	"ScavengerComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\creatures\types\scavengercomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\elements\burnablecomponent.cpp
+	"BurnableComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\elements\burnablecomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\elements\conductivecomponent.cpp
+	"ConductiveComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\elements\conductivecomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\elements\electricitycomponent.cpp
+	"ElectricityComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\elements\electricitycomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\elements\firecomponent.cpp
+	"FireComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\elements\firecomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\elements\thirstcomponent.cpp
+	"ThirstComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\elements\thirstcomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\elements\watercomponent.cpp
+	"WaterComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\elements\watercomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\materials\steelcomponent.cpp
+	"SteelComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\materials\steelcomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\materials\stonecomponent.cpp
+	"StoneComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\materials\stonecomponent.h
+	"BaseComponent.h"
+
+1540755077 source:c:\users\eric\gamedev\simplegameengine\src\components\materials\woodcomponent.cpp
+	"WoodComponent.h"
+
+1540755077 c:\users\eric\gamedev\simplegameengine\include\components\materials\woodcomponent.h
+	"BaseComponent.h"
 

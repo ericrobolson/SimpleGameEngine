@@ -6,8 +6,6 @@
 #include "MovementComponent.h"
 #include <mutex>
 #include "ThreadPool.h"
-#include "InputState.h"
-#include "PlayerComponent.h"
 
 PositionSystem::PositionSystem() : BaseSystem()
 {
@@ -21,10 +19,6 @@ PositionSystem::~PositionSystem()
 
 void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
     ecs.Lock();
-
-    if (ecs.GetComponent<PlayerComponent>(entityIndex) != nullptr){
-
-    }
 
     MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityIndex);
     PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(entityIndex);
