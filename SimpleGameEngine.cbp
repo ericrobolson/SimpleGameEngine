@@ -29,6 +29,7 @@
 					<Add directory="include/Components/Creatures/Types" />
 					<Add directory="include/Components/Materials" />
 					<Add directory="include/Components/Controlled" />
+					<Add directory="include/Assemblages/Creatures" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -53,6 +54,7 @@
 					<Add directory="include/Components/Creatures/Types" />
 					<Add directory="include/Components/Materials" />
 					<Add directory="include/Components/Controlled" />
+					<Add directory="include/Assemblages/Creatures" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -70,6 +72,7 @@
 			<Add directory="C:/TDM-GCC-32/lib" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
 		</Linker>
+		<Unit filename="include/Assemblages/Creatures/DeerAssemblage.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
@@ -82,12 +85,11 @@
 		<Unit filename="include/Components/Creatures/Types/GhostComponent.h" />
 		<Unit filename="include/Components/Creatures/Types/HerbivoreComponent.h" />
 		<Unit filename="include/Components/Creatures/Types/ScavengerComponent.h" />
-		<Unit filename="include/Components/Elements/BurnableComponent.h" />
 		<Unit filename="include/Components/Elements/ConductiveComponent.h" />
 		<Unit filename="include/Components/Elements/ElectricityComponent.h" />
 		<Unit filename="include/Components/Elements/FireComponent.h" />
-		<Unit filename="include/Components/Elements/ThirstComponent.h" />
 		<Unit filename="include/Components/Elements/WaterComponent.h" />
+		<Unit filename="include/Components/Materials/OrganicComponent.h" />
 		<Unit filename="include/Components/Materials/SteelComponent.h" />
 		<Unit filename="include/Components/Materials/StoneComponent.h" />
 		<Unit filename="include/Components/Materials/WoodComponent.h" />
@@ -105,6 +107,7 @@
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Assemblages/Creatures/DeerAssemblage.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
@@ -117,12 +120,11 @@
 		<Unit filename="src/Components/Creatures/Types/GhostComponent.cpp" />
 		<Unit filename="src/Components/Creatures/Types/HerbivoreComponent.cpp" />
 		<Unit filename="src/Components/Creatures/Types/ScavengerComponent.cpp" />
-		<Unit filename="src/Components/Elements/BurnableComponent.cpp" />
 		<Unit filename="src/Components/Elements/ConductiveComponent.cpp" />
 		<Unit filename="src/Components/Elements/ElectricityComponent.cpp" />
 		<Unit filename="src/Components/Elements/FireComponent.cpp" />
-		<Unit filename="src/Components/Elements/ThirstComponent.cpp" />
 		<Unit filename="src/Components/Elements/WaterComponent.cpp" />
+		<Unit filename="src/Components/Materials/OrganicComponent.cpp" />
 		<Unit filename="src/Components/Materials/SteelComponent.cpp" />
 		<Unit filename="src/Components/Materials/StoneComponent.cpp" />
 		<Unit filename="src/Components/Materials/WoodComponent.cpp" />
