@@ -62,9 +62,7 @@ void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
-    ecs.Lock();
-        std::vector<int> entities = ecs.Search<MovementComponent>();
-    ecs.Unlock();
+    std::vector<int> entities = ecs.Search<MovementComponent>();
 
     std::vector<int>::iterator ptr;
     int index = 0;
@@ -73,7 +71,6 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
         ThreadPool::Instance().submit([&ecs, entityId](){
 
-        ecs.Lock();
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
 
 /*
@@ -89,7 +86,6 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
             HandlePlayerInput(movementComponent, positionComponent);
         }
         */
-        ecs.Unlock();
 
         });
 

@@ -10,7 +10,6 @@
 #include <thread>
 #include <mutex>
 
-
 namespace ECS{
     static const int MAXNUMBEROFENTITIES = 1000; // Until multithreading is implemented, acceptable limit is 100
     static const int MAXNUMBEROFCOMPONENTTABLES = 2000;
@@ -20,12 +19,127 @@ namespace ECS{
     class EntityComponentManager
     {
         public:
-            EntityComponentManager();
-            virtual ~EntityComponentManager();
+            EntityComponentManager(){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                // Initialize the list of free entity ids
+                for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
+                    _availableEntityIds.push_back(i);
+                }
+
+                _componentTypesAdded = 0;
+            }
+
+            virtual ~EntityComponentManager(){
+                // mark all entities as inactive, so that they are marked for cleanup
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+
+                while(_takenEntityIds.empty() == false){
+                    int entityId = _takenEntityIds.back();
+
+                    _takenEntityIds.pop_back();
+
+                    MarkEntityInactive_ThreadSafe(entityId);
+                }
+
+                DeleteAllInactiveEntities_ThreadSafe();
+            }
 
             /// gets the type of component for that entity, returns null if that component was not found
             template <class TComponent>
             std::shared_ptr<TComponent> GetComponent(int entityId){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return GetComponent_ThreadSafe<TComponent>(entityId);
+            };
+
+            /// Get a list of entityIds that have the given component
+            template <class TComponent>
+            std::vector<int> Search(){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return SearchOn_ThreadSafe<TComponent>(_takenEntityIds);
+            }
+
+            template <class TComponent>
+            std::vector<int> SearchOn(std::vector<int> entityIds){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return SearchOn_ThreadSafe<TComponent>(entityIds);
+            }
+
+            template <class TComponent>
+            TComponent& AddComponent(int entityId){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return &AddComponent_ThreadSafe<TComponent>(entityId);
+            };
+
+            std::shared_ptr<int> AddEntity(){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return AddEntity_ThreadSafe();
+            }
+
+            void MarkEntityInactive(int entityId){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                MarkEntityInactive_ThreadSafe(entityId);
+            }
+
+            void DeleteAllInactiveEntities(){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                DeleteAllInactiveEntities_ThreadSafe();
+            }
+
+
+        private:
+            std::mutex _resourceMutex;
+
+            std::vector<int> _inactiveEntityIds; // a list of all entity ids to cleanup
+            std::vector<int> _availableEntityIds; // a list of all available entity ids
+            std::vector<int>  _takenEntityIds; // a list of entity ids that are taken
+
+            int _componentTypesAdded;
+            ComponentTypeMap _componentTables;
+
+            //Note: Private functions assume control of the lock
+            void DeleteAllInactiveEntities_ThreadSafe(){
+                int entityId = -1;
+
+                while (_inactiveEntityIds.empty() == false){
+                    entityId = _inactiveEntityIds.back();
+
+                    // Delete components for entity
+                    for (auto it = _componentTables.begin(); it != _componentTables.end(); ++it){
+                        if (it->second[entityId] != nullptr){
+                            delete it->second[entityId].get();
+                        }
+                    }
+
+                    _inactiveEntityIds.pop_back();
+                    _availableEntityIds.push_back(entityId);
+                }
+
+                _takenEntityIds.clear();
+            }
+
+            void MarkEntityInactive_ThreadSafe(int entityId){
+                _inactiveEntityIds.push_back(entityId);
+            }
+
+            std::shared_ptr<int> AddEntity_ThreadSafe(){
+                int entityId = -1;
+
+                if (_availableEntityIds.empty() == false){
+                    entityId = _availableEntityIds.back();
+
+                    _availableEntityIds.pop_back();
+                    _takenEntityIds.push_back(entityId);
+                }
+
+                if (entityId == -1){
+                    return nullptr;
+                }
+
+                return std::make_shared<int>(entityId);
+            }
+
+            template <class TComponent>
+            std::shared_ptr<TComponent> GetComponent_ThreadSafe(int entityId){
                     if (_componentTables[typeid(TComponent)] == nullptr){
                         return nullptr;
                     }
@@ -34,14 +148,37 @@ namespace ECS{
                 return component;
             };
 
-            /// Get a list of entityIds that have the given component
             template <class TComponent>
-            std::vector<int> Search(){
-                return SearchOn<TComponent>(_takenEntityIds);
-            }
+            TComponent& AddComponent_ThreadSafe(int entityId){
+                std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
+
+                if (componentTable == nullptr){
+                    if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
+                        throw "component types added has exceeded maximum number of component types in memory.";
+                    }
+
+                    _componentTypesAdded++;
+
+                    for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
+                    _componentTables[typeid(TComponent)][i] = nullptr;
+                    }
+                } else{
+                    std::shared_ptr<TComponent> component = GetComponent_ThreadSafe<TComponent>(entityId);
+
+                    if (component != nullptr){
+                        return *component.get();
+                    }
+                 }
+
+                componentTable[entityId] = std::make_shared<TComponent>();
+
+                std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
+
+                return *component.get();
+            };
 
             template <class TComponent>
-            std::vector<int> SearchOn(std::vector<int> entityIds){
+            std::vector<int> SearchOn_ThreadSafe(std::vector<int> entityIds){
                 std::vector<int> matchingEntityIds;
                 matchingEntityIds.reserve(entityIds.size());
 
@@ -59,67 +196,6 @@ namespace ECS{
                 return matchingEntityIds;
             }
 
-
-
-            void Lock(){
-                _lockGuard.lock();
-            }
-
-            void Unlock(){
-                if (_lockGuard.owns_lock() == false){
-                    _lockGuard.lock();
-                }
-
-                _lockGuard.unlock();
-            }
-
-
-
-            template <class TComponent>
-            TComponent& AddComponent(int entityId){
-                    std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
-
-                    if (componentTable == nullptr){
-                        if (_componentTypesAdded >= MAXNUMBEROFCOMPONENTTABLES){
-                            throw "component types added has exceeded maximum number of component types in memory.";
-                        }
-
-                        _componentTypesAdded++;
-
-                        for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
-                        _componentTables[typeid(TComponent)][i] = nullptr;
-                        }
-                    } else{
-                        std::shared_ptr<TComponent> component = GetComponent<TComponent>(entityId);
-
-                        if (component != nullptr){
-                            return *component.get();
-                        }                    }
-
-                    componentTable[entityId] = std::make_shared<TComponent>();
-
-                    std::shared_ptr<TComponent> component = std::dynamic_pointer_cast<TComponent>(componentTable[entityId]);
-
-                return *component.get();
-            };
-
-            std::shared_ptr<int> AddEntity();
-
-            void MarkEntityInactive(int entityId); // marks the given entity as inactive and adds it to the list of inactiveEntityIds
-            void DeleteAllInactiveEntities();
-
-        private:
-            /// Get a list of entityIds that have the given component from a list of entities
-
-            std::mutex _resourceMutex;
-            std::unique_lock<std::mutex> _lockGuard;
-
-            std::vector<int> _inactiveEntityIds; // a list of all entity ids to cleanup
-            std::vector<int> _availableEntityIds; // a list of all available entity ids
-            std::vector<int>  _takenEntityIds; // a list of entity ids that are taken
-
-            int _componentTypesAdded;
-            ComponentTypeMap _componentTables;
     };
 }
 

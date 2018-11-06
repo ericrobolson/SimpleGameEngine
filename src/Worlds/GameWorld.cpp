@@ -58,7 +58,9 @@ bool GameWorld::Process(){
     clock_t positionClock = cycleClock;
     cycleClock = clock();
 
-    _graphicsSystem.Process(entityComponentManager);
+    // Run the graphics system until it's done processing; for instance, rendering all the frames of a move animation in a turn based game
+    bool finishedProcessing = true;
+    while(_graphicsSystem.Process(entityComponentManager) != finishedProcessing);
 
     cycleClock = clock() - cycleClock;
     clock_t gfxClock = cycleClock;

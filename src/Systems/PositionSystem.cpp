@@ -18,8 +18,6 @@ PositionSystem::~PositionSystem()
 }
 
 void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
-    ecs.Lock();
-
     MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityIndex);
     PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(entityIndex);
 
@@ -28,18 +26,14 @@ void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
         positionComponent.PositionX = positionComponent.PositionX + movementComponent.GetXDelta();
         positionComponent.PositionY = positionComponent.PositionY + movementComponent.GetYDelta();
     }
-
-    ecs.Unlock();
 }
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
 
     // ignore everything else for not
+    std::vector<int> entities = ecs.Search<PositionComponent>();
+    entities = ecs.SearchOn<MovementComponent>(entities);
 
-    ecs.Lock();
-        std::vector<int> entities = ecs.Search<PositionComponent>();
-        entities = ecs.SearchOn<MovementComponent>(entities);
-    ecs.Unlock();
 
     std::vector<int>::iterator it;
 

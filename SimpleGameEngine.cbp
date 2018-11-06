@@ -13,7 +13,7 @@
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
 				<Compiler>
-					<Add option="-std=c++14" />
+					<Add option="-std=c++1z" />
 					<Add option="-g" />
 					<Add directory="include" />
 					<Add directory="include/Worlds" />
@@ -72,27 +72,9 @@
 			<Add directory="C:/TDM-GCC-32/lib" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
 		</Linker>
-		<Unit filename="include/Assemblages/Creatures/DeerAssemblage.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
-		<Unit filename="include/Components/Controlled/AiComponent.h" />
-		<Unit filename="include/Components/Controlled/PlayerComponent.h" />
-		<Unit filename="include/Components/Creatures/State/DeadComponent.h" />
-		<Unit filename="include/Components/Creatures/State/LivingComponent.h" />
-		<Unit filename="include/Components/Creatures/State/UndeadComponent.h" />
-		<Unit filename="include/Components/Creatures/Types/CarnivoreComponent.h" />
-		<Unit filename="include/Components/Creatures/Types/GhostComponent.h" />
-		<Unit filename="include/Components/Creatures/Types/HerbivoreComponent.h" />
-		<Unit filename="include/Components/Creatures/Types/ScavengerComponent.h" />
-		<Unit filename="include/Components/Elements/ConductiveComponent.h" />
-		<Unit filename="include/Components/Elements/ElectricityComponent.h" />
-		<Unit filename="include/Components/Elements/FireComponent.h" />
-		<Unit filename="include/Components/Elements/WaterComponent.h" />
-		<Unit filename="include/Components/Materials/OrganicComponent.h" />
-		<Unit filename="include/Components/Materials/SteelComponent.h" />
-		<Unit filename="include/Components/Materials/StoneComponent.h" />
-		<Unit filename="include/Components/Materials/WoodComponent.h" />
 		<Unit filename="include/Components/MovementComponent.h" />
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Debugger.h" />
@@ -107,30 +89,11 @@
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="src/Assemblages/Creatures/DeerAssemblage.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
-		<Unit filename="src/Components/Controlled/AiComponent.cpp" />
-		<Unit filename="src/Components/Controlled/PlayerComponent.cpp" />
-		<Unit filename="src/Components/Creatures/State/DeadComponent.cpp" />
-		<Unit filename="src/Components/Creatures/State/LivingComponent.cpp" />
-		<Unit filename="src/Components/Creatures/State/UndeadComponent.cpp" />
-		<Unit filename="src/Components/Creatures/Types/CarnivoreComponent.cpp" />
-		<Unit filename="src/Components/Creatures/Types/GhostComponent.cpp" />
-		<Unit filename="src/Components/Creatures/Types/HerbivoreComponent.cpp" />
-		<Unit filename="src/Components/Creatures/Types/ScavengerComponent.cpp" />
-		<Unit filename="src/Components/Elements/ConductiveComponent.cpp" />
-		<Unit filename="src/Components/Elements/ElectricityComponent.cpp" />
-		<Unit filename="src/Components/Elements/FireComponent.cpp" />
-		<Unit filename="src/Components/Elements/WaterComponent.cpp" />
-		<Unit filename="src/Components/Materials/OrganicComponent.cpp" />
-		<Unit filename="src/Components/Materials/SteelComponent.cpp" />
-		<Unit filename="src/Components/Materials/StoneComponent.cpp" />
-		<Unit filename="src/Components/Materials/WoodComponent.cpp" />
 		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
-		<Unit filename="src/EntityComponentManager.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
