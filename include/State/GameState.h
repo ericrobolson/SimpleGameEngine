@@ -9,8 +9,7 @@ class GameState
         GameState();
         virtual ~GameState();
 
-        const static int MaxXTiles = 120;
-        const static int MaxYTiles = 120;
+        static const int GfxScaling = 2; // Internal resolution is 1x, gfx resolution is 2x. E.g. for a display screen of 1920x1080, the internal representation would be a grid of 960x540
 
     protected:
 

@@ -7,11 +7,10 @@
 
 #include <MovementComponent.h>
 #include <PositionComponent.h>
-#include <SdlRectangleComponent.h>
+#include <FootprintComponent.h>
 GameWorld::GameWorld() : BaseWorld()
 {
     _cycleClock = clock();
-
 
     for (int i = 0; i < 20; i++){
         std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
@@ -21,7 +20,7 @@ GameWorld::GameWorld() : BaseWorld()
             position.PositionX = 400;
             position.PositionY = 300;
 
-            SdlRectangleComponent& rectangle = entityComponentManager.AddComponent<SdlRectangleComponent>(*entityId);
+            FootprintComponent& rectangle = entityComponentManager.AddComponent<FootprintComponent>(*entityId);
             rectangle.Height = 11;
             rectangle.Width = 10 + rand() %20;
 

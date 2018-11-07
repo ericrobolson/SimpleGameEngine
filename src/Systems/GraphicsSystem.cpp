@@ -9,11 +9,15 @@
 #include "InputState.h"
 #include <mutex>
 #include "GameState.h"
-#include "SdlRectangleComponent.h"
+#include "FootprintComponent.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 const int SCREEN_BITSPERPIXEL = 32;
+
+int ScaleGraphics(int value){
+    return GameState::GfxScaling * value;
+}
 
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
@@ -32,37 +36,27 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 }
 
 void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityId){
-    std::shared_ptr<SdlRectangleComponent> rectanglePtr = ecs.GetComponent<SdlRectangleComponent>(entityId);
+    std::shared_ptr<FootprintComponent> rectanglePtr = ecs.GetComponent<FootprintComponent>(entityId);
     std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
 
-
+    // Draw Footprints
     if (rectanglePtr != nullptr && positionPtr != nullptr){
         std::unique_lock<std::mutex> lock(_resourceMutex);
 
         SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
 
-        SdlRectangleComponent rectangle = *rectanglePtr.get();
+        FootprintComponent rectangle = *rectanglePtr.get();
         PositionComponent position = *positionPtr.get();
 
         SDL_Rect sdlRect;
 
-        sdlRect.x = position.PositionX;
-        sdlRect.y = position.PositionY;
-        sdlRect.w = rectangle.Width;
-        sdlRect.h = rectangle.Height;
+        sdlRect.x = ScaleGraphics(position.PositionX - (int)(rectangle.Width/2));
+        sdlRect.y = ScaleGraphics(position.PositionY - (int)(rectangle.Height/2));
+        sdlRect.w = ScaleGraphics(rectangle.Width);
+        sdlRect.h = ScaleGraphics(rectangle.Height);
 
-        if (rectangle.Filled){
-            SDL_RenderFillRect(_renderer, &sdlRect);
-        }
-
-
+        SDL_RenderFillRect(_renderer, &sdlRect);
     }
-
-
-
-
-
-
 }
 
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
@@ -73,7 +67,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
     lock.unlock();
 
-    std::vector<int> entityIds = ecs.Search<SdlRectangleComponent>();
+    std::vector<int> entityIds = ecs.Search<FootprintComponent>();
 
     while (entityIds.empty() == false){
         int entityId = entityIds.back();
