@@ -17,16 +17,16 @@ GameWorld::GameWorld() : BaseWorld()
 
         if (entityId != nullptr){
             PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
-            position.PositionX = 400;
-            position.PositionY = 300;
+            position.PositionX = 100;
+            position.PositionY = 50;
 
             FootprintComponent& rectangle = entityComponentManager.AddComponent<FootprintComponent>(*entityId);
-            rectangle.Height = 11;
-            rectangle.Width = 10 + rand() %20;
+            rectangle.Height = 1;
+            rectangle.Width = 2;
 
             MovementComponent& movement = entityComponentManager.AddComponent<MovementComponent>(*entityId);
-            movement.HorizontalSpeed = -1 + (rand() %2);
-            movement.VerticalSpeed = -1 + (rand() %2);
+            movement.HorizontalSpeed = -2 + (rand() %4);
+            movement.VerticalSpeed = -2 + (rand() %4);
         }
 
     }
