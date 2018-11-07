@@ -3,9 +3,34 @@
 #include <stdio.h>
 #include <time.h>
 #include <thread>
+#include <memory>
+
+#include <MovementComponent.h>
+#include <PositionComponent.h>
+#include <SdlRectangleComponent.h>
 GameWorld::GameWorld() : BaseWorld()
 {
     _cycleClock = clock();
+
+
+    for (int i = 0; i < 20; i++){
+        std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
+
+        if (entityId != nullptr){
+            PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
+            position.PositionX = 400;
+            position.PositionY = 300;
+
+            SdlRectangleComponent& rectangle = entityComponentManager.AddComponent<SdlRectangleComponent>(*entityId);
+            rectangle.Height = 11;
+            rectangle.Width = 10 + rand() %20;
+
+            MovementComponent& movement = entityComponentManager.AddComponent<MovementComponent>(*entityId);
+            movement.HorizontalSpeed = -1 + (rand() %2);
+            movement.VerticalSpeed = -1 + (rand() %2);
+        }
+
+    }
 }
 
 GameWorld::~GameWorld()

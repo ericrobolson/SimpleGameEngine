@@ -43,11 +43,11 @@
 1538150203 c:\users\eric\gamedev\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
-1540662949 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
+1541546470 source:c:\users\eric\gamedev\simplegameengine\src\components\movementcomponent.cpp
 	"Components/MovementComponent.h"
 	<math.h>
 
-1538261820 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
+1541547014 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
 	<BaseComponent.h>
 
 1537028561 source:c:\users\eric\gamedev\simplegameengine\src\components\positioncomponent.cpp
@@ -56,12 +56,16 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1541198612 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1541551063 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
 	<time.h>
 	<thread>
+	<memory>
+	<MovementComponent.h>
+	<PositionComponent.h>
+	<SdlRectangleComponent.h>
 
 1538257273 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	<time.h>
@@ -71,21 +75,21 @@
 	"MovementSystem.h"
 	"PositionSystem.h"
 
-1540751477 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1541550598 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
 	"EntityComponentManager.h"
 	"PositionComponent.h"
-	"MovementComponent.h"
 	<math.h>
 	<future>
 	"ThreadPool.h"
 	"InputState.h"
 	<mutex>
 	"GameState.h"
+	"SdlRectangleComponent.h"
 
-1540662949 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1541548809 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
@@ -815,7 +819,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541520086 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1541550522 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -857,7 +861,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541516827 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1541548143 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -875,7 +879,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541516844 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1541546942 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -2306,7 +2310,7 @@
 	<mutex>
 	<queue>
 
-1539116492 c:\users\eric\gamedev\simplegameengine\include\threading\threadpool.h
+1541550760 c:\users\eric\gamedev\simplegameengine\include\threading\threadpool.h
 	<functional>
 	<future>
 	<mutex>
@@ -2843,5 +2847,17 @@
 	"WoodComponent.h"
 
 1540755077 c:\users\eric\gamedev\simplegameengine\include\components\materials\woodcomponent.h
+	"BaseComponent.h"
+
+1541541718 source:c:\users\eric\gamedev\simplegameengine\src\components\actorcomponent.cpp
+	"ActorComponent.h"
+
+1541541489 c:\users\eric\gamedev\simplegameengine\include\components\actorcomponent.h
+	"BaseComponent.h"
+
+1541548668 source:c:\users\eric\gamedev\simplegameengine\src\components\gfx\sdlrectanglecomponent.cpp
+	"SdlRectangleComponent.h"
+
+1541548998 c:\users\eric\gamedev\simplegameengine\include\components\gfx\sdlrectanglecomponent.h
 	"BaseComponent.h"
 

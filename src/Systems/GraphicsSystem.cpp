@@ -3,13 +3,13 @@
 #include "GraphicsSystem.h"
 #include "EntityComponentManager.h"
 #include "PositionComponent.h"
-#include "MovementComponent.h"
 #include <math.h>
 #include <future>
 #include "ThreadPool.h"
 #include "InputState.h"
 #include <mutex>
 #include "GameState.h"
+#include "SdlRectangleComponent.h"
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
@@ -31,8 +31,38 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-void GraphicsSystem::ProcessEntities(ECS::EntityComponentManager &ecs, int entityId){
-    std::unique_lock<std::mutex> lock(_resourceMutex);
+void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityId){
+    std::shared_ptr<SdlRectangleComponent> rectanglePtr = ecs.GetComponent<SdlRectangleComponent>(entityId);
+    std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
+
+
+    if (rectanglePtr != nullptr && positionPtr != nullptr){
+        std::unique_lock<std::mutex> lock(_resourceMutex);
+
+        SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+
+        SdlRectangleComponent rectangle = *rectanglePtr.get();
+        PositionComponent position = *positionPtr.get();
+
+        SDL_Rect sdlRect;
+
+        sdlRect.x = position.PositionX;
+        sdlRect.y = position.PositionY;
+        sdlRect.w = rectangle.Width;
+        sdlRect.h = rectangle.Height;
+
+        if (rectangle.Filled){
+            SDL_RenderFillRect(_renderer, &sdlRect);
+        }
+
+
+    }
+
+
+
+
+
+
 }
 
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
@@ -43,43 +73,25 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
     lock.unlock();
 
-    ThreadPool::Instance().submit([this](){
-                                        });
-
-
-    // Do component rendering??
-
-/*
-    ecs.Lock();
-
-    std::vector<int> entityIds = ecs.Search<RectangleComponent>();
-    ecs.Unlock();
+    std::vector<int> entityIds = ecs.Search<SdlRectangleComponent>();
 
     while (entityIds.empty() == false){
         int entityId = entityIds.back();
         entityIds.pop_back();
 
         ThreadPool::Instance().submit([this, &ecs, entityId](){
-                                            ProcessEntities(ecs, entityId);
+                                            ProcessEntity(ecs, entityId);
                                         });
-
     }
-*/
-
-
-
 
     std::future<bool> isDone = ThreadPool::Instance().submit([](){
-
                                                         return true;
                                                         });
-
     isDone.get();
 
     // Swap buffers.
     lock.lock();
     SDL_RenderPresent(_renderer);
-
 
     return true;
 }

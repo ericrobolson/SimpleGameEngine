@@ -20,7 +20,6 @@ namespace ECS{
     {
         public:
             EntityComponentManager(){
-                std::unique_lock<std::mutex> lock(_resourceMutex);
                 // Initialize the list of free entity ids
                 for (int i = 0; i < MAXNUMBEROFENTITIES; i++){
                     _availableEntityIds.push_back(i);
@@ -67,7 +66,13 @@ namespace ECS{
             template <class TComponent>
             TComponent& AddComponent(int entityId){
                 std::unique_lock<std::mutex> lock(_resourceMutex);
-                return &AddComponent_ThreadSafe<TComponent>(entityId);
+                return AddComponent_ThreadSafe<TComponent>(entityId);
+            };
+
+            template <class TComponent>
+            void RemoveComponent(int entityId){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                RemoveComponent_ThreadSafe<TComponent>(entityId);
             };
 
             std::shared_ptr<int> AddEntity(){
@@ -188,12 +193,21 @@ namespace ECS{
                 for (ptr = entityIds.begin(); ptr < entityIds.end(); ptr++){
                     entityId = *ptr;
 
-                    if (GetComponent<TComponent>(entityId) != nullptr){
+                    if (GetComponent_ThreadSafe<TComponent>(entityId) != nullptr){
                         matchingEntityIds.push_back(entityId);
                     }
                 }
 
                 return matchingEntityIds;
+            }
+
+            template <class TComponent>
+            void RemoveComponent_ThreadSafe(int entityId){
+                std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
+
+                if (componentTable[entityId] != nullptr){
+                    delete componentTable[entityId];
+                }
             }
 
     };

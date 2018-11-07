@@ -73,7 +73,7 @@ class ThreadPool {
             int threads = std::thread::hardware_concurrency() -1; // ensure we don't use more threads than needed
 
             if (threads <= 0){
-                threads = 1;
+             //   threads = 1;
             }
 
             threads = 1; // todo: right now there's some sort of issue when threads > 1

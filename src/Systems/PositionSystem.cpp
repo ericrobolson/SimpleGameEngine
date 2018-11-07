@@ -21,11 +21,8 @@ void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
     MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityIndex);
     PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(entityIndex);
 
-    if (movementComponent.ForwardSpeed != 0 || movementComponent.HorizontalSpeed != 0){
-        // Convert the angle of movement to X and Y
-        positionComponent.PositionX = positionComponent.PositionX + movementComponent.GetXDelta();
-        positionComponent.PositionY = positionComponent.PositionY + movementComponent.GetYDelta();
-    }
+    positionComponent.PositionX += movementComponent.HorizontalSpeed;
+    positionComponent.PositionY += movementComponent.VerticalSpeed;
 }
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){

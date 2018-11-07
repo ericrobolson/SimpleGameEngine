@@ -21,43 +21,8 @@ MovementSystem::~MovementSystem()
     //dtor
 }
 
-
 void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &positionComponent){
-    const int moveSpeed = 2;
 
-
-    InputState& inputState = InputState::Instance();
-
-    // Calculate horizontal and vertical movement
-    if (inputState.ButtonUpIsPressed){
-        movementComponent.ForwardSpeed = moveSpeed;
-    }
-
-    if (inputState.ButtonDownIsPressed){
-        movementComponent.ForwardSpeed = -moveSpeed;
-    }
-
-    if (inputState.ButtonRightIsPressed){
-        movementComponent.HorizontalSpeed = moveSpeed;
-    }
-
-    if (inputState.ButtonLeftIsPressed){
-        movementComponent.HorizontalSpeed = -moveSpeed;
-    }
-
-    if ((!inputState.ButtonUpIsPressed && !inputState.ButtonDownIsPressed)
-        || (inputState.ButtonUpIsPressed && inputState.ButtonDownIsPressed)){
-        movementComponent.ForwardSpeed = 0;
-    }
-
-     if ((!inputState.ButtonRightIsPressed && !inputState.ButtonLeftIsPressed)
-        || (inputState.ButtonRightIsPressed && inputState.ButtonLeftIsPressed)){
-        movementComponent.HorizontalSpeed = 0;
-    }
-
-    // Calculate the angle based of the cursor
-
-    movementComponent.SetDirectionAngleFromCoordinates(positionComponent.PositionX, positionComponent.PositionY, inputState.CursorX, inputState.CursorY);
 }
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
