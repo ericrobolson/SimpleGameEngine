@@ -50,6 +50,15 @@ namespace ECS{
                 return GetComponent_ThreadSafe<TComponent>(entityId);
             };
 
+         //   std::function<bool(TComponent c)> const& filterLambda
+
+            /// Get a list of entityIds that have the given component while applying the filter lambda
+            template <class TComponent>
+            std::vector<int> Search(std::function<bool(TComponent c)> const& filterLambda){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return SearchOn_ThreadSafe<TComponent>(_takenEntityIds, filterLambda);
+            }
+
             /// Get a list of entityIds that have the given component
             template <class TComponent>
             std::vector<int> Search(){
@@ -62,6 +71,13 @@ namespace ECS{
                 std::unique_lock<std::mutex> lock(_resourceMutex);
                 return SearchOn_ThreadSafe<TComponent>(entityIds);
             }
+
+            template <class TComponent>
+            std::vector<int> SearchOn(std::vector<int> entityIds, std::function<bool(TComponent c)> const& filterLambda){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                return SearchOn_ThreadSafe<TComponent>(entityIds, filterLambda);
+            }
+
 
             template <class TComponent>
             TComponent& AddComponent(int entityId){
@@ -183,7 +199,7 @@ namespace ECS{
             };
 
             template <class TComponent>
-            std::vector<int> SearchOn_ThreadSafe(std::vector<int> entityIds){
+            std::vector<int> SearchOn_ThreadSafe(std::vector<int> entityIds, std::function<bool(TComponent c)> const& filterLambda){
                 std::vector<int> matchingEntityIds;
                 matchingEntityIds.reserve(entityIds.size());
 
@@ -193,12 +209,21 @@ namespace ECS{
                 for (ptr = entityIds.begin(); ptr < entityIds.end(); ptr++){
                     entityId = *ptr;
 
-                    if (GetComponent_ThreadSafe<TComponent>(entityId) != nullptr){
-                        matchingEntityIds.push_back(entityId);
+                    std::shared_ptr<TComponent> componentPtr = GetComponent_ThreadSafe<TComponent>(entityId);
+
+                    if (componentPtr != nullptr){
+                        if (filterLambda(*componentPtr.get())){
+                            matchingEntityIds.push_back(entityId);
+                        }
                     }
                 }
 
                 return matchingEntityIds;
+            }
+
+            template <class TComponent>
+            std::vector<int> SearchOn_ThreadSafe(std::vector<int> entityIds){
+                return SearchOn_ThreadSafe<TComponent>(entityIds, [](TComponent c){return true;} );
             }
 
             template <class TComponent>

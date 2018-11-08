@@ -823,7 +823,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541550522 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1541688331 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -2887,7 +2887,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541658170 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
+1541660407 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	"EntityComponentManager.h"
 	"GameState.h"
