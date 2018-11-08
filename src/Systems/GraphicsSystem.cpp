@@ -36,26 +36,28 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 }
 
 void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityId){
-    std::shared_ptr<HitboxComponent> rectanglePtr = ecs.GetComponent<HitboxComponent>(entityId);
+    std::unique_lock<std::mutex> lock(_resourceMutex);
+
     std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
 
-    // Draw Footprints
-    if (rectanglePtr != nullptr && positionPtr != nullptr){
-        std::unique_lock<std::mutex> lock(_resourceMutex);
+    // Draw Hitboxes
+    if (DrawHitboxes){
+        std::shared_ptr<HitboxComponent> rectanglePtr = ecs.GetComponent<HitboxComponent>(entityId);
+        if (rectanglePtr != nullptr && positionPtr != nullptr){
+            SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
 
-        SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+            HitboxComponent rectangle = *rectanglePtr.get();
+            PositionComponent position = *positionPtr.get();
 
-        HitboxComponent rectangle = *rectanglePtr.get();
-        PositionComponent position = *positionPtr.get();
+            SDL_Rect sdlRect;
 
-        SDL_Rect sdlRect;
+            sdlRect.x = ScaleGraphics(position.PositionX);
+            sdlRect.y = ScaleGraphics(position.PositionY);
+            sdlRect.w = ScaleGraphics(rectangle.GetWidth());
+            sdlRect.h = ScaleGraphics(rectangle.GetHeight());
 
-        sdlRect.x = ScaleGraphics(position.PositionX);
-        sdlRect.y = ScaleGraphics(position.PositionY);
-        sdlRect.w = ScaleGraphics(rectangle.GetWidth());
-        sdlRect.h = ScaleGraphics(rectangle.GetHeight());
-
-        SDL_RenderFillRect(_renderer, &sdlRect);
+            SDL_RenderDrawRect(_renderer, &sdlRect);
+        }
     }
 }
 

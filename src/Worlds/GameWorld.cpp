@@ -12,6 +12,8 @@
 #include <PlayerAssemblage.h>
 GameWorld::GameWorld() : BaseWorld()
 {
+    _graphicsSystem.DrawHitboxes = true;
+
     _cycleClock = clock();
 
     // Build out blocks
@@ -23,13 +25,13 @@ GameWorld::GameWorld() : BaseWorld()
 
             PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
 
-            position.PositionX = i * recSize;
+            position.PositionX = i * recSize*2;
 
             position.PositionY = 200;
 
             HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
             rectangle.SetHeight(recSize);
-            rectangle.SetWidth(recSize);
+            rectangle.SetWidth(recSize*2);
 
             entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
 

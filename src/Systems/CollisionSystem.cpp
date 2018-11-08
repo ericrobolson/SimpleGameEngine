@@ -90,13 +90,10 @@ bool CollisionSystem::Process(ECS::EntityComponentManager &ecs){
     entities = ecs.SearchOn<PositionComponent>(entities);
 
     // Only need to process the moving entities
-    std::vector<int> movingEntities = ecs.SearchOn<MovementComponent>(entities, [](MovementComponent c){
-                                                                        if (c.HorizontalSpeed != 0 || c.VerticalSpeed != 0){
-                                                                        return true;
-                                                                      }
-
-                                                                        return false;
-                                                                      }); // todo: query to only get things with movespeed != 0
+    std::vector<int> movingEntities = ecs.SearchOn<MovementComponent>(entities,
+        [](MovementComponent c){
+            return (c.HorizontalSpeed != 0 || c.VerticalSpeed != 0);
+        });
 
 
     std::vector<int>::iterator ptr;
