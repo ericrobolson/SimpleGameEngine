@@ -45,6 +45,16 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
             // Player actions
             if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
+                const int hSpeed = 2;
+
+                if (InputState::Instance().ButtonLeftIsPressed && !InputState::Instance().ButtonRightIsPressed){
+                    movementComponent.HorizontalSpeed = -hSpeed;
+                }else if (!InputState::Instance().ButtonLeftIsPressed && InputState::Instance().ButtonRightIsPressed){
+                    movementComponent.HorizontalSpeed = hSpeed;
+                }else if(!InputState::Instance().ButtonLeftIsPressed && !InputState::Instance().ButtonRightIsPressed){
+                    movementComponent.HorizontalSpeed = 0;
+                }
+
                 // jump
                 if (InputState::Instance().Button1IsPressed){
                     if (ecs.GetComponent<HasJumpActionComponent>(entityId) != nullptr){

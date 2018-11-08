@@ -52,26 +52,17 @@ void ProcessEntity(int entity1, ECS::EntityComponentManager &ecs, std::vector<in
 
         if (IsCollision(entity1Hitbox, entity1PositionX, entity1PositionY, entity2Hitbox, entity2Position)){
             if (ecs.GetComponent<ImpassibleComponent>(entity2) != nullptr){
-
-                /* Need to do horizontal collision checking
-
-
-                bool inHorizontalBounds = (entity1Position.PositionX < entity2Position.PositionX + entity2Hitbox.GetWidth() && entity1Position.PositionX + entity1Hitbox.GetWidth() > entity2Position.PositionX);
-
-                if (inHorizontalBounds){
-                    // Prevent hitboxes from overlapping
-                    bool shiftRight = entity1Position.PositionX < (entity2Position.PositionX + entity2Hitbox.GetWidth());
-                    if (shiftRight){
-                        entity1Position.PositionX = (entity2Position.PositionX + entity2Hitbox.GetWidth());
-                    }else{
-                        entity1Position.PositionX = (entity2Position.PositionX - entity1Hitbox.GetWidth());
+                bool inVerticalBounds = (entity1PositionY < entity2Position.PositionY + entity2Hitbox.GetHeight() && entity1PositionY + entity1Hitbox.GetHeight() > entity2Position.PositionY);
+                if (inVerticalBounds && movement.HorizontalSpeed != 0){
+                    bool inHorizontalBounds = (entity1PositionX < entity2Position.PositionX + entity2Hitbox.GetWidth() && entity1PositionX + entity1Hitbox.GetWidth() > entity2Position.PositionX);
+                    if (inHorizontalBounds){
+                        movement.HorizontalSpeed = 0;
                     }
                 }
-                */
 
+                bool stillCollided = IsCollision(entity1Hitbox, entity1Position.PositionX, entity1PositionY, entity2Hitbox, entity2Position);
 
-                bool inVerticalBounds = (entity1PositionY < entity2Position.PositionY + entity2Hitbox.GetHeight() && entity1PositionY + entity1Hitbox.GetHeight() > entity2Position.PositionY);
-                if (inVerticalBounds && movement.VerticalSpeed != 0){
+                if (stillCollided && inVerticalBounds && movement.VerticalSpeed != 0){
                     movement.VerticalSpeed = 0;
 
                     // If it can jump, set it to be able to jump
