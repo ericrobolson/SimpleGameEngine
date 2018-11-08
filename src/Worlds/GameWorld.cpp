@@ -10,6 +10,7 @@
 #include <HitboxComponent.h>
 #include <ImpassibleComponent.h>
 #include <PlayerAssemblage.h>
+#include "GameState.h"
 GameWorld::GameWorld() : BaseWorld()
 {
     _graphicsSystem.DrawHitboxes = true;
@@ -118,21 +119,25 @@ bool GameWorld::Process(){
 
     _inputSystem.Process(entityComponentManager);
 
+
     cycleClock = clock() - cycleClock;
     clock_t inputClock = cycleClock;
 
     cycleClock = clock();
 
-    _movementSystem.Process(entityComponentManager);
+    if (!GameState::Instance().Paused){
+        _movementSystem.Process(entityComponentManager);
+    }
 
     cycleClock = clock() - cycleClock;
     clock_t movementClock = cycleClock;
     cycleClock = clock();
 
+    if (!GameState::Instance().Paused){
+        _collisionSystem.Process(entityComponentManager);
+        _positionSystem.Process(entityComponentManager);
+    }
 
-    _collisionSystem.Process(entityComponentManager);
-
-    _positionSystem.Process(entityComponentManager);
 
     cycleClock = clock() - cycleClock;
     clock_t positionClock = cycleClock;

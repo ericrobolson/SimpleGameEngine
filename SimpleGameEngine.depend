@@ -56,7 +56,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1541691832 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1541700572 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -68,6 +68,7 @@
 	<HitboxComponent.h>
 	<ImpassibleComponent.h>
 	<PlayerAssemblage.h>
+	"GameState.h"
 
 1541637254 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	<time.h>
@@ -804,7 +805,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541689542 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1541700667 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -2333,7 +2334,7 @@
 1539115806 source:c:\users\eric\gamedev\simplegameengine\src\state\gamestate.cpp
 	"GameState.h"
 
-1541691608 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
+1541700656 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
 	<vector>
 
 1540666601 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp

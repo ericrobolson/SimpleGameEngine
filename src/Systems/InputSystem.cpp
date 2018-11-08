@@ -45,6 +45,9 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                 case SDLK_d:
                     InputState::Instance().ButtonRightIsPressed = true;
                     break;
+                case SDLK_PAUSE:
+                    GameState::Instance().Paused = !GameState::Instance().Paused;
+                    break;
             }
         }
          if (event.type == SDL_KEYUP) {
