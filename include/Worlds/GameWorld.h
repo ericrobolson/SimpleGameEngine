@@ -7,6 +7,7 @@
 #include "InputSystem.h"
 #include "MovementSystem.h"
 #include "PositionSystem.h"
+#include "CollisionSystem.h"
 
 class GameWorld : public BaseWorld
 {
@@ -20,6 +21,7 @@ class GameWorld : public BaseWorld
         InputSystem _inputSystem;
         MovementSystem _movementSystem;
         PositionSystem _positionSystem;
+        CollisionSystem _collisionSystem;
         clock_t _cycleClock;
 
 };

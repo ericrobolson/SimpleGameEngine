@@ -7,29 +7,37 @@
 
 #include <MovementComponent.h>
 #include <PositionComponent.h>
-#include <FootprintComponent.h>
+#include <HitboxComponent.h>
+#include <ImpassibleComponent.h>
+#include <PlayerAssemblage.h>
 GameWorld::GameWorld() : BaseWorld()
 {
     _cycleClock = clock();
 
-    for (int i = 0; i < 20; i++){
+    // Build out blocks
+    for (int i = 0; i < 40; i++){
         std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
 
         if (entityId != nullptr){
+            const int recSize = 10;
+
             PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
-            position.PositionX = 100;
-            position.PositionY = 50;
 
-            FootprintComponent& rectangle = entityComponentManager.AddComponent<FootprintComponent>(*entityId);
-            rectangle.Height = 1;
-            rectangle.Width = 2;
+            position.PositionX = i * recSize;
 
-            MovementComponent& movement = entityComponentManager.AddComponent<MovementComponent>(*entityId);
-            movement.HorizontalSpeed = -2 + (rand() %4);
-            movement.VerticalSpeed = -2 + (rand() %4);
+
+            position.PositionY = 200;
+
+            HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
+            rectangle.Height = recSize;
+            rectangle.Width = recSize;
+
+            entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
+
         }
-
     }
+
+    PlayerAssemblage::BuildPlayer(entityComponentManager, 20, 40);
 }
 
 GameWorld::~GameWorld()
@@ -75,6 +83,9 @@ bool GameWorld::Process(){
     cycleClock = clock() - cycleClock;
     clock_t movementClock = cycleClock;
     cycleClock = clock();
+
+
+    _collisionSystem.Process(entityComponentManager);
 
     _positionSystem.Process(entityComponentManager);
 

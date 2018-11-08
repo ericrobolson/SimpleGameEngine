@@ -9,10 +9,10 @@
 #include "InputState.h"
 #include <mutex>
 #include "GameState.h"
-#include "FootprintComponent.h"
+#include "HitboxComponent.h"
 
-const int SCREEN_WIDTH = 1280;
-const int SCREEN_HEIGHT = 720;
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
 const int SCREEN_BITSPERPIXEL = 32;
 
 int ScaleGraphics(int value){
@@ -36,7 +36,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 }
 
 void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityId){
-    std::shared_ptr<FootprintComponent> rectanglePtr = ecs.GetComponent<FootprintComponent>(entityId);
+    std::shared_ptr<HitboxComponent> rectanglePtr = ecs.GetComponent<HitboxComponent>(entityId);
     std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
 
     // Draw Footprints
@@ -45,13 +45,13 @@ void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityI
 
         SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
 
-        FootprintComponent rectangle = *rectanglePtr.get();
+        HitboxComponent rectangle = *rectanglePtr.get();
         PositionComponent position = *positionPtr.get();
 
         SDL_Rect sdlRect;
 
-        sdlRect.x = ScaleGraphics(position.PositionX - (int)(rectangle.Width/2));
-        sdlRect.y = ScaleGraphics(position.PositionY - (int)(rectangle.Height/2));
+        sdlRect.x = ScaleGraphics(position.PositionX);
+        sdlRect.y = ScaleGraphics(position.PositionY);
         sdlRect.w = ScaleGraphics(rectangle.Width);
         sdlRect.h = ScaleGraphics(rectangle.Height);
 
@@ -67,7 +67,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
     lock.unlock();
 
-    std::vector<int> entityIds = ecs.Search<FootprintComponent>();
+    std::vector<int> entityIds = ecs.Search<HitboxComponent>();
 
     while (entityIds.empty() == false){
         int entityId = entityIds.back();

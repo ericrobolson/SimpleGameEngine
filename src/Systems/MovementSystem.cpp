@@ -11,6 +11,8 @@
 #include "ThreadPool.h"
 #include <chrono>
 
+const int MAXGRAVITYSPEED = 5;
+
 MovementSystem::MovementSystem() : BaseSystem()
 {
     //ctor
@@ -30,13 +32,18 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
     std::vector<int> entities = ecs.Search<MovementComponent>();
 
     std::vector<int>::iterator ptr;
-    int index = 0;
     for (ptr = entities.begin(); ptr < entities.end(); ptr++){
         int entityId = *ptr;
 
         ThreadPool::Instance().submit([&ecs, entityId](){
 
         MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
+
+        // Apply gravity
+        if (movementComponent.VerticalSpeed < MAXGRAVITYSPEED){
+            movementComponent.VerticalSpeed =-1;
+        }
+
 
 /*
         if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
@@ -53,9 +60,6 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
         */
 
         });
-
-        index++;
-
     }
 
 
