@@ -47,7 +47,7 @@
 	"Components/MovementComponent.h"
 	<math.h>
 
-1541637088 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
+1541645380 c:\users\eric\gamedev\simplegameengine\include\components\movementcomponent.h
 	<BaseComponent.h>
 
 1537028561 source:c:\users\eric\gamedev\simplegameengine\src\components\positioncomponent.cpp
@@ -98,7 +98,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541636958 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1541654090 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
@@ -862,7 +862,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541638744 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1541653992 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -880,7 +880,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541635846 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1541646698 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -2324,7 +2324,7 @@
 1539115806 source:c:\users\eric\gamedev\simplegameengine\src\state\gamestate.cpp
 	"GameState.h"
 
-1541637685 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
+1541653783 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
 	<vector>
 
 1540666601 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp
@@ -2868,7 +2868,7 @@
 1541605421 c:\users\eric\gamedev\simplegameengine\include\components\footprintcomponent.h
 	"BaseComponent.h"
 
-1541634814 source:c:\users\eric\gamedev\simplegameengine\src\components\hitboxcomponent.cpp
+1541653873 source:c:\users\eric\gamedev\simplegameengine\src\components\hitboxcomponent.cpp
 	"HitboxComponent.h"
 
 1541634807 c:\users\eric\gamedev\simplegameengine\include\components\hitboxcomponent.h
@@ -2884,7 +2884,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541639448 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
+1541655120 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	"EntityComponentManager.h"
 	"GameState.h"
@@ -2894,4 +2894,5 @@
 	"ThreadPool.h"
 	"ImpassibleComponent.h"
 	<future>
+	<memory>
 

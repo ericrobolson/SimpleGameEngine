@@ -9,8 +9,10 @@ class MovementComponent : public BaseComponent
         MovementComponent();
         virtual ~MovementComponent();
 
-        int VerticalSpeed;
-        int HorizontalSpeed; // Positive number for moving right, negative for moving left
+        float VerticalSpeed; // Change to Float. Value of 1 = 1 pixel, but this allows for gradual speedups/slowdowns
+
+         // Change to Float. Value of 1 = 1 pixel, but this allows for gradual speedups/slowdowns
+        float HorizontalSpeed; // Positive number for moving right, negative for moving left
 };
 
 #endif // MOVEMENTCOMPONENT_H

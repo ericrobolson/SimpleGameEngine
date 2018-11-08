@@ -26,8 +26,8 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         int id = *entityId.get();
 
         HitboxComponent& hitBox = ecs.AddComponent<HitboxComponent>(id);
-        hitBox.Height = 5;
-        hitBox.Width = 5;
+        hitBox.Height = 8;
+        hitBox.Width = 8;
 
         MovementComponent& movementComponent = ecs.AddComponent<MovementComponent>(id);
         PlayerComponent& playerComponent = ecs.AddComponent<PlayerComponent>(id);

@@ -11,7 +11,7 @@
 #include "ThreadPool.h"
 #include <chrono>
 
-const int MAXGRAVITYSPEED = 5;
+const int MAXGRAVITYSPEED = 4;
 
 MovementSystem::MovementSystem() : BaseSystem()
 {
@@ -41,7 +41,7 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
         // Apply gravity
         if (movementComponent.VerticalSpeed < MAXGRAVITYSPEED){
-            movementComponent.VerticalSpeed =-1;
+            movementComponent.VerticalSpeed +=.1;
         }
 
 

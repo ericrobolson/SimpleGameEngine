@@ -2,8 +2,8 @@
 
 HitboxComponent::HitboxComponent()
 {
-    Height = 10;
-    Width = 10;
+    Height = 16;
+    Width = 16;
     //ctor
 }
 

@@ -22,7 +22,7 @@ void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
     PositionComponent& positionComponent = *ecs.GetComponent<PositionComponent>(entityIndex);
 
     positionComponent.PositionX += movementComponent.HorizontalSpeed;
-    positionComponent.PositionY -= movementComponent.VerticalSpeed; // Since a positive vspeed means it's moving up, need to reverse it
+    positionComponent.PositionY += movementComponent.VerticalSpeed; // Since a positive vspeed means it's moving up, need to reverse it
 }
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
