@@ -98,7 +98,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541658097 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1541688863 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
@@ -107,6 +107,7 @@
 	"PlayerComponent.h"
 	"PositionComponent.h"
 	"ImpassibleComponent.h"
+	"HasJumpActionComponent.h"
 
 1541636743 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
 	<memory>
@@ -803,7 +804,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541655866 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1541689542 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -812,6 +813,8 @@
 	"EntityComponentManager.h"
 	"PlayerAssemblage.h"
 	"GameState.h"
+	"ThreadPool.h"
+	<future>
 
 1537654902 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
@@ -823,7 +826,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541688331 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1541689784 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -865,7 +868,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541655215 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1541689183 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -2887,7 +2890,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541660407 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
+1541688827 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	"EntityComponentManager.h"
 	"GameState.h"
@@ -2896,6 +2899,20 @@
 	"PositionComponent.h"
 	"ThreadPool.h"
 	"ImpassibleComponent.h"
+	"CanJumpComponent.h"
+	"HasJumpActionComponent.h"
 	<future>
 	<memory>
+
+1541689480 c:\users\eric\gamedev\simplegameengine\include\components\hasjumpactioncomponent.h
+	"BaseComponent.h"
+
+1541688903 source:c:\users\eric\gamedev\simplegameengine\src\components\canjumpcomponent.cpp
+	"CanJumpComponent.h"
+
+1541689471 c:\users\eric\gamedev\simplegameengine\include\components\canjumpcomponent.h
+	"BaseComponent.h"
+
+1541689466 source:c:\users\eric\gamedev\simplegameengine\src\components\hasjumpactioncomponent.cpp
+	"HasJumpActionComponent.h"
 

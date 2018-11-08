@@ -6,6 +6,8 @@
 #include "EntityComponentManager.h"
 #include "PlayerAssemblage.h"
 #include "GameState.h"
+#include "ThreadPool.h"
+#include <future>
 
 InputSystem::InputSystem() : BaseSystem()
 {

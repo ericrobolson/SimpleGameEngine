@@ -11,6 +11,10 @@
 #include "ThreadPool.h"
 #include <chrono>
 
+#include "PlayerComponent.h"
+#include "CanJumpComponent.h"
+#include "HasJumpActionComponent.h"
+
 const int MAXGRAVITYSPEED = 4;
 
 MovementSystem::MovementSystem() : BaseSystem()
@@ -23,10 +27,6 @@ MovementSystem::~MovementSystem()
     //dtor
 }
 
-void HandlePlayerInput(MovementComponent &movementComponent, PositionComponent &positionComponent){
-
-}
-
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
     std::vector<int> entities = ecs.Search<MovementComponent>();
@@ -36,29 +36,25 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
         int entityId = *ptr;
 
         ThreadPool::Instance().submit([&ecs, entityId](){
+            MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
 
-        MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
-
-        // Apply gravity
-        if (movementComponent.VerticalSpeed < MAXGRAVITYSPEED){
-            movementComponent.VerticalSpeed +=.1;
-        }
-
-
-/*
-        if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
-            std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
-
-            if (positionPtr == nullptr){
-                return;
+            // Apply gravity
+            if (movementComponent.VerticalSpeed < MAXGRAVITYSPEED){
+                movementComponent.VerticalSpeed +=.1;
             }
 
-            PositionComponent& positionComponent = *positionPtr.get();
-
-            HandlePlayerInput(movementComponent, positionComponent);
-        }
-        */
-
+            // Player actions
+            if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
+                // jump
+                if (InputState::Instance().Button1IsPressed){
+                    if (ecs.GetComponent<HasJumpActionComponent>(entityId) != nullptr){
+                        if (ecs.GetComponent<CanJumpComponent>(entityId) != nullptr){
+                            ecs.RemoveComponent<CanJumpComponent>(entityId);
+                            movementComponent.VerticalSpeed =-4;
+                        }
+                    }
+                }
+            }
         });
     }
 

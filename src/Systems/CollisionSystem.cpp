@@ -6,6 +6,8 @@
 #include "PositionComponent.h"
 #include "ThreadPool.h"
 #include "ImpassibleComponent.h"
+#include "CanJumpComponent.h"
+#include "HasJumpActionComponent.h"
 #include <future>
 #include <memory>
 
@@ -66,9 +68,16 @@ void ProcessEntity(int entity1, ECS::EntityComponentManager &ecs, std::vector<in
                     }
                 }
                 */
+
+
                 bool inVerticalBounds = (entity1PositionY < entity2Position.PositionY + entity2Hitbox.GetHeight() && entity1PositionY + entity1Hitbox.GetHeight() > entity2Position.PositionY);
                 if (inVerticalBounds && movement.VerticalSpeed != 0){
                     movement.VerticalSpeed = 0;
+
+                    // If it can jump, set it to be able to jump
+                    if (ecs.GetComponent<HasJumpActionComponent>(entity1) != nullptr){
+                        ecs.AddComponent<CanJumpComponent>(entity1);
+                    }
 
                     // Prevent it from going further down
                     if (entity1Position.PositionY < entity2Position.PositionY){

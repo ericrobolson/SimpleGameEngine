@@ -8,6 +8,8 @@
 #include "PlayerComponent.h"
 #include "PositionComponent.h"
 #include "ImpassibleComponent.h"
+#include "HasJumpActionComponent.h"
+
 PlayerAssemblage::PlayerAssemblage()
 {
     //ctor
@@ -37,6 +39,7 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         positionComponent.PositionY = y;
 
         ecs.AddComponent<ImpassibleComponent>(id);
+        ecs.AddComponent<HasJumpActionComponent>(id);
     }
 
     return entityId;

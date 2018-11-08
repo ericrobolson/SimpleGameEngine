@@ -231,7 +231,7 @@ namespace ECS{
                 std::shared_ptr<BaseComponent> *componentTable = _componentTables[typeid(TComponent)];
 
                 if (componentTable[entityId] != nullptr){
-                    delete componentTable[entityId];
+                    delete componentTable[entityId].get();
                 }
             }
 
