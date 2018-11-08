@@ -52,8 +52,8 @@ void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityI
 
         sdlRect.x = ScaleGraphics(position.PositionX);
         sdlRect.y = ScaleGraphics(position.PositionY);
-        sdlRect.w = ScaleGraphics(rectangle.Width);
-        sdlRect.h = ScaleGraphics(rectangle.Height);
+        sdlRect.w = ScaleGraphics(rectangle.GetWidth());
+        sdlRect.h = ScaleGraphics(rectangle.GetHeight());
 
         SDL_RenderFillRect(_renderer, &sdlRect);
     }

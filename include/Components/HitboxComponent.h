@@ -10,8 +10,14 @@ class HitboxComponent : public BaseComponent
         HitboxComponent();
         virtual ~HitboxComponent();
 
-        int Height;
-        int Width;
+        int SetHeight(int height);
+        int SetWidth(int width);
+
+        int GetHeight();
+        int GetWidth();
+    private:
+        int _height;
+        int _width;
 };
 
 #endif // FOOTPRINTCOMPONENT_H

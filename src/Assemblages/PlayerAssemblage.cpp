@@ -7,7 +7,7 @@
 #include "MovementComponent.h"
 #include "PlayerComponent.h"
 #include "PositionComponent.h"
-
+#include "ImpassibleComponent.h"
 PlayerAssemblage::PlayerAssemblage()
 {
     //ctor
@@ -26,8 +26,8 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         int id = *entityId.get();
 
         HitboxComponent& hitBox = ecs.AddComponent<HitboxComponent>(id);
-        hitBox.Height = 8;
-        hitBox.Width = 8;
+        hitBox.SetHeight(8);
+        hitBox.SetWidth(8);
 
         MovementComponent& movementComponent = ecs.AddComponent<MovementComponent>(id);
         PlayerComponent& playerComponent = ecs.AddComponent<PlayerComponent>(id);
@@ -35,6 +35,8 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         PositionComponent& positionComponent = ecs.AddComponent<PositionComponent>(id);
         positionComponent.PositionX = x;
         positionComponent.PositionY = y;
+
+        ecs.AddComponent<ImpassibleComponent>(id);
     }
 
     return entityId;

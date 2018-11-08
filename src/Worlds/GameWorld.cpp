@@ -29,8 +29,8 @@ GameWorld::GameWorld() : BaseWorld()
             position.PositionY = 200;
 
             HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
-            rectangle.Height = recSize;
-            rectangle.Width = recSize;
+            rectangle.SetHeight(recSize);
+            rectangle.SetWidth(recSize);
 
             entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
 

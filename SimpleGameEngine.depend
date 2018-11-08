@@ -56,7 +56,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1541637377 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1541658086 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -78,7 +78,7 @@
 	"PositionSystem.h"
 	"CollisionSystem.h"
 
-1541638168 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1541658183 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -98,7 +98,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541654090 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1541658097 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
@@ -106,6 +106,7 @@
 	"MovementComponent.h"
 	"PlayerComponent.h"
 	"PositionComponent.h"
+	"ImpassibleComponent.h"
 
 1541636743 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
 	<memory>
@@ -802,13 +803,15 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538261665 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1541655866 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
 	<string>
 	<iostream>
 	"EntityComponentManager.h"
+	"PlayerAssemblage.h"
+	"GameState.h"
 
 1537654902 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
@@ -862,7 +865,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541653992 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1541655215 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -2324,7 +2327,7 @@
 1539115806 source:c:\users\eric\gamedev\simplegameengine\src\state\gamestate.cpp
 	"GameState.h"
 
-1541653783 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
+1541657752 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
 	<vector>
 
 1540666601 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp
@@ -2868,10 +2871,10 @@
 1541605421 c:\users\eric\gamedev\simplegameengine\include\components\footprintcomponent.h
 	"BaseComponent.h"
 
-1541653873 source:c:\users\eric\gamedev\simplegameengine\src\components\hitboxcomponent.cpp
+1541658035 source:c:\users\eric\gamedev\simplegameengine\src\components\hitboxcomponent.cpp
 	"HitboxComponent.h"
 
-1541634807 c:\users\eric\gamedev\simplegameengine\include\components\hitboxcomponent.h
+1541657868 c:\users\eric\gamedev\simplegameengine\include\components\hitboxcomponent.h
 	"BaseComponent.h"
 
 1541635483 source:c:\users\eric\gamedev\simplegameengine\src\components\impassiblecomponent.cpp
@@ -2884,7 +2887,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541655120 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
+1541658170 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	"EntityComponentManager.h"
 	"GameState.h"
