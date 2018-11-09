@@ -11,57 +11,16 @@
 #include <ImpassibleComponent.h>
 #include <PlayerAssemblage.h>
 #include "GameState.h"
+#include "LevelLoader.h"
+
 GameWorld::GameWorld() : BaseWorld()
 {
     _graphicsSystem.DrawHitboxes = true;
 
     _cycleClock = clock();
 
-    // Build out blocks
-
-    std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
-
-        if (entityId != nullptr){
-            const int recSize = 10;
-
-            PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
-
-            position.PositionX = 0;
-
-            position.PositionY = 200;
-
-            HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
-            rectangle.SetHeight(recSize);
-            rectangle.SetWidth(recSize*100);
-
-            entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
-
-    }
-
-    // Build out blocks
-    for (int i = 0; i < 2; i++){
-        std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
-
-        if (entityId != nullptr){
-            const int recSize = 10;
-            const int recHeight = 200;
-
-            PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
-
-            position.PositionX = i * 200;
-
-            position.PositionY = 200 - (recHeight);
-
-            HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
-            rectangle.SetHeight(recHeight);
-            rectangle.SetWidth(recSize);
-
-            entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
-
-        }
-    }
-
-    PlayerAssemblage::BuildPlayer(entityComponentManager, 150, 40);
+    LevelLoader loader;
+    loader.LoadLevel("room_001.lvl", entityComponentManager);
 }
 
 GameWorld::~GameWorld()

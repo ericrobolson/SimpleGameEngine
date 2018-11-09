@@ -1,0 +1,12 @@
+{
+	#floortile 1	
+	impassible
+	hitbox: [h = 5, w = 960]
+	position: [x=0, y=800]
+}
+
+{
+	#player
+	player
+	position: [x=100, y = 10]
+}

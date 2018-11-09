@@ -827,7 +827,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541689784 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1541791209 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -2921,4 +2921,13 @@
 
 1541689466 source:c:\users\eric\gamedev\simplegameengine\src\components\hasjumpactioncomponent.cpp
 	"HasJumpActionComponent.h"
+
+1541792189 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
+	"LevelLoader.h"
+	"EntityComponentManager.h"
+	<string>
+
+1541792185 c:\users\eric\gamedev\simplegameengine\include\serialization\levelloader.h
+	"EntityComponentManager.h"
+	<string>
 

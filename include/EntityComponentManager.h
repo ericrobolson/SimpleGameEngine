@@ -106,6 +106,19 @@ namespace ECS{
                 DeleteAllInactiveEntities_ThreadSafe();
             }
 
+            void Reset(){
+                std::unique_lock<std::mutex> lock(_resourceMutex);
+                while(_takenEntityIds.empty() == false){
+                    int entityId = _takenEntityIds.back();
+
+                    _takenEntityIds.pop_back();
+
+                    MarkEntityInactive_ThreadSafe(entityId);
+                }
+
+                DeleteAllInactiveEntities_ThreadSafe();
+            }
+
 
         private:
             std::mutex _resourceMutex;
