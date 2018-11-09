@@ -35,7 +35,9 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
-void GraphicsSystem::ProcessEntity(ECS::EntityComponentManager &ecs, int entityId){
+
+
+void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
     std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
@@ -69,14 +71,14 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
     lock.unlock();
 
-    std::vector<int> entityIds = ecs.Search<HitboxComponent>();
+    std::vector<int> entityIds = ecs.Search<HitboxComponent>(); // change to visible component?
 
     while (entityIds.empty() == false){
         int entityId = entityIds.back();
         entityIds.pop_back();
 
         ThreadPool::Instance().submit([this, &ecs, entityId](){
-                                            ProcessEntity(ecs, entityId);
+                                            ProcessJob(ecs, entityId);
                                         });
     }
 

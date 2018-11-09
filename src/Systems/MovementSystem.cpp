@@ -27,6 +27,43 @@ MovementSystem::~MovementSystem()
     //dtor
 }
 
+void HandlePlayerMovement(int entityId, ECS::EntityComponentManager &ecs,  MovementComponent& movementComponent){
+    const int hSpeed = 2;
+
+    // Horizontal movement
+    if (InputState::Instance().ButtonLeftIsPressed && !InputState::Instance().ButtonRightIsPressed){
+        movementComponent.HorizontalSpeed = -hSpeed;
+    }else if (!InputState::Instance().ButtonLeftIsPressed && InputState::Instance().ButtonRightIsPressed){
+        movementComponent.HorizontalSpeed = hSpeed;
+    }else if(!InputState::Instance().ButtonLeftIsPressed && !InputState::Instance().ButtonRightIsPressed){
+        movementComponent.HorizontalSpeed = 0;
+    }
+
+    // Jump
+    if (InputState::Instance().ButtonUpIsPressed){
+        if (ecs.GetComponent<HasJumpActionComponent>(entityId) != nullptr){
+            if (ecs.GetComponent<CanJumpComponent>(entityId) != nullptr){
+                ecs.RemoveComponent<CanJumpComponent>(entityId);
+                movementComponent.VerticalSpeed =-3;
+            }
+        }
+    }
+}
+
+void ProcessJob(int entityId, ECS::EntityComponentManager &ecs){
+    MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
+
+    // Apply gravity
+    if (movementComponent.VerticalSpeed < MAXGRAVITYSPEED){
+        movementComponent.VerticalSpeed +=.1;
+    }
+
+    // Player actions
+    if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
+        HandlePlayerMovement(entityId, ecs, movementComponent);
+    }
+}
+
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
 
     std::vector<int> entities = ecs.Search<MovementComponent>();
@@ -36,35 +73,7 @@ bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
         int entityId = *ptr;
 
         ThreadPool::Instance().submit([&ecs, entityId](){
-            MovementComponent& movementComponent = *ecs.GetComponent<MovementComponent>(entityId);
-
-            // Apply gravity
-            if (movementComponent.VerticalSpeed < MAXGRAVITYSPEED){
-                movementComponent.VerticalSpeed +=.1;
-            }
-
-            // Player actions
-            if (ecs.GetComponent<PlayerComponent>(entityId) != nullptr){
-                const int hSpeed = 2;
-
-                if (InputState::Instance().ButtonLeftIsPressed && !InputState::Instance().ButtonRightIsPressed){
-                    movementComponent.HorizontalSpeed = -hSpeed;
-                }else if (!InputState::Instance().ButtonLeftIsPressed && InputState::Instance().ButtonRightIsPressed){
-                    movementComponent.HorizontalSpeed = hSpeed;
-                }else if(!InputState::Instance().ButtonLeftIsPressed && !InputState::Instance().ButtonRightIsPressed){
-                    movementComponent.HorizontalSpeed = 0;
-                }
-
-                // jump
-                if (InputState::Instance().Button1IsPressed){
-                    if (ecs.GetComponent<HasJumpActionComponent>(entityId) != nullptr){
-                        if (ecs.GetComponent<CanJumpComponent>(entityId) != nullptr){
-                            ecs.RemoveComponent<CanJumpComponent>(entityId);
-                            movementComponent.VerticalSpeed =-4;
-                        }
-                    }
-                }
-            }
+            ProcessJob(entityId, ecs);
         });
     }
 

@@ -56,7 +56,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1541700572 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1541701061 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -79,7 +79,7 @@
 	"PositionSystem.h"
 	"CollisionSystem.h"
 
-1541691930 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1541778936 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -93,7 +93,7 @@
 	"GameState.h"
 	"HitboxComponent.h"
 
-1541691805 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
+1541778998 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
@@ -869,7 +869,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541690347 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1541778781 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -890,7 +890,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541646698 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1541779457 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -898,6 +898,8 @@
 	"MovementComponent.h"
 	<mutex>
 	"ThreadPool.h"
+	"HitboxComponent.h"
+	"GameState.h"
 
 1538247295 c:\users\eric\gamedev\simplegameengine\include\debugger.h
 	<string>
@@ -2334,7 +2336,7 @@
 1539115806 source:c:\users\eric\gamedev\simplegameengine\src\state\gamestate.cpp
 	"GameState.h"
 
-1541700656 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
+1541779561 c:\users\eric\gamedev\simplegameengine\include\state\gamestate.h
 	<vector>
 
 1540666601 source:c:\users\eric\gamedev\simplegameengine\src\systems\gfx\hexagonshape.cpp

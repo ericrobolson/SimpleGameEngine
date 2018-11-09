@@ -18,70 +18,48 @@ GameWorld::GameWorld() : BaseWorld()
     _cycleClock = clock();
 
     // Build out blocks
-    for (int i = 0; i < 40; i++){
-        std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
+
+    std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
 
         if (entityId != nullptr){
             const int recSize = 10;
 
             PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
 
-            position.PositionX = i * recSize*2;
+            position.PositionX = 0;
 
             position.PositionY = 200;
 
             HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
             rectangle.SetHeight(recSize);
-            rectangle.SetWidth(recSize*2);
+            rectangle.SetWidth(recSize*100);
 
             entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
 
-        }
     }
 
     // Build out blocks
-    for (int i = 0; i < 40; i++){
+    for (int i = 0; i < 2; i++){
         std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
 
         if (entityId != nullptr){
             const int recSize = 10;
+            const int recHeight = 200;
 
             PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
 
-            position.PositionX = 39 * recSize;
+            position.PositionX = i * 200;
 
-            position.PositionY = 200 - (recSize * i);
+            position.PositionY = 200 - (recHeight);
 
             HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
-            rectangle.SetHeight(recSize);
+            rectangle.SetHeight(recHeight);
             rectangle.SetWidth(recSize);
 
             entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
 
         }
     }
-
-    for (int i = 0; i < 40; i++){
-        std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
-
-        if (entityId != nullptr){
-            const int recSize = 10;
-
-            PositionComponent& position = entityComponentManager.AddComponent<PositionComponent>(*entityId);
-
-            position.PositionX = recSize;
-
-            position.PositionY = 200 - (recSize * i);
-
-            HitboxComponent& rectangle = entityComponentManager.AddComponent<HitboxComponent>(*entityId);
-            rectangle.SetHeight(recSize);
-            rectangle.SetWidth(recSize);
-
-            entityComponentManager.AddComponent<ImpassibleComponent>(*entityId);
-
-        }
-    }
-
 
     PlayerAssemblage::BuildPlayer(entityComponentManager, 150, 40);
 }
