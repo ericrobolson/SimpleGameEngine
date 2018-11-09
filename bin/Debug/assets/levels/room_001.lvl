@@ -1,0 +1,12 @@
+{
+#floortile 1	
+impassible
+hitbox
+position
+}
+
+{
+#player
+player
+123
+}

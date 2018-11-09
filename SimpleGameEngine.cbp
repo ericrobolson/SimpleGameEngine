@@ -31,6 +31,7 @@
 					<Add directory="include/Components/Controlled" />
 					<Add directory="include/Assemblages/Creatures" />
 					<Add directory="include/Components/Gfx" />
+					<Add directory="include/Serialization" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -57,6 +58,7 @@
 					<Add directory="include/Components/Controlled" />
 					<Add directory="include/Assemblages/Creatures" />
 					<Add directory="include/Components/Gfx" />
+					<Add directory="include/Serialization" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -88,6 +90,7 @@
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
+		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/InputState.h" />
 		<Unit filename="include/Systems/CollisionSystem.h" />
@@ -111,6 +114,7 @@
 		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
+		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/CollisionSystem.cpp" />

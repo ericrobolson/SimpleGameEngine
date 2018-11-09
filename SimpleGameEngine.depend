@@ -56,7 +56,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1541701061 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1541797679 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -69,6 +69,7 @@
 	<ImpassibleComponent.h>
 	<PlayerAssemblage.h>
 	"GameState.h"
+	"LevelLoader.h"
 
 1541637254 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	<time.h>
@@ -827,7 +828,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541791209 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1541793506 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -2922,10 +2923,14 @@
 1541689466 source:c:\users\eric\gamedev\simplegameengine\src\components\hasjumpactioncomponent.cpp
 	"HasJumpActionComponent.h"
 
-1541792189 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
+1541800145 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
 	"LevelLoader.h"
 	"EntityComponentManager.h"
 	<string>
+	<fstream>
+	<vector>
+	<memory>
+	"PlayerAssemblage.h"
 
 1541792185 c:\users\eric\gamedev\simplegameengine\include\serialization\levelloader.h
 	"EntityComponentManager.h"

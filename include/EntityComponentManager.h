@@ -11,8 +11,8 @@
 #include <mutex>
 
 namespace ECS{
-    static const int MAXNUMBEROFENTITIES = 1000; // Until multithreading is implemented, acceptable limit is 100
-    static const int MAXNUMBEROFCOMPONENTTABLES = 2000;
+    static const int MAXNUMBEROFENTITIES = 500; // Until multithreading is implemented, acceptable limit is 100
+    static const int MAXNUMBEROFCOMPONENTTABLES = 200;
 
     typedef std::unordered_map<std::type_index, std::shared_ptr<BaseComponent>[MAXNUMBEROFENTITIES]> ComponentTypeMap;
 

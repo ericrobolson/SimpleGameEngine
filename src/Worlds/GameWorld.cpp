@@ -20,7 +20,7 @@ GameWorld::GameWorld() : BaseWorld()
     _cycleClock = clock();
 
     LevelLoader loader;
-    loader.LoadLevel("room_001.lvl", entityComponentManager);
+    loader.LoadLevel("room_001", entityComponentManager);
 }
 
 GameWorld::~GameWorld()
