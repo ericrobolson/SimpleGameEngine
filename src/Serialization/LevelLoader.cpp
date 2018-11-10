@@ -27,13 +27,19 @@ int ParseIntegers(std::string s){
     const int zeroCharValue = 48; // ascii char code for 0
     const int nineCharValue = zeroCharValue + 9; // ascii char code for 9
 
+    std::string str;
+
     for (int i = 0; i < s.size(); i++){
         int c = (int)s[i];
 
-        if (c >=  minusChar && c <= nineCharValue){
-            num = (num + 10) + c - minusChar; // shift each previous number to the left
+        if (c >=  zeroCharValue && c <= nineCharValue){
+            int numberToAdd = c - minusChar;
+
+            str.push_back(s[i]);
         }
     }
+
+    num = std::stoi(str);
 
     if ((int)s[0] == minusChar){
         num = (-1) * num;

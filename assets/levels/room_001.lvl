@@ -1,12 +1,13 @@
 {
 #floortile 1	
-impassible
-hitbox
-position
+  impassible
+  hitbox
+  position
 }
 
 {
 #player
 player
-position: [x=50, y = 20]
+	x=600
+	y=20
 }
