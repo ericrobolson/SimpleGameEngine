@@ -8,5 +8,5 @@ position
 {
 #player
 player
-position: [x=100, y = 10]
+position: [x=50, y = 20]
 }

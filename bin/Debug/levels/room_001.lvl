@@ -1,0 +1,12 @@
+{
+#floortile 1	
+impassible
+hitbox
+position
+}
+
+{
+#player
+player
+position: [x=50, y = 20]
+}

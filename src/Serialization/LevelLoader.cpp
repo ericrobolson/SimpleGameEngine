@@ -16,6 +16,32 @@ LevelLoader::~LevelLoader()
     //dtor
 }
 
+int ParseIntegers(std::string s){
+    int num = 0;
+
+    if (s.empty()){
+        return num;
+    }
+
+    const int minusChar = 45; // ascii char code for -
+    const int zeroCharValue = 48; // ascii char code for 0
+    const int nineCharValue = zeroCharValue + 9; // ascii char code for 9
+
+    for (int i = 0; i < s.size(); i++){
+        int c = (int)s[i];
+
+        if (c >=  minusChar && c <= nineCharValue){
+            num = (num + 10) + c - minusChar; // shift each previous number to the left
+        }
+    }
+
+    if ((int)s[0] == minusChar){
+        num = (-1) * num;
+    }
+
+    return num;
+}
+
 std::string RemoveSubstring(std::string s, std::string subString){
     if (s.empty()){
         return s;
@@ -37,6 +63,24 @@ std::string RemoveWhitespace(std::string s){
     s = RemoveSubstring(s, "\r");
 
     return s;
+}
+
+void CreatePlayer(std::vector<std::string> collection, ECS::EntityComponentManager &ecs){
+    int x = 0;
+    int y = 0;
+
+    // parse through variable settings
+    for (int j = 0; j < collection.size(); j++){
+        std::string str = collection[j];
+
+        if (str.find("x=") != std::string::npos){
+            x = ParseIntegers(str);
+        } else if (str.find("y=") != std::string::npos){
+            y = ParseIntegers(str);
+        }
+    }
+
+    PlayerAssemblage::BuildPlayer(ecs, x, y);
 }
 
 void LevelLoader::LoadLevel(std::string levelName, ECS::EntityComponentManager &ecs){
@@ -77,12 +121,7 @@ void LevelLoader::LoadLevel(std::string levelName, ECS::EntityComponentManager &
         for (int i = 0; i < maxObjects; i++){
             if (objects[i].size() > 0){
                 if (objects[i][0] == "player"){
-                    int x = 100;
-                    int y = 0;
-
-                    std::string xStr = objects[i][1];
-                    //x = std::stoi(xStr);
-                    PlayerAssemblage::BuildPlayer(ecs, x, y);
+                    CreatePlayer(objects[i], ecs);
                 }
 
 
