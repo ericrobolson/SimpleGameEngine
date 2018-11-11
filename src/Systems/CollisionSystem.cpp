@@ -66,7 +66,7 @@ void ProcessEntity(int entity1, ECS::EntityComponentManager &ecs, std::vector<in
                     movement.VerticalSpeed = 0;
 
                     // If it can jump, set it to be able to jump
-                    if (ecs.GetComponent<HasJumpActionComponent>(entity1) != nullptr){
+                    if (ecs.GetComponent<HasJumpActionComponent>(entity1) != nullptr && entity1PositionY < entity2Position.PositionY){
                         ecs.AddComponent<CanJumpComponent>(entity1);
                     }
 

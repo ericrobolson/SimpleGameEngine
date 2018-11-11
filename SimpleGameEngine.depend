@@ -2923,7 +2923,7 @@
 1541689466 source:c:\users\eric\gamedev\simplegameengine\src\components\hasjumpactioncomponent.cpp
 	"HasJumpActionComponent.h"
 
-1541826694 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
+1541977901 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
 	"LevelLoader.h"
 	"EntityComponentManager.h"
 	<string>
@@ -2931,8 +2931,20 @@
 	<vector>
 	<memory>
 	"PlayerAssemblage.h"
+	"SolidObjectAssemblage.h"
 
 1541792185 c:\users\eric\gamedev\simplegameengine\include\serialization\levelloader.h
 	"EntityComponentManager.h"
 	<string>
+
+1541977681 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\solidobjectassemblage.cpp
+	"SolidObjectAssemblage.h"
+	<memory>
+	"EntityComponentManager.h"
+	"HitboxComponent.h"
+	"PositionComponent.h"
+	"ImpassibleComponent.h"
+
+1541977686 c:\users\eric\gamedev\simplegameengine\include\assemblages\solidobjectassemblage.h
+	"EntityComponentManager.h"
 

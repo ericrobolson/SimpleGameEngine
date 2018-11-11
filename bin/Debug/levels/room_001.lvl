@@ -1,13 +1,57 @@
+#room height = 540
+#room width = 960
+
 {
-#floortile 1	
-  impassible
-  hitbox
-  position
+#floortile boundary
+solidObject
+	x=0
+	y=520
+	h=20
+	w=980
+}
+
+{
+#floortile 2boundary
+solidObject
+	x=0
+	y=0
+	h=540
+	w=10
+}
+{
+#floortile 3boundary
+solidObject
+	x=940
+	y=0
+	h=540
+	w=10
+}
+
+#floortile 4
+solidObject
+	x=540
+	y=440
+	h=10
+	w=200
+}
+#floortile 4
+solidObject
+	x=20
+	y=440
+	h=10
+	w=200
+}
+{
+solidObject
+	x=400
+	y=380
+	h=10
+	w=80
 }
 
 {
 #player
 player
-  x=600
+	x=600
 	y=20
 }

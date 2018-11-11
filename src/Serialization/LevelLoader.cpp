@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include "PlayerAssemblage.h"
+#include "SolidObjectAssemblage.h"
 
 LevelLoader::LevelLoader()
 {
@@ -89,6 +90,32 @@ void CreatePlayer(std::vector<std::string> collection, ECS::EntityComponentManag
     PlayerAssemblage::BuildPlayer(ecs, x, y);
 }
 
+
+void CreateSolidObject(std::vector<std::string> collection, ECS::EntityComponentManager &ecs){
+    int x = 0;
+    int y = 0;
+    int h = 1;
+    int w = 1;
+
+    // parse through variable settings
+    for (int j = 0; j < collection.size(); j++){
+        std::string str = collection[j];
+
+        if (str.find("x=") != std::string::npos){
+            x = ParseIntegers(str);
+        } else if (str.find("y=") != std::string::npos){
+            y = ParseIntegers(str);
+        } else if (str.find("h=") != std::string::npos){
+            h = ParseIntegers(str);
+        } else if (str.find("w=") != std::string::npos){
+            w = ParseIntegers(str);
+        }
+    }
+
+    SolidObjectAssemblage::Build(ecs, x, y, h, w);
+}
+
+
 void LevelLoader::LoadLevel(std::string levelName, ECS::EntityComponentManager &ecs){
     ecs.Reset();
 
@@ -128,12 +155,8 @@ void LevelLoader::LoadLevel(std::string levelName, ECS::EntityComponentManager &
             if (objects[i].size() > 0){
                 if (objects[i][0] == "player"){
                     CreatePlayer(objects[i], ecs);
-                }
-
-
-                std::shared_ptr<int> entityIdPtr = ecs.AddEntity();
-                if (entityIdPtr != nullptr){
-                    int entityId = *entityIdPtr.get();
+                } else if( objects[i][0] == "solidObject"){
+                    CreateSolidObject(objects[i], ecs);
                 }
             }
         }
