@@ -4,7 +4,6 @@
 #include <string>
 #include <iostream>
 #include "EntityComponentManager.h"
-#include "PlayerAssemblage.h"
 #include "GameState.h"
 #include "ThreadPool.h"
 #include <future>
@@ -83,7 +82,6 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                     break;
                 case SDL_BUTTON_RIGHT:
                     InputState::Instance().Button2IsPressed = false;
-                    PlayerAssemblage::BuildPlayer(ecs, InputState::Instance().CursorX / GameState::GfxScaling, InputState::Instance().CursorY / GameState::GfxScaling);
                     break;
             }
         }

@@ -81,10 +81,12 @@
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/Assemblages/PlayerAssemblage.h" />
+		<Unit filename="include/Assemblages/SolidObjectAssemblage.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
 		<Unit filename="include/Components/CanJumpComponent.h" />
+		<Unit filename="include/Components/DeckComponent.h" />
 		<Unit filename="include/Components/Gfx/SdlRectangleComponent.h" />
 		<Unit filename="include/Components/HasJumpActionComponent.h" />
 		<Unit filename="include/Components/HitboxComponent.h" />
@@ -102,15 +104,18 @@
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Systems/MovementSystem.h" />
 		<Unit filename="include/Systems/PositionSystem.h" />
+		<Unit filename="include/Systems/SystemTimer.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Assemblages/PlayerAssemblage.cpp" />
+		<Unit filename="src/Assemblages/SolidObjectAssemblage.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
 		<Unit filename="src/Components/CanJumpComponent.cpp" />
+		<Unit filename="src/Components/DeckComponent.cpp" />
 		<Unit filename="src/Components/Gfx/SdlRectangleComponent.cpp" />
 		<Unit filename="src/Components/HasJumpActionComponent.cpp" />
 		<Unit filename="src/Components/HitboxComponent.cpp" />
@@ -126,6 +131,7 @@
 		<Unit filename="src/Systems/InputSystem.cpp" />
 		<Unit filename="src/Systems/MovementSystem.cpp" />
 		<Unit filename="src/Systems/PositionSystem.cpp" />
+		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
 		<Extensions>
 			<code_completion />
