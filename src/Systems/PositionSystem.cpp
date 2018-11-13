@@ -11,7 +11,6 @@
 
 PositionSystem::PositionSystem() : BaseSystem()
 {
-    //ctor
 }
 
 PositionSystem::~PositionSystem()
@@ -58,7 +57,6 @@ void ProcessJob(ECS::EntityComponentManager &ecs, int entityIndex){
 }
 
 bool PositionSystem::Process(ECS::EntityComponentManager &ecs){
-
     // ignore everything else for not
     std::vector<int> entities = ecs.Search<PositionComponent>();
     entities = ecs.SearchOn<MovementComponent>(entities);

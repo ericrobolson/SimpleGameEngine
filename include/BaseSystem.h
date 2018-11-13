@@ -1,7 +1,7 @@
 #ifndef BASESYSTEM_H
 #define BASESYSTEM_H
 #include "EntityComponentManager.h"
-
+#include "SystemTimer.h"
 class BaseSystem
 {
     public:

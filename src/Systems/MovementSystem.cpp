@@ -19,7 +19,6 @@ const int MAXGRAVITYSPEED = 4;
 
 MovementSystem::MovementSystem() : BaseSystem()
 {
-    //ctor
 }
 
 MovementSystem::~MovementSystem()
@@ -65,7 +64,6 @@ void ProcessJob(int entityId, ECS::EntityComponentManager &ecs){
 }
 
 bool MovementSystem::Process(ECS::EntityComponentManager &ecs){
-
     std::vector<int> entities = ecs.Search<MovementComponent>();
 
     std::vector<int>::iterator ptr;

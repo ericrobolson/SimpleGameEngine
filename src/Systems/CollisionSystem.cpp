@@ -11,10 +11,8 @@
 #include <future>
 #include <memory>
 
-
 CollisionSystem::CollisionSystem()
 {
-    //ctor
 }
 
 CollisionSystem::~CollisionSystem()
@@ -85,7 +83,6 @@ void ProcessEntity(int entity1, ECS::EntityComponentManager &ecs, std::vector<in
 }
 
 bool CollisionSystem::Process(ECS::EntityComponentManager &ecs){
-
     std::vector<int> entities = ecs.Search<HitboxComponent>();
     entities = ecs.SearchOn<PositionComponent>(entities);
 

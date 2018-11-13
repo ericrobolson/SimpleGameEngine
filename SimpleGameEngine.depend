@@ -34,8 +34,9 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1538150192 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
+1542123991 c:\users\eric\gamedev\simplegameengine\include\basesystem.h
 	"EntityComponentManager.h"
+	"SystemTimer.h"
 
 1537922135 source:c:\users\eric\gamedev\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
@@ -56,7 +57,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1541797679 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1542123479 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -70,8 +71,9 @@
 	<PlayerAssemblage.h>
 	"GameState.h"
 	"LevelLoader.h"
+	"SystemTimer.h"
 
-1541637254 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1542123370 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
 	"GraphicsSystem.h"
@@ -79,8 +81,9 @@
 	"MovementSystem.h"
 	"PositionSystem.h"
 	"CollisionSystem.h"
+	"SystemTimer.h"
 
-1541778936 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1542124022 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -806,7 +809,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541700667 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1542124033 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -870,7 +873,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541778781 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
+1542124044 source:c:\users\eric\gamedev\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -891,7 +894,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541779457 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
+1542124009 source:c:\users\eric\gamedev\simplegameengine\src\systems\positionsystem.cpp
 	<cstddef>
 	"PositionSystem.h"
 	"EntityComponentManager.h"
@@ -2897,7 +2900,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1541691568 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
+1542123985 source:c:\users\eric\gamedev\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	"EntityComponentManager.h"
 	"GameState.h"
@@ -2947,4 +2950,11 @@
 
 1541977686 c:\users\eric\gamedev\simplegameengine\include\assemblages\solidobjectassemblage.h
 	"EntityComponentManager.h"
+
+1542124244 c:\users\eric\gamedev\simplegameengine\include\systems\systemtimer.h
+	<time.h>
+
+1542124182 source:c:\users\eric\gamedev\simplegameengine\src\systems\systemtimer.cpp
+	"SystemTimer.h"
+	<time.h>
 
