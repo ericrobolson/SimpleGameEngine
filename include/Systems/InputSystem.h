@@ -3,7 +3,7 @@
 
 #include "BaseSystem.h"
 #include "EntityComponentManager.h"
-
+#include <SDL.h>
 class InputSystem : public BaseSystem
 {
     public:
@@ -12,6 +12,27 @@ class InputSystem : public BaseSystem
         bool Process(ECS::EntityComponentManager &ecs);
 
     private:
+        class KeycodeMapper{
+            public:
+            KeycodeMapper(){
+                Up = SDLK_UP;
+                Down = SDLK_DOWN;
+                Left = SDLK_LEFT;
+                Right = SDLK_RIGHT;
+                Pause = SDLK_PAUSE;
+                Escape = SDLK_ESCAPE;
+            };
+
+            SDL_Keycode Up;
+            SDL_Keycode Down;
+            SDL_Keycode Left;
+            SDL_Keycode Right;
+            SDL_Keycode Pause;
+            SDL_Keycode Escape;
+        };
+
+        KeycodeMapper _keyMapper;
+
         bool _exit;
 };
 

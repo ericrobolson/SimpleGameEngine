@@ -26,43 +26,33 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
             _exit = true;
         }
 
+        SDL_Keycode key = event.key.keysym.sym;
+
         if (event.type == SDL_KEYDOWN) {
-            switch (event.key.keysym.sym) {
-                case SDLK_ESCAPE:
-                    InputState::Instance().Exit = true;
-                    _exit = true;
-                    break;
-                case SDLK_w:
-                    InputState::Instance().ButtonUpIsPressed = true;
-                    break;
-                case SDLK_a:
-                    InputState::Instance().ButtonLeftIsPressed = true;
-                    break;
-                case SDLK_s:
-                    InputState::Instance().ButtonDownIsPressed = true;
-                    break;
-                case SDLK_d:
-                    InputState::Instance().ButtonRightIsPressed = true;
-                    break;
-                case SDLK_PAUSE:
-                    GameState::Instance().Paused = !GameState::Instance().Paused;
-                    break;
+            if (_keyMapper.Up == key){
+                InputState::Instance().ButtonUpIsPressed = true;
+            }else if (_keyMapper.Down == key){
+                InputState::Instance().ButtonDownIsPressed = true;
+            }else if (_keyMapper.Left == key){
+                InputState::Instance().ButtonLeftIsPressed = true;
+            }else if (_keyMapper.Right == key){
+                InputState::Instance().ButtonRightIsPressed = true;
+            }else if (_keyMapper.Pause == key){
+                GameState::Instance().Paused = !GameState::Instance().Paused;
+            }else if (_keyMapper.Escape == key){
+                InputState::Instance().Exit = true;
+                _exit = true;
             }
         }
          if (event.type == SDL_KEYUP) {
-            switch (event.key.keysym.sym) {
-                case SDLK_w:
-                    InputState::Instance().ButtonUpIsPressed = false;
-                    break;
-                case SDLK_a:
-                    InputState::Instance().ButtonLeftIsPressed = false;
-                    break;
-                case SDLK_s:
-                    InputState::Instance().ButtonDownIsPressed = false;
-                    break;
-                case SDLK_d:
-                    InputState::Instance().ButtonRightIsPressed = false;
-                    break;
+            if (_keyMapper.Up == key){
+                InputState::Instance().ButtonUpIsPressed = false;
+            }else if (_keyMapper.Down == key){
+                InputState::Instance().ButtonDownIsPressed = false;
+            }else if (_keyMapper.Left == key){
+                InputState::Instance().ButtonLeftIsPressed = false;
+            }else if (_keyMapper.Right == key){
+                InputState::Instance().ButtonRightIsPressed = false;
             }
         }
         else if (event.type == SDL_MOUSEBUTTONDOWN){

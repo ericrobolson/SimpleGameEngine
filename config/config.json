@@ -1,12 +1,14 @@
 {
 	"keyMappings":{
-		"keyboardUp":"",
-		"keyboardDown":"",
-		"keyboardLeft":"",
-		"keyboardRight":"",
-		"keyboardNextCard":"",
-		"keyboardPreviousCard":"",
-		"keyboardUseCard":"",
+		"keyboardUp":"upArrow",
+		"keyboardDown":"downArrow",
+		"keyboardLeft":"leftArrow",
+		"keyboardRight":"rightArrow",
+		"keyboardNextCard":"e",
+		"keyboardPreviousCard":"q",
+		"keyboardUseCard":"w",
+		"keyboardQuit":"esc",
+		"keyboardPause":"pauseKey",
 		
 		"joystickUp":"",
 		"joystickDown":"",
@@ -15,5 +17,6 @@
 		"joystickNextCard":"",
 		"joystickPreviousCard":"",
 		"joystickUseCard":"",	
+		"joystickQuit":""
 	}
 }

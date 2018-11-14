@@ -97,7 +97,7 @@ Example Cards:
     Cost: 1
     CardType: Attack
     PowerType: OneShot
-    Effect: Draw 1 card, create an attack with 9 dmg
+    Effect: discard this card, Draw 1 card, create an attack with 9 dmg,
 */
 
 

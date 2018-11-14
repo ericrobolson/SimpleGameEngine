@@ -805,11 +805,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1538150278 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
+1542222699 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
 	"EntityComponentManager.h"
+	<SDL.h>
 
-1542125945 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1542222473 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -2957,11 +2958,12 @@
 	"SystemTimer.h"
 	<time.h>
 
-1542126166 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
+1542212392 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
 	"DeckComponent.h"
 
-1542128430 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
+1542220269 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
 	"BaseComponent.h"
 	<vector>
 	<memory>
+	"EntityComponentManager.h"
 
