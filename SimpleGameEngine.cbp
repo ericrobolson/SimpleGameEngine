@@ -8,6 +8,7 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/SimpleGameEngine" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -34,12 +35,14 @@
 					<Add directory="include/Serialization" />
 				</Compiler>
 				<ExtraCommands>
-					<Add before="xcopy assets bin\Debug /E /H /Y" />
+					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
+					<Add before="xcopy config bin\Debug\config\ /E /H /Y" />
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/SimpleGameEngine" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -67,6 +70,11 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+				<ExtraCommands>
+					<Add before="xcopy assets bin\Release\assets\ /E /H /Y" />
+					<Add before="xcopy config bin\Release\config\ /E /H /Y" />
+					<Mode after="always" />
+				</ExtraCommands>
 			</Target>
 		</Build>
 		<Compiler>
@@ -97,6 +105,7 @@
 		<Unit filename="include/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
+		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/InputState.h" />
 		<Unit filename="include/Systems/CollisionSystem.h" />
@@ -124,6 +133,7 @@
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
+		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/CollisionSystem.cpp" />
