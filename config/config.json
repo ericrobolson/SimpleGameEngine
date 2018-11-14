@@ -1,0 +1,19 @@
+{
+	"keyMappings":{
+		"keyboardUp":"",
+		"keyboardDown":"",
+		"keyboardLeft":"",
+		"keyboardRight":"",
+		"keyboardNextCard":"",
+		"keyboardPreviousCard":"",
+		"keyboardUseCard":"",
+		
+		"joystickUp":"",
+		"joystickDown":"",
+		"joystickLeft":"",
+		"joystickRight":"",
+		"joystickNextCard":"",
+		"joystickPreviousCard":"",
+		"joystickUseCard":"",	
+	}
+}

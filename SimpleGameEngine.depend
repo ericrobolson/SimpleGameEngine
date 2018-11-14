@@ -57,7 +57,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1542123479 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1542125609 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -809,14 +809,13 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1542124033 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1542125945 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
 	<string>
 	<iostream>
 	"EntityComponentManager.h"
-	"PlayerAssemblage.h"
 	"GameState.h"
 	"ThreadPool.h"
 	<future>
@@ -2957,4 +2956,12 @@
 1542124182 source:c:\users\eric\gamedev\simplegameengine\src\systems\systemtimer.cpp
 	"SystemTimer.h"
 	<time.h>
+
+1542126166 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
+	"DeckComponent.h"
+
+1542128430 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
+	"BaseComponent.h"
+	<vector>
+	<memory>
 
