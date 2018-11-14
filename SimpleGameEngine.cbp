@@ -48,6 +48,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-std=c++1z" />
 					<Add directory="include" />
 					<Add directory="include/Worlds" />
 					<Add directory="include/Systems" />
@@ -76,10 +77,46 @@
 					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
+			<Target title="Testing">
+				<Option output="bin/Debug/SimpleGameEngine" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-std=c++1z" />
+					<Add option="-g" />
+					<Add option="-DUNIT_TESTING" />
+					<Add directory="include" />
+					<Add directory="include/Worlds" />
+					<Add directory="include/Components" />
+					<Add directory="include/Systems" />
+					<Add directory="include/Assemblages" />
+					<Add directory="include/Components/GrapicsComponents" />
+					<Add directory="include/State" />
+					<Add directory="include/Threading" />
+					<Add directory="include/Systems/Gfx" />
+					<Add directory="include/Components/Creatures/State" />
+					<Add directory="include/Components/Elements" />
+					<Add directory="include/Components/Creatures/Types" />
+					<Add directory="include/Components/Materials" />
+					<Add directory="include/Components/Controlled" />
+					<Add directory="include/Assemblages/Creatures" />
+					<Add directory="include/Components/Gfx" />
+					<Add directory="include/Serialization" />
+					<Add directory="tests" />
+				</Compiler>
+				<ExtraCommands>
+					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
+					<Add before="xcopy config bin\Debug\config\ /E /H /Y" />
+					<Mode after="always" />
+				</ExtraCommands>
+			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-std=c++14" />
+			<Add option="-std=c++1z" />
 			<Add directory="C:/TDM-GCC-32/include" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/include/SDL2" />
 		</Compiler>
@@ -143,6 +180,12 @@
 		<Unit filename="src/Systems/PositionSystem.cpp" />
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
+		<Unit filename="tests/Serialization/StringOperationsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/catch.hpp">
+			<Option target="Testing" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

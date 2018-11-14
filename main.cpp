@@ -9,6 +9,19 @@
 #include "ThreadPool.h"
 using namespace std;
 
+#ifdef UNIT_TESTING
+
+#define CATCH_CONFIG_RUNNER
+#include "catch.hpp"
+int main( int argc, char* args[] )
+{
+    int result = Catch::Session().run(argc, args);
+
+    return result;
+}
+
+#else
+
 int main( int argc, char* args[] )
 {
     ThreadPool::Instance();
@@ -28,3 +41,7 @@ int main( int argc, char* args[] )
 
     return 0;
 }
+
+
+#endif // UNIT_TESTING
+
