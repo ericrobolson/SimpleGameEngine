@@ -7,6 +7,8 @@
 #include "GameState.h"
 #include "ThreadPool.h"
 #include <future>
+#include <fstream>
+#include "StringOperations.h"
 
 InputSystem::InputSystem() : BaseSystem()
 {
@@ -14,6 +16,51 @@ InputSystem::InputSystem() : BaseSystem()
         SDL_Init(SDL_INIT_EVENTS);
     }
     _exit = false;
+
+    // Load config file?
+    std::ifstream file("config/config.json", std::ios::in);
+
+    if (file.is_open()){
+        const std::string keyboardUp = "keyboardUp";
+        const std::string keyboardDown = "keyboardDown";
+        const std::string keyboardLeft = "keyboardLeft";
+        const std::string keyboardRight = "keyboardRight";
+        const std::string keyboardQuit = "keyboardQuit";
+        const std::string keyboardPause = "keyboardPause";
+
+        // TODO: These keys
+        const std::string keyboardNextCard = "keyboardNextCard";
+        const std::string keyboardPreviousCard = "keyboardPreviousCard";
+        const std::string keyboardUseCard = "keyboardUseCard";
+
+        for(std::string line; getline(file, line);){
+            if (line.length() > 0){
+                // skip comments
+                if (line[0] == '#'){
+                    continue;
+                }
+
+                if (line.find(keyboardQuit) != std::string::npos){
+                    _keyMapper.Escape = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardUp) != std::string::npos){
+                    _keyMapper.Up = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardDown) != std::string::npos){
+                    _keyMapper.Down = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardLeft) != std::string::npos){
+                    _keyMapper.Left = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardRight) != std::string::npos){
+                    _keyMapper.Right = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardPause) != std::string::npos){
+                    _keyMapper.Pause = StringOperations::ParseIntegers(line);
+                }
+            }
+        }
+
+        file.close();
+
+    }
+
+
 }
 
 bool InputSystem::Process(ECS::EntityComponentManager &ecs){

@@ -1,14 +1,15 @@
+# https://wiki.libsdl.org/SDLKeycodeLookup
 {
 	"keyMappings":{
-		"keyboardUp":"upArrow",
-		"keyboardDown":"downArrow",
-		"keyboardLeft":"leftArrow",
-		"keyboardRight":"rightArrow",
-		"keyboardNextCard":"e",
-		"keyboardPreviousCard":"q",
-		"keyboardUseCard":"w",
-		"keyboardQuit":"esc",
-		"keyboardPause":"pauseKey",
+		"keyboardUp":"1073741906",
+		"keyboardDown":"1073741905",
+		"keyboardLeft":"1073741904",
+		"keyboardRight":"1073741903",
+		"keyboardNextCard":"101",
+		"keyboardPreviousCard":"113",
+		"keyboardUseCard":"119",
+		"keyboardQuit":"27",
+		"keyboardPause":"1073741896",
 		
 		"joystickUp":"",
 		"joystickDown":"",

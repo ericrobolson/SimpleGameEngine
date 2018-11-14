@@ -6,6 +6,7 @@
 #include <memory>
 #include "PlayerAssemblage.h"
 #include "SolidObjectAssemblage.h"
+#include "StringOperations.h"
 
 LevelLoader::LevelLoader()
 {
@@ -17,61 +18,6 @@ LevelLoader::~LevelLoader()
     //dtor
 }
 
-int ParseIntegers(std::string s){
-    int num = 0;
-
-    if (s.empty()){
-        return num;
-    }
-
-    const int minusChar = 45; // ascii char code for -
-    const int zeroCharValue = 48; // ascii char code for 0
-    const int nineCharValue = zeroCharValue + 9; // ascii char code for 9
-
-    std::string str;
-
-    for (int i = 0; i < s.size(); i++){
-        int c = (int)s[i];
-
-        if (c >=  zeroCharValue && c <= nineCharValue){
-            int numberToAdd = c - minusChar;
-
-            str.push_back(s[i]);
-        }
-    }
-
-    num = std::stoi(str);
-
-    if ((int)s[0] == minusChar){
-        num = (-1) * num;
-    }
-
-    return num;
-}
-
-std::string RemoveSubstring(std::string s, std::string subString){
-    if (s.empty()){
-        return s;
-    }
-
-    size_t start_pos = s.find(subString);
-    if (start_pos != std::string::npos){
-        s.replace(start_pos, subString.length(), "");
-
-        s = RemoveSubstring(s, subString);
-    }
-
-    return s;
-}
-
-std::string RemoveWhitespace(std::string s){
-    s = RemoveSubstring(s, " ");
-    s = RemoveSubstring(s, "\n");
-    s = RemoveSubstring(s, "\r");
-
-    return s;
-}
-
 void CreatePlayer(std::vector<std::string> collection, ECS::EntityComponentManager &ecs){
     int x = 0;
     int y = 0;
@@ -81,9 +27,9 @@ void CreatePlayer(std::vector<std::string> collection, ECS::EntityComponentManag
         std::string str = collection[j];
 
         if (str.find("x=") != std::string::npos){
-            x = ParseIntegers(str);
+            x = StringOperations::ParseIntegers(str);
         } else if (str.find("y=") != std::string::npos){
-            y = ParseIntegers(str);
+            y = StringOperations::ParseIntegers(str);
         }
     }
 
@@ -102,13 +48,13 @@ void CreateSolidObject(std::vector<std::string> collection, ECS::EntityComponent
         std::string str = collection[j];
 
         if (str.find("x=") != std::string::npos){
-            x = ParseIntegers(str);
+            x = StringOperations::ParseIntegers(str);
         } else if (str.find("y=") != std::string::npos){
-            y = ParseIntegers(str);
+            y = StringOperations::ParseIntegers(str);
         } else if (str.find("h=") != std::string::npos){
-            h = ParseIntegers(str);
+            h = StringOperations::ParseIntegers(str);
         } else if (str.find("w=") != std::string::npos){
-            w = ParseIntegers(str);
+            w = StringOperations::ParseIntegers(str);
         }
     }
 
@@ -143,7 +89,7 @@ void LevelLoader::LoadLevel(std::string levelName, ECS::EntityComponentManager &
                     componentIndex = 0;
                 }
                 else{
-                    objects[objectIndex].push_back(RemoveWhitespace(line));
+                    objects[objectIndex].push_back(StringOperations::RemoveWhitespace(line));
                 }
             }
         }

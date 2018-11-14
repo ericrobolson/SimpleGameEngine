@@ -20,7 +20,7 @@ class InputSystem : public BaseSystem
                 Left = SDLK_LEFT;
                 Right = SDLK_RIGHT;
                 Pause = SDLK_PAUSE;
-                Escape = SDLK_ESCAPE;
+                Escape = SDLK_F4;
             };
 
             SDL_Keycode Up;

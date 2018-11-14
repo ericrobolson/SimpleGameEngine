@@ -805,12 +805,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1542222699 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
+1542225412 c:\users\eric\gamedev\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 	<SDL.h>
 
-1542222473 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
+1542225398 source:c:\users\eric\gamedev\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -820,6 +820,8 @@
 	"GameState.h"
 	"ThreadPool.h"
 	<future>
+	<fstream>
+	"StringOperations.h"
 
 1537654902 source:c:\users\eric\gamedev\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
@@ -2926,7 +2928,7 @@
 1541689466 source:c:\users\eric\gamedev\simplegameengine\src\components\hasjumpactioncomponent.cpp
 	"HasJumpActionComponent.h"
 
-1541977901 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
+1542225313 source:c:\users\eric\gamedev\simplegameengine\src\serialization\levelloader.cpp
 	"LevelLoader.h"
 	"EntityComponentManager.h"
 	<string>
@@ -2935,6 +2937,7 @@
 	<memory>
 	"PlayerAssemblage.h"
 	"SolidObjectAssemblage.h"
+	"StringOperations.h"
 
 1541792185 c:\users\eric\gamedev\simplegameengine\include\serialization\levelloader.h
 	"EntityComponentManager.h"
@@ -2966,4 +2969,11 @@
 	<vector>
 	<memory>
 	"EntityComponentManager.h"
+
+1542223957 source:c:\users\eric\gamedev\simplegameengine\src\serialization\stringoperations.cpp
+	"StringOperations.h"
+	<string>
+
+1542223986 c:\users\eric\gamedev\simplegameengine\include\serialization\stringoperations.h
+	<string>
 
