@@ -14,6 +14,7 @@
 #include "LevelLoader.h"
 #include "SystemTimer.h"
 
+#include <iostream>
 
 GameWorld::GameWorld() : BaseWorld()
 {

@@ -11,14 +11,10 @@ using namespace std;
 
 #ifdef UNIT_TESTING
 
-#define CATCH_CONFIG_RUNNER
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
-int main( int argc, char* args[] )
-{
-    int result = Catch::Session().run(argc, args);
+#include <iostream>
 
-    return result;
-}
 
 #else
 
