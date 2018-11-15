@@ -2964,16 +2964,18 @@
 	"SystemTimer.h"
 	<time.h>
 
-1542212392 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
+1542293202 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
 	"DeckComponent.h"
+	<vector>
+	"BaseComponent.h"
 
-1542220269 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
+1542293299 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
 	"BaseComponent.h"
 	<vector>
 	<memory>
 	"EntityComponentManager.h"
 
-1542250349 source:c:\users\eric\gamedev\simplegameengine\src\serialization\stringoperations.cpp
+1542253788 source:c:\users\eric\gamedev\simplegameengine\src\serialization\stringoperations.cpp
 	"StringOperations.h"
 	<string>
 
@@ -3409,8 +3411,15 @@
 1341006771 c:\tdm-gcc-32\include\assert.h
 	<_mingw.h>
 
-1542250045 source:c:\users\eric\gamedev\simplegameengine\tests\serialization\stringoperationstests.cpp
+1542253879 source:c:\users\eric\gamedev\simplegameengine\tests\serialization\stringoperationstests.cpp
 	"catch.hpp"
 	"StringOperations.h"
 	<string>
+
+1542293317 source:c:\users\eric\gamedev\simplegameengine\tests\components\deckcomponenttests.cpp
+	"catch.hpp"
+	"EntityComponentManager.h"
+	<vector>
+	<memory>
+	"DeckComponent.h"
 

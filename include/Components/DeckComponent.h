@@ -119,22 +119,34 @@ class DeckComponent : public BaseComponent
         DeckComponent();
         virtual ~DeckComponent();
 
-        void SelectNextCard();
-        void SelectPreviousCard();
+        //int SelectNextCard();
+        //int SelectPreviousCard();
 
-        void UseActiveCard();
+        //void UseActiveCard();
+
         void ShuffleDeck();
 
-        void BeginTurn();
-        void EndTurn();
+        //void BeginTurn();
 
-        void DrawCards(int numCards);
+        //void DrawCards(int numCards);
 
         int GetEnergy();
         int AddEnergy(int energyToAdd);
+        int SetEnergy(int energyToSet);
 
+        void UpdateState();
 
-        void ProcessTriggers(ECS::EntityComponentManager entityComponentManager, int entityIdForCard);
+        void AddCardToDeck(Card card);
+        void AddCardToDiscard(Card card);
+        void AddCardToHand(Card card);
+        void AddCardToExhaustedCards(Card card);
+
+        std::vector<Card> GetDeck();
+        std::vector<Card> GetHand();
+        std::vector<Card> GetExhaustedCards();
+        std::vector<Card> GetDiscardedCards();
+
+        //void ProcessTriggers(ECS::EntityComponentManager entityComponentManager, int entityIdForCard);
 
 
     private:
