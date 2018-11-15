@@ -36,7 +36,7 @@ int StringOperations::ParseIntegers(std::string s){
 
 
 std::string StringOperations::RemoveSubstring(std::string s, std::string subString){
-    if (s.empty()){
+    if (s.empty() || subString.empty()){
         return s;
     }
 
@@ -50,12 +50,11 @@ std::string StringOperations::RemoveSubstring(std::string s, std::string subStri
     return s;
 }
 
-
-
 std::string StringOperations::RemoveWhitespace(std::string s){
     s = RemoveSubstring(s, " ");
     s = RemoveSubstring(s, "\n");
     s = RemoveSubstring(s, "\r");
+    s = RemoveSubstring(s, "\t");
 
     return s;
 }

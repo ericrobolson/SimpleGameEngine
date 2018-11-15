@@ -2973,7 +2973,7 @@
 	<memory>
 	"EntityComponentManager.h"
 
-1542223957 source:c:\users\eric\gamedev\simplegameengine\src\serialization\stringoperations.cpp
+1542250349 source:c:\users\eric\gamedev\simplegameengine\src\serialization\stringoperations.cpp
 	"StringOperations.h"
 	<string>
 
@@ -3409,7 +3409,8 @@
 1341006771 c:\tdm-gcc-32\include\assert.h
 	<_mingw.h>
 
-1542243614 source:c:\users\eric\gamedev\simplegameengine\tests\serialization\stringoperationstests.cpp
+1542250045 source:c:\users\eric\gamedev\simplegameengine\tests\serialization\stringoperationstests.cpp
+	"catch.hpp"
 	"StringOperations.h"
 	<string>
 
