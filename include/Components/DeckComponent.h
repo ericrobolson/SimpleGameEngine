@@ -128,13 +128,17 @@ class DeckComponent : public BaseComponent
 
         //void BeginTurn();
 
-        //void DrawCards(int numCards);
+
+        //void ProcessTriggers(ECS::EntityComponentManager entityComponentManager, int entityIdForCard);
+
+
+        //void UpdateState();
+
+        void DrawCard(int numCardsToDraw);
 
         int GetEnergy();
         int AddEnergy(int energyToAdd);
         int SetEnergy(int energyToSet);
-
-        void UpdateState();
 
         void AddCardToDeck(Card card);
         void AddCardToDiscard(Card card);
@@ -145,10 +149,6 @@ class DeckComponent : public BaseComponent
         std::vector<Card> GetHand();
         std::vector<Card> GetExhaustedCards();
         std::vector<Card> GetDiscardedCards();
-
-        //void ProcessTriggers(ECS::EntityComponentManager entityComponentManager, int entityIdForCard);
-
-
     private:
         const int DefaultEnergy = 3;
 

@@ -56,3 +56,27 @@ std::vector<Card> DeckComponent::GetExhaustedCards(){
 std::vector<Card> DeckComponent::GetDiscardedCards(){
     return _discardedCards;
 }
+
+void DeckComponent::ShuffleDeck(){
+
+}
+
+void DeckComponent::DrawCard(int numCardsToDraw){
+    if (_deck.empty() == false){
+        Card card = _deck.front();
+        AddCardToHand(card);
+        _deck.erase(_deck.begin());
+
+        numCardsToDraw -=1;
+
+        if (numCardsToDraw > 0){
+            DrawCard(numCardsToDraw);
+        }
+    } else if (_discardedCards.empty() == false){
+        _deck = _discardedCards;
+        _discardedCards.clear();
+        ShuffleDeck();
+        DrawCard(numCardsToDraw);
+    }
+}
+
