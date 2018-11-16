@@ -148,7 +148,36 @@ SCENARIO("DeckComponent::DrawCards"){
         REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
     }
 
-  SECTION("No Card in discard, no card in deck, draw 2 does nothing"){
+    SECTION("5 cards in deck, 10 cards in discard, draw Max + 1 only draws max cards"){
+        deckComponent.AddCardToDeck(card);
+        deckComponent.AddCardToDeck(card);
+        deckComponent.AddCardToDeck(card);
+        deckComponent.AddCardToDeck(card);
+        deckComponent.AddCardToDeck(card);
+
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+        deckComponent.AddCardToDiscard(card);
+
+        REQUIRE(deckComponent.GetHand().empty() == true);
+        REQUIRE(deckComponent.GetDeck().size() == 5);
+        REQUIRE(deckComponent.GetDiscardedCards().size() == 10);
+
+        deckComponent.DrawCard(deckComponent.MaxHandSize + 1);
+
+        REQUIRE(deckComponent.GetHand().size() == deckComponent.MaxHandSize);
+        REQUIRE(deckComponent.GetDeck().size() == 5);
+        REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
+    }
+
+    SECTION("No Card in discard, no card in deck, draw 2 does nothing"){
         REQUIRE(deckComponent.GetHand().empty() == true);
         REQUIRE(deckComponent.GetDeck().empty() == true);
         REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
@@ -159,6 +188,4 @@ SCENARIO("DeckComponent::DrawCards"){
         REQUIRE(deckComponent.GetDeck().empty() == true);
         REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
     }
-
-
 }

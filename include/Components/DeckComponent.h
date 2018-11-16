@@ -149,6 +149,8 @@ class DeckComponent : public BaseComponent
         std::vector<Card> GetHand();
         std::vector<Card> GetExhaustedCards();
         std::vector<Card> GetDiscardedCards();
+
+        const int MaxHandSize = 10;
     private:
         const int DefaultEnergy = 3;
 

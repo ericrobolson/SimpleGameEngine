@@ -62,6 +62,10 @@ void DeckComponent::ShuffleDeck(){
 }
 
 void DeckComponent::DrawCard(int numCardsToDraw){
+    if (_hand.size() >= MaxHandSize){
+        return;
+    }
+
     if (_deck.empty() == false){
         Card card = _deck.front();
         AddCardToHand(card);
