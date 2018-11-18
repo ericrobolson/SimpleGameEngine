@@ -101,6 +101,46 @@ Example Cards:
 */
 
 
+class Event{
+
+
+};
+
+class EventQueue;
+
+class Listener{
+public:
+    int ListenerId;
+    void Process(Event& event, EventQueue& eventQueue);
+};
+
+class EventQueue{
+public:
+    int AddListener(); // returns the listenerid
+    void RemoveListener(int listenerId);
+
+    void AddEvent(Event event){
+        _eventStack.push_back(event);
+        ProcessEvents();
+    }
+
+    void ProcessEvents(){
+        while(!_eventStack.empty()){
+            Event event = _eventStack.back();
+            _eventStack.pop_back();
+
+            for(auto listener : _listeners){
+                listener.Process(event, *this);
+            }
+        }
+    }
+
+private:
+    std::vector<Listener> _listeners;
+    std::vector<Event> _eventStack;
+
+};
+
 
 class Card{
     public:
