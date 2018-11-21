@@ -10,6 +10,7 @@ DeckComponent::DeckComponent(EventQueue& eq) : BaseComponent()
 {
     _eventQueue = eq;
     _energy = 0;
+    _activeCardIndex = 0;
 }
 
 DeckComponent::DeckComponent(){
@@ -17,6 +18,7 @@ DeckComponent::DeckComponent(){
 
     _eventQueue = eq;
     _energy = 0;
+    _activeCardIndex = 0;
 }
 
 DeckComponent::~DeckComponent()
@@ -72,6 +74,38 @@ std::vector<Card> DeckComponent::GetDiscardedCards(){
 
 void DeckComponent::ShuffleDeck(){
 
+}
+
+int DeckComponent::GetActiveCardIndex(){
+    return _activeCardIndex;
+}
+
+int DeckComponent::SelectNextCard(){
+    _activeCardIndex +=1;
+
+    // Boundary handling, wrap if greater than hand size
+    if (_activeCardIndex > (_hand.size() -1)){
+        _activeCardIndex = 0;
+    }
+
+    return _activeCardIndex;
+}
+
+int DeckComponent::SelectPreviousCard(){
+    _activeCardIndex -=1;
+
+    // Boundary handling, wrap if greater than hand size
+
+    if (_activeCardIndex < 0){
+        _activeCardIndex = (_hand.size() - 1);
+
+        // If hand is 0, set index to 0
+        if (_activeCardIndex < 0){
+            _activeCardIndex = 0;
+        }
+    }
+
+    return _activeCardIndex;
 }
 
 void DeckComponent::DrawCard(int numCardsToDraw){

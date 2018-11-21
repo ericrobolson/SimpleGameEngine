@@ -87,6 +87,33 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
 
             SDL_RenderFillRect(_renderer, &sdlRect);
         }
+
+        // Draw Cards
+         // Draw energy
+        const int cardX = 150;
+        const int cardY = 500;
+        const int cardW = 16;
+
+        for (int i = 0; i < deck.GetHand().size(); i++){
+
+            if (deck.GetActiveCardIndex() == i){
+                SDL_SetRenderDrawColor(_renderer, 0, 255, 255, 255);
+            }
+            else{
+                SDL_SetRenderDrawColor(_renderer, 0, 255, 0, 255);
+            }
+
+            SDL_Rect sdlRect;
+
+            int offset = i * (cardW + 2); // offset each energy rectangle for each energy, with a spacing of 2
+
+            sdlRect.x = ScaleGraphics(cardX + offset);
+            sdlRect.y = ScaleGraphics(cardY);
+            sdlRect.w = ScaleGraphics(cardW);
+            sdlRect.h = ScaleGraphics(cardW * 2);
+
+            SDL_RenderFillRect(_renderer, &sdlRect);
+        }
     }
 }
 

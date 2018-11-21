@@ -142,6 +142,10 @@ class DeckComponent : public BaseComponent
         int AddEnergy(int energyToAdd);
         int SetEnergy(int energyToSet);
 
+        int GetActiveCardIndex();
+        int SelectNextCard();
+        int SelectPreviousCard();
+
         void AddCardToDeck(Card card);
         void AddCardToDiscard(Card card);
         void AddCardToHand(Card card);

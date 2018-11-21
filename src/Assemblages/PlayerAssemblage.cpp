@@ -49,6 +49,15 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         DeckComponent& deck = ecs.AddComponent<DeckComponent>(id);
         deck.SetEnergy(3);
 
+        Card c;
+
+        deck.AddCardToDeck(c);
+        deck.AddCardToDeck(c);
+        deck.AddCardToDeck(c);
+        deck.AddCardToDeck(c);
+
+        deck.DrawCard(4);
+
     }
 
     return entityId;

@@ -9,6 +9,7 @@
 #include <future>
 #include <fstream>
 #include "StringOperations.h"
+#include "DeckComponent.h"
 
 InputSystem::InputSystem() : BaseSystem()
 {
@@ -78,6 +79,19 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
         if (event.type == SDL_KEYDOWN) {
             if (_keyMapper.Up == key){
                 InputState::Instance().ButtonUpIsPressed = true;
+
+
+                    // Select next card?
+                    std::vector<int> entities = ecs.Search<DeckComponent>();
+
+                    while (entities.empty() == false){
+                        int entityId = entities.back();
+                        entities.pop_back();
+
+                        DeckComponent& deck = *ecs.GetComponent<DeckComponent>(entityId);
+                        deck.SelectNextCard();
+                    }
+
             }else if (_keyMapper.Down == key){
                 InputState::Instance().ButtonDownIsPressed = true;
             }else if (_keyMapper.Left == key){
@@ -86,6 +100,9 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                 InputState::Instance().ButtonRightIsPressed = true;
             }else if (_keyMapper.Pause == key){
                 GameState::Instance().Paused = !GameState::Instance().Paused;
+            }else if (_keyMapper.Escape == key){
+                InputState::Instance().Exit = true;
+                _exit = true;
             }else if (_keyMapper.Escape == key){
                 InputState::Instance().Exit = true;
                 _exit = true;
@@ -105,6 +122,7 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
         else if (event.type == SDL_MOUSEBUTTONDOWN){
             switch (event.button.button){
                 case SDL_BUTTON_LEFT:
+
                     InputState::Instance().Button1IsPressed = true;
                     break;
                 case SDL_BUTTON_RIGHT:
