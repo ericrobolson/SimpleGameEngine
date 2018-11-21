@@ -5,7 +5,7 @@
 #floortile boundary
 solidObject
 	x=0
-	y=520
+	y=420
 	h=20
 	w=980
 }
@@ -15,7 +15,7 @@ solidObject
 solidObject
 	x=0
 	y=0
-	h=540
+	h=440
 	w=10
 }
 {
@@ -23,28 +23,28 @@ solidObject
 solidObject
 	x=940
 	y=0
-	h=540
+	h=440
 	w=10
 }
 
 #floortile 4
 solidObject
 	x=540
-	y=440
+	y=340
 	h=10
 	w=200
 }
 #floortile 4
 solidObject
 	x=20
-	y=440
+	y=340
 	h=10
 	w=200
 }
 {
 solidObject
 	x=400
-	y=380
+	y=280
 	h=10
 	w=80
 }

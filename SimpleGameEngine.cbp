@@ -30,6 +30,7 @@
 					<Add directory="include/Assemblages/Creatures" />
 					<Add directory="include/Components/Gfx" />
 					<Add directory="include/Serialization" />
+					<Add directory="include/EventQueue" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -63,6 +64,7 @@
 					<Add directory="include/Assemblages/Creatures" />
 					<Add directory="include/Components/Gfx" />
 					<Add directory="include/Serialization" />
+					<Add directory="include/EventQueue" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -100,6 +102,7 @@
 					<Add directory="include/Components/Gfx" />
 					<Add directory="include/Serialization" />
 					<Add directory="tests" />
+					<Add directory="include/EventQueue" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -127,6 +130,7 @@
 		<Unit filename="include/Components/CanJumpComponent.h" />
 		<Unit filename="include/Components/DeckComponent.h" />
 		<Unit filename="include/Components/Gfx/SdlRectangleComponent.h" />
+		<Unit filename="include/Components/Gfx/VisibleComponent.h" />
 		<Unit filename="include/Components/HasJumpActionComponent.h" />
 		<Unit filename="include/Components/HitboxComponent.h" />
 		<Unit filename="include/Components/ImpassibleComponent.h" />
@@ -135,6 +139,7 @@
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
+		<Unit filename="include/EventQueue/EventQueue.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
@@ -157,12 +162,14 @@
 		<Unit filename="src/Components/CanJumpComponent.cpp" />
 		<Unit filename="src/Components/DeckComponent.cpp" />
 		<Unit filename="src/Components/Gfx/SdlRectangleComponent.cpp" />
+		<Unit filename="src/Components/Gfx/VisibleComponent.cpp" />
 		<Unit filename="src/Components/HasJumpActionComponent.cpp" />
 		<Unit filename="src/Components/HitboxComponent.cpp" />
 		<Unit filename="src/Components/ImpassibleComponent.cpp" />
 		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
+		<Unit filename="src/EventQueue/EventQueue.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
@@ -174,9 +181,18 @@
 		<Unit filename="src/Systems/PositionSystem.cpp" />
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
-		<Unit filename="tests/Components/DeckComponentTests.cpp" />
-		<Unit filename="tests/Serialization/StringOperationsTests.cpp" />
-		<Unit filename="tests/catch.hpp" />
+		<Unit filename="tests/Components/DeckComponentTests.cpp">
+			<Option target="Release" />
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Serialization/StringOperationsTests.cpp">
+			<Option target="Release" />
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/catch.hpp">
+			<Option target="Release" />
+			<Option target="Testing" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<envvars />

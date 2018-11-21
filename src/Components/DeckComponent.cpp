@@ -1,8 +1,21 @@
 #include "DeckComponent.h"
 #include <vector>
 #include "BaseComponent.h"
-DeckComponent::DeckComponent() : BaseComponent()
+#include "EventQueue.h"
+
+using namespace SGE;
+
+
+DeckComponent::DeckComponent(EventQueue& eq) : BaseComponent()
 {
+    _eventQueue = eq;
+    _energy = 0;
+}
+
+DeckComponent::DeckComponent(){
+    EventQueue eq;
+
+    _eventQueue = eq;
     _energy = 0;
 }
 
@@ -68,7 +81,13 @@ void DeckComponent::DrawCard(int numCardsToDraw){
 
     if (_deck.empty() == false){
         Card card = _deck.front();
+
         AddCardToHand(card);
+
+        Event e;
+        e.EventType = Event::EventTypes::DrawCard;
+        _eventQueue.AddEvent(e);
+
         _deck.erase(_deck.begin());
 
         numCardsToDraw -=1;

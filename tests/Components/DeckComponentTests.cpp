@@ -3,10 +3,13 @@
 #include <vector>
 #include <memory>
 #include "DeckComponent.h"
+#include "EventQueue.h"
 
+using namespace SGE;
 
 SCENARIO("DeckComponent::Constructor"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+    DeckComponent deckComponent(eq);
 
     REQUIRE(deckComponent.GetDeck().empty() == true);
     REQUIRE(deckComponent.GetExhaustedCards().empty() == true);
@@ -15,7 +18,9 @@ SCENARIO("DeckComponent::Constructor"){
 }
 
 SCENARIO("DeckComponent::AddCardToDeck"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+
+    DeckComponent deckComponent(eq);
     REQUIRE(deckComponent.GetDeck().empty() == true);
     REQUIRE(deckComponent.GetExhaustedCards().empty() == true);
     REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
@@ -33,7 +38,9 @@ SCENARIO("DeckComponent::AddCardToDeck"){
 }
 
 SCENARIO("DeckComponent::AddCardToHand"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+
+    DeckComponent deckComponent(eq);
     REQUIRE(deckComponent.GetDeck().empty() == true);
     REQUIRE(deckComponent.GetExhaustedCards().empty() == true);
     REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
@@ -51,7 +58,9 @@ SCENARIO("DeckComponent::AddCardToHand"){
 }
 
 SCENARIO("DeckComponent::AddCardToDiscard"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+    DeckComponent deckComponent(eq);
+
     REQUIRE(deckComponent.GetDeck().empty() == true);
     REQUIRE(deckComponent.GetExhaustedCards().empty() == true);
     REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
@@ -69,7 +78,9 @@ SCENARIO("DeckComponent::AddCardToDiscard"){
 }
 
 SCENARIO("DeckComponent::AddCardToExhaustedCards"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+    DeckComponent deckComponent(eq);
+
     REQUIRE(deckComponent.GetDeck().empty() == true);
     REQUIRE(deckComponent.GetExhaustedCards().empty() == true);
     REQUIRE(deckComponent.GetDiscardedCards().empty() == true);
@@ -87,7 +98,8 @@ SCENARIO("DeckComponent::AddCardToExhaustedCards"){
 }
 
 SCENARIO("DeckComponent::Energy"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+    DeckComponent deckComponent(eq);
 
     REQUIRE(deckComponent.GetEnergy() == 0);
     SECTION("AddEnergy increases GetEnergy"){
@@ -106,7 +118,8 @@ SCENARIO("DeckComponent::Energy"){
 
 
 SCENARIO("DeckComponent::DrawCards"){
-    DeckComponent deckComponent;
+    EventQueue eq;
+    DeckComponent deckComponent(eq);
     Card card;
     REQUIRE(deckComponent.GetHand().empty() == true);
 

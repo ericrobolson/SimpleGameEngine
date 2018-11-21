@@ -9,6 +9,9 @@
 #include "PositionComponent.h"
 #include "ImpassibleComponent.h"
 #include "HasJumpActionComponent.h"
+#include "DeckComponent.h"
+#include "VisibleComponent.h"
+
 
 PlayerAssemblage::PlayerAssemblage()
 {
@@ -40,6 +43,12 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
 
         ecs.AddComponent<ImpassibleComponent>(id);
         ecs.AddComponent<HasJumpActionComponent>(id);
+
+        ecs.AddComponent<VisibleComponent>(id);
+
+        DeckComponent& deck = ecs.AddComponent<DeckComponent>(id);
+        deck.SetEnergy(3);
+
     }
 
     return entityId;

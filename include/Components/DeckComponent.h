@@ -6,6 +6,9 @@
 #include <memory>
 
 #include "EntityComponentManager.h"
+#include "EventQueue.h"
+
+using namespace SGE;
 
 /*
 Example Cards:
@@ -100,48 +103,6 @@ Example Cards:
     Effect: discard this card, Draw 1 card, create an attack with 9 dmg,
 */
 
-
-class Event{
-
-
-};
-
-class EventQueue;
-
-class Listener{
-public:
-    int ListenerId;
-    void Process(Event& event, EventQueue& eventQueue);
-};
-
-class EventQueue{
-public:
-    int AddListener(); // returns the listenerid
-    void RemoveListener(int listenerId);
-
-    void AddEvent(Event event){
-        _eventStack.push_back(event);
-        ProcessEvents();
-    }
-
-    void ProcessEvents(){
-        while(!_eventStack.empty()){
-            Event event = _eventStack.back();
-            _eventStack.pop_back();
-
-            for(auto listener : _listeners){
-                listener.Process(event, *this);
-            }
-        }
-    }
-
-private:
-    std::vector<Listener> _listeners;
-    std::vector<Event> _eventStack;
-
-};
-
-
 class Card{
     public:
         int EnergyCost;
@@ -157,6 +118,7 @@ class DeckComponent : public BaseComponent
 {
     public:
         DeckComponent();
+        DeckComponent(EventQueue& eq);
         virtual ~DeckComponent();
 
         //int SelectNextCard();
@@ -196,6 +158,8 @@ class DeckComponent : public BaseComponent
 
         int _energy;
         int _activeCardIndex;
+
+        EventQueue _eventQueue;
 
         std::vector<Card> _hand;
         std::vector<Card> _deck;

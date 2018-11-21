@@ -4,6 +4,7 @@
 #include "HitboxComponent.h"
 #include "PositionComponent.h"
 #include "ImpassibleComponent.h"
+#include "VisibleComponent.h"
 
 SolidObjectAssemblage::SolidObjectAssemblage()
 {
@@ -31,6 +32,7 @@ std::shared_ptr<int> SolidObjectAssemblage::Build(ECS::EntityComponentManager &e
         positionComponent.PositionY = y;
 
         ecs.AddComponent<ImpassibleComponent>(id);
+        ecs.AddComponent<VisibleComponent>(id);
     }
 
     return entityId;

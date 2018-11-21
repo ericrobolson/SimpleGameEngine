@@ -86,7 +86,7 @@
 	"CollisionSystem.h"
 	"SystemTimer.h"
 
-1542244066 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1542838203 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -99,6 +99,8 @@
 	<mutex>
 	"GameState.h"
 	"HitboxComponent.h"
+	"VisibleComponent.h"
+	"DeckComponent.h"
 
 1541778998 c:\users\eric\gamedev\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
@@ -106,7 +108,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541688863 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
+1542837878 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
@@ -116,6 +118,8 @@
 	"PositionComponent.h"
 	"ImpassibleComponent.h"
 	"HasJumpActionComponent.h"
+	"DeckComponent.h"
+	"VisibleComponent.h"
 
 1541636743 c:\users\eric\gamedev\simplegameengine\include\assemblages\playerassemblage.h
 	<memory>
@@ -2946,13 +2950,14 @@
 	"EntityComponentManager.h"
 	<string>
 
-1541977681 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\solidobjectassemblage.cpp
+1542837249 source:c:\users\eric\gamedev\simplegameengine\src\assemblages\solidobjectassemblage.cpp
 	"SolidObjectAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
 	"HitboxComponent.h"
 	"PositionComponent.h"
 	"ImpassibleComponent.h"
+	"VisibleComponent.h"
 
 1541977686 c:\users\eric\gamedev\simplegameengine\include\assemblages\solidobjectassemblage.h
 	"EntityComponentManager.h"
@@ -2964,16 +2969,18 @@
 	"SystemTimer.h"
 	<time.h>
 
-1542388798 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
+1542837062 source:c:\users\eric\gamedev\simplegameengine\src\components\deckcomponent.cpp
 	"DeckComponent.h"
 	<vector>
 	"BaseComponent.h"
+	"EventQueue.h"
 
-1542569009 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
+1542836988 c:\users\eric\gamedev\simplegameengine\include\components\deckcomponent.h
 	"BaseComponent.h"
 	<vector>
 	<memory>
 	"EntityComponentManager.h"
+	"EventQueue.h"
 
 1542253788 source:c:\users\eric\gamedev\simplegameengine\src\serialization\stringoperations.cpp
 	"StringOperations.h"
@@ -3416,10 +3423,23 @@
 	"StringOperations.h"
 	<string>
 
-1542388784 source:c:\users\eric\gamedev\simplegameengine\tests\components\deckcomponenttests.cpp
+1542834254 source:c:\users\eric\gamedev\simplegameengine\tests\components\deckcomponenttests.cpp
 	"catch.hpp"
 	"EntityComponentManager.h"
 	<vector>
 	<memory>
 	"DeckComponent.h"
+
+1542835289 source:c:\users\eric\gamedev\simplegameengine\src\eventqueue\eventqueue.cpp
+	"EventQueue.h"
+
+1542835283 c:\users\eric\gamedev\simplegameengine\include\eventqueue\eventqueue.h
+	<memory>
+	<vector>
+
+1542837194 c:\users\eric\gamedev\simplegameengine\include\components\gfx\visiblecomponent.h
+	"BaseComponent.h"
+
+1542837194 source:c:\users\eric\gamedev\simplegameengine\src\components\gfx\visiblecomponent.cpp
+	"VisibleComponent.h"
 
