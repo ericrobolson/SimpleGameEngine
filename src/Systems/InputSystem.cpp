@@ -53,6 +53,12 @@ InputSystem::InputSystem() : BaseSystem()
                     _keyMapper.Right = StringOperations::ParseIntegers(line);
                 }else if (line.find(keyboardPause) != std::string::npos){
                     _keyMapper.Pause = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardNextCard) != std::string::npos){
+                    _keyMapper.NextCard = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardPreviousCard) != std::string::npos){
+                    _keyMapper.PreviousCard = StringOperations::ParseIntegers(line);
+                }else if (line.find(keyboardUseCard) != std::string::npos){
+                    _keyMapper.UseCard = StringOperations::ParseIntegers(line);
                 }
             }
         }
@@ -63,6 +69,7 @@ InputSystem::InputSystem() : BaseSystem()
 
 
 }
+
 
 bool InputSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_Event event;
@@ -79,26 +86,43 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
         if (event.type == SDL_KEYDOWN) {
             if (_keyMapper.Up == key){
                 InputState::Instance().ButtonUpIsPressed = true;
-
-
-                    // Select next card?
-                    std::vector<int> entities = ecs.Search<DeckComponent>();
-
-                    while (entities.empty() == false){
-                        int entityId = entities.back();
-                        entities.pop_back();
-
-                        DeckComponent& deck = *ecs.GetComponent<DeckComponent>(entityId);
-                        deck.SelectNextCard();
-                    }
-
             }else if (_keyMapper.Down == key){
                 InputState::Instance().ButtonDownIsPressed = true;
             }else if (_keyMapper.Left == key){
                 InputState::Instance().ButtonLeftIsPressed = true;
             }else if (_keyMapper.Right == key){
                 InputState::Instance().ButtonRightIsPressed = true;
-            }else if (_keyMapper.Pause == key){
+            }else if (_keyMapper.NextCard == key){
+                InputState::Instance().Button4IsPressed = true;
+
+                // Select next card?
+                std::vector<int> entities = ecs.Search<DeckComponent>();
+
+                while (entities.empty() == false){
+                    int entityId = entities.back();
+                    entities.pop_back();
+
+                    DeckComponent& deck = *ecs.GetComponent<DeckComponent>(entityId);
+                    deck.SelectNextCard();
+                }
+
+            }else if (_keyMapper.UseCard == key){
+                InputState::Instance().Button5IsPressed = true;
+            }else if (_keyMapper.PreviousCard == key){
+                InputState::Instance().Button6IsPressed = true;
+
+                // Select next card?
+                std::vector<int> entities = ecs.Search<DeckComponent>();
+
+                while (entities.empty() == false){
+                    int entityId = entities.back();
+                    entities.pop_back();
+
+                    DeckComponent& deck = *ecs.GetComponent<DeckComponent>(entityId);
+                    deck.SelectPreviousCard();
+                }
+            }
+            else if (_keyMapper.Pause == key){
                 GameState::Instance().Paused = !GameState::Instance().Paused;
             }else if (_keyMapper.Escape == key){
                 InputState::Instance().Exit = true;
@@ -117,7 +141,14 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                 InputState::Instance().ButtonLeftIsPressed = false;
             }else if (_keyMapper.Right == key){
                 InputState::Instance().ButtonRightIsPressed = false;
+            }else if (_keyMapper.NextCard == key){
+                InputState::Instance().Button4IsPressed = false;
+            }else if (_keyMapper.UseCard == key){
+                InputState::Instance().Button5IsPressed = false;
+            }else if (_keyMapper.PreviousCard == key){
+                InputState::Instance().Button6IsPressed = false;
             }
+
         }
         else if (event.type == SDL_MOUSEBUTTONDOWN){
             switch (event.button.button){

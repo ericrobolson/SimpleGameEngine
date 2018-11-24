@@ -20,6 +20,7 @@ class InputState
         bool Button1IsPressed;
         bool Button2IsPressed;
         bool Button3IsPressed;
+
         bool Button4IsPressed;
 
         bool Button5IsPressed;

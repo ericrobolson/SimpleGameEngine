@@ -21,6 +21,9 @@ class InputSystem : public BaseSystem
                 Right = SDLK_RIGHT;
                 Pause = SDLK_PAUSE;
                 Escape = SDLK_ESCAPE;
+                NextCard = SDLK_e;
+                PreviousCard = SDLK_q;
+                UseCard = SDLK_w;
             };
 
             SDL_Keycode Up;
@@ -29,6 +32,11 @@ class InputSystem : public BaseSystem
             SDL_Keycode Right;
             SDL_Keycode Pause;
             SDL_Keycode Escape;
+            SDL_Keycode NextCard;
+            SDL_Keycode PreviousCard;
+            SDL_Keycode UseCard;
+
+
         };
 
         KeycodeMapper _keyMapper;
