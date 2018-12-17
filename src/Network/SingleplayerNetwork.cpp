@@ -15,7 +15,7 @@ SingleplayerNetwork::~SingleplayerNetwork()
     //dtor
 }
 
-std::shared_ptr<NetworkResponse> SingleplayerNetwork::SendPacket(Packet packet){
+NetworkResponse SingleplayerNetwork::SendPacket(Packet packet){
     _packet = packet;
 
     NetworkResponse response;

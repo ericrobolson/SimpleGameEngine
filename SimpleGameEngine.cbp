@@ -31,6 +31,7 @@
 					<Add directory="include/Components/Gfx" />
 					<Add directory="include/Serialization" />
 					<Add directory="include/EventQueue" />
+					<Add directory="include/Network" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -65,6 +66,7 @@
 					<Add directory="include/Components/Gfx" />
 					<Add directory="include/Serialization" />
 					<Add directory="include/EventQueue" />
+					<Add directory="include/Network" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -103,6 +105,7 @@
 					<Add directory="include/Serialization" />
 					<Add directory="tests" />
 					<Add directory="include/EventQueue" />
+					<Add directory="include/Network" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -140,6 +143,10 @@
 		<Unit filename="include/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/EventQueue/EventQueue.h" />
+		<Unit filename="include/Network/AbstractNetwork.h" />
+		<Unit filename="include/Network/NetworkResponse.h" />
+		<Unit filename="include/Network/Packet.h" />
+		<Unit filename="include/Network/SingleplayerNetwork.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
@@ -170,6 +177,10 @@
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/EventQueue/EventQueue.cpp" />
+		<Unit filename="src/Network/AbstractNetwork.cpp" />
+		<Unit filename="src/Network/NetworkResponse.cpp" />
+		<Unit filename="src/Network/Packet.cpp" />
+		<Unit filename="src/Network/SingleplayerNetwork.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
@@ -182,15 +193,15 @@
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
 		<Unit filename="tests/Components/DeckComponentTests.cpp">
-			<Option target="Release" />
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Network/SingleplayerNetworkTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Serialization/StringOperationsTests.cpp">
-			<Option target="Release" />
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/catch.hpp">
-			<Option target="Release" />
 			<Option target="Testing" />
 		</Unit>
 		<Extensions>

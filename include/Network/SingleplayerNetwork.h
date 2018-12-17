@@ -12,7 +12,7 @@ class SingleplayerNetwork : public AbstractNetwork
         SingleplayerNetwork();
         virtual ~SingleplayerNetwork();
 
-        std::shared_ptr<NetworkResponse> SendPacket(Packet packet);
+        NetworkResponse SendPacket(Packet packet);
         std::shared_ptr<Packet> RecievePacket();
         std::shared_ptr<Packet> RequestPacketFromGamestep(int gameStep);
 

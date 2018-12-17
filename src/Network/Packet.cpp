@@ -2,7 +2,6 @@
 
 Packet::Packet()
 {
-    //ctor
 }
 
 Packet::~Packet()

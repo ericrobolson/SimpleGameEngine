@@ -18,7 +18,7 @@ class AbstractNetwork
         AbstractNetwork();
         virtual ~AbstractNetwork();
 
-        virtual std::shared_ptr<NetworkResponse> SendPacket(Packet packet) = 0;
+        virtual NetworkResponse SendPacket(Packet packet) = 0;
         virtual std::shared_ptr<Packet> RecievePacket() = 0;
 
         // Since we are making a deterministic synced game, we'll need to keep track of 'turns' or gamesteps that happened if a client is
