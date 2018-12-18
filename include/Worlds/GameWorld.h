@@ -9,6 +9,7 @@
 #include "PositionSystem.h"
 #include "CollisionSystem.h"
 #include "SystemTimer.h"
+#include "NetworkSystem.h"
 
 class GameWorld : public BaseWorld
 {
@@ -23,6 +24,8 @@ class GameWorld : public BaseWorld
         MovementSystem _movementSystem;
         PositionSystem _positionSystem;
         CollisionSystem _collisionSystem;
+        NetworkSystem _networkSystem;
+
         clock_t _cycleClock;
         SystemTimer _systemTimer;
 };

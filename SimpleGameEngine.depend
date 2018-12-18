@@ -59,7 +59,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1542245024 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1545139866 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -76,7 +76,7 @@
 	"SystemTimer.h"
 	<iostream>
 
-1542125625 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1545139885 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
 	"GraphicsSystem.h"
@@ -85,6 +85,7 @@
 	"PositionSystem.h"
 	"CollisionSystem.h"
 	"SystemTimer.h"
+	"NetworkSystem.h"
 
 1543591776 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
@@ -3459,12 +3460,12 @@
 1544678977 source:c:\users\eric\gamedev\simplegameengine\src\network\abstractnetwork.cpp
 	"AbstractNetwork.h"
 
-1545058361 c:\users\eric\gamedev\simplegameengine\include\network\abstractnetwork.h
+1545140344 c:\users\eric\gamedev\simplegameengine\include\network\abstractnetwork.h
 	"NetworkResponse.h"
 	"Packet.h"
 	<memory>
 
-1545058442 source:c:\users\eric\gamedev\simplegameengine\tests\network\singleplayernetworktests.cpp
+1545058654 source:c:\users\eric\gamedev\simplegameengine\tests\network\singleplayernetworktests.cpp
 	"catch.hpp"
 	"NetworkResponse.h"
 	"SingleplayerNetwork.h"
@@ -3483,4 +3484,15 @@
 	"NetworkResponse.h"
 	"Packet.h"
 	<memory>
+
+1545140653 c:\users\eric\gamedev\simplegameengine\include\systems\networksystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+	<memory>
+
+1545140491 source:c:\users\eric\gamedev\simplegameengine\src\systems\networksystem.cpp
+	"NetworkSystem.h"
+	"ThreadPool.h"
+	"ThreadPool.h"
+	"SingleplayerNetwork.h"
 

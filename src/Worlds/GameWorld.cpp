@@ -35,14 +35,11 @@ bool GameWorld::Process(){
     if (_systemTimer.CanRun(60)){
         _inputSystem.Process(entityComponentManager);
 
-        if (!GameState::Instance().Paused){
-            _movementSystem.Process(entityComponentManager);
-        }
+        _networkSystem.Process(entityComponentManager);
 
-        if (!GameState::Instance().Paused){
-            _collisionSystem.Process(entityComponentManager);
-            _positionSystem.Process(entityComponentManager);
-        }
+        _movementSystem.Process(entityComponentManager);
+        _collisionSystem.Process(entityComponentManager);
+        _positionSystem.Process(entityComponentManager);
 
 
         bool finishedProcessing = true;
