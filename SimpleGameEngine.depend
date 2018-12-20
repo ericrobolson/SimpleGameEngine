@@ -59,7 +59,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1545139866 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1545316467 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -76,7 +76,7 @@
 	"SystemTimer.h"
 	<iostream>
 
-1545139885 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
+1545316486 c:\users\eric\gamedev\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
 	"GraphicsSystem.h"
@@ -85,7 +85,6 @@
 	"PositionSystem.h"
 	"CollisionSystem.h"
 	"SystemTimer.h"
-	"NetworkSystem.h"
 
 1543591776 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>

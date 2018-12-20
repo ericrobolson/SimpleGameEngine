@@ -143,10 +143,6 @@
 		<Unit filename="include/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/EventQueue/EventQueue.h" />
-		<Unit filename="include/Network/AbstractNetwork.h" />
-		<Unit filename="include/Network/NetworkResponse.h" />
-		<Unit filename="include/Network/Packet.h" />
-		<Unit filename="include/Network/SingleplayerNetwork.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
@@ -155,6 +151,7 @@
 		<Unit filename="include/Systems/GraphicsSystem.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Systems/MovementSystem.h" />
+		<Unit filename="include/Systems/NetworkSystem.h" />
 		<Unit filename="include/Systems/PositionSystem.h" />
 		<Unit filename="include/Systems/SystemTimer.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
@@ -177,10 +174,6 @@
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/EventQueue/EventQueue.cpp" />
-		<Unit filename="src/Network/AbstractNetwork.cpp" />
-		<Unit filename="src/Network/NetworkResponse.cpp" />
-		<Unit filename="src/Network/Packet.cpp" />
-		<Unit filename="src/Network/SingleplayerNetwork.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
@@ -189,13 +182,11 @@
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />
 		<Unit filename="src/Systems/MovementSystem.cpp" />
+		<Unit filename="src/Systems/NetworkSystem.cpp" />
 		<Unit filename="src/Systems/PositionSystem.cpp" />
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
 		<Unit filename="tests/Components/DeckComponentTests.cpp">
-			<Option target="Testing" />
-		</Unit>
-		<Unit filename="tests/Network/SingleplayerNetworkTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Serialization/StringOperationsTests.cpp">

@@ -1,7 +1,6 @@
 #include "NetworkSystem.h"
 #include "ThreadPool.h"
 #include "ThreadPool.h"
-#include "SingleplayerNetwork.h"
 
 NetworkSystem::NetworkSystem()
 {

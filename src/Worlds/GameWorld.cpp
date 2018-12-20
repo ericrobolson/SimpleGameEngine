@@ -35,7 +35,7 @@ bool GameWorld::Process(){
     if (_systemTimer.CanRun(60)){
         _inputSystem.Process(entityComponentManager);
 
-        _networkSystem.Process(entityComponentManager);
+      //  _networkSystem.Process(entityComponentManager);
 
         _movementSystem.Process(entityComponentManager);
         _collisionSystem.Process(entityComponentManager);
