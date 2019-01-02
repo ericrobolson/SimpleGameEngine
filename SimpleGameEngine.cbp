@@ -32,6 +32,8 @@
 					<Add directory="include/Serialization" />
 					<Add directory="include/EventQueue" />
 					<Add directory="include/Network" />
+					<Add directory="include/Rng" />
+					<Add directory="include/Debugger" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -67,6 +69,8 @@
 					<Add directory="include/Serialization" />
 					<Add directory="include/EventQueue" />
 					<Add directory="include/Network" />
+					<Add directory="include/Rng" />
+					<Add directory="include/Debugger" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -106,6 +110,8 @@
 					<Add directory="tests" />
 					<Add directory="include/EventQueue" />
 					<Add directory="include/Network" />
+					<Add directory="include/Rng" />
+					<Add directory="include/Debugger" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -140,9 +146,10 @@
 		<Unit filename="include/Components/MovementComponent.h" />
 		<Unit filename="include/Components/PlayerComponent.h" />
 		<Unit filename="include/Components/PositionComponent.h" />
-		<Unit filename="include/Debugger.h" />
+		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/EventQueue/EventQueue.h" />
+		<Unit filename="include/Rng/RandomNumberGenerator.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
@@ -173,7 +180,9 @@
 		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
+		<Unit filename="src/Debugger/Debugger.cpp" />
 		<Unit filename="src/EventQueue/EventQueue.cpp" />
+		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
@@ -187,6 +196,9 @@
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
 		<Unit filename="tests/Components/DeckComponentTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Rng/RandomNumberGeneratorTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Serialization/StringOperationsTests.cpp">

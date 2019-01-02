@@ -10,12 +10,9 @@
 using namespace std;
 
 #ifdef UNIT_TESTING
-
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include <iostream>
-
-
 #else
 
 int main( int argc, char* args[] )

@@ -14,10 +14,15 @@
 #include "LevelLoader.h"
 #include "SystemTimer.h"
 
+#include "RandomNumberGenerator.h"
+
 #include <iostream>
 
 GameWorld::GameWorld() : BaseWorld()
 {
+    SGE::RandomNumberGenerator::Instance().Seed(3);
+    SGE::RandomNumberGenerator::Instance().RandomInt();
+
     _graphicsSystem.DrawHitboxes = true;
 
     _cycleClock = clock();
