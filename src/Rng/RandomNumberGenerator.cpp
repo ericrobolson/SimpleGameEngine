@@ -48,7 +48,7 @@ int RandomNumberGenerator::RandomInt(int minValue, int maxValue){
 
     do{
         randomInt = RandomInt();
-        value = randomInt % (maxValue + 1 - minValue) + minValue;
+        value = randomInt % (maxValue - minValue) + minValue;
     } while(value < minValue || value > maxValue);
 
     return value;

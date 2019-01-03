@@ -12,6 +12,7 @@
 #include "HitboxComponent.h"
 #include "VisibleComponent.h"
 #include "DeckComponent.h"
+#include "BasicMaze.h"
 
 const int SCREEN_WIDTH = 1920;
 const int SCREEN_HEIGHT = 1080;
@@ -140,6 +141,50 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
                                                         return true;
                                                         });
     isDone.get();
+
+    // Draw maze
+    lock.lock();
+
+    BasicMaze maze;
+    maze.Generate();
+    int rectSize = 16;
+
+    for (int i = 0; i < BasicMaze::MaxGridSize; i++){
+        for (int j = 0; j < BasicMaze::MaxGridSize; j++){
+            bool draw = maze.Occupied(i, j);
+
+            if (draw){
+                SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+
+                SDL_Rect sdlRect;
+
+                sdlRect.x = i * rectSize;
+                sdlRect.y = j * rectSize;
+                sdlRect.w = rectSize;
+                sdlRect.h = rectSize;
+
+                SDL_RenderDrawRect(_renderer, &sdlRect);
+            }else{
+
+                SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
+
+                SDL_Rect sdlRect;
+
+                sdlRect.x = i * rectSize;
+                sdlRect.y = j * rectSize;
+                sdlRect.w = rectSize;
+                sdlRect.h = rectSize;
+
+                SDL_RenderFillRect(_renderer, &sdlRect);
+
+            }
+        }
+    }
+
+
+    lock.unlock();
+
+
 
     // Swap buffers.
     lock.lock();

@@ -21,14 +21,13 @@
 GameWorld::GameWorld() : BaseWorld()
 {
     SGE::RandomNumberGenerator::Instance().Seed(3);
-    SGE::RandomNumberGenerator::Instance().RandomInt();
 
     _graphicsSystem.DrawHitboxes = true;
 
     _cycleClock = clock();
 
-    LevelLoader loader;
-    loader.LoadLevel("room_001", entityComponentManager);
+  //  LevelLoader loader;
+   // loader.LoadLevel("room_001", entityComponentManager);
 }
 
 GameWorld::~GameWorld()
@@ -37,7 +36,7 @@ GameWorld::~GameWorld()
 }
 
 bool GameWorld::Process(){
-    if (_systemTimer.CanRun(60)){
+    if (_systemTimer.CanRun(30)){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);
