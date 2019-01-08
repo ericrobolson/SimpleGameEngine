@@ -48,7 +48,9 @@ SCENARIO("RandomNumberGenerator::RandomInt_WithRange"){
     int seed = 5;
     instance.Seed(seed);
 
-    int expectedRng = 1;
+    // Note, possible edge case with 0 as the lower bounds
+
+    int expectedRng = 0;
     int actualRng = instance.RandomInt(0,3);
 
     REQUIRE(expectedRng == actualRng);
