@@ -1,6 +1,6 @@
 #include "catch.hpp"
 #include "InstructionMachine.h"
-using namespace SGE;
+using namespace SGE_IM;
 
 SCENARIO("InstructionMachine::Execute: Literal"){
     InstructionMachine im;
@@ -20,7 +20,7 @@ SCENARIO("InstructionMachine::Execute: Add"){
     InstructionMachine im;
 
     int sizeOfInstructions = 5;
-    char bytecode[2];
+    char bytecode[5];
 
     bytecode[0] = InstructionMachine::Instructions::Literal;
     bytecode[1] = 1;
@@ -37,7 +37,7 @@ SCENARIO("InstructionMachine::Execute: Subtract"){
     InstructionMachine im;
 
     int sizeOfInstructions = 5;
-    char bytecode[2];
+    char bytecode[5];
 
     bytecode[0] = InstructionMachine::Instructions::Literal;
     bytecode[1] = 1;
@@ -54,7 +54,7 @@ SCENARIO("InstructionMachine::Execute: Multiply"){
     InstructionMachine im;
 
     int sizeOfInstructions = 5;
-    char bytecode[2];
+    char bytecode[5];
 
     bytecode[0] = InstructionMachine::Instructions::Literal;
     bytecode[1] = 7;
@@ -71,7 +71,7 @@ SCENARIO("InstructionMachine::Execute: Divide"){
     InstructionMachine im;
 
     int sizeOfInstructions = 5;
-    char bytecode[2];
+    char bytecode[5];
 
     bytecode[0] = InstructionMachine::Instructions::Literal;
     bytecode[1] = 21;

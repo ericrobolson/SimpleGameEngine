@@ -1,6 +1,6 @@
 #ifndef INSTRUCTIONMACHINE_H
 #define INSTRUCTIONMACHINE_H
-
+#include <memory>
 
 /*
     Example instruction for attacking:
@@ -25,10 +25,43 @@
         Target unit gains 1 STR
         Target unit gains 4 HP
         Target unit gains 4 Shield
-        Create Aura (4), all units within it have +3 STR (Aura's have size X, which decreases by 1 each round until it vanishes)
+        Create Aura (4) on target unit you control, all units within it have +3 STR (Aura's have size X, which decreases by 1 each round until it vanishes)
 */
 
-namespace SGE{
+namespace SGE_IM{
+
+// The status of the machine; whether it's in standby, executing an instruction, or waiting for user input
+enum MachineStatus{
+    Standby,
+    Executing,
+    WaitingForInput
+};
+
+// When the machine is waiting for user input, provides a way to communicate with the main thread what to look for.
+class UserInputRequestContainer{
+    public:
+        UserInputRequestContainer();
+        virtual ~UserInputRequestContainer();
+
+        // class that contains information regarding specific targeting criteria
+        class TargetingCriteria{
+        public:
+            int X;
+            int Y;
+            int Range;
+        };
+
+        std::shared_ptr<TargetingCriteria> TargetCriteria;
+
+        enum TargetType{
+            Any,
+            PlayerUnit,
+            EnemyUnit
+        };
+
+        TargetType Target;
+};
+
 class InstructionMachine
 {
     public:
@@ -37,19 +70,45 @@ class InstructionMachine
 
         enum Instructions{
             Literal = 0x00,
+
+            // Math
             Add = 0x01,
             Subtract = 0x02,
             Multiply = 0x03,
-            Divide = 0x04
+            Divide = 0x04,
+
+            // Targeting
+            TargetAnyUnit = 0x05,
+            TargetPlayerUnit = 0x06,
+            TargetEnemyUnit = 0x07,
+
+            //
         };
 
+        void SetUserValue(int value); // allows requests for user input to
+
+        MachineStatus GetStatus();
+        std::shared_ptr<UserInputRequestContainer> GetUserInputRequestContainer();
+
+
+        // change to make stateful, and then block executions if waiting for user input
         void Execute(char bytecode[], int sizeOfInstructions);
+
+        void ResumeExecution();
 
         int Peek();
 
     protected:
 
     private:
+        MachineStatus _status;
+        std::shared_ptr<UserInputRequestContainer> _userInputRequestContainer;
+
+        // Instruction information; need to store it in case the IM blocks for user input and can resume afterwards
+        char _instructions[];
+        std::shared_ptr<int> _sizeOfInstructions;
+
+        // Stack information
         static const int MAXSTACK = 128;
         int _stackSize = 0;
         int _stack[MAXSTACK];

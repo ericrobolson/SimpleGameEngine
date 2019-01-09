@@ -1,10 +1,10 @@
 #include "InstructionMachine.h"
 
-using namespace SGE;
+using namespace SGE_IM;
 
 InstructionMachine::InstructionMachine()
 {
-    //ctor
+    _status = MachineStatus::Standby;
 }
 
 InstructionMachine::~InstructionMachine()
