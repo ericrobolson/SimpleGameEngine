@@ -82,7 +82,8 @@ class InstructionMachine
             TargetPlayerUnit = 0x06,
             TargetEnemyUnit = 0x07,
 
-            //
+            // Read input
+            ReadUserInputValue = 0x08,
         };
 
         void SetUserValue(int value); // allows requests for user input to
@@ -98,17 +99,17 @@ class InstructionMachine
 
         int Peek();
 
-    protected:
-
     private:
         MachineStatus _status;
         std::shared_ptr<UserInputRequestContainer> _userInputRequestContainer;
+
+        int _userInputValue;
 
         // Instruction information; need to store it in case the IM blocks for user input and can resume afterwards
         char _instructions[];
         std::shared_ptr<int> _sizeOfInstructions;
 
-        // Stack information
+        // Stack details
         static const int MAXSTACK = 128;
         int _stackSize = 0;
         int _stack[MAXSTACK];

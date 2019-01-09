@@ -77,6 +77,11 @@ void InstructionMachine::Execute(char bytecode[], int sizeOfInstructions){
                     Push(a / b);
                 }
                 break;
+             case InstructionMachine::Instructions::ReadUserInputValue:
+                {
+                    Push(_userInputValue);
+                }
+                break;
             default:
                 throw "Not a valid instruction.";
                 break;
