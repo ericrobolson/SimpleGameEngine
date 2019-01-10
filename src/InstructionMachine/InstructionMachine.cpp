@@ -5,6 +5,7 @@ using namespace SGE_IM;
 InstructionMachine::InstructionMachine()
 {
     _status = MachineStatus::Standby;
+    _instructionIndex = 0;
 }
 
 InstructionMachine::~InstructionMachine()
@@ -12,9 +13,13 @@ InstructionMachine::~InstructionMachine()
     //dtor
 }
 
+MachineStatus InstructionMachine::GetStatus(){
+    return _status;
+}
+
 int InstructionMachine::Peek(){
     if (_stackSize <= 0){
-        throw "no value";
+        throw "No value on stack.";
     }
 
     int index = _stackSize;
@@ -22,6 +27,10 @@ int InstructionMachine::Peek(){
     return _stack[--index];
 }
 
+void InstructionMachine::SetUserValue(int value){
+    _userInputValue = value;
+    _status = MachineStatus ::ReadyToResumeExecution;
+}
 
 void InstructionMachine::Push(int i){
     if (_stackSize >= MAXSTACK){
@@ -40,12 +49,35 @@ int InstructionMachine::Pop(){
 }
 
 void InstructionMachine::Execute(char bytecode[], int sizeOfInstructions){
-    for (int i = 0; i < sizeOfInstructions; i++){
-        char instruction = bytecode[i];
+    if (sizeOfInstructions <= 0){
+        throw "sizeOfInstructions must be greater than 0.";
+    }
+
+    _instructions = bytecode;
+    _sizeOfInstructions = std::make_shared<int>(sizeOfInstructions);
+    _instructionIndex = 0;
+    _status = MachineStatus ::Executing;
+
+    Execute();
+}
+
+void InstructionMachine::ResumeExecution(){
+    Execute();
+}
+
+void InstructionMachine::Execute(){
+    if (_sizeOfInstructions == nullptr || _status == MachineStatus::WaitingForInput || (*_sizeOfInstructions) <= 0){
+        return;
+    }
+
+    int sizeOfInstructions = *_sizeOfInstructions;
+
+    while (_instructionIndex < sizeOfInstructions){
+        char instruction = _instructions[_instructionIndex];
         switch (instruction){
             case InstructionMachine::Instructions::Literal:
                 {
-                    int value = bytecode[++i];
+                    int value = _instructions[++_instructionIndex];
                     Push(value);
                 }
                 break;
@@ -86,6 +118,12 @@ void InstructionMachine::Execute(char bytecode[], int sizeOfInstructions){
                 throw "Not a valid instruction.";
                 break;
         }
+
+        _instructionIndex++;
+
     }
 
+    // Set state to standby, clear instructions
+    _sizeOfInstructions.reset();
+    _status = MachineStatus::Standby;
 }

@@ -1,6 +1,37 @@
 #include "catch.hpp"
 #include "InstructionMachine.h"
+#include <string>
+
 using namespace SGE_IM;
+
+
+SCENARIO("InstructionMachine::Peek: No value, throws"){
+    InstructionMachine im;
+
+    REQUIRE_THROWS_WITH(im.Peek(), "No value on stack.");
+}
+
+
+SCENARIO("InstructionMachine::SetUserValue"){
+    InstructionMachine im;
+
+    REQUIRE(im.GetStatus() == MachineStatus::Standby);
+
+    int userValue = 1;
+
+    im.SetUserValue(userValue);
+
+    REQUIRE(im.GetStatus() == MachineStatus::ReadyToResumeExecution);
+
+    int sizeOfInstructions = 1;
+    char bytecode[1];
+
+    bytecode[0] = InstructionMachine::Instructions::ReadUserInputValue;
+
+    im.Execute(bytecode, sizeOfInstructions);
+
+    REQUIRE(im.Peek() == userValue);
+}
 
 SCENARIO("InstructionMachine::Execute: Literal"){
     InstructionMachine im;

@@ -34,6 +34,8 @@
 					<Add directory="include/Network" />
 					<Add directory="include/Rng" />
 					<Add directory="include/Debugger" />
+					<Add directory="include/LevelGeneration" />
+					<Add directory="include/InstructionMachine" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -71,6 +73,8 @@
 					<Add directory="include/Network" />
 					<Add directory="include/Rng" />
 					<Add directory="include/Debugger" />
+					<Add directory="include/LevelGeneration" />
+					<Add directory="include/InstructionMachine" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -112,6 +116,8 @@
 					<Add directory="include/Network" />
 					<Add directory="include/Rng" />
 					<Add directory="include/Debugger" />
+					<Add directory="include/LevelGeneration" />
+					<Add directory="include/InstructionMachine" />
 				</Compiler>
 				<ExtraCommands>
 					<Add before="xcopy assets bin\Debug\assets\ /E /H /Y" />
@@ -149,6 +155,8 @@
 		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/EventQueue/EventQueue.h" />
+		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
+		<Unit filename="include/LevelGeneration/BasicMaze.h" />
 		<Unit filename="include/Rng/RandomNumberGenerator.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
@@ -182,6 +190,8 @@
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Debugger/Debugger.cpp" />
 		<Unit filename="src/EventQueue/EventQueue.cpp" />
+		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
+		<Unit filename="src/LevelGeneration/BasicMaze.cpp" />
 		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
@@ -198,6 +208,7 @@
 		<Unit filename="tests/Components/DeckComponentTests.cpp">
 			<Option target="Testing" />
 		</Unit>
+		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp" />
 		<Unit filename="tests/Rng/RandomNumberGeneratorTests.cpp">
 			<Option target="Testing" />
 		</Unit>
