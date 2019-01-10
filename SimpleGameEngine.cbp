@@ -208,7 +208,12 @@
 		<Unit filename="tests/Components/DeckComponentTests.cpp">
 			<Option target="Testing" />
 		</Unit>
-		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp" />
+		<Unit filename="tests/EntityComponentManager/EntityComponentManagerTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp">
+			<Option target="Testing" />
+		</Unit>
 		<Unit filename="tests/Rng/RandomNumberGeneratorTests.cpp">
 			<Option target="Testing" />
 		</Unit>

@@ -11,7 +11,6 @@ SCENARIO("InstructionMachine::Peek: No value, throws"){
     REQUIRE_THROWS_WITH(im.Peek(), "No value on stack.");
 }
 
-
 SCENARIO("InstructionMachine::SetUserValue"){
     InstructionMachine im;
 

@@ -27,7 +27,7 @@
         Target unit gains 4 Shield
         Create Aura (4) on target unit you control, all units within it have +3 STR (Aura's have size X, which decreases by 1 each round until it vanishes)
 
-    /*
+
         int TargetUnitYouControl();
         int TargetUnitYouDontControl();
         int TargetUnit();
@@ -61,7 +61,7 @@
         int GetEnergy(int playerId);
         int SetEnergy(int playerId);
 
-        */
+
 */
 
 namespace SGE_IM{
