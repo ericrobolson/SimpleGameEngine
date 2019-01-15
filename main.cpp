@@ -7,6 +7,8 @@
 
 #include "Worlds/GameWorld.h"
 #include "ThreadPool.h"
+
+#include <GLFW/glfw3.h>
 using namespace std;
 
 #ifdef UNIT_TESTING
