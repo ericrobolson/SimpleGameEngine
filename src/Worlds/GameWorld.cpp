@@ -26,8 +26,8 @@ GameWorld::GameWorld() : BaseWorld()
 
     _cycleClock = clock();
 
-  //  LevelLoader loader;
-   // loader.LoadLevel("room_001", entityComponentManager);
+    LevelLoader loader;
+    loader.LoadLevel("room_001", entityComponentManager);
 }
 
 GameWorld::~GameWorld()
@@ -36,7 +36,7 @@ GameWorld::~GameWorld()
 }
 
 bool GameWorld::Process(){
-    if (_systemTimer.CanRun(30)){
+    if (_systemTimer.CanRun(60)){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);

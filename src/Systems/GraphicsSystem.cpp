@@ -145,41 +145,6 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
     // Draw maze
     lock.lock();
 
-    BasicMaze maze;
-    maze.Generate();
-    int rectSize = 16;
-
-    for (int i = 0; i < BasicMaze::MaxGridSize; i++){
-        for (int j = 0; j < BasicMaze::MaxGridSize; j++){
-            bool draw = maze.Occupied(i, j);
-
-            if (draw){
-                SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
-
-                SDL_Rect sdlRect;
-
-                sdlRect.x = i * rectSize;
-                sdlRect.y = j * rectSize;
-                sdlRect.w = rectSize;
-                sdlRect.h = rectSize;
-
-                SDL_RenderDrawRect(_renderer, &sdlRect);
-            }else{
-
-                SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
-
-                SDL_Rect sdlRect;
-
-                sdlRect.x = i * rectSize;
-                sdlRect.y = j * rectSize;
-                sdlRect.w = rectSize;
-                sdlRect.h = rectSize;
-
-                SDL_RenderFillRect(_renderer, &sdlRect);
-
-            }
-        }
-    }
 
 
     lock.unlock();
