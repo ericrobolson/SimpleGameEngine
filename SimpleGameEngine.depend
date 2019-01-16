@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1547567149 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1547596766 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
@@ -7,7 +7,6 @@
 	<iostream>
 	"Worlds/GameWorld.h"
 	"ThreadPool.h"
-	<GLFW/glfw3.h>
 	"catch.hpp"
 	<iostream>
 
@@ -60,7 +59,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1547593788 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1547593853 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -88,7 +87,7 @@
 	"CollisionSystem.h"
 	"SystemTimer.h"
 
-1547593831 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1547596747 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
