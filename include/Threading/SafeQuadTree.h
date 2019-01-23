@@ -46,6 +46,29 @@ class SafeQuadTree
             return _value;
         }
 
+        void CombineNodesSafe(){
+            if (_southWestNode != nullptr && _northWestNode != nullptr && _northEastNode != nullptr && _southEastNode != nullptr){
+                // check to see if all child node values are the same; if so, then combine them, set this value, then delete.
+
+
+
+                std::shared_ptr<T> swValue = *_southWestNode.GetValueSafe();
+                std::shared_ptr<T> seValue = *_southEastNode.GetValueSafe();
+                std::shared_ptr<T> neValue = *_northEastNode.GetValueSafe();
+                std::shared_ptr<T> nwValue = *_northWestNode.GetValueSafe();
+
+                if (swValue == seValue == neValue == nwValue){
+                    // set this value, then delete the children
+                    _value = swValue;
+                    _southWestNode.reset();
+                    _southEastNode.reset();
+                    _northWestNode.reset();
+                    _northEastNode.reset();
+                }
+            }
+        }
+
+
     private:
         std::shared_ptr<T> _value;
 
@@ -54,11 +77,6 @@ class SafeQuadTree
         std::shared_ptr<SafeQuadTree> _northEastNode;
         std::shared_ptr<SafeQuadTree> _southEastNode
 
-        void CombineNodesSafe(){
-            if (_southWestNode != nullptr && _northWestNode != nullptr && _northEastNode != nullptr && _southEastNode != nullptr){
-                // check to see if all child node values are the same; if so, then combine them, set this value, then delete. Call parent node to combine nodes, recursively
-            }
-        }
 
         std::shared_ptr<SafeQuadTree> GetParentNodeSafe(){
             return _parentNode;

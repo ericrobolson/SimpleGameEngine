@@ -3528,11 +3528,10 @@
 1547081727 c:\users\eric\gamedev\simplegameengine\include\instructionmachine\instructionmachine.h
 	<memory>
 
-1547080863 source:c:\users\eric\gamedev\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
+1547081941 source:c:\users\eric\gamedev\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
 	"catch.hpp"
 	"InstructionMachine.h"
 	<string>
-	<exception>
 
 1547513314 c:\users\eric\gamedev\simplegameengine\include\glfw\glfw3.h
 	<stddef.h>

@@ -141,7 +141,6 @@
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid -static-libgcc" />
-			<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
 			<Add directory="C:/TDM-GCC-32/lib" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
 		</Linker>
@@ -177,6 +176,7 @@
 		<Unit filename="include/Systems/NetworkSystem.h" />
 		<Unit filename="include/Systems/PositionSystem.h" />
 		<Unit filename="include/Systems/SystemTimer.h" />
+		<Unit filename="include/Threading/SafeQuadTree.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
