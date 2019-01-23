@@ -35,7 +35,29 @@ public:
     //             void Reset()
 
 
-//             std::vector<int> Search(std::function<bool(TComponent c)> const& filterLambda)
+SCENARIO("EntityComponentManager::Search_UsingLambda_ReturnsOnlyFilteredResults"){
+    EntityComponentManager ecs;
+
+    std::shared_ptr<int> entityPtr1 = ecs.AddEntity();
+    int entityId1 = *entityPtr1.get();
+
+    TestComponent& component = ecs.AddComponent<TestComponent>(entityId1);
+    component.TestNumber = 666;
+
+    std::shared_ptr<int> entityPtr2 = ecs.AddEntity();
+    int entityId2 = *entityPtr2.get();
+
+    ecs.AddComponent<TestComponent>(entityId2);
+
+    std::vector<int> matchingEntityIds = ecs.Search<TestComponent>(
+        [](TestComponent c){
+            return (c.TestNumber != c.TestNumberDefaultValue);
+        });
+
+    REQUIRE(matchingEntityIds.empty() == false);
+    REQUIRE(matchingEntityIds.size() == 1);
+    REQUIRE(matchingEntityIds[0] == entityId1);
+}
 
 
 SCENARIO("EntityComponentManager::SearchOn_MatchingEntityIds_ReturnsExpectedResults"){
