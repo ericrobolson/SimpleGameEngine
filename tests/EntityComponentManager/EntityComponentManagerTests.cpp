@@ -27,13 +27,110 @@ public:
     int TestNumber;
 };
 
-//tests todo:
-    //             std::vector<int> SearchOn(std::vector<int> entityIds, std::function<bool(TComponent c)> const& filterLambda){
-    //             void RemoveComponent(int entityId)
-    //             void MarkEntityInactive(int entityId)
-    //             void DeleteAllInactiveEntities()
-    //             void Reset()
+SCENARIO("EntityComponentManager::Reset_GetComponentOnDeletedEntity_ReturnsNull"){
+    EntityComponentManager ecs;
 
+    std::shared_ptr<int> entityPtr1 = ecs.AddEntity();
+    int entityId1 = *entityPtr1.get();
+
+    ecs.AddComponent<TestComponent>(entityId1);
+
+    REQUIRE(ecs.GetComponent<TestComponent>(entityId1) != nullptr);
+
+    ecs.Reset();
+
+    REQUIRE(ecs.GetComponent<TestComponent>(entityId1) == nullptr);
+}
+
+SCENARIO("EntityComponentManager::Reset_NoEntities_DoesNothing"){
+    EntityComponentManager ecs;
+
+    ecs.Reset();
+
+    REQUIRE(true == true);
+}
+
+SCENARIO("EntityComponentManager::DeleteAllInactiveEntities_NoEntities_DoesNothing"){
+    EntityComponentManager ecs;
+
+    ecs.DeleteAllInactiveEntities();
+
+    REQUIRE(true == true);
+}
+
+SCENARIO("EntityComponentManager::MarkEntityInactive_ReturnsEntityComponentsIfNotDeleted"){
+    EntityComponentManager ecs;
+
+    std::shared_ptr<int> entityPtr1 = ecs.AddEntity();
+    int entityId1 = *entityPtr1.get();
+
+    ecs.AddComponent<TestComponent>(entityId1);
+
+    REQUIRE(ecs.GetComponent<TestComponent>(entityId1) != nullptr);
+
+    ecs.MarkEntityInactive(entityId1);
+
+    REQUIRE(ecs.GetComponent<TestComponent>(entityId1) != nullptr);
+}
+
+SCENARIO("EntityComponentManager::RemoveComponent_ExistantComponent_DeletesComponent"){
+    EntityComponentManager ecs;
+
+    std::shared_ptr<int> entityPtr1 = ecs.AddEntity();
+    int entityId1 = *entityPtr1.get();
+
+    ecs.AddComponent<TestComponent>(entityId1);
+
+    REQUIRE(ecs.GetComponent<TestComponent>(entityId1) != nullptr);
+
+    ecs.RemoveComponent<TestComponent>(entityId1);
+
+    REQUIRE(ecs.GetComponent<TestComponent>(entityId1) == nullptr);
+}
+
+SCENARIO("EntityComponentManager::RemoveComponent_NonExistantComponent_DoesNothing"){
+    EntityComponentManager ecs;
+
+    std::shared_ptr<int> entityPtr1 = ecs.AddEntity();
+    int entityId1 = *entityPtr1.get();
+
+    ecs.RemoveComponent<TestComponent>(entityId1);
+
+    std::shared_ptr<TestComponent> entity1Component = ecs.GetComponent<TestComponent>(entityId1);
+
+    REQUIRE(entity1Component == nullptr);
+}
+
+
+
+SCENARIO("EntityComponentManager::SearchOn_UsingLambda_ReturnsOnlyFilteredResults"){
+    EntityComponentManager ecs;
+
+    std::shared_ptr<int> entityPtr1 = ecs.AddEntity();
+    int entityId1 = *entityPtr1.get();
+
+    TestComponent& component = ecs.AddComponent<TestComponent>(entityId1);
+    component.TestNumber = 666;
+
+    std::shared_ptr<int> entityPtr2 = ecs.AddEntity();
+    int entityId2 = *entityPtr2.get();
+
+    ecs.AddComponent<TestComponent>(entityId2);
+
+    ecs.AddEntity();
+
+    std::vector<int> allMatchingEntityIds = ecs.Search<TestComponent>();
+
+
+    std::vector<int> matchingEntityIds = ecs.SearchOn<TestComponent>(allMatchingEntityIds,
+        [](TestComponent c){
+            return (c.TestNumber != c.TestNumberDefaultValue);
+        });
+
+    REQUIRE(matchingEntityIds.empty() == false);
+    REQUIRE(matchingEntityIds.size() == 1);
+    REQUIRE(matchingEntityIds[0] == entityId1);
+}
 
 SCENARIO("EntityComponentManager::Search_UsingLambda_ReturnsOnlyFilteredResults"){
     EntityComponentManager ecs;

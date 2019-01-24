@@ -50,8 +50,6 @@ namespace ECS{
                 return GetComponent_ThreadSafe<TComponent>(entityId);
             };
 
-         //   std::function<bool(TComponent c)> const& filterLambda
-
             /// Get a list of entityIds that have the given component while applying the filter lambda
             template <class TComponent>
             std::vector<int> Search(std::function<bool(TComponent c)> const& filterLambda){
