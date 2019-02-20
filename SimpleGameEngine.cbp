@@ -150,7 +150,6 @@
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
 		<Unit filename="include/Components/CanJumpComponent.h" />
-		<Unit filename="include/Components/DeckComponent.h" />
 		<Unit filename="include/Components/Gfx/SdlRectangleComponent.h" />
 		<Unit filename="include/Components/Gfx/VisibleComponent.h" />
 		<Unit filename="include/Components/HasJumpActionComponent.h" />
@@ -161,9 +160,11 @@
 		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
-		<Unit filename="include/EventQueue/EventQueue.h" />
 		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
 		<Unit filename="include/LevelGeneration/BasicMaze.h" />
+		<Unit filename="include/Physics/Aabb.h" />
+		<Unit filename="include/Physics/Circle.h" />
+		<Unit filename="include/Physics/Vect2.h" />
 		<Unit filename="include/Rng/RandomNumberGenerator.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
@@ -187,7 +188,6 @@
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
 		<Unit filename="src/Components/CanJumpComponent.cpp" />
-		<Unit filename="src/Components/DeckComponent.cpp" />
 		<Unit filename="src/Components/Gfx/SdlRectangleComponent.cpp" />
 		<Unit filename="src/Components/Gfx/VisibleComponent.cpp" />
 		<Unit filename="src/Components/HasJumpActionComponent.cpp" />
@@ -197,9 +197,11 @@
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Debugger/Debugger.cpp" />
-		<Unit filename="src/EventQueue/EventQueue.cpp" />
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
 		<Unit filename="src/LevelGeneration/BasicMaze.cpp" />
+		<Unit filename="src/Physics/Aabb.cpp" />
+		<Unit filename="src/Physics/Circle.cpp" />
+		<Unit filename="src/Physics/Vect2.cpp" />
 		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />

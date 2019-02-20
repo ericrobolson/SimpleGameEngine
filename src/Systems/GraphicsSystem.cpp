@@ -11,7 +11,6 @@
 #include "GameState.h"
 #include "HitboxComponent.h"
 #include "VisibleComponent.h"
-#include "DeckComponent.h"
 #include "BasicMaze.h"
 
 const int SCREEN_WIDTH = 1920;
@@ -62,58 +61,6 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
             sdlRect.h = ScaleGraphics(rectangle.GetHeight());
 
             SDL_RenderDrawRect(_renderer, &sdlRect);
-        }
-    }
-
-    // Draw Deck/cards
-    std::shared_ptr<DeckComponent> deckPtr = ecs.GetComponent<DeckComponent>(entityId);
-    if (deckPtr != nullptr){
-        DeckComponent deck = *deckPtr.get();
-
-        // Draw energy
-        const int energyX = 50;
-        const int energyY = 500;
-        const int energyW = 16;
-
-        for (int i = 0; i < deck.GetEnergy(); i++){
-            SDL_SetRenderDrawColor(_renderer, 0, 0, 255, 255);
-            SDL_Rect sdlRect;
-
-            int offset = i * (energyW + 2); // offset each energy rectangle for each energy, with a spacing of 2
-
-            sdlRect.x = ScaleGraphics(energyX + offset);
-            sdlRect.y = ScaleGraphics(energyY);
-            sdlRect.w = ScaleGraphics(energyW);
-            sdlRect.h = ScaleGraphics(energyW);
-
-            SDL_RenderFillRect(_renderer, &sdlRect);
-        }
-
-        // Draw Cards
-         // Draw energy
-        const int cardX = 150;
-        const int cardY = 500;
-        const int cardW = 16;
-
-        for (int i = 0; i < deck.GetHand().size(); i++){
-
-            if (deck.GetActiveCardIndex() == i){
-                SDL_SetRenderDrawColor(_renderer, 0, 255, 255, 255);
-            }
-            else{
-                SDL_SetRenderDrawColor(_renderer, 0, 255, 0, 255);
-            }
-
-            SDL_Rect sdlRect;
-
-            int offset = i * (cardW + 2); // offset each energy rectangle for each energy, with a spacing of 2
-
-            sdlRect.x = ScaleGraphics(cardX + offset);
-            sdlRect.y = ScaleGraphics(cardY);
-            sdlRect.w = ScaleGraphics(cardW);
-            sdlRect.h = ScaleGraphics(cardW * 2);
-
-            SDL_RenderFillRect(_renderer, &sdlRect);
         }
     }
 }
