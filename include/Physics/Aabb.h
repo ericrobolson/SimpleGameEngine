@@ -2,6 +2,7 @@
 #define AABB_H
 
 #include "Vect2.h"
+#include "Coordinate.h"
 
 namespace SGE_Physics
 {
@@ -13,8 +14,12 @@ namespace SGE_Physics
             Aabb();
             virtual ~Aabb();
 
-            Vect2 Min;
-            Vect2 Max;
+            Coordinate MinCoordinate();
+            Coordinate MaxCoordinate();
+
+            int HalfWidth;
+            int HalfHeight;
+            Vect2 Position;
 
         protected:
 

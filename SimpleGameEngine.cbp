@@ -158,6 +158,8 @@
 		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Circle.h" />
+		<Unit filename="include/Physics/CollisionDectector.h" />
+		<Unit filename="include/Physics/PhysicsEngine.h" />
 		<Unit filename="include/Physics/RigidBody.h" />
 		<Unit filename="include/Physics/Vect2.h" />
 		<Unit filename="include/Rng/RandomNumberGenerator.h" />
@@ -183,6 +185,8 @@
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Circle.cpp" />
+		<Unit filename="src/Physics/CollisionDectector.cpp" />
+		<Unit filename="src/Physics/PhysicsEngine.cpp" />
 		<Unit filename="src/Physics/RigidBody.cpp" />
 		<Unit filename="src/Physics/Vect2.cpp" />
 		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
@@ -195,9 +199,6 @@
 		<Unit filename="src/Systems/NetworkSystem.cpp" />
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
-		<Unit filename="tests/Components/DeckComponentTests.cpp">
-			<Option target="Testing" />
-		</Unit>
 		<Unit filename="tests/EntityComponentManager/EntityComponentManagerTests.cpp">
 			<Option target="Testing" />
 		</Unit>

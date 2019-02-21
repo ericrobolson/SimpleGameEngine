@@ -1,6 +1,8 @@
 #ifndef VECT2_H
 #define VECT2_H
 
+#include "Physics/Coordinate.h"
+
 namespace SGE_Physics{
 
 class Vect2
@@ -9,8 +11,7 @@ class Vect2
         Vect2();
         virtual ~Vect2();
 
-        int X;
-        int Y;
+        Coordinate Coordinates;
 
     protected:
 

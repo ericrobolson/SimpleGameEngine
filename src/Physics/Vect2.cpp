@@ -4,8 +4,6 @@ using namespace SGE_Physics;
 
 Vect2::Vect2()
 {
-    X = 0;
-    Y = 0;
     //ctor
 }
 
