@@ -159,6 +159,7 @@
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Circle.h" />
 		<Unit filename="include/Physics/CollisionDectector.h" />
+		<Unit filename="include/Physics/Coordinate.h" />
 		<Unit filename="include/Physics/PhysicsEngine.h" />
 		<Unit filename="include/Physics/RigidBody.h" />
 		<Unit filename="include/Physics/Vect2.h" />
@@ -186,6 +187,7 @@
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Circle.cpp" />
 		<Unit filename="src/Physics/CollisionDectector.cpp" />
+		<Unit filename="src/Physics/Coordinate.cpp" />
 		<Unit filename="src/Physics/PhysicsEngine.cpp" />
 		<Unit filename="src/Physics/RigidBody.cpp" />
 		<Unit filename="src/Physics/Vect2.cpp" />
@@ -203,6 +205,12 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Physics/AabbTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Physics/CollisionDectectorTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Rng/RandomNumberGeneratorTests.cpp">

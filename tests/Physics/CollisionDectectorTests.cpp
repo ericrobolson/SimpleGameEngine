@@ -2,6 +2,7 @@
 #include "catch.hpp"
 #include "CollisionDectector.h"
 #include "Aabb.h"
+#include "Physics/Circle.h"
 using namespace SGE_Physics;
 
 
@@ -57,4 +58,37 @@ SCENARIO("CollisionDectector::AabbVsAabb: Overlap on Yaxis returns true"){
     CollisionDectector cd;
 
     REQUIRE(cd.AabbVsAabb(a, b) == true);
+}
+
+SCENARIO("CollisionDectector::CircleVsCircle: No collision returns false"){
+    Circle a;
+    a.Position.Coordinates.X = 0;
+    a.Position.Coordinates.Y = 0;
+    a.Radius = 2;
+
+    Circle b;
+    b.Position.Coordinates.X = 4;
+    b.Position.Coordinates.Y = 4;
+    b.Radius = 2;
+
+
+    CollisionDectector cd;
+
+    REQUIRE(cd.CircleVsCircle(a, b) == false);
+}
+
+SCENARIO("CollisionDectector::CircleVsCircle: Collision returns true"){
+    Circle a;
+    a.Position.Coordinates.X = 0;
+    a.Position.Coordinates.Y = 0;
+    a.Radius = 4;
+
+    Circle b;
+    b.Position.Coordinates.X = 4;
+    b.Position.Coordinates.Y = 4;
+    b.Radius = 4;
+
+    CollisionDectector cd;
+
+    REQUIRE(cd.CircleVsCircle(a, b) == true);
 }
