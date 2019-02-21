@@ -2,17 +2,12 @@
 #include <list>
 #include "GraphicsSystem.h"
 #include "EntityComponentManager.h"
-#include "PositionComponent.h"
 #include <math.h>
 #include <future>
 #include "ThreadPool.h"
 #include "InputState.h"
 #include <mutex>
 #include "GameState.h"
-#include "HitboxComponent.h"
-#include "VisibleComponent.h"
-#include "BasicMaze.h"
-
 const int SCREEN_WIDTH = 1920;
 const int SCREEN_BITSPERPIXEL = 32;
 const int SCREEN_HEIGHT = 1080;
@@ -42,6 +37,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
+    /*
     std::shared_ptr<PositionComponent> positionPtr = ecs.GetComponent<PositionComponent>(entityId);
 
     // Draw Hitboxes
@@ -63,6 +59,7 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
             SDL_RenderDrawRect(_renderer, &sdlRect);
         }
     }
+    */
 }
 
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
@@ -73,6 +70,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
     lock.unlock();
 
+    /*
     std::vector<int> entityIds = ecs.Search<VisibleComponent>(); // change to visible component?
 
     while (entityIds.empty() == false){
@@ -83,7 +81,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
                                             ProcessJob(ecs, entityId);
                                         });
     }
-
+*/
     std::future<bool> isDone = ThreadPool::Instance().submit([](){
                                                         return true;
                                                         });

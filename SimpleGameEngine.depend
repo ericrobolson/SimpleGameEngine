@@ -3570,14 +3570,11 @@
 	"catch.hpp"
 	<iostream>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
+1550759642 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
 	"GraphicsSystem.h"
 	"InputSystem.h"
-	"MovementSystem.h"
-	"PositionSystem.h"
-	"CollisionSystem.h"
 	"SystemTimer.h"
 
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
@@ -3638,17 +3635,11 @@
 	<mutex>
 	<queue>
 
-1550676815 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
+1550759628 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
-	"HitboxComponent.h"
-	"MovementComponent.h"
 	"PlayerComponent.h"
-	"PositionComponent.h"
-	"ImpassibleComponent.h"
-	"HasJumpActionComponent.h"
-	"VisibleComponent.h"
 
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\assemblages\playerassemblage.h
 	<memory>
@@ -3776,7 +3767,7 @@
 	"RandomNumberGenerator.h"
 	"Debugger.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\levelloader.cpp
+1550759681 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\levelloader.cpp
 	"LevelLoader.h"
 	"EntityComponentManager.h"
 	<string>
@@ -3784,7 +3775,6 @@
 	<vector>
 	<memory>
 	"PlayerAssemblage.h"
-	"SolidObjectAssemblage.h"
 	"StringOperations.h"
 
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\levelloader.h
@@ -3809,7 +3799,7 @@
 
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\inputstate.h
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\collisionsystem.cpp
+1550715634 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
 	"EntityComponentManager.h"
 	"GameState.h"
@@ -3818,28 +3808,22 @@
 	"PositionComponent.h"
 	"ThreadPool.h"
 	"ImpassibleComponent.h"
-	"CanJumpComponent.h"
-	"HasJumpActionComponent.h"
 	<future>
 	<memory>
 
-1550676844 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
+1550759726 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
 	"EntityComponentManager.h"
-	"PositionComponent.h"
 	<math.h>
 	<future>
 	"ThreadPool.h"
 	"InputState.h"
 	<mutex>
 	"GameState.h"
-	"HitboxComponent.h"
-	"VisibleComponent.h"
-	"BasicMaze.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
+1550676915 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -3851,9 +3835,8 @@
 	<future>
 	<fstream>
 	"StringOperations.h"
-	"DeckComponent.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\movementsystem.cpp
+1550715594 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\movementsystem.cpp
 	<list>
 	<math.h>
 	"MovementSystem.h"
@@ -3867,8 +3850,6 @@
 	"ThreadPool.h"
 	<chrono>
 	"PlayerComponent.h"
-	"CanJumpComponent.h"
-	"HasJumpActionComponent.h"
 
 1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\networksystem.cpp
 	"NetworkSystem.h"
@@ -3895,17 +3876,13 @@
 	"SystemTimer.h"
 	<time.h>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1550759694 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
 	<time.h>
 	<thread>
 	<memory>
-	<MovementComponent.h>
-	<PositionComponent.h>
-	<HitboxComponent.h>
-	<ImpassibleComponent.h>
 	<PlayerAssemblage.h>
 	"GameState.h"
 	"LevelLoader.h"
@@ -3913,8 +3890,8 @@
 	"RandomNumberGenerator.h"
 	<iostream>
 
-1550587990 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\vect2.cpp
-	"Vect2.h"
+1550677518 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\vect2.cpp
+	"Physics/Vect2.h"
 
 1550588038 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\vect2.h
 
@@ -3929,4 +3906,9 @@
 
 1550677512 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
 	"Physics/Vect2.h"
+
+1550677860 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\rigidbody.cpp
+	"Physics/RigidBody.h"
+
+1550677889 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 

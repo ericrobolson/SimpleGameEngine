@@ -5,9 +5,6 @@
 #include "BaseWorld.h"
 #include "GraphicsSystem.h"
 #include "InputSystem.h"
-#include "MovementSystem.h"
-#include "PositionSystem.h"
-#include "CollisionSystem.h"
 #include "SystemTimer.h"
 
 class GameWorld : public BaseWorld
@@ -20,9 +17,6 @@ class GameWorld : public BaseWorld
     private:
         GraphicsSystem _graphicsSystem;
         InputSystem _inputSystem;
-        MovementSystem _movementSystem;
-        PositionSystem _positionSystem;
-        CollisionSystem _collisionSystem;
        // NetworkSystem _networkSystem;
 
         clock_t _cycleClock;
