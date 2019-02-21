@@ -6,69 +6,55 @@ using namespace SGE_Physics;
 
 
 SCENARIO("CollisionDectector::AabbVsAabb: No collision returns false"){
-    /*
-
     Aabb a;
-    a.Min.X = 0;
-    a.Min.Y = 0;
-    a.Max.X = 2;
-    a.Max.Y = 2;
-
+    a.Position.Coordinates.X = 0;
+    a.Position.Coordinates.Y = 0;
+    a.HalfHeight = 2;
+    a.HalfWidth = 2;
 
     Aabb b;
-    b.Min.X = 4;
-    b.Min.Y = 4;
-    b.Max.X = 6;
-    b.Max.Y = 6;
-
+    b.Position.Coordinates.X = 10;
+    b.Position.Coordinates.Y = 10;
+    b.HalfHeight = 2;
+    b.HalfWidth = 2;
 
     CollisionDectector cd;
 
     REQUIRE(cd.AabbVsAabb(a, b) == false);
-    */
-    REQUIRE(true == false);
 }
 
 SCENARIO("CollisionDectector::AabbVsAabb: Overlap on Xaxis returns true"){
-    /*
     Aabb a;
-    a.Min.X = 0;
-    a.Min.Y = 0;
-    a.Max.X = 2;
-    a.Max.Y = 2;
-
+    a.Position.Coordinates.X = 0;
+    a.Position.Coordinates.Y = 0;
+    a.HalfHeight = 2;
+    a.HalfWidth = 2;
 
     Aabb b;
-    b.Min.X = -1;
-    b.Min.Y = 0;
-    b.Max.X = 6;
-    b.Max.Y = 2;
-
+    b.Position.Coordinates.X = 10;
+    b.Position.Coordinates.Y = 0;
+    b.HalfHeight = 2;
+    b.HalfWidth = 20;
 
     CollisionDectector cd;
 
     REQUIRE(cd.AabbVsAabb(a, b) == true);
-    */
-    REQUIRE(true == false);
 }
 
 SCENARIO("CollisionDectector::AabbVsAabb: Overlap on Yaxis returns true"){
-    /*
     Aabb a;
-    a.Min.X = 0;
-    a.Min.Y = 0;
-    a.Max.X = 2;
-    a.Max.Y = 6;
+    a.Position.Coordinates.X = 0;
+    a.Position.Coordinates.Y = 0;
+    a.HalfHeight = 2;
+    a.HalfWidth = 2;
 
     Aabb b;
-    b.Min.X = 0;
-    b.Min.Y = 0;
-    b.Max.X = 2;
-    b.Max.Y = 2;
+    b.Position.Coordinates.X = 0;
+    b.Position.Coordinates.Y = 10;
+    b.HalfHeight = 20;
+    b.HalfWidth = 20;
 
     CollisionDectector cd;
 
     REQUIRE(cd.AabbVsAabb(a, b) == true);
-    */
-    REQUIRE(true == false);
 }
