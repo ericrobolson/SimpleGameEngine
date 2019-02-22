@@ -8,8 +8,8 @@ class Coordinate
         Coordinate();
         virtual ~Coordinate();
 
-        int X;
-        int Y;
+        float X;
+        float Y;
 
     protected:
 

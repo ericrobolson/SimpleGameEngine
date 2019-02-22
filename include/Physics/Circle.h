@@ -13,7 +13,7 @@ namespace SGE_Physics{
             Circle();
             virtual ~Circle();
 
-            int Radius;
+            float Radius;
             Vect2 Position;
 
 

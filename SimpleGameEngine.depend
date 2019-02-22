@@ -3907,7 +3907,7 @@
 1550677476 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\circle.cpp
 	"Physics/Circle.h"
 
-1550677512 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
+1550798267 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
 	"Physics/Vect2.h"
 
 1550677860 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\rigidbody.cpp
@@ -4138,8 +4138,9 @@
 	<algorithm>
 	<cassert>
 
-1550775887 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1550798283 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
+	<cmath>
 
 1550775741 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
 	"Aabb.h"
@@ -4165,7 +4166,7 @@
 	"StringOperations.h"
 	<string>
 
-1550761674 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\coordinate.h
+1550798236 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\coordinate.h
 
 1550761648 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
 	"Coordinate.h"
@@ -4179,4 +4180,38 @@
 1550762747 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
 	"catch.hpp"
 	"Aabb.h"
+
+1550800652 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
+	"Body.h"
+
+1550801528 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+	"Physics/MaterialData.h"
+	"Physics/Vect2.h"
+	"Physics/MassData.h"
+	"TransformData.h"
+
+1550800996 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
+
+1550801106 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
+	"MaterialData.h"
+
+1550801362 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
+
+1550801485 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\transformdata.h
+	"Coordinate.h"
+
+1550801135 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\massdata.cpp
+	"MassData.h"
+
+1550801454 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\transformdata.cpp
+	"TransformData.h"
+
+1550850660 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\determinsticmathtests.cpp
+	"catch.hpp"
+	"DeterministicMath.h"
+
+1550851029 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\deterministicmath.h
+
+1550851130 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
+	"DeterministicMath.h"
 
