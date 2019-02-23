@@ -11,6 +11,23 @@ FixedPointInt::FixedPointInt()
     Value = 0;
 }
 
+FixedPointInt::FixedPointInt(double d)
+{
+    float f = d;
+    Value = f;
+}
+
+FixedPointInt::FixedPointInt(int i)
+{
+    *this = i;
+}
+
+
+FixedPointInt::FixedPointInt(float f)
+{
+    *this = f;
+}
+
 FixedPointInt::~FixedPointInt()
 {
     //dtor
@@ -28,10 +45,65 @@ void FixedPointInt::operator --(){
 }
 
 // Assignment operators
+/*
 FixedPointInt& FixedPointInt::operator =(const int& rhs){
     this->Value = rhs * this->_scalingFactor;
     return *this;
 }
+
+
+float my_ceiling(float f)
+{
+    unsigned input;
+    memcpy(&input, &f, 4);
+    int exponent = ((input >> 23) & 255) - 127;
+    if (exponent < 0) return (f > 0);
+    // small numbers get rounded to 0 or 1, depending on their sign
+
+    int fractional_bits = 23 - exponent;
+    if (fractional_bits <= 0) return f;
+    // numbers without fractional bits are mapped to themselves
+
+    unsigned integral_mask = 0xffffffff << fractional_bits;
+    unsigned output = input & integral_mask;
+    // round the number down by masking out the fractional bits
+
+    memcpy(&f, &output, 4);
+    if (f > 0 && output != input) ++f;
+    // positive numbers need to be rounded up, not down
+
+    return f;
+}
+
+FixedPointInt& FixedPointInt::operator =(const float& rhs){
+
+    bool positiveValue = rhs >= 0;
+
+    // get the absolute value of Value
+    float i = rhs;
+
+    if (!positiveValue){
+        i *= -1;
+    }
+
+    // figure out rounding value
+    i = i * _scalingFactor;
+
+    float j = my_ceiling(i);
+
+    // round
+    if (i >= j){
+
+    }
+
+    if (!positiveValue){
+        j *= -1;
+    }
+
+    this->Value = j;
+    return *this;
+}
+*/
 
 //todo: test this
 FixedPointInt FixedPointInt::operator -(const FixedPointInt& rhs){
@@ -73,58 +145,8 @@ FixedPointInt& FixedPointInt::operator =(const FixedPointInt& rhs){
     return *this;
 }
 
-float my_ceiling(float f)
-{
-    unsigned input;
-    memcpy(&input, &f, 4);
-    int exponent = ((input >> 23) & 255) - 127;
-    if (exponent < 0) return (f > 0);
-    // small numbers get rounded to 0 or 1, depending on their sign
-
-    int fractional_bits = 23 - exponent;
-    if (fractional_bits <= 0) return f;
-    // numbers without fractional bits are mapped to themselves
-
-    unsigned integral_mask = 0xffffffff << fractional_bits;
-    unsigned output = input & integral_mask;
-    // round the number down by masking out the fractional bits
-
-    memcpy(&f, &output, 4);
-    if (f > 0 && output != input) ++f;
-    // positive numbers need to be rounded up, not down
-
-    return f;
-}
 
 ///todo: This is a key part to get right; need to ensure rounding errors are taken care of
-FixedPointInt& FixedPointInt::operator =(const float& rhs){
-
-    bool positiveValue = rhs >= 0;
-
-    // get the absolute value of Value
-    float i = rhs;
-
-    if (!positiveValue){
-        i *= -1;
-    }
-
-    // figure out rounding value
-    i = i * _scalingFactor;
-
-    float j = my_ceiling(i);
-
-    // round
-    if (i >= j){
-
-    }
-
-    if (!positiveValue){
-        j *= -1;
-    }
-
-    this->Value = j;
-    return *this;
-}
 
 
 FixedPointInt& FixedPointInt::operator +=(const FixedPointInt& rhs){
@@ -148,32 +170,8 @@ FixedPointInt& FixedPointInt::operator -=(const FixedPointInt& rhs){
 }
 
 
-bool FixedPointInt::operator >=(const FixedPointInt& rhs) const{
-    return (this->Value >= rhs.Value);
-}
-
-
-bool FixedPointInt::operator <=(const FixedPointInt& rhs) const{
-    return (this->Value <= rhs.Value);
-}
-
-
-bool FixedPointInt::operator >(const FixedPointInt& rhs) const{
-    return (this->Value > rhs.Value);
-}
-
-
-bool FixedPointInt::operator <(const FixedPointInt& rhs) const{
-    return (this->Value < rhs.Value);
-}
-
-
-
-bool FixedPointInt::operator ==(const FixedPointInt& rhs) const{
-    return (this->Value == rhs.Value);
-}
-
 // Type casting
+
 FixedPointInt::operator float() const{
     return ((float)Value / _scalingFactor);
 }

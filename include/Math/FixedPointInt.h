@@ -7,6 +7,9 @@ namespace SGE_Math{
 class FixedPointInt{
     public:
         FixedPointInt();
+        FixedPointInt(double d);
+        FixedPointInt(float f);
+        FixedPointInt(int i);
         //todo: add constructors for ints, floats, and other fps
 
         virtual ~FixedPointInt();
@@ -16,25 +19,13 @@ class FixedPointInt{
         int Value;
 
         // Type casting
-        explicit operator float() const;
-        explicit operator int() const;
+        operator float() const;
+        operator int() const;
 
-        //todo: doubles?
-
-        // Operators
-        void operator ++();
-        void operator --();
-
-        FixedPointInt& operator +=(const FixedPointInt& rhs);
-        FixedPointInt& operator -=(const FixedPointInt& rhs);
-        FixedPointInt& operator *=(const FixedPointInt& rhs);
-
-
+        // Assignment operators
         FixedPointInt& operator =(const FixedPointInt& rhs);
-        FixedPointInt& operator =(const float& rhs);
-        FixedPointInt& operator =(const int& rhs);
 
-
+        // Modification operators
         FixedPointInt operator -(const FixedPointInt& rhs);
         FixedPointInt operator +(const FixedPointInt& rhs);
         FixedPointInt operator *(const FixedPointInt& rhs);
@@ -42,23 +33,21 @@ class FixedPointInt{
         FixedPointInt operator %(const FixedPointInt& rhs);
         FixedPointInt operator ^(const FixedPointInt& rhs);
 
+        // Self modification operators
+        FixedPointInt& operator +=(const FixedPointInt& rhs);
+        FixedPointInt& operator -=(const FixedPointInt& rhs);
+        FixedPointInt& operator *=(const FixedPointInt& rhs);
+        FixedPointInt& operator /=(const FixedPointInt& rhs);
+        void operator ++();
+        void operator --();
+
+        // Boolean operators
         bool operator <(const FixedPointInt& rhs) const;
         bool operator <=(const FixedPointInt& rhs) const;
         bool operator >(const FixedPointInt& rhs) const;
         bool operator >=(const FixedPointInt& rhs) const;
-
         bool operator ==(const FixedPointInt& rhs) const;
-
-
-        // *=
-        // /=
-        // +
-        // *
-        // /
-        // %
-        // postfix ++
-        // postfix --
-
+        bool operator !=(const FixedPointInt& rhs) const;
 
     private:
         const int _decimalPlaces = 2;
