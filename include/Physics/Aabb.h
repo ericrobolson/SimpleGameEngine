@@ -4,6 +4,9 @@
 #include "Vect2.h"
 #include "Coordinate.h"
 
+#include "FixedPointInt.h"
+using namespace SGE_Math;
+
 namespace SGE_Physics
 {
     /// Axis Aligned Bounding Box
@@ -17,8 +20,8 @@ namespace SGE_Physics
             Coordinate MinCoordinate();
             Coordinate MaxCoordinate();
 
-            int HalfWidth;
-            int HalfHeight;
+            FixedPointInt HalfWidth;
+            FixedPointInt HalfHeight;
             Vect2 Position;
 
         protected:

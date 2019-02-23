@@ -3900,15 +3900,17 @@
 	"Physics/Aabb.h"
 	"Coordinate.h"
 
-1550762107 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\aabb.h
+1550953158 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\aabb.h
 	"Vect2.h"
 	"Coordinate.h"
+	"FixedPointInt.h"
 
 1550677476 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\circle.cpp
 	"Physics/Circle.h"
 
-1550798267 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
+1550953211 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
 	"Physics/Vect2.h"
+	"FixedPointInt.h"
 
 1550677860 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\rigidbody.cpp
 	"Physics/RigidBody.h"
@@ -4138,9 +4140,10 @@
 	<algorithm>
 	<cassert>
 
-1550798283 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1550954276 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
+	"FixedPointInt.h"
 
 1550775741 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
 	"Aabb.h"
@@ -4166,7 +4169,8 @@
 	"StringOperations.h"
 	<string>
 
-1550798236 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\coordinate.h
+1550953263 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\coordinate.h
+	"FixedPointInt.h"
 
 1550761648 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
 	"Coordinate.h"
@@ -4177,28 +4181,33 @@
 	"Aabb.h"
 	"Physics/Circle.h"
 
-1550762747 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
+1550954769 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
 	"catch.hpp"
 	"Aabb.h"
+	"FixedPointInt.h"
 
 1550800652 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
 	"Body.h"
 
-1550801528 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+1550953188 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
 	"Physics/MaterialData.h"
 	"Physics/Vect2.h"
 	"Physics/MassData.h"
 	"TransformData.h"
+	"FixedPointInt.h"
 
-1550800996 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
+1550953316 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
+	"FixedPointInt.h"
 
 1550801106 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
 	"MaterialData.h"
 
-1550801362 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
+1550953293 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
+	"FixedPointInt.h"
 
-1550801485 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\transformdata.h
+1550953360 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\transformdata.h
 	"Coordinate.h"
+	"FixedPointInt.h"
 
 1550801135 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\massdata.cpp
 	"MassData.h"
@@ -4206,12 +4215,22 @@
 1550801454 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\transformdata.cpp
 	"TransformData.h"
 
-1550900585 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\determinsticmathtests.cpp
+1550901078 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\determinsticmathtests.cpp
 	"catch.hpp"
 	"DeterministicMath.h"
 
 1550891180 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\deterministicmath.h
 
-1550900953 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
+1550952936 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
 	"DeterministicMath.h"
+
+1550955238 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
+	"FixedPointInt.h"
+	<cstring>
+
+1550955266 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+
+1550953051 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
+	"catch.hpp"
+	"FixedPointInt.h"
 

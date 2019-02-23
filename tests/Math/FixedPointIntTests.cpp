@@ -1,5 +1,5 @@
 #include "catch.hpp"
-#include "DeterministicMath.h"
+#include "FixedPointInt.h"
 
 using namespace SGE_Math;
 

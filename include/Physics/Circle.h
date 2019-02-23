@@ -2,6 +2,8 @@
 #define CIRCLE_H
 
 #include "Physics/Vect2.h"
+#include "FixedPointInt.h"
+using namespace SGE_Math;
 
 namespace SGE_Physics{
 
@@ -13,7 +15,7 @@ namespace SGE_Physics{
             Circle();
             virtual ~Circle();
 
-            float Radius;
+            FixedPointInt Radius;
             Vect2 Position;
 
 

@@ -1,6 +1,9 @@
 #ifndef MASSDATA_H
 #define MASSDATA_H
 
+#include "FixedPointInt.h"
+using namespace SGE_Math;
+
 namespace SGE_Physics{
 class MassData
 {
@@ -8,11 +11,11 @@ class MassData
         MassData();
         virtual ~MassData();
 
-        float Mass;
-        float InverseMass;
+        FixedPointInt Mass;
+        FixedPointInt InverseMass;
 
-        float Inertia;
-        float InverseInertia;
+        FixedPointInt Inertia;
+        FixedPointInt InverseInertia;
 
         bool MassIsCalculated; // As this is a storage container for Mass, need to set it based on the Shape + Density and other factors
         bool InertiaIsCalculated; //

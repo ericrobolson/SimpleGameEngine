@@ -160,6 +160,7 @@
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
 		<Unit filename="include/Math/DeterministicMath.h" />
+		<Unit filename="include/Math/FixedPointInt.h" />
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Body.h" />
 		<Unit filename="include/Physics/Circle.h" />
@@ -192,6 +193,7 @@
 		<Unit filename="src/Debugger/Debugger.cpp" />
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
 		<Unit filename="src/Math/DeterministicMath.cpp" />
+		<Unit filename="src/Math/FixedPointInt.cpp" />
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Body.cpp" />
 		<Unit filename="src/Physics/Circle.cpp" />
@@ -218,7 +220,7 @@
 		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp">
 			<Option target="Testing" />
 		</Unit>
-		<Unit filename="tests/Math/DeterminsticMathTests.cpp">
+		<Unit filename="tests/Math/FixedPointIntTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Physics/AabbTests.cpp">

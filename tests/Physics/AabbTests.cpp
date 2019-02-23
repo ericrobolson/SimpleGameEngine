@@ -1,6 +1,8 @@
 #include "catch.hpp"
 #include "Aabb.h"
 using namespace SGE_Physics;
+#include "FixedPointInt.h"
+using namespace SGE_Math;
 
 SCENARIO("Aabb::MinCoordinate(): Returns expected calculated coordinate"){
     Aabb aabb;
@@ -12,8 +14,12 @@ SCENARIO("Aabb::MinCoordinate(): Returns expected calculated coordinate"){
 
     Coordinate minCoordinate = aabb.MinCoordinate();
 
-    REQUIRE(minCoordinate.X == (2 - 2));
-    REQUIRE(minCoordinate.Y == (5 - 5));
+    FixedPointInt expectedX, expectedY;
+    expectedX = 0;
+    expectedY = 0;
+
+    REQUIRE(minCoordinate.X == expectedX);
+    REQUIRE(minCoordinate.Y == expectedY);
 }
 
 
@@ -27,6 +33,10 @@ SCENARIO("Aabb::MaxCoordinate(): Returns expected calculated coordinate"){
 
     Coordinate minCoordinate = aabb.MaxCoordinate();
 
-    REQUIRE(minCoordinate.X == (2 + 3));
-    REQUIRE(minCoordinate.Y == (6 + 5));
+    FixedPointInt expectedX, expectedY;
+    expectedX = (2 + 3);
+    expectedY = (6 + 5);
+
+    REQUIRE(minCoordinate.X == expectedX);
+    REQUIRE(minCoordinate.Y == expectedY);
 }

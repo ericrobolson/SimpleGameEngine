@@ -5,6 +5,8 @@
 #include "Physics/Vect2.h"
 #include "Physics/MassData.h"
 #include "TransformData.h"
+#include "FixedPointInt.h"
+using namespace SGE_Math;
 
 namespace SGE_Physics{
     class Body
@@ -23,7 +25,7 @@ namespace SGE_Physics{
             Vect2 Velocity;
             Vect2 Force;
 
-            float GravityScale;
+            FixedPointInt GravityScale;
 
         protected:
 
