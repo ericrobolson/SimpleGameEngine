@@ -36,6 +36,8 @@
 					<Add directory="include/Debugger" />
 					<Add directory="include/LevelGeneration" />
 					<Add directory="include/InstructionMachine" />
+					<Add directory="include/Physics" />
+					<Add directory="include/Math" />
 				</Compiler>
 				<Linker>
 					<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
@@ -78,6 +80,8 @@
 					<Add directory="include/Debugger" />
 					<Add directory="include/LevelGeneration" />
 					<Add directory="include/InstructionMachine" />
+					<Add directory="include/Physics" />
+					<Add directory="include/Math" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -122,6 +126,8 @@
 					<Add directory="include/Debugger" />
 					<Add directory="include/LevelGeneration" />
 					<Add directory="include/InstructionMachine" />
+					<Add directory="include/Physics" />
+					<Add directory="include/Math" />
 				</Compiler>
 				<Linker>
 					<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
@@ -141,7 +147,6 @@
 		</Compiler>
 		<Linker>
 			<Add option="-lmingw32 -lSDL2main -lSDL2 -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid -static-libgcc" />
-			<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
 			<Add directory="C:/TDM-GCC-32/lib" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
 		</Linker>
@@ -150,76 +155,76 @@
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
-		<Unit filename="include/Components/CanJumpComponent.h" />
-		<Unit filename="include/Components/DeckComponent.h" />
-		<Unit filename="include/Components/Gfx/SdlRectangleComponent.h" />
-		<Unit filename="include/Components/Gfx/VisibleComponent.h" />
-		<Unit filename="include/Components/HasJumpActionComponent.h" />
-		<Unit filename="include/Components/HitboxComponent.h" />
-		<Unit filename="include/Components/ImpassibleComponent.h" />
-		<Unit filename="include/Components/MovementComponent.h" />
 		<Unit filename="include/Components/PlayerComponent.h" />
-		<Unit filename="include/Components/PositionComponent.h" />
 		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
-		<Unit filename="include/EventQueue/EventQueue.h" />
 		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
-		<Unit filename="include/LevelGeneration/BasicMaze.h" />
+		<Unit filename="include/Math/DeterministicMath.h" />
+		<Unit filename="include/Physics/Aabb.h" />
+		<Unit filename="include/Physics/Body.h" />
+		<Unit filename="include/Physics/Circle.h" />
+		<Unit filename="include/Physics/CollisionDectector.h" />
+		<Unit filename="include/Physics/Coordinate.h" />
+		<Unit filename="include/Physics/MassData.h" />
+		<Unit filename="include/Physics/MaterialData.h" />
+		<Unit filename="include/Physics/PhysicsEngine.h" />
+		<Unit filename="include/Physics/TransformData.h" />
+		<Unit filename="include/Physics/Vect2.h" />
 		<Unit filename="include/Rng/RandomNumberGenerator.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/InputState.h" />
-		<Unit filename="include/Systems/CollisionSystem.h" />
 		<Unit filename="include/Systems/GraphicsSystem.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
-		<Unit filename="include/Systems/MovementSystem.h" />
 		<Unit filename="include/Systems/NetworkSystem.h" />
-		<Unit filename="include/Systems/PositionSystem.h" />
 		<Unit filename="include/Systems/SystemTimer.h" />
+		<Unit filename="include/Threading/SafeQuadTree.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Assemblages/PlayerAssemblage.cpp" />
-		<Unit filename="src/Assemblages/SolidObjectAssemblage.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
-		<Unit filename="src/Components/CanJumpComponent.cpp" />
-		<Unit filename="src/Components/DeckComponent.cpp" />
-		<Unit filename="src/Components/Gfx/SdlRectangleComponent.cpp" />
-		<Unit filename="src/Components/Gfx/VisibleComponent.cpp" />
-		<Unit filename="src/Components/HasJumpActionComponent.cpp" />
-		<Unit filename="src/Components/HitboxComponent.cpp" />
-		<Unit filename="src/Components/ImpassibleComponent.cpp" />
-		<Unit filename="src/Components/MovementComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
-		<Unit filename="src/Components/PositionComponent.cpp" />
 		<Unit filename="src/Debugger/Debugger.cpp" />
-		<Unit filename="src/EventQueue/EventQueue.cpp" />
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
-		<Unit filename="src/LevelGeneration/BasicMaze.cpp" />
+		<Unit filename="src/Math/DeterministicMath.cpp" />
+		<Unit filename="src/Physics/Aabb.cpp" />
+		<Unit filename="src/Physics/Body.cpp" />
+		<Unit filename="src/Physics/Circle.cpp" />
+		<Unit filename="src/Physics/CollisionDectector.cpp" />
+		<Unit filename="src/Physics/Coordinate.cpp" />
+		<Unit filename="src/Physics/MassData.cpp" />
+		<Unit filename="src/Physics/MaterialData.cpp" />
+		<Unit filename="src/Physics/PhysicsEngine.cpp" />
+		<Unit filename="src/Physics/TransformData.cpp" />
+		<Unit filename="src/Physics/Vect2.cpp" />
 		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
-		<Unit filename="src/Systems/CollisionSystem.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />
-		<Unit filename="src/Systems/MovementSystem.cpp" />
 		<Unit filename="src/Systems/NetworkSystem.cpp" />
-		<Unit filename="src/Systems/PositionSystem.cpp" />
 		<Unit filename="src/Systems/SystemTimer.cpp" />
 		<Unit filename="src/Worlds/GameWorld.cpp" />
-		<Unit filename="tests/Components/DeckComponentTests.cpp">
-			<Option target="Testing" />
-		</Unit>
 		<Unit filename="tests/EntityComponentManager/EntityComponentManagerTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/DeterminsticMathTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Physics/AabbTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Physics/CollisionDectectorTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Rng/RandomNumberGeneratorTests.cpp">

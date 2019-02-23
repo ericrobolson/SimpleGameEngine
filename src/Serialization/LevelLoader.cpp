@@ -5,7 +5,6 @@
 #include <vector>
 #include <memory>
 #include "PlayerAssemblage.h"
-#include "SolidObjectAssemblage.h"
 #include "StringOperations.h"
 
 LevelLoader::LevelLoader()
@@ -58,7 +57,7 @@ void CreateSolidObject(std::vector<std::string> collection, ECS::EntityComponent
         }
     }
 
-    SolidObjectAssemblage::Build(ecs, x, y, h, w);
+   // SolidObjectAssemblage::Build(ecs, x, y, h, w);
 }
 
 

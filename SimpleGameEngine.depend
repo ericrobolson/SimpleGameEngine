@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1547567149 source:c:\users\eric\gamedev\simplegameengine\main.cpp
+1547596766 source:c:\users\eric\gamedev\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
@@ -7,7 +7,6 @@
 	<iostream>
 	"Worlds/GameWorld.h"
 	"ThreadPool.h"
-	<GLFW/glfw3.h>
 	"catch.hpp"
 	<iostream>
 
@@ -60,7 +59,7 @@
 1536912715 c:\users\eric\gamedev\simplegameengine\include\components\positioncomponent.h
 	<BaseComponent.h>
 
-1547593788 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
+1547593853 source:c:\users\eric\gamedev\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -88,7 +87,7 @@
 	"CollisionSystem.h"
 	"SystemTimer.h"
 
-1547593831 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
+1547596747 source:c:\users\eric\gamedev\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -844,7 +843,7 @@
 	"EntityComponentManager.h"
 	<mutex>
 
-1541793506 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
+1548342341 c:\users\eric\gamedev\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -3529,11 +3528,10 @@
 1547081727 c:\users\eric\gamedev\simplegameengine\include\instructionmachine\instructionmachine.h
 	<memory>
 
-1547080863 source:c:\users\eric\gamedev\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
+1547081941 source:c:\users\eric\gamedev\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
 	"catch.hpp"
 	"InstructionMachine.h"
 	<string>
-	<exception>
 
 1547513314 c:\users\eric\gamedev\simplegameengine\include\glfw\glfw3.h
 	<stddef.h>
@@ -3555,4 +3553,665 @@
 	<GL/gl.h>
 	<GL/glext.h>
 	<GL/glu.h>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\basecomponent.cpp
+	"BaseComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basecomponent.h
+
+1548996324 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
+	<SDL.h>
+	<chrono>
+	<thread>
+	<exception>
+	<iostream>
+	"Worlds/GameWorld.h"
+	"ThreadPool.h"
+	"catch.hpp"
+	<iostream>
+
+1550759642 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
+	<time.h>
+	"BaseWorld.h"
+	"GraphicsSystem.h"
+	"InputSystem.h"
+	"SystemTimer.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
+	"EntityComponentManager.h"
+
+1548996324 c:\users\ericr\dev\simplegameengine\simplegameengine\include\entitycomponentmanager.h
+	<memory>
+	<typeindex>
+	<typeinfo>
+	<unordered_map>
+	<list>
+	"BaseComponent.h"
+	<vector>
+	<thread>
+	<mutex>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem.h
+	<SDL.h>
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+	<mutex>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basesystem.h
+	"EntityComponentManager.h"
+	"SystemTimer.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\systemtimer.h
+	<time.h>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\inputsystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+	<SDL.h>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\movementsystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\positionsystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\collisionsystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\threadpool.h
+	<functional>
+	<future>
+	<mutex>
+	<queue>
+	<thread>
+	<utility>
+	<vector>
+	"SafeQueue.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\safequeue.h
+	<mutex>
+	<queue>
+
+1550759628 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
+	"PlayerAssemblage.h"
+	<memory>
+	"EntityComponentManager.h"
+	"PlayerComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\assemblages\playerassemblage.h
+	<memory>
+	"EntityComponentManager.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\hitboxcomponent.h
+	"BaseComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\movementcomponent.h
+	<BaseComponent.h>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\playercomponent.h
+	"BaseComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\positioncomponent.h
+	<BaseComponent.h>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\impassiblecomponent.h
+	"BaseComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\hasjumpactioncomponent.h
+	"BaseComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\deckcomponent.h
+	"BaseComponent.h"
+	<vector>
+	<memory>
+	"EntityComponentManager.h"
+	"EventQueue.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\eventqueue\eventqueue.h
+	<memory>
+	<vector>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\gfx\visiblecomponent.h
+	"BaseComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\solidobjectassemblage.cpp
+	"SolidObjectAssemblage.h"
+	<memory>
+	"EntityComponentManager.h"
+	"HitboxComponent.h"
+	"PositionComponent.h"
+	"ImpassibleComponent.h"
+	"VisibleComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\assemblages\solidobjectassemblage.h
+	"EntityComponentManager.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\basesystem.cpp
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\baseworld.cpp
+	"BaseWorld.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\canjumpcomponent.cpp
+	"CanJumpComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\canjumpcomponent.h
+	"BaseComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\deckcomponent.cpp
+	"DeckComponent.h"
+	<vector>
+	"BaseComponent.h"
+	"EventQueue.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\gfx\sdlrectanglecomponent.cpp
+	"SdlRectangleComponent.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\gfx\sdlrectanglecomponent.h
+	"BaseComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\gfx\visiblecomponent.cpp
+	"VisibleComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\hasjumpactioncomponent.cpp
+	"HasJumpActionComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\hitboxcomponent.cpp
+	"HitboxComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\impassiblecomponent.cpp
+	"ImpassibleComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\movementcomponent.cpp
+	"Components/MovementComponent.h"
+	<math.h>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\playercomponent.cpp
+	"PlayerComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\positioncomponent.cpp
+	"PositionComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\debugger\debugger.cpp
+	"Debugger.h"
+	<string>
+	<iostream>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\debugger\debugger.h
+	<string>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\eventqueue\eventqueue.cpp
+	"EventQueue.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\instructionmachine\instructionmachine.cpp
+	"InstructionMachine.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\instructionmachine\instructionmachine.h
+	<memory>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\levelgeneration\basicmaze.cpp
+	"BasicMaze.h"
+	"RandomNumberGenerator.h"
+	"Debugger.h"
+	<cstdlib>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\levelgeneration\basicmaze.h
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\rng\randomnumbergenerator.h
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\rng\randomnumbergenerator.cpp
+	"RandomNumberGenerator.h"
+	"Debugger.h"
+
+1550759681 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\levelloader.cpp
+	"LevelLoader.h"
+	"EntityComponentManager.h"
+	<string>
+	<fstream>
+	<vector>
+	<memory>
+	"PlayerAssemblage.h"
+	"StringOperations.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\levelloader.h
+	"EntityComponentManager.h"
+	<string>
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\stringoperations.h
+	<string>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\stringoperations.cpp
+	"StringOperations.h"
+	<string>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\state\gamestate.cpp
+	"GameState.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\gamestate.h
+	<vector>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\state\inputstate.cpp
+	"InputState.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\inputstate.h
+
+1550715634 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\collisionsystem.cpp
+	"CollisionSystem.h"
+	"EntityComponentManager.h"
+	"GameState.h"
+	"MovementComponent.h"
+	"HitboxComponent.h"
+	"PositionComponent.h"
+	"ThreadPool.h"
+	"ImpassibleComponent.h"
+	<future>
+	<memory>
+
+1550759726 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
+	<SDL.h>
+	<list>
+	"GraphicsSystem.h"
+	"EntityComponentManager.h"
+	<math.h>
+	<future>
+	"ThreadPool.h"
+	"InputState.h"
+	<mutex>
+	"GameState.h"
+
+1550676915 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
+	<SDL.h>
+	"InputSystem.h"
+	"InputState.h"
+	<string>
+	<iostream>
+	"EntityComponentManager.h"
+	"GameState.h"
+	"ThreadPool.h"
+	<future>
+	<fstream>
+	"StringOperations.h"
+
+1550715594 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\movementsystem.cpp
+	<list>
+	<math.h>
+	"MovementSystem.h"
+	"EntityComponentManager.h"
+	<future>
+	"MovementComponent.h"
+	"PositionComponent.h"
+	"InputState.h"
+	"Debugger.h"
+	<memory.h>
+	"ThreadPool.h"
+	<chrono>
+	"PlayerComponent.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\networksystem.cpp
+	"NetworkSystem.h"
+	"ThreadPool.h"
+	"ThreadPool.h"
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\networksystem.h
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+	<memory>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\positionsystem.cpp
+	<cstddef>
+	"PositionSystem.h"
+	"EntityComponentManager.h"
+	"PositionComponent.h"
+	"MovementComponent.h"
+	<mutex>
+	"ThreadPool.h"
+	"HitboxComponent.h"
+	"GameState.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\systemtimer.cpp
+	"SystemTimer.h"
+	<time.h>
+
+1550759694 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+	"GameWorld.h"
+	"InputState.h"
+	<stdio.h>
+	<time.h>
+	<thread>
+	<memory>
+	<PlayerAssemblage.h>
+	"GameState.h"
+	"LevelLoader.h"
+	"SystemTimer.h"
+	"RandomNumberGenerator.h"
+	<iostream>
+
+1550762145 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\vect2.cpp
+	"Physics/Vect2.h"
+
+1550761836 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\vect2.h
+	"Physics/Coordinate.h"
+
+1550762252 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\aabb.cpp
+	"Physics/Aabb.h"
+	"Coordinate.h"
+
+1550762107 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\aabb.h
+	"Vect2.h"
+	"Coordinate.h"
+
+1550677476 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\circle.cpp
+	"Physics/Circle.h"
+
+1550798267 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
+	"Physics/Vect2.h"
+
+1550677860 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\rigidbody.cpp
+	"Physics/RigidBody.h"
+
+1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
+	<memory>
+
+1550760902 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+	"PhysicsEngine.h"
+	"Aabb.h"
+
+1550760645 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
+
+1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\tests\catch.hpp
+	<TargetConditionals.h>
+	<ciso646>
+	<iosfwd>
+	<string>
+	<cstdint>
+	<vector>
+	<memory>
+	<cstddef>
+	<string>
+	<iosfwd>
+	<vector>
+	<cstddef>
+	<type_traits>
+	<string>
+	<iosfwd>
+	<cstddef>
+	<ostream>
+	<string_view>
+	<utility>
+	<tuple>
+	<variant>
+	<ctime>
+	<ratio>
+	<chrono>
+	<iosfwd>
+	<string>
+	<string>
+	<vector>
+	<cstddef>
+	<string>
+	<cstdint>
+	<string>
+	<cstdint>
+	<string>
+	<string>
+	<memory>
+	<exception>
+	<string>
+	<vector>
+	<type_traits>
+	<string>
+	<iosfwd>
+	<string>
+	<vector>
+	<type_traits>
+	<cmath>
+	<functional>
+	<string>
+	<string>
+	<algorithm>
+	<memory>
+	<stdexcept>
+	<memory>
+	<vector>
+	<cassert>
+	<utility>
+	<string>
+	<vector>
+	<memory>
+	<string>
+	<string>
+	<vector>
+	<memory>
+	<string>
+	<iosfwd>
+	<string>
+	<vector>
+	<memory>
+	<memory>
+	<vector>
+	<string>
+	<string>
+	<string>
+	<iosfwd>
+	<map>
+	<set>
+	<memory>
+	<algorithm>
+	<cstring>
+	<cfloat>
+	<cstdio>
+	<cassert>
+	<memory>
+	<ostream>
+	<vector>
+	<string>
+	<vector>
+	<memory>
+	<cmath>
+	<limits>
+	<memory>
+	<signal.h>
+	<AfxWin.h>
+	<windows.h>
+	<signal.h>
+	<string>
+	<optional>
+	<cassert>
+	<ostream>
+	<sstream>
+	<vector>
+	<string>
+	<memory>
+	<set>
+	<algorithm>
+	<fstream>
+	<ctime>
+	<cstring>
+	<ostream>
+	<sstream>
+	<unistd.h>
+	<string>
+	<assert.h>
+	<stdbool.h>
+	<sys/types.h>
+	<unistd.h>
+	<sys/sysctl.h>
+	<cstddef>
+	<ostream>
+	<fstream>
+	<string>
+	<cerrno>
+	<vector>
+	<string>
+	<memory>
+	<algorithm>
+	<random>
+	<limits>
+	<set>
+	<crtdbg.h>
+	<set>
+	<limits>
+	<algorithm>
+	<iomanip>
+	<string>
+	<cstdlib>
+	<cstdint>
+	<cstring>
+	<regex>
+	<cassert>
+	<cstdio>
+	<iosfwd>
+	<string>
+	<cstdio>
+	<cstring>
+	<fstream>
+	<sstream>
+	<stdexcept>
+	<io.h>
+	<unistd.h>
+	<vector>
+	<set>
+	<algorithm>
+	<ios>
+	<map>
+	<string>
+	<map>
+	<vector>
+	<exception>
+	<cassert>
+	<algorithm>
+	<sstream>
+	<memory>
+	<iosfwd>
+	<cstdlib>
+	<iomanip>
+	<vector>
+	<cstdio>
+	<iostream>
+	<fstream>
+	<sstream>
+	<vector>
+	<memory>
+	<algorithm>
+	<ostream>
+	<cstring>
+	<cctype>
+	<ostream>
+	<cstring>
+	<cstdint>
+	<sstream>
+	<cctype>
+	<exception>
+	<algorithm>
+	<sstream>
+	<sstream>
+	<algorithm>
+	<cassert>
+	<stdexcept>
+	<memory>
+	<sstream>
+	<algorithm>
+	<string>
+	<vector>
+	<memory>
+	<chrono>
+	<cmath>
+	<iomanip>
+	<exception>
+	<ostream>
+	<sstream>
+	<iomanip>
+	<cstring>
+	<cfloat>
+	<cstdio>
+	<cassert>
+	<memory>
+	<cfloat>
+	<cstdio>
+	<cassert>
+	<sstream>
+	<ctime>
+	<algorithm>
+	<cassert>
+
+1550798283 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+	"CollisionDectector.h"
+	<cmath>
+
+1550775741 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
+	"Aabb.h"
+	"Physics/Circle.h"
+
+1548996324 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\entitycomponentmanager\entitycomponentmanagertests.cpp
+	"catch.hpp"
+	"EntityComponentManager.h"
+	<vector>
+	<memory>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
+	"catch.hpp"
+	"InstructionMachine.h"
+	<string>
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\rng\randomnumbergeneratortests.cpp
+	"catch.hpp"
+	"RandomNumberGenerator.h"
+
+1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\serialization\stringoperationstests.cpp
+	"catch.hpp"
+	"StringOperations.h"
+	<string>
+
+1550798236 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\coordinate.h
+
+1550761648 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
+	"Coordinate.h"
+
+1550776281 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
+	"catch.hpp"
+	"CollisionDectector.h"
+	"Aabb.h"
+	"Physics/Circle.h"
+
+1550762747 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
+	"catch.hpp"
+	"Aabb.h"
+
+1550800652 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
+	"Body.h"
+
+1550801528 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+	"Physics/MaterialData.h"
+	"Physics/Vect2.h"
+	"Physics/MassData.h"
+	"TransformData.h"
+
+1550800996 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
+
+1550801106 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
+	"MaterialData.h"
+
+1550801362 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
+
+1550801485 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\transformdata.h
+	"Coordinate.h"
+
+1550801135 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\massdata.cpp
+	"MassData.h"
+
+1550801454 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\transformdata.cpp
+	"TransformData.h"
+
+1550900585 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\determinsticmathtests.cpp
+	"catch.hpp"
+	"DeterministicMath.h"
+
+1550891180 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\deterministicmath.h
+
+1550900953 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
+	"DeterministicMath.h"
 

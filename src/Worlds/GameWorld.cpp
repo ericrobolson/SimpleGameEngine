@@ -5,10 +5,6 @@
 #include <thread>
 #include <memory>
 
-#include <MovementComponent.h>
-#include <PositionComponent.h>
-#include <HitboxComponent.h>
-#include <ImpassibleComponent.h>
 #include <PlayerAssemblage.h>
 #include "GameState.h"
 #include "LevelLoader.h"
@@ -40,11 +36,6 @@ bool GameWorld::Process(){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);
-
-        _movementSystem.Process(entityComponentManager);
-        _collisionSystem.Process(entityComponentManager);
-        _positionSystem.Process(entityComponentManager);
-
 
         bool finishedProcessing = true;
         while(_graphicsSystem.Process(entityComponentManager) != finishedProcessing);
