@@ -83,66 +83,54 @@ float my_ceiling(float f)
 void FixedPointInt::SetValueFromDouble(const long double& rhs){
     long double d = rhs * _scalingFactor;
 
+    bool isNegative = d < 0;
+
+    // get absolute value
+    if (isNegative){
+        d = -d;
+    }
+
+    /*
+    long double decimalRemainder = d % 1; // need to convert to str?
+
+    if (decimalRemainder != 0){
+        // remove decimals
+        d -= decimalRemainder;
+
+        // round decimalRemainder to see if we need to round up d
+        // first, convert to int and remove decimal places
+        int decimalsShifted = 1;
+        while (decimalRemainder % 1 != 0){
+            decimalRemainder *= 10;
+            i++;
+        }
+
+        // round up the number
+        for (int i = 0; i < decimalsShifted; i++){
+            int j = decimalRemainder % 10;
+
+            // remove remainder
+            decimalRemainder -= j;
+
+            // shift
+            decimalRemainder /= 10;
+
+            if (decimalRemainder >= (_halfScalingFactor * _valuesPerDecimal)/_scalingFactor)){
+                decimalRemainder += 1;
+            }
+        }
+
+        // round up d
+        if (decimalRemainder >= (_halfScalingFactor * _valuesPerDecimal)/_scalingFactor)){
+            d += 1;
+        }
+    }
+*/
+    if (isNegative){
+        d = -d;
+    }
+
     Value = d;
-
-    return;
-
-    bool roundUp;
-    bool isPositive = d >= (long double)0;
-
-    // convert to absolute value for simpler math
-    if (!isPositive){
-        d *= -1;
-    }
-
-    // Get the decimal value:
-    std::ostringstream strs;
-    strs << d;
-
-    std::string floatStr = strs.str();
-    int strLen = floatStr.length();
-
-    int i = strLen -1;
-
-    Value = std::stod(floatStr.substr(0, floatStr.find('.')));
-
-
-    // round the decimal points
-    while (i >= 0){
-        char c = floatStr[i];
-
-        if (c != '.'){
-                /*
-            int cInt = c - '0'; // convert char to int, subtracting offset of '0' since it's sequential
-
-            // round up the bits we can't store
-            if (roundUp){
-                cInt++;
-                roundUp = false;
-            }
-
-            if (cInt >= 5){
-                roundUp = true;
-            }
-            */
-        }
-
-        else{
-            break;
-        }
-
-        i--;
-    }
-
-
-    if (roundUp){
-        Value += 1;
-    }
-
-    // convert from absolute value
-    if (!isPositive){
-        Value *= -1;
-    }
 }
 
 
