@@ -2,7 +2,7 @@
 #define FIXEDPOINTINT_H
 
 #include <limits>
-
+#include <cstdint>
 
 namespace SGE_Math{
 
@@ -16,7 +16,7 @@ class FixedPointInt{
 
         // contains 2 decimal places?
 
-        int Value;
+        int_fast32_t Value;
 
         // Type casting
         explicit operator int() const;
@@ -54,22 +54,21 @@ class FixedPointInt{
         void SetValueFromDouble(const long double& rhs);
 
         // todo: reference these through a static "Constants" class for optimization
-        const int MINVALUE = std::numeric_limits<int>::min(); // Minimum allowed integer value
-        const int MAXVALUE = std::numeric_limits<int>::max(); // Maximum allowed integer value
+        const int_fast32_t MINVALUE = std::numeric_limits<int>::min(); // Minimum allowed integer value
+        const int_fast32_t MAXVALUE = std::numeric_limits<int>::max(); // Maximum allowed integer value
 
     private:
         // todo: reference these through a static "Constants" class for optimization
 
-        const int _decimalPlaces = 2;
-        const int _valuesPerDecimal = 10;
-        const int _scalingFactor = _valuesPerDecimal * _valuesPerDecimal; // (10^decimalPlaces), as this contains 2 decimal places, scale ints/floats by this value to get them
-        const int _halfScalingFactor = _scalingFactor/2;
+        const int_fast32_t _decimalPlaces = 2;
+        const int_fast32_t _valuesPerDecimal = 10;
+        const int_fast32_t _scalingFactor = _valuesPerDecimal * _valuesPerDecimal; // (10^decimalPlaces), as this contains 2 decimal places, scale ints/floats by this value to get them
+        const int_fast32_t _halfScalingFactor = _scalingFactor/2;
 
+        const int_fast32_t MININTVALUE= std::numeric_limits<int_fast32_t>::min() / _scalingFactor; // Minimum allowed integer value
+        const int_fast32_t MAXINTVALUE = std::numeric_limits<int_fast32_t>::max() / _scalingFactor;; // Maximum allowed integer value
 
-        const int MININTVALUE= std::numeric_limits<int>::min() / _scalingFactor; // Minimum allowed integer value
-        const int MAXINTVALUE = std::numeric_limits<int>::max() / _scalingFactor;; // Maximum allowed integer value
-
-        void SetValueFromInt(const int& rhs);
+        void SetValueFromInt(const int_fast32_t& rhs);
 };
 }
 

@@ -1,17 +1,7 @@
 #include "catch.hpp"
 #include "FixedPointInt.h"
-#include <limits>
 
 using namespace SGE_Math;
-
-const int MININTSIZE = std::numeric_limits<int>::min();
-const int MAXINTSIZE = std::numeric_limits<int>::max();
-
-const int _decimalPlaces = 2;
-const int _valuesPerDecimal = 10;
-const int _scalingFactor = _valuesPerDecimal * _valuesPerDecimal; // (10^decimalPlaces), as this contains 2 decimal places, scale ints/floats by this value to get them
-const int _halfScalingFactor = _scalingFactor/2;
-
 
 SCENARIO("FixedPointInt::Constructor: Defaults to 0"){
     FixedPointInt fp;

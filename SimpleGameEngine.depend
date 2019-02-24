@@ -4229,8 +4229,9 @@
 	<string>
 	<sstream>
 
-1550985458 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1550996909 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
+	<cstdint>
 
 1550976631 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
 	"catch.hpp"
@@ -4258,7 +4259,7 @@
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1550986320 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
+1550996097 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
 	"FixedPointInt.h"
 
 1550995770 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
