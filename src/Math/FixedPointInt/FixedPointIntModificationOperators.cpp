@@ -81,51 +81,29 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
         absRhsValue *= -1;
     }
 
-    int_fast32_t s;
-    if (__builtin_mul_overflow(fp.Value, absRhsValue, &s)){
-        // check if we can divide
-        if (absRhsValue < _scalingFactor){
-            int_fast64_t i = (int_fast64_t)fp.Value * absRhsValue;
+    // Typecast to a bigger format, so if it's a valid value an overflow will not occur
+    int_fast64_t i = (int_fast64_t)fp.Value * absRhsValue;
 
-            // convert it to FixedPointInt value format, rounding decimals
-            // template this?
-            for (int j = 0; j < _decimalPlaces; j++){
-                int remainder = i % _valuesPerDecimal;
+    // convert it to FixedPointInt value format, rounding decimals
+    // template this?
+    for (int j = 0; j < _decimalPlaces; j++){
+        int remainder = i % _valuesPerDecimal;
 
-                // shift it
-                i -= remainder;
-                i = i / _valuesPerDecimal;
+        // shift it
+        i -= remainder;
+        i = i / _valuesPerDecimal;
 
-                // round up
-                if (remainder >= _valuesPerDecimal / 2){
-                    i += 1;
-                }
-            }
-
-            fp.Value = i;
-        }
-        else{
-            fp.Value = MAXVALUE;
+        // round up
+        if (remainder >= _valuesPerDecimal / 2){
+            i += 1;
         }
     }
+
+    // Overflow check
+    if (i >= MAXVALUE){
+        fp.Value = MAXVALUE;
+    }
     else{
-        int i = fp.Value * absRhsValue;
-
-        // convert it to FixedPointInt value format, rounding decimals
-        // template this?
-        for (int j = 0; j < _decimalPlaces; j++){
-            int remainder = i % _valuesPerDecimal;
-
-            // shift it
-            i -= remainder;
-            i = i / _valuesPerDecimal;
-
-            // round up
-            if (remainder >= _valuesPerDecimal / 2){
-                i += 1;
-            }
-        }
-
         fp.Value = i;
     }
 
