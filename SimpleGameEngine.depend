@@ -4258,10 +4258,11 @@
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1550996097 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
+1551031845 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
 	"FixedPointInt.h"
+	<cstdint>
 
-1550995770 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
+1551030682 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
