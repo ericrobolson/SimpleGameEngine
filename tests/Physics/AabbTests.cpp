@@ -7,16 +7,16 @@ using namespace SGE_Math;
 SCENARIO("Aabb::MinCoordinate(): Returns expected calculated coordinate"){
     Aabb aabb;
 
-    aabb.HalfWidth = 2;
-    aabb.HalfHeight = 5;
-    aabb.Position.Coordinates.X = 2;
-    aabb.Position.Coordinates.Y = 5;
+    aabb.HalfWidth = 2.0_fp;
+    aabb.HalfHeight = 5.0_fp;
+    aabb.Position.Coordinates.X = 2.0_fp;
+    aabb.Position.Coordinates.Y = 5.0_fp;
 
     Coordinate minCoordinate = aabb.MinCoordinate();
 
     FixedPointInt expectedX, expectedY;
-    expectedX = 0;
-    expectedY = 0;
+    expectedX = 0.0_fp;
+    expectedY = 0.0_fp;
 
     REQUIRE(minCoordinate.X == expectedX);
     REQUIRE(minCoordinate.Y == expectedY);
@@ -26,16 +26,16 @@ SCENARIO("Aabb::MinCoordinate(): Returns expected calculated coordinate"){
 SCENARIO("Aabb::MaxCoordinate(): Returns expected calculated coordinate"){
     Aabb aabb;
 
-    aabb.HalfWidth = 2;
-    aabb.HalfHeight = 6;
-    aabb.Position.Coordinates.X = 3;
-    aabb.Position.Coordinates.Y = 5;
+    aabb.HalfWidth = 2.0_fp;
+    aabb.HalfHeight = 6.0_fp;
+    aabb.Position.Coordinates.X = 3.0_fp;
+    aabb.Position.Coordinates.Y = 5.0_fp;
 
     Coordinate minCoordinate = aabb.MaxCoordinate();
 
     FixedPointInt expectedX, expectedY;
-    expectedX = (2 + 3);
-    expectedY = (6 + 5);
+    expectedX = 5.0_fp;
+    expectedY = 11.0_fp;
 
     REQUIRE(minCoordinate.X == expectedX);
     REQUIRE(minCoordinate.Y == expectedY);

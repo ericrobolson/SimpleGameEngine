@@ -1,57 +1,61 @@
 #include "FixedPointInt.h"
 using namespace SGE_Math;
-#include <cstring>
+#include <string>
+
+
+#include <sstream>
 
 //todo: replace with bitwise operations
 //todo: ensure all casts are deterministic, may mean writing your own
 
+
+FixedPointInt operator"" _fp(long double d){
+    FixedPointInt fp;
+
+    fp.SetValueFromDouble(d);
+
+    return fp;
+}
+
+
 FixedPointInt::FixedPointInt()
 {
-    //ctor
     Value = 0;
 }
 
-FixedPointInt::FixedPointInt(double d)
+FixedPointInt::FixedPointInt(const FixedPointInt& fp)
 {
-    float f = d;
-    Value = f;
+    Value = fp.Value;
 }
 
-FixedPointInt::FixedPointInt(int i)
+/*
+FixedPointInt::FixedPointInt(const int& i)
 {
-    *this = i;
+    SetValueFromInt(i);
 }
-
-
-FixedPointInt::FixedPointInt(float f)
-{
-    *this = f;
-}
+*/
+//todo: test
 
 FixedPointInt::~FixedPointInt()
 {
     //dtor
 }
 
-// Operators
-void FixedPointInt::operator ++(){
-    // convert to bitshifting?
-    Value += _scalingFactor;
+// Private functions
+void FixedPointInt::SetValueFromInt(const int& rhs){
+    // Overflow check
+    if (rhs > MAXINTVALUE){
+        Value = MAXVALUE;
+    }
+    // Underflow check
+    else if (rhs < MININTVALUE){
+        Value = MINVALUE;
+    }
+    else{
+        Value = rhs * _scalingFactor;
+    }
 }
-
-void FixedPointInt::operator --(){
-    // convert to bitshifting?
-    Value -= _scalingFactor;
-}
-
-// Assignment operators
 /*
-FixedPointInt& FixedPointInt::operator =(const int& rhs){
-    this->Value = rhs * this->_scalingFactor;
-    return *this;
-}
-
-
 float my_ceiling(float f)
 {
     unsigned input;
@@ -74,43 +78,109 @@ float my_ceiling(float f)
 
     return f;
 }
-
-FixedPointInt& FixedPointInt::operator =(const float& rhs){
-
-    bool positiveValue = rhs >= 0;
-
-    // get the absolute value of Value
-    float i = rhs;
-
-    if (!positiveValue){
-        i *= -1;
-    }
-
-    // figure out rounding value
-    i = i * _scalingFactor;
-
-    float j = my_ceiling(i);
-
-    // round
-    if (i >= j){
-
-    }
-
-    if (!positiveValue){
-        j *= -1;
-    }
-
-    this->Value = j;
-    return *this;
-}
 */
+//todo: test
+void FixedPointInt::SetValueFromDouble(const long double& rhs){
+    long double d = rhs * _scalingFactor;
+
+    Value = d;
+
+    return;
+
+    bool roundUp;
+    bool isPositive = d >= (long double)0;
+
+    // convert to absolute value for simpler math
+    if (!isPositive){
+        d *= -1;
+    }
+
+    // Get the decimal value:
+    std::ostringstream strs;
+    strs << d;
+
+    std::string floatStr = strs.str();
+    int strLen = floatStr.length();
+
+    int i = strLen -1;
+
+    Value = std::stod(floatStr.substr(0, floatStr.find('.')));
+
+
+    // round the decimal points
+    while (i >= 0){
+        char c = floatStr[i];
+
+        if (c != '.'){
+                /*
+            int cInt = c - '0'; // convert char to int, subtracting offset of '0' since it's sequential
+
+            // round up the bits we can't store
+            if (roundUp){
+                cInt++;
+                roundUp = false;
+            }
+
+            if (cInt >= 5){
+                roundUp = true;
+            }
+            */
+        }
+
+        else{
+            break;
+        }
+
+        i--;
+    }
+
+
+    if (roundUp){
+        Value += 1;
+    }
+
+    // convert from absolute value
+    if (!isPositive){
+        Value *= -1;
+    }
+}
+
+
+FixedPointInt FixedPointInt::operator -(){
+    FixedPointInt fp;
+    fp.Value -= this->Value;
+
+    return fp;
+}
+
+
+
+
+//todo: refactor these out and test
+
+
+
+// Operators
+void FixedPointInt::operator ++(){
+    // convert to bitshifting?
+    Value += _scalingFactor;
+}
+
+void FixedPointInt::operator --(){
+    // convert to bitshifting?
+    Value -= _scalingFactor;
+}
+
+// Assignment operators
+
+
 
 //todo: test this
 FixedPointInt FixedPointInt::operator -(const FixedPointInt& rhs){
     FixedPointInt fp;
 
-    fp += *this;
-    fp -= rhs;
+    fp.Value += this->Value;
+    fp.Value += rhs.Value;
 
     return fp;
 }
@@ -168,13 +238,14 @@ FixedPointInt& FixedPointInt::operator -=(const FixedPointInt& rhs){
 
     return *this;
 }
-
+/*
 
 // Type casting
 
 FixedPointInt::operator float() const{
     return ((float)Value / _scalingFactor);
 }
+
 
 FixedPointInt::operator int() const{
     bool positiveValue = Value >= 0;
@@ -205,3 +276,4 @@ FixedPointInt::operator int() const{
 
     return i;
 }
+*/

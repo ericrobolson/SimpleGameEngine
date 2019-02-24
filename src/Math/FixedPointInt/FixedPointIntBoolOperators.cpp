@@ -21,3 +21,7 @@ bool FixedPointInt::operator ==(const FixedPointInt& rhs) const{
     return (this->Value == rhs.Value);
 }
 
+bool FixedPointInt::operator !=(const FixedPointInt& rhs) const{
+    return (this->Value != rhs.Value);
+}
+

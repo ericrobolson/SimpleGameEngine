@@ -3,52 +3,144 @@
 
 using namespace SGE_Math;
 
-
-
 SCENARIO("FixedPointInt:: >="){
-    FixedPointInt fp1, fp2;
+    FixedPointInt fp1;
+    FixedPointInt fp2;
 
-    // pos int test
-    // pos decimal test
-    // neg int test
-    // neg decimal test
+    // Equal to
+    fp1.Value = 1;
+    fp2.Value = 1;
 
-    // lt
-    // eq
-
-    // fp1 > fp2
-    fp1 = 10;
-    fp2 = 9;
-    REQUIRE((fp1 >= fp2) == true);
-/*
-    fp1 = (FixedPointInt).02;
-    fp2 = (FixedPointInt).01;
     REQUIRE((fp1 >= fp2) == true);
 
-    fp1 = -2;
-    fp2 = -3;
+    // Less than
+    fp1.Value = 1;
+    fp2.Value = 2;
+
+    REQUIRE((fp1 >= fp2) == false);
+
+    // Greater than
+    fp1.Value = 2;
+    fp2.Value = 1;
+
     REQUIRE((fp1 >= fp2) == true);
-
-    fp1 = -.01;
-    fp2 = -.02;
-    REQUIRE((fp1 >= fp2) == true);
-
-    // fp1 < fp2
-    fp1 = 101;
-    fp2 = 900;
-    REQUIRE((fp1 >= fp2) == false);
-
-    fp1 = 1.02;
-    fp2 = 1.03;
-    REQUIRE((fp1 >= fp2) == false);
-
-    fp1 = -4;
-    fp2 = -3;
-    REQUIRE((fp1 >= fp2) == false);
-
-    fp1 = -4.01;
-    fp2 = -3.02;
-    REQUIRE((fp1 >= fp2) == false);
-*/
-
 }
+
+SCENARIO("FixedPointInt:: <="){
+    FixedPointInt fp1;
+    FixedPointInt fp2;
+
+    // Equal to
+    fp1.Value = 1;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 <= fp2) == true);
+
+    // Less than
+    fp1.Value = 1;
+    fp2.Value = 2;
+
+    REQUIRE((fp1 <= fp2) == true);
+
+    // Greater than
+    fp1.Value = 2;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 <= fp2) == false);
+}
+
+
+SCENARIO("FixedPointInt:: >"){
+    FixedPointInt fp1;
+    FixedPointInt fp2;
+
+    // Equal to
+    fp1.Value = 1;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 > fp2) == false);
+
+    // Less than
+    fp1.Value = 1;
+    fp2.Value = 2;
+
+    REQUIRE((fp1 > fp2) == false);
+
+    // Greater than
+    fp1.Value = 2;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 > fp2) == true);
+}
+
+
+SCENARIO("FixedPointInt:: <"){
+    FixedPointInt fp1;
+    FixedPointInt fp2;
+
+    // Equal to
+    fp1.Value = 1;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 < fp2) == false);
+
+    // Less than
+    fp1.Value = 1;
+    fp2.Value = 2;
+
+    REQUIRE((fp1 < fp2) == true);
+
+    // Greater than
+    fp1.Value = 2;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 < fp2) == false);
+}
+
+SCENARIO("FixedPointInt:: =="){
+    FixedPointInt fp1;
+    FixedPointInt fp2;
+
+    // Equal to
+    fp1.Value = 1;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 == fp2) == true);
+
+    // Less than
+    fp1.Value = 1;
+    fp2.Value = 2;
+
+    REQUIRE((fp1 == fp2) == false);
+
+    // Greater than
+    fp1.Value = 2;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 == fp2) == false);
+}
+
+SCENARIO("FixedPointInt:: !="){
+    FixedPointInt fp1;
+    FixedPointInt fp2;
+
+    // Equal to
+    fp1.Value = 1;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 != fp2) == false);
+
+    // Less than
+    fp1.Value = 1;
+    fp2.Value = 2;
+
+    REQUIRE((fp1 != fp2) == true);
+
+    // Greater than
+    fp1.Value = 2;
+    fp2.Value = 1;
+
+    REQUIRE((fp1 != fp2) == true);
+}
+
+

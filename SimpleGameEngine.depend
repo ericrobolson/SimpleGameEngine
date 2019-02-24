@@ -4172,16 +4172,16 @@
 1550953263 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\coordinate.h
 	"FixedPointInt.h"
 
-1550957051 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
+1550976616 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
 	"Coordinate.h"
 
-1550776281 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
+1550976925 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
 	"catch.hpp"
 	"CollisionDectector.h"
 	"Aabb.h"
 	"Physics/Circle.h"
 
-1550954769 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
+1550976875 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
 	"catch.hpp"
 	"Aabb.h"
 	"FixedPointInt.h"
@@ -4224,20 +4224,23 @@
 1550952936 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
 	"DeterministicMath.h"
 
-1550957326 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
+1550978184 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
 	"FixedPointInt.h"
-	<cstring>
+	<string>
+	<sstream>
 
-1550957762 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1550977730 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+	<limits>
 
-1550953051 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
+1550976631 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
+	<limits>
 
-1550956059 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintbooloperators.cpp
+1550978812 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintbooloperators.cpp
 	"FixedPointInt.h"
 
-1550957578 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintbooloperatorstests.cpp
+1550958723 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintbooloperatorstests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
