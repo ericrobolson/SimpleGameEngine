@@ -31,8 +31,6 @@ class FixedPointInt{
         FixedPointInt operator +(const FixedPointInt& rhs);
         FixedPointInt operator *(const FixedPointInt& rhs);
         FixedPointInt operator /(const FixedPointInt& rhs);
-        FixedPointInt operator %(const FixedPointInt& rhs);
-        FixedPointInt operator ^(const FixedPointInt& rhs);
 
         // Self modification operators
         FixedPointInt& operator +=(const FixedPointInt& rhs);

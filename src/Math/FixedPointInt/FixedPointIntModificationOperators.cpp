@@ -85,24 +85,3 @@ FixedPointInt FixedPointInt::operator /(const FixedPointInt& rhs){
 
     return fp;
 }
-
-//todo: test this
-FixedPointInt FixedPointInt::operator %(const FixedPointInt& rhs){
-    FixedPointInt fp;
-
-    fp = *this;
-    fp *= rhs;
-
-    return fp;
-}
-
-
-//todo: test this
-FixedPointInt FixedPointInt::operator ^(const FixedPointInt& rhs){
-    FixedPointInt fp;
-
-    fp = *this;
-    fp *= rhs;
-
-    return fp;
-}
