@@ -1,11 +1,85 @@
 #include "catch.hpp"
-#include "DeterministicMath.h"
+#include "FixedPointInt.h"
+#include <limits>
 
 using namespace SGE_Math;
 
+const int MININTSIZE = std::numeric_limits<int>::min();
+const int MAXINTSIZE = std::numeric_limits<int>::max();
 
-//todo: do all tests with decimals as well
+const int _decimalPlaces = 2;
+const int _valuesPerDecimal = 10;
+const int _scalingFactor = _valuesPerDecimal * _valuesPerDecimal; // (10^decimalPlaces), as this contains 2 decimal places, scale ints/floats by this value to get them
+const int _halfScalingFactor = _scalingFactor/2;
 
+
+SCENARIO("FixedPointInt::Constructor: Defaults to 0"){
+    FixedPointInt fp;
+    REQUIRE(fp.Value == 0);
+}
+
+SCENARIO("FixedPointInt::Constructor(decimal)"){
+
+
+    // integer checks
+    FixedPointInt fpi(1.0_fp);
+    REQUIRE(fpi.Value == 100);
+
+    FixedPointInt fpi2(-1.0_fp);
+    REQUIRE(fpi2.Value == -100);
+/*
+    FixedPointInt fpi3((float)401);
+    REQUIRE(fpi3.Value == 40100);
+
+    FixedPointInt fpi4((float)-301);
+    REQUIRE(fpi4.Value == -30100);
+
+    // decimal checks
+    FixedPointInt fpd((float).12);
+    REQUIRE(fpd.Value == 12);
+
+    FixedPointInt fpd2((float)-.12);
+    REQUIRE(fpd2.Value == -12);
+
+    FixedPointInt fpd3((float)4.01);
+    REQUIRE(fpd3.Value == 401);
+
+    FixedPointInt fpd4((float)-3.01);
+    REQUIRE(fpd4.Value == -301);
+
+    // decimal rounding checks
+    FixedPointInt fpdr((float).125);
+    REQUIRE(fpd.Value == 13);
+
+    FixedPointInt fpdr1((float).124);
+    REQUIRE(fpdr1.Value == 12);
+
+    FixedPointInt fpdr2((float).124444445);
+    REQUIRE(fpdr2.Value == 13);
+
+    FixedPointInt fpdr3((float).124444444);
+    REQUIRE(fpdr3.Value == 12);
+
+    //todo: negative rounding checks
+*/
+
+
+    /*
+    // Overflow checks
+    int overflowValue = (MAXINTSIZE / _scalingFactor) + 1;
+
+    FixedPointInt fpOf((int)overflowValue);
+    REQUIRE(fpOf.Value == MAXINTSIZE);
+
+    // Underflow checks
+    int underflowValue = (MININTSIZE / _scalingFactor) - 1;
+
+    FixedPointInt fpUf((int)underflowValue);
+    REQUIRE(fpUf.Value == MININTSIZE);
+    */
+}
+
+/*
 SCENARIO("FixedPointInt::Constructor: Defaults to 0"){
     FixedPointInt fp;
     REQUIRE((int)fp == 0);
@@ -159,3 +233,4 @@ SCENARIO("FixedPointInt:: *= Multiplication to FixedPointInt"){
     REQUIRE((float)fp1 == (float)400.0);
 
 }
+*/

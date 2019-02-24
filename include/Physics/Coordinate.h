@@ -1,6 +1,9 @@
 #ifndef COORDINATE_H
 #define COORDINATE_H
 
+#include "FixedPointInt.h"
+using namespace SGE_Math;
+
 namespace SGE_Physics{
 class Coordinate
 {
@@ -8,8 +11,8 @@ class Coordinate
         Coordinate();
         virtual ~Coordinate();
 
-        float X;
-        float Y;
+        FixedPointInt X;
+        FixedPointInt Y;
 
     protected:
 

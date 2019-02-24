@@ -1,6 +1,9 @@
 #include "CollisionDectector.h"
 #include <cmath>
 
+#include "FixedPointInt.h"
+using namespace SGE_Math;
+
 using namespace SGE_Physics;
 CollisionDectector::CollisionDectector()
 {
@@ -40,10 +43,12 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
     // ABS(R0 - R1) <= SQRT((x0 - x1)^2 + (y0 - y1)^2) <= (R0 + R1)
     // Raised all sides by a power of 2 removes the SQRT operator
 
-    float lowerBound = pow((a.Radius - b.Radius),2);
-    float upperBound = pow((a.Radius + b.Radius),2);
+    FixedPointInt lowerBound = (a.Radius - b.Radius)*(a.Radius - b.Radius);
+    FixedPointInt upperBound = (a.Radius + b.Radius)*(a.Radius + b.Radius);
 
-    float distance = pow((a.Position.Coordinates.X - b.Position.Coordinates.X), 2) + pow((a.Position.Coordinates.Y - b.Position.Coordinates.Y), 2);
+    FixedPointInt distance =
+    ((a.Position.Coordinates.X - b.Position.Coordinates.X)*(a.Position.Coordinates.X - b.Position.Coordinates.X))
+    + ((a.Position.Coordinates.Y - b.Position.Coordinates.Y)*(a.Position.Coordinates.Y - b.Position.Coordinates.Y));
 
     return lowerBound <= distance && distance <= upperBound;
 }

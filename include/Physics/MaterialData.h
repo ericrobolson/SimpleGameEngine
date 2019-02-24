@@ -1,6 +1,9 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+#include "FixedPointInt.h"
+using namespace SGE_Math;
+
 namespace SGE_Physics{
     class MaterialData
     {
@@ -8,8 +11,8 @@ namespace SGE_Physics{
             MaterialData();
             virtual ~MaterialData();
 
-            float Density;
-            float Restitution;
+            FixedPointInt Density;
+            FixedPointInt Restitution;
     };
 }
 
