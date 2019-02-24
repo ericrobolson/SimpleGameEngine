@@ -146,13 +146,6 @@ void FixedPointInt::SetValueFromDouble(const long double& rhs){
 }
 
 
-FixedPointInt FixedPointInt::operator -(){
-    FixedPointInt fp;
-    fp.Value -= this->Value;
-
-    return fp;
-}
-
 
 
 
@@ -176,35 +169,7 @@ void FixedPointInt::operator --(){
 
 
 //todo: test this
-FixedPointInt FixedPointInt::operator -(const FixedPointInt& rhs){
-    FixedPointInt fp;
 
-    fp.Value += this->Value;
-    fp.Value += rhs.Value;
-
-    return fp;
-}
-
-
-//todo: test this
-FixedPointInt FixedPointInt::operator +(const FixedPointInt& rhs){
-    FixedPointInt fp;
-
-    fp += *this;
-    fp += rhs;
-
-    return fp;
-}
-
-//todo: test this
-FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
-    FixedPointInt fp;
-
-    fp = *this;
-    fp *= rhs;
-
-    return fp;
-}
 
 
 ///todo: This is a key part to get right; need to ensure rounding errors are taken care of
