@@ -196,6 +196,7 @@
 		<Unit filename="src/Math/FixedPointInt.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntAssignmentOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntBoolOperators.cpp" />
+		<Unit filename="src/Math/FixedPointInt/FixedPointIntModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntTypeCasting.cpp" />
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Body.cpp" />
@@ -230,6 +231,9 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntBoolOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntModificationOperatorsTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntTypeCastingTests.cpp">
