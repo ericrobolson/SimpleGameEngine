@@ -1,6 +1,9 @@
 #include "FixedPointInt.h"
 using namespace SGE_Math;
 
+#include <cstdint>
+
+
 // for referencing buffer overflow checks:
 // https://stackoverflow.com/a/1514309
 // https://stackoverflow.com/a/20956705
@@ -17,7 +20,7 @@ FixedPointInt FixedPointInt::operator -(const FixedPointInt& rhs){
     FixedPointInt fp;
     fp.Value += this->Value;
 
-    int s;
+    int_fast32_t s;
     if (__builtin_sub_overflow(fp.Value, rhs.Value, &s)){
         fp.Value = MAXVALUE;
     } else if(__builtin_sub_overflow(fp.Value, -rhs.Value, &s)){
@@ -34,7 +37,7 @@ FixedPointInt FixedPointInt::operator +(const FixedPointInt& rhs){
     FixedPointInt fp;
     fp.Value += this->Value;
 
-    int s;
+    int_fast32_t s;
     if (__builtin_add_overflow(fp.Value, rhs.Value, &s)){
         if (fp.Value < 0 && rhs.Value < 0){
             fp.Value = MINVALUE;
@@ -55,7 +58,7 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
 
     fp.Value += this->Value;
 
-    int s;
+    int_fast32_t s;
     if (__builtin_mul_overflow(fp.Value, rhs.Value, &s)){
         fp.Value = MAXVALUE;
     } else if(__builtin_mul_overflow(fp.Value, -rhs.Value, &s)){
