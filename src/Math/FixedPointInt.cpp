@@ -207,15 +207,6 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
 }
 
 
-FixedPointInt& FixedPointInt::operator =(const FixedPointInt& rhs){
-    if (this != &rhs){
-        this->Value = rhs.Value;
-    }
-
-    return *this;
-}
-
-
 ///todo: This is a key part to get right; need to ensure rounding errors are taken care of
 
 
@@ -247,33 +238,4 @@ FixedPointInt::operator float() const{
 }
 
 
-FixedPointInt::operator int() const{
-    bool positiveValue = Value >= 0;
-
-    // get the absolute value of Value
-    int i = Value;
-
-    if (!positiveValue){
-        i *= -1;
-    }
-
-    int remainder = i % _scalingFactor;
-
-    // get rid of bits that will be rounded
-    i -= remainder;
-
-    // convert to int representation
-    i = i / _scalingFactor;
-
-    // round up if needed
-    if (remainder >= _halfScalingFactor){
-        i += 1;
-    }
-
-    if (!positiveValue){
-        i *= -1;
-    }
-
-    return i;
-}
 */

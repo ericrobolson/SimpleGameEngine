@@ -4224,12 +4224,12 @@
 1550952936 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
 	"DeterministicMath.h"
 
-1550978184 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
+1550979585 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
 	"FixedPointInt.h"
 	<string>
 	<sstream>
 
-1550977730 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1550979028 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
 
 1550976631 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
@@ -4240,7 +4240,21 @@
 1550978812 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintbooloperators.cpp
 	"FixedPointInt.h"
 
-1550958723 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintbooloperatorstests.cpp
+1550978914 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintbooloperatorstests.cpp
+	"catch.hpp"
+	"FixedPointInt.h"
+
+1550979239 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintassignmentoperators.cpp
+	"FixedPointInt.h"
+
+1550979372 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintassignmentoperatorstests.cpp
+	"catch.hpp"
+	"FixedPointInt.h"
+
+1550980568 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
+	"FixedPointInt.h"
+
+1550979981 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointinttypecastingtests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 

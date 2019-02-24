@@ -67,7 +67,6 @@ class FixedPointInt{
         const int MAXINTVALUE = std::numeric_limits<int>::max() / _scalingFactor;; // Maximum allowed integer value
 
         void SetValueFromInt(const int& rhs);
-
 };
 }
 
