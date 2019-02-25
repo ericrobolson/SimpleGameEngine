@@ -4224,12 +4224,12 @@
 1550952936 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
 	"DeterministicMath.h"
 
-1551034504 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
+1551040711 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
 	"FixedPointInt.h"
 	<string>
 	<sstream>
 
-1550997718 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1551040512 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
 	<cstdint>
 
@@ -4258,11 +4258,18 @@
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551032047 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
+1551110053 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
 	"FixedPointInt.h"
 	<cstdint>
 
-1551031998 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
+1551109716 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
 	"catch.hpp"
+	"FixedPointInt.h"
+
+1551110059 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintselfmodificationoperatorstests.cpp
+	"catch.hpp"
+	"FixedPointInt.h"
+
+1551109446 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintselfmodificationoperators.cpp
 	"FixedPointInt.h"
 
