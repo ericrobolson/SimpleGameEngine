@@ -130,7 +130,7 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
         }
     }
     else{
-            for (int j = 0; j < _decimalPlaces; j++){
+        for (int j = 0; j < _decimalPlaces; j++){
         int_fast64_t remainder = i % _valuesPerDecimal;
 
         // shift it

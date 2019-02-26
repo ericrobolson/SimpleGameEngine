@@ -4,31 +4,25 @@ using namespace SGE_Math;
 FixedPointInt::operator int() const{
     bool positiveValue = Value >= 0;
 
-    // get the absolute value of Value
-    int i = Value;
+    int_fast32_t i = Value;
 
     if (!positiveValue){
-        i *= -1;
+        i = -i;
     }
 
-    int remainder = i % _scalingFactor;
+    // round up decimal places
+    for (int j = 0; j < _decimalPlaces; j++){
+        int_fast32_t remainder = i % _valuesPerDecimal;
 
-    // get rid of bits that will be rounded
-    i -= remainder;
+        // shift it
+        i -= remainder;
+        i = i / _valuesPerDecimal;
 
-    // convert to int representation
-    i = i / _scalingFactor;
+        // round up
+        if (remainder >= _valuesPerDecimal / 2){
+            i += 1;
+        }
 
-    // round up if needed; note: this is based on a 2 decimal place system, if that changes need to update this and reevaluate it
-
-    // round up least significant decimal place
-    int remainder2 = remainder % _valuesPerDecimal;
-    if (remainder2 >= (_halfScalingFactor / _valuesPerDecimal)){
-        remainder += (_valuesPerDecimal - remainder2);
-    }
-
-    if (remainder >= _halfScalingFactor){
-        i += 1;
     }
 
     if (!positiveValue){
