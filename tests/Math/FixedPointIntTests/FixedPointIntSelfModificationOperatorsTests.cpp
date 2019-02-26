@@ -112,3 +112,35 @@ SCENARIO("FixedPointInt:: *="){
     REQUIRE(fp2 == 2.02_fp);
 
 }
+
+
+
+
+SCENARIO("FixedPointInt:: /="){
+    FixedPointInt fp1, fp2;
+
+    fp1 = 1.02_fp;
+    fp2 = 2.02_fp;
+
+    fp1 /= fp2;
+
+    REQUIRE(fp1 == 0.51_fp);
+    REQUIRE(fp2 == 2.02_fp);
+
+    fp1 = 1.00_fp;
+    fp2 = 3.0_fp;
+
+    fp1 /= fp2;
+
+    REQUIRE(fp1 == 0.33_fp);
+    REQUIRE(fp2 == 3.0_fp);
+
+    fp1 = 0.0_fp;
+    fp2 = 2.02_fp;
+
+    fp1 *= fp2;
+
+    REQUIRE(fp1 == 0.0_fp);
+    REQUIRE(fp2 == 2.02_fp);
+
+}

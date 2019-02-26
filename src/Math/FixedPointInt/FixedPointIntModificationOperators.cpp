@@ -14,6 +14,8 @@ FixedPointInt FixedPointInt::operator -(){
     FixedPointInt fp;
     fp.Value -= this->Value;
 
+    // possible issue rounding?
+    // e.g. negative int to positive int overflows?
     return fp;
 }
 
