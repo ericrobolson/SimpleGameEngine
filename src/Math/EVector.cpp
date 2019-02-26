@@ -16,18 +16,3 @@ EVector::~EVector()
 {
     //dtor
 }
-
-EVector& EVector::operator -(const EVector& rhs){
-    return *this;
-}
-EVector& EVector::operator *(const EVector& rhs){
-    return *this;
-}
-EVector& EVector::operator +(const EVector& rhs){
-    return *this;
-}
-EVector& EVector::operator /(const EVector& rhs){
-    return *this;
-}
-
-
