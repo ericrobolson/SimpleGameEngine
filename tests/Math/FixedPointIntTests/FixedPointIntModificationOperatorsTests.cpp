@@ -79,12 +79,21 @@ SCENARIO("FixedPointInt:: minus -"){
 
     // negative - negative overflow check
     fp1.Value = fp2.MINVALUE;
-    fp2.Value = fp2.MINVALUE + 1;
+    fp2.Value = fp2.MINVALUE + 100;
 
     fp3 = fp1 - fp2;
 
     REQUIRE(fp1.Value == fp1.MINVALUE);
-    REQUIRE(fp2.Value == (fp2.MINVALUE + 1));
+    REQUIRE(fp2.Value == (fp2.MINVALUE + 100));
+    REQUIRE(fp3.Value == -100);
+
+    fp1.Value = fp1.MINVALUE;
+    fp2 = 2.02_fp;
+
+    fp3 = fp1 - fp2;
+
+    REQUIRE(fp1.Value == fp1.MINVALUE);
+    REQUIRE(fp2 == 2.02_fp);
     REQUIRE(fp3.Value == fp1.MINVALUE);
 }
 
@@ -154,6 +163,70 @@ SCENARIO("FixedPointInt:: plus +"){
     REQUIRE(fp3.Value == fp1.MINVALUE);
 }
 
+SCENARIO("FixedPointInt:: division /"){
+    FixedPointInt fp1, fp2, fp3;
+
+    // 2 / 1 = 2
+    fp1.Value = 200;
+    fp2.Value = 100;
+    fp3 = fp1 / fp2;
+
+    REQUIRE(fp1.Value == 200);
+    REQUIRE(fp2.Value == 100);
+    REQUIRE(fp3.Value == 200);
+
+    // 2 / 4 = .5
+    fp1.Value = 200;
+    fp2.Value = 400;
+    fp3 = fp1 / fp2;
+
+    REQUIRE(fp1.Value == 200);
+    REQUIRE(fp2.Value == 400);
+    REQUIRE(fp3.Value == 50);
+
+    // check negatives, boundaries, decimals v decimals, overflows, etc
+
+    // .03 / .12 = .25
+    fp1.Value = 3;
+    fp2.Value = 12;
+    fp3 = fp1 / fp2;
+
+    REQUIRE(fp1.Value == 3);
+    REQUIRE(fp2.Value == 12);
+    REQUIRE(fp3.Value == 25);
+
+    // .03 / 5 = .006, rounded = .05
+    fp1.Value = 3;
+    fp2.Value = 500;
+    fp3 = fp1 / fp2;
+
+    REQUIRE(fp1.Value == 3);
+    REQUIRE(fp2.Value == 500);
+    REQUIRE(fp3.Value == 1);
+
+    // .03 / 0 = should return MAXVALUE
+    fp1.Value = 3;
+    fp2.Value = 0;
+    fp3 = fp1 / fp2;
+
+    REQUIRE(fp1.Value == 3);
+    REQUIRE(fp2.Value == 0);
+    REQUIRE(fp3.Value == fp1.MAXVALUE);
+
+    // -.03 / 0 = should return MAXVALUE
+    fp1.Value = -3;
+    fp2.Value = 0;
+    fp3 = fp1 / fp2;
+
+    REQUIRE(fp1.Value == -3);
+    REQUIRE(fp2.Value == 0);
+    REQUIRE(fp3.Value == fp1.MINVALUE);
+
+
+}
+
+
+
 SCENARIO("FixedPointInt:: multiplication *"){
     FixedPointInt fp1, fp2, fp3;
 
@@ -186,6 +259,17 @@ SCENARIO("FixedPointInt:: multiplication *"){
     REQUIRE(fp1.Value == 400);
     REQUIRE(fp2.Value == 100);
     REQUIRE(fp3.Value == 400);
+
+
+    fp1.Value = fp1.MINVALUE;
+    fp2 = 2.02_fp;
+
+    fp3 = fp1 * fp2;
+
+    REQUIRE(fp1.Value == fp1.MINVALUE);
+    REQUIRE(fp2 == 2.02_fp);
+    REQUIRE(fp3.Value == fp1.MINVALUE);
+
 
 
     // positive int * positive int
@@ -373,11 +457,4 @@ SCENARIO("FixedPointInt:: multiplication *"){
     // positive decimal < 1 * zero
     // positive decimal < 1 * positive int
     // positive decimal < 1 * positive decimal > 1
-
-
-
-
-
-
-
 }

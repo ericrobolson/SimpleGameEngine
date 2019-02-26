@@ -65,8 +65,6 @@ class FixedPointInt{
 
         const int_fast32_t MININTVALUE= std::numeric_limits<int_fast32_t>::min() / _scalingFactor; // Minimum allowed integer value
         const int_fast32_t MAXINTVALUE = std::numeric_limits<int_fast32_t>::max() / _scalingFactor;; // Maximum allowed integer value
-
-        void SetValueFromInt(const int_fast32_t& rhs);
 };
 }
 

@@ -14,27 +14,57 @@ FixedPointInt FixedPointInt::operator -(){
     FixedPointInt fp;
     fp.Value -= this->Value;
 
+    // possible issue rounding?
+    // e.g. negative int to positive int overflows?
     return fp;
 }
 
 FixedPointInt FixedPointInt::operator -(const FixedPointInt& rhs){
     FixedPointInt fp;
-    fp.Value += this->Value;
 
-    int_fast32_t s;
-    if (__builtin_sub_overflow(fp.Value, rhs.Value, &s)){
+    fp.Value = this->Value;
+
+    // Typecast to a bigger format, so if it's a valid value an overflow will not occur
+    //todo: refactor so don't need to typecast?
+    int_fast64_t i = (int_fast64_t)fp.Value - (int_fast64_t)rhs.Value;
+
+    // Overflow check
+    if (i >= MAXVALUE){
         fp.Value = MAXVALUE;
-    } else if(__builtin_sub_overflow(fp.Value, -rhs.Value, &s)){
-        fp.Value = MINVALUE;
+    }
+    else if (i <= MINVALUE){
+        i = MINVALUE;
     }
     else{
-        fp.Value -= rhs.Value;
+        fp.Value = i;
     }
 
     return fp;
 }
 
 FixedPointInt FixedPointInt::operator +(const FixedPointInt& rhs){
+
+    FixedPointInt fp;
+
+    fp.Value = this->Value;
+
+    // Typecast to a bigger format, so if it's a valid value an overflow will not occur
+    //todo: refactor so don't need to typecast?
+    int_fast64_t i = (int_fast64_t)fp.Value + (int_fast64_t)rhs.Value;
+
+    // Overflow check
+    if (i >= MAXVALUE){
+        fp.Value = MAXVALUE;
+    }
+    else if (i <= MINVALUE){
+        i = MINVALUE;
+    }
+    else{
+        fp.Value = i;
+    }
+
+    return fp;
+   /*
     FixedPointInt fp;
     fp.Value += this->Value;
 
@@ -45,18 +75,20 @@ FixedPointInt FixedPointInt::operator +(const FixedPointInt& rhs){
         }else{
             fp.Value = MAXVALUE;
         }
+    } else if (__builtin_sub_overflow(fp.Value, rhs.Value, &s)){
+        if (fp.Value < 0 && rhs.Value < 0){
+            fp.Value = MINVALUE;
+        }else{
+            fp.Value = MAXVALUE;
+        }
+
     }
     else{
         fp.Value += rhs.Value;
     }
 
     return fp;
-}
-
-
-int_fast32_t Divide(int_fast32_t a, int_fast32_t b){
-
-return a / b;
+    */
 }
 
 //todo: test this
@@ -67,71 +99,59 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
         return fp;
     }
 
-    bool finalValueIsNegative = this->Value < 0 && rhs.Value > 0 || this->Value > 0 && rhs.Value < 0;
+    bool isNegative = (this->Value > 0 && rhs.Value < 0 || this->Value < 0 && rhs.Value > 0);
 
-    fp.Value = this->Value;
 
-    // Convert fp to positive, as we'll flip the signs later on
-    if (fp.Value < 0){
-        fp.Value *= -1;
+    int_fast64_t v1 = this->Value;
+    int_fast64_t v2 = rhs.Value;
+
+    if (v1 < 0){
+        v1 *= -1;
     }
 
-    int absRhsValue = rhs.Value;
-    if (absRhsValue < 0){
-        absRhsValue *= -1;
+    if (v2 < 0){
+        v2 *= -1;
     }
 
-    int_fast32_t s;
-    if (__builtin_mul_overflow(fp.Value, absRhsValue, &s)){
-        // check if we can divide
-        if (absRhsValue < _scalingFactor){
-            int_fast64_t i = (int_fast64_t)fp.Value * absRhsValue;
 
-            // convert it to FixedPointInt value format, rounding decimals
-            // template this?
-            for (int j = 0; j < _decimalPlaces; j++){
-                int remainder = i % _valuesPerDecimal;
+    // Typecast to a bigger format, so if it's a valid value an overflow will not occur
+    int_fast64_t i = v1 * v2;
 
-                // shift it
-                i -= remainder;
-                i = i / _valuesPerDecimal;
+    // convert it to FixedPointInt value format, rounding decimals
+    // template this?
 
-                // round up
-                if (remainder >= _valuesPerDecimal / 2){
-                    i += 1;
-                }
-            }
 
-            fp.Value = i;
-        }
-        else{
+    // Overflow check
+    if (i >= ((int_fast64_t)MAXVALUE * (int_fast64_t)_scalingFactor)){
+        if (isNegative){
+            fp.Value = MINVALUE;
+        }else{
             fp.Value = MAXVALUE;
         }
     }
     else{
-        int i = fp.Value * absRhsValue;
+            for (int j = 0; j < _decimalPlaces; j++){
+        int_fast64_t remainder = i % _valuesPerDecimal;
 
-        // convert it to FixedPointInt value format, rounding decimals
-        // template this?
-        for (int j = 0; j < _decimalPlaces; j++){
-            int remainder = i % _valuesPerDecimal;
+        // shift it
+        i -= remainder;
+        i = i / _valuesPerDecimal;
 
-            // shift it
-            i -= remainder;
-            i = i / _valuesPerDecimal;
-
-            // round up
-            if (remainder >= _valuesPerDecimal / 2){
-                i += 1;
-            }
+        // round up
+        if (remainder >= _valuesPerDecimal / 2){
+            i += 1;
         }
+    }
 
         fp.Value = i;
+
+        if (isNegative){
+            fp.Value *= -1;
+        }
     }
 
-    if (finalValueIsNegative){
-        fp.Value *= -1;
-    }
+
+
 
     return fp;
 }
@@ -148,8 +168,50 @@ FixedPointInt FixedPointInt::operator /(const FixedPointInt& rhs){
     // min int / 1
     // max int / -1
 
+    // check dividing by zero cases
+    if (this->Value == 0){
+        return fp;
+    }
+    else if (rhs.Value == 0){
+        if (this->Value > 0){
+            fp.Value = MAXVALUE;
+        }else{
+            fp.Value = MINVALUE;
+        }
+
+        return fp;
+    }
+
     fp.Value = this->Value;
-    fp.Value /= rhs.Value;
+
+    // Typecast to a bigger format, so if it's a valid value an overflow will not occur
+    int_fast64_t i = ((int_fast64_t)fp.Value * _scalingFactor * _scalingFactor) / (int_fast64_t)rhs.Value;
+
+    // convert it to FixedPointInt value format, rounding decimals
+    // template this?
+    for (int j = 0; j < _decimalPlaces; j++){
+        int_fast64_t remainder = i % _valuesPerDecimal;
+
+        // shift it
+        i -= remainder;
+        i = i / _valuesPerDecimal;
+
+        // round up
+        if (remainder >= _valuesPerDecimal / 2){
+            i += 1;
+        }
+    }
+
+    // Overflow check
+    if (i >= MAXVALUE){
+        fp.Value = MAXVALUE;
+    }
+    else if (i <= MINVALUE){
+        fp.Value = MINVALUE;
+    }
+    else{
+        fp.Value = i;
+    }
 
     return fp;
 }
