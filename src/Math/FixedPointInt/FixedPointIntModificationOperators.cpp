@@ -99,25 +99,37 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
 
     bool isNegative = (this->Value > 0 && rhs.Value < 0 || this->Value < 0 && rhs.Value > 0);
 
-    fp.Value = this->Value;
 
-    if (fp.Value < 0){
-        fp.Value *= -1;
+    int_fast64_t v1 = this->Value;
+    int_fast64_t v2 = rhs.Value;
+
+    if (v1 < 0){
+        v1 *= -1;
     }
 
-    int absRhs = rhs.Value;
-    if (absRhs < 0){
-        absRhs *= -1;
+    if (v2 < 0){
+        v2 *= -1;
     }
 
 
     // Typecast to a bigger format, so if it's a valid value an overflow will not occur
-    int_fast64_t i = (int_fast64_t)fp.Value * (int_fast64_t)absRhs;
+    int_fast64_t i = v1 * v2;
 
     // convert it to FixedPointInt value format, rounding decimals
     // template this?
-    for (int j = 0; j < _decimalPlaces; j++){
-        int_fast32_t remainder = i % _valuesPerDecimal;
+
+
+    // Overflow check
+    if (i >= ((int_fast64_t)MAXVALUE * (int_fast64_t)_scalingFactor)){
+        if (isNegative){
+            fp.Value = MINVALUE;
+        }else{
+            fp.Value = MAXVALUE;
+        }
+    }
+    else{
+            for (int j = 0; j < _decimalPlaces; j++){
+        int_fast64_t remainder = i % _valuesPerDecimal;
 
         // shift it
         i -= remainder;
@@ -129,19 +141,14 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
         }
     }
 
-    if (isNegative){
-        i *= -1;
+        fp.Value = i;
+
+        if (isNegative){
+            fp.Value *= -1;
+        }
     }
 
-    // Overflow check
-    if (i >= MAXVALUE){
-        fp.Value = MAXVALUE;
-    } if (i <= MINVALUE){
-        fp.Value = MINVALUE;
-    }
-    else{
-        fp.Value = i;
-    }
+
 
 
     return fp;
@@ -173,27 +180,15 @@ FixedPointInt FixedPointInt::operator /(const FixedPointInt& rhs){
         return fp;
     }
 
-    bool finalValueIsNegative = this->Value < 0 && rhs.Value > 0 || this->Value > 0 && rhs.Value < 0;
-
     fp.Value = this->Value;
 
-    // Convert fp to positive, as we'll flip the signs later on
-    if (fp.Value < 0){
-        fp.Value *= -1;
-    }
-
-    int_fast32_t absRhsValue = rhs.Value;
-    if (absRhsValue < 0){
-        absRhsValue *= -1;
-    }
-
     // Typecast to a bigger format, so if it's a valid value an overflow will not occur
-    int_fast64_t i = ((int_fast64_t)fp.Value * _scalingFactor * _scalingFactor) / (int_fast64_t)absRhsValue;
+    int_fast64_t i = ((int_fast64_t)fp.Value * _scalingFactor * _scalingFactor) / (int_fast64_t)rhs.Value;
 
     // convert it to FixedPointInt value format, rounding decimals
     // template this?
     for (int j = 0; j < _decimalPlaces; j++){
-        int_fast32_t remainder = i % _valuesPerDecimal;
+        int_fast64_t remainder = i % _valuesPerDecimal;
 
         // shift it
         i -= remainder;
@@ -209,12 +204,11 @@ FixedPointInt FixedPointInt::operator /(const FixedPointInt& rhs){
     if (i >= MAXVALUE){
         fp.Value = MAXVALUE;
     }
+    else if (i <= MINVALUE){
+        fp.Value = MINVALUE;
+    }
     else{
         fp.Value = i;
-    }
-
-    if (finalValueIsNegative){
-        fp.Value *= -1;
     }
 
     return fp;
