@@ -4233,7 +4233,7 @@
 	<limits>
 	<cstdint>
 
-1550997041 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
+1551150841 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
@@ -4272,4 +4272,21 @@
 
 1551109446 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintselfmodificationoperators.cpp
 	"FixedPointInt.h"
+
+1551157243 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector.cpp
+	"EVector.h"
+
+1551157040 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
+	"FixedPointInt.h"
+
+1551157405 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorassignmentoperators.cpp
+	"EVector.h"
+
+1551157574 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorassignmentoperatorstests.cpp
+	"catch.hpp"
+	"EVector.h"
+
+1551157908 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evectortests.cpp
+	"catch.hpp"
+	"EVector.h"
 
