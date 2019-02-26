@@ -4276,7 +4276,7 @@
 1551159533 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector.cpp
 	"EVector.h"
 
-1551194829 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
+1551194890 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
 	"FixedPointInt.h"
 
 1551157405 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorassignmentoperators.cpp
@@ -4290,10 +4290,10 @@
 	"catch.hpp"
 	"EVector.h"
 
-1551194027 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormodificationoperatorstests.cpp
+1551194837 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormodificationoperatorstests.cpp
 	"catch.hpp"
 	"EVector.h"
 
-1551194109 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
+1551194845 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
 	"EVector.h"
 

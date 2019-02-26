@@ -196,6 +196,8 @@
 		<Unit filename="src/Math/DeterministicMath.cpp" />
 		<Unit filename="src/Math/EVector.cpp" />
 		<Unit filename="src/Math/EVector/EVectorAssignmentOperators.cpp" />
+		<Unit filename="src/Math/EVector/EVectorModificationOperators.cpp" />
+		<Unit filename="src/Math/EVector/EVectorSelfModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntAssignmentOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntBoolOperators.cpp" />
@@ -232,6 +234,12 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/EVector/EVectorAssignmentOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorModificationOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorSelfModificationOperatorsTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/FixedPointIntTests.cpp">
