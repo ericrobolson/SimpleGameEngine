@@ -32,17 +32,11 @@ class EVector
         EVector& operator +=(const EVector& rhs);
 
         // Boolean operators
-        bool operator <(const EVector& rhs) const;
-        bool operator <=(const EVector& rhs) const;
-        bool operator >(const EVector& rhs) const;
-        bool operator >=(const EVector& rhs) const;
         bool operator ==(const EVector& rhs) const;
         bool operator !=(const EVector& rhs) const;
 
         // Math functions
         FixedPointInt dot(const EVector& rhs);
-        FixedPointInt crossProduct(const EVector& rhs);
-        FixedPointInt length(const EVector& rhs);
 };
 
 
