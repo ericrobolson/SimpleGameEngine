@@ -2,10 +2,10 @@
 #define BODY_H
 
 #include "Physics/MaterialData.h"
-#include "Physics/Vect2.h"
 #include "Physics/MassData.h"
 #include "TransformData.h"
 #include "FixedPointInt.h"
+#include "EVector.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -22,8 +22,8 @@ namespace SGE_Physics{
             MaterialData Material;
             MassData Mass;
 
-            Vect2 Velocity;
-            Vect2 Force;
+            EVector Velocity;
+            EVector Force;
 
             FixedPointInt GravityScale;
 

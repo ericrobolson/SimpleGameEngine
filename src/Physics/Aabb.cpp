@@ -15,8 +15,8 @@ Aabb::~Aabb()
 Coordinate Aabb::MinCoordinate(){
     Coordinate c;
 
-    c.X = Position.Coordinates.X - HalfWidth;
-    c.Y = Position.Coordinates.Y - HalfHeight;
+    c.X = Position.X - HalfWidth;
+    c.Y = Position.Y - HalfHeight;
 
     return c;
 }
@@ -24,8 +24,8 @@ Coordinate Aabb::MinCoordinate(){
 Coordinate Aabb::MaxCoordinate(){
     Coordinate c;
 
-    c.X = Position.Coordinates.X + HalfWidth;
-    c.Y = Position.Coordinates.Y + HalfHeight;
+    c.X = Position.X + HalfWidth;
+    c.Y = Position.Y + HalfHeight;
 
     return c;
 }

@@ -4,6 +4,9 @@
 SystemTimer::SystemTimer()
 {
     _cycleClock = clock();
+
+    _clocksPerSecond.SetValueFromDouble((long double)CLOCKS_PER_SEC);
+
 }
 
 SystemTimer::~SystemTimer()
@@ -15,12 +18,12 @@ void SystemTimer::ResetClock(){
     _cycleClock = clock();
 }
 
-bool SystemTimer::CanRun(int hz){
-    float idealClock = (float)CLOCKS_PER_SEC / hz;
+bool SystemTimer::CanRun(FixedPointInt hz){
+    FixedPointInt idealClock = _clocksPerSecond / hz;
 
     clock_t deltaClock = clock() - _cycleClock;
 
-    if (deltaClock >= idealClock){
+    if (deltaClock >= (int)idealClock){
         return true;
     }
 

@@ -32,10 +32,15 @@ GameWorld::~GameWorld()
 }
 
 bool GameWorld::Process(){
-    if (_systemTimer.CanRun(60)){
+    if (_systemTimer.CanRun(60.0_fp)){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);
+
+
+        // Run physics updates at 30hz?
+
+
 
         bool finishedProcessing = true;
         while(_graphicsSystem.Process(entityComponentManager) != finishedProcessing);

@@ -28,6 +28,8 @@ namespace ECS{
                 _componentTypesAdded = 0;
             }
 
+
+
             virtual ~EntityComponentManager(){
                 // mark all entities as inactive, so that they are marked for cleanup
                 std::unique_lock<std::mutex> lock(_resourceMutex);

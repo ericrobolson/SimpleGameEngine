@@ -156,8 +156,6 @@ FixedPointInt FixedPointInt::operator *(const FixedPointInt& rhs){
     return fp;
 }
 
-
-
 //todo: test this
 // reference; https://gamedev.stackexchange.com/a/112547
 FixedPointInt FixedPointInt::operator /(const FixedPointInt& rhs){

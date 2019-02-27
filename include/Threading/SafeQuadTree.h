@@ -50,8 +50,6 @@ class SafeQuadTree
             if (_southWestNode != nullptr && _northWestNode != nullptr && _northEastNode != nullptr && _southEastNode != nullptr){
                 // check to see if all child node values are the same; if so, then combine them, set this value, then delete.
 
-
-
                 std::shared_ptr<T> swValue = *_southWestNode.GetValueSafe();
                 std::shared_ptr<T> seValue = *_southEastNode.GetValueSafe();
                 std::shared_ptr<T> neValue = *_northEastNode.GetValueSafe();

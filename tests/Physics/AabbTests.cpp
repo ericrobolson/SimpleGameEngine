@@ -9,8 +9,8 @@ SCENARIO("Aabb::MinCoordinate(): Returns expected calculated coordinate"){
 
     aabb.HalfWidth = 2.0_fp;
     aabb.HalfHeight = 5.0_fp;
-    aabb.Position.Coordinates.X = 2.0_fp;
-    aabb.Position.Coordinates.Y = 5.0_fp;
+    aabb.Position.X = 2.0_fp;
+    aabb.Position.Y = 5.0_fp;
 
     Coordinate minCoordinate = aabb.MinCoordinate();
 
@@ -28,8 +28,8 @@ SCENARIO("Aabb::MaxCoordinate(): Returns expected calculated coordinate"){
 
     aabb.HalfWidth = 2.0_fp;
     aabb.HalfHeight = 6.0_fp;
-    aabb.Position.Coordinates.X = 3.0_fp;
-    aabb.Position.Coordinates.Y = 5.0_fp;
+    aabb.Position.X = 3.0_fp;
+    aabb.Position.Y = 5.0_fp;
 
     Coordinate minCoordinate = aabb.MaxCoordinate();
 
