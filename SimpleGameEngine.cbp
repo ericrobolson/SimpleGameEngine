@@ -155,6 +155,7 @@
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
+		<Unit filename="include/Components/PhysicsBodyComponent.h" />
 		<Unit filename="include/Components/PlayerComponent.h" />
 		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
@@ -171,7 +172,6 @@
 		<Unit filename="include/Physics/MaterialData.h" />
 		<Unit filename="include/Physics/PhysicsEngine.h" />
 		<Unit filename="include/Physics/TransformData.h" />
-		<Unit filename="include/Physics/Vect2.h" />
 		<Unit filename="include/Rng/RandomNumberGenerator.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
@@ -190,6 +190,7 @@
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
+		<Unit filename="src/Components/PhysicsBodyComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Debugger/Debugger.cpp" />
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
@@ -215,7 +216,6 @@
 		<Unit filename="src/Physics/MaterialData.cpp" />
 		<Unit filename="src/Physics/PhysicsEngine.cpp" />
 		<Unit filename="src/Physics/TransformData.cpp" />
-		<Unit filename="src/Physics/Vect2.cpp" />
 		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
