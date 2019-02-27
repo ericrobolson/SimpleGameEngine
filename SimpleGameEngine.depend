@@ -4233,7 +4233,7 @@
 	<limits>
 	<cstdint>
 
-1550997041 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
+1551150841 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
@@ -4251,14 +4251,14 @@
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1550980568 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
+1551159323 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
 	"FixedPointInt.h"
 
 1550980639 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointinttypecastingtests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551150593 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
+1551159326 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
 	"FixedPointInt.h"
 	<cstdint>
 
@@ -4272,4 +4272,46 @@
 
 1551109446 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintselfmodificationoperators.cpp
 	"FixedPointInt.h"
+
+1551159533 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector.cpp
+	"EVector.h"
+
+1551231732 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
+	"FixedPointInt.h"
+
+1551157405 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorassignmentoperators.cpp
+	"EVector.h"
+
+1551157574 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorassignmentoperatorstests.cpp
+	"catch.hpp"
+	"EVector.h"
+
+1551157908 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evectortests.cpp
+	"catch.hpp"
+	"EVector.h"
+
+1551194837 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormodificationoperatorstests.cpp
+	"catch.hpp"
+	"EVector.h"
+
+1551194845 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
+	"EVector.h"
+
+1551197272 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorselfmodificationoperators.cpp
+	"EVector.h"
+
+1551197260 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorselfmodificationoperatorstests.cpp
+	"catch.hpp"
+	"EVector.h"
+
+1551231675 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormathoperations.cpp
+	"EVector.h"
+
+1551231282 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormathoperationstests.cpp
+	"catch.hpp"
+	"EVector.h"
+	"FixedPointInt.h"
+
+1551232081 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorbooleanoperators.cpp
+	"EVector.h"
 

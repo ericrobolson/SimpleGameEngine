@@ -160,6 +160,7 @@
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
 		<Unit filename="include/Math/DeterministicMath.h" />
+		<Unit filename="include/Math/EVector.h" />
 		<Unit filename="include/Math/FixedPointInt.h" />
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Body.h" />
@@ -193,6 +194,10 @@
 		<Unit filename="src/Debugger/Debugger.cpp" />
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
 		<Unit filename="src/Math/DeterministicMath.cpp" />
+		<Unit filename="src/Math/EVector.cpp" />
+		<Unit filename="src/Math/EVector/EVectorAssignmentOperators.cpp" />
+		<Unit filename="src/Math/EVector/EVectorModificationOperators.cpp" />
+		<Unit filename="src/Math/EVector/EVectorSelfModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntAssignmentOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntBoolOperators.cpp" />
@@ -223,6 +228,18 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVectorTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorAssignmentOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorModificationOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorSelfModificationOperatorsTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/FixedPointIntTests.cpp">
