@@ -16,7 +16,7 @@
 
 GameWorld::GameWorld() : BaseWorld()
 {
-    SGE::RandomNumberGenerator::Instance().Seed(3);
+    SGE_Math::RandomNumberGenerator::Instance().Seed(3);
 
     _graphicsSystem.DrawHitboxes = true;
 

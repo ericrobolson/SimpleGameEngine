@@ -1,10 +1,10 @@
 #include "RandomNumberGenerator.h"
-#include "Debugger.h"
-using namespace SGE;
+
+using namespace SGE_Math;
+
 
 RandomNumberGenerator::RandomNumberGenerator()
 {
-    _seed = 0;
 }
 
 RandomNumberGenerator::~RandomNumberGenerator()
@@ -14,7 +14,6 @@ RandomNumberGenerator::~RandomNumberGenerator()
 
 void RandomNumberGenerator::Seed(int i){
     _seed = i;
-    _seeded = true;
 }
 
 int RandomNumberGenerator::xorshift32(int i){
@@ -35,10 +34,6 @@ int RandomNumberGenerator::GetSeed(){
 }
 
 int RandomNumberGenerator::RandomInt(){
-    if (!_seeded){
-        Debugger::Instance().ThrowException("Please set a seed.");
-    }
-
     return xorshift32(_seed);
 }
 

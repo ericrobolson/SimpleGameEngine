@@ -1,12 +1,12 @@
 #include "catch.hpp"
 #include "RandomNumberGenerator.h"
-using namespace SGE;
+using namespace SGE_Math;
 
 
 
 SCENARIO("RandomNumberGenerator::Ctor"){
     RandomNumberGenerator& instance = RandomNumberGenerator::Instance();
-    REQUIRE(instance.GetSeed() == 0);
+    REQUIRE(instance.GetSeed() == 1234);
 }
 
 
@@ -55,7 +55,7 @@ SCENARIO("RandomNumberGenerator::RandomInt_WithRange"){
 
     REQUIRE(expectedRng == actualRng);
 
-    expectedRng = 1;
+    expectedRng = 0;
     actualRng = instance.RandomInt(0,3);
 
     REQUIRE(expectedRng == actualRng);
@@ -68,7 +68,7 @@ SCENARIO("RandomNumberGenerator::RandomInt_WithRange"){
 
     instance.Seed(10100);
 
-    expectedRng = 88;
+    expectedRng = 34;
     actualRng = instance.RandomInt(0,100);
 
     REQUIRE(expectedRng == actualRng);
