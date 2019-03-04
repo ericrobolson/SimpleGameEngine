@@ -1,5 +1,6 @@
 #include "Physics/Aabb.h"
-#include "Coordinate.h"
+#include "EVector.h"
+using namespace SGE_Math;
 using namespace SGE_Physics;
 
 Aabb::Aabb()
@@ -12,20 +13,20 @@ Aabb::~Aabb()
     //dtor
 }
 
-Coordinate Aabb::MinCoordinate(){
-    Coordinate c;
+EVector Aabb::MinCoordinate(){
+    EVector v;
 
-    c.X = Position.X - HalfWidth;
-    c.Y = Position.Y - HalfHeight;
+    v.X = Position.X - HalfWidth;
+    v.Y = Position.Y - HalfHeight;
 
-    return c;
+    return v;
 }
 
-Coordinate Aabb::MaxCoordinate(){
-    Coordinate c;
+EVector Aabb::MaxCoordinate(){
+      EVector v;
 
-    c.X = Position.X + HalfWidth;
-    c.Y = Position.Y + HalfHeight;
+    v.X = Position.X + HalfWidth;
+    v.Y = Position.Y + HalfHeight;
 
-    return c;
+    return v;
 }

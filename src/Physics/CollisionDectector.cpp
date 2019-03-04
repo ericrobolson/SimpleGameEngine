@@ -18,11 +18,11 @@ CollisionDectector::~CollisionDectector()
 
 bool CollisionDectector::AabbVsAabb( Aabb a, Aabb b )
 {
-    Coordinate aMin = a.MinCoordinate();
-    Coordinate aMax = a.MaxCoordinate();
+    EVector aMin = a.MinCoordinate();
+    EVector aMax = a.MaxCoordinate();
 
-    Coordinate bMin = b.MinCoordinate();
-    Coordinate bMax = b.MaxCoordinate();
+    EVector bMin = b.MinCoordinate();
+    EVector bMax = b.MaxCoordinate();
 
   // Exit with no intersection if found separated along an axis
   if(aMax.X < bMin.X || aMin.X > bMax.X){
