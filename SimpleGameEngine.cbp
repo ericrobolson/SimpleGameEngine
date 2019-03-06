@@ -171,6 +171,8 @@
 		<Unit filename="include/Physics/MassData.h" />
 		<Unit filename="include/Physics/MaterialData.h" />
 		<Unit filename="include/Physics/PhysicsEngine.h" />
+		<Unit filename="include/Physics/ShapeData.h" />
+		<Unit filename="include/Physics/SpatialHashMap.h" />
 		<Unit filename="include/Physics/TransformData.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
@@ -180,7 +182,6 @@
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Systems/NetworkSystem.h" />
 		<Unit filename="include/Systems/SystemTimer.h" />
-		<Unit filename="include/Threading/SafeQuadTree.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
@@ -214,6 +215,8 @@
 		<Unit filename="src/Physics/MassData.cpp" />
 		<Unit filename="src/Physics/MaterialData.cpp" />
 		<Unit filename="src/Physics/PhysicsEngine.cpp" />
+		<Unit filename="src/Physics/ShapeData.cpp" />
+		<Unit filename="src/Physics/SpatialHashMap.cpp" />
 		<Unit filename="src/Physics/TransformData.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
@@ -273,6 +276,9 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Physics/CollisionDectectorTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Physics/SpatialHashMapTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Serialization/StringOperationsTests.cpp">

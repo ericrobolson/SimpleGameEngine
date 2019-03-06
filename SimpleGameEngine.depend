@@ -4185,20 +4185,22 @@
 	"Aabb.h"
 	"Physics/Circle.h"
 
-1551280788 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
+1551715348 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
 	"catch.hpp"
 	"Aabb.h"
 	"FixedPointInt.h"
+	"EVector.h"
 
 1550800652 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
 	"Body.h"
 
-1551280295 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+1551730686 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
 	"Physics/MaterialData.h"
 	"Physics/MassData.h"
 	"TransformData.h"
 	"FixedPointInt.h"
 	"EVector.h"
+	"ShapeData.h"
 
 1550953316 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
 	"FixedPointInt.h"
@@ -4338,4 +4340,31 @@
 1551648802 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\randomnumbergeneratortests.cpp
 	"catch.hpp"
 	"RandomNumberGenerator.h"
+
+1551730296 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\shapedata.h
+	"Aabb.h"
+
+1551882494 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\shapedata.cpp
+	"ShapeData.h"
+	"Aabb.h"
+
+1551881611 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\spatialhashmaptests.cpp
+	"catch.hpp"
+	"SpatialHashMap.h"
+	"EVector.h"
+
+1551883228 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
+	"FixedPointInt.h"
+	"EVector.h"
+	"Aabb.h"
+	"Body.h"
+	<vector>
+	<memory>
+	<utility>
+	<unordered_map>
+
+1551882921 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
+	"SpatialHashMap.h"
+	"EVector.h"
+	"Aabb.h"
 
