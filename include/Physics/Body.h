@@ -2,10 +2,11 @@
 #define BODY_H
 
 #include "Physics/MaterialData.h"
-#include "Physics/Vect2.h"
 #include "Physics/MassData.h"
 #include "TransformData.h"
 #include "FixedPointInt.h"
+#include "EVector.h"
+#include "ShapeData.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -15,15 +16,15 @@ namespace SGE_Physics{
             Body();
             virtual ~Body();
 
-            //todo: need a shape
+            ShapeData Shape;
 
             TransformData Transform;
 
             MaterialData Material;
             MassData Mass;
 
-            Vect2 Velocity;
-            Vect2 Force;
+            EVector Velocity;
+            EVector Force;
 
             FixedPointInt GravityScale;
 

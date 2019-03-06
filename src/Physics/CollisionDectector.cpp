@@ -18,11 +18,11 @@ CollisionDectector::~CollisionDectector()
 
 bool CollisionDectector::AabbVsAabb( Aabb a, Aabb b )
 {
-    Coordinate aMin = a.MinCoordinate();
-    Coordinate aMax = a.MaxCoordinate();
+    EVector aMin = a.MinCoordinate();
+    EVector aMax = a.MaxCoordinate();
 
-    Coordinate bMin = b.MinCoordinate();
-    Coordinate bMax = b.MaxCoordinate();
+    EVector bMin = b.MinCoordinate();
+    EVector bMax = b.MaxCoordinate();
 
   // Exit with no intersection if found separated along an axis
   if(aMax.X < bMin.X || aMin.X > bMax.X){
@@ -47,8 +47,8 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
     FixedPointInt upperBound = (a.Radius + b.Radius)*(a.Radius + b.Radius);
 
     FixedPointInt distance =
-    ((a.Position.Coordinates.X - b.Position.Coordinates.X)*(a.Position.Coordinates.X - b.Position.Coordinates.X))
-    + ((a.Position.Coordinates.Y - b.Position.Coordinates.Y)*(a.Position.Coordinates.Y - b.Position.Coordinates.Y));
+    ((a.Position.X - b.Position.X)*(a.Position.X - b.Position.X))
+    + ((a.Position.Y - b.Position.Y)*(a.Position.Y - b.Position.Y));
 
     return lowerBound <= distance && distance <= upperBound;
 }

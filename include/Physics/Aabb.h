@@ -1,10 +1,8 @@
 #ifndef AABB_H
 #define AABB_H
 
-#include "Vect2.h"
-#include "Coordinate.h"
-
 #include "FixedPointInt.h"
+#include "EVector.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics
@@ -17,12 +15,12 @@ namespace SGE_Physics
             Aabb();
             virtual ~Aabb();
 
-            Coordinate MinCoordinate();
-            Coordinate MaxCoordinate();
+            EVector MinCoordinate();
+            EVector MaxCoordinate();
 
             FixedPointInt HalfWidth;
             FixedPointInt HalfHeight;
-            Vect2 Position;
+            EVector Position;
 
         protected:
 

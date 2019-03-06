@@ -155,6 +155,7 @@
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
+		<Unit filename="include/Components/PhysicsBodyComponent.h" />
 		<Unit filename="include/Components/PlayerComponent.h" />
 		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
@@ -162,17 +163,17 @@
 		<Unit filename="include/Math/DeterministicMath.h" />
 		<Unit filename="include/Math/EVector.h" />
 		<Unit filename="include/Math/FixedPointInt.h" />
+		<Unit filename="include/Math/RandomNumberGenerator.h" />
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Body.h" />
 		<Unit filename="include/Physics/Circle.h" />
 		<Unit filename="include/Physics/CollisionDectector.h" />
-		<Unit filename="include/Physics/Coordinate.h" />
 		<Unit filename="include/Physics/MassData.h" />
 		<Unit filename="include/Physics/MaterialData.h" />
 		<Unit filename="include/Physics/PhysicsEngine.h" />
+		<Unit filename="include/Physics/ShapeData.h" />
+		<Unit filename="include/Physics/SpatialHashMap.h" />
 		<Unit filename="include/Physics/TransformData.h" />
-		<Unit filename="include/Physics/Vect2.h" />
-		<Unit filename="include/Rng/RandomNumberGenerator.h" />
 		<Unit filename="include/Serialization/LevelLoader.h" />
 		<Unit filename="include/Serialization/StringOperations.h" />
 		<Unit filename="include/State/GameState.h" />
@@ -181,7 +182,6 @@
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Systems/NetworkSystem.h" />
 		<Unit filename="include/Systems/SystemTimer.h" />
-		<Unit filename="include/Threading/SafeQuadTree.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
 		<Unit filename="include/Threading/ThreadPool.h" />
 		<Unit filename="include/Worlds/GameWorld.h" />
@@ -190,12 +190,15 @@
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
+		<Unit filename="src/Components/PhysicsBodyComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Debugger/Debugger.cpp" />
 		<Unit filename="src/InstructionMachine/InstructionMachine.cpp" />
 		<Unit filename="src/Math/DeterministicMath.cpp" />
 		<Unit filename="src/Math/EVector.cpp" />
 		<Unit filename="src/Math/EVector/EVectorAssignmentOperators.cpp" />
+		<Unit filename="src/Math/EVector/EVectorBooleanOperators.cpp" />
+		<Unit filename="src/Math/EVector/EVectorMathOperations.cpp" />
 		<Unit filename="src/Math/EVector/EVectorModificationOperators.cpp" />
 		<Unit filename="src/Math/EVector/EVectorSelfModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt.cpp" />
@@ -204,17 +207,17 @@
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntSelfModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntTypeCasting.cpp" />
+		<Unit filename="src/Math/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Body.cpp" />
 		<Unit filename="src/Physics/Circle.cpp" />
 		<Unit filename="src/Physics/CollisionDectector.cpp" />
-		<Unit filename="src/Physics/Coordinate.cpp" />
 		<Unit filename="src/Physics/MassData.cpp" />
 		<Unit filename="src/Physics/MaterialData.cpp" />
 		<Unit filename="src/Physics/PhysicsEngine.cpp" />
+		<Unit filename="src/Physics/ShapeData.cpp" />
+		<Unit filename="src/Physics/SpatialHashMap.cpp" />
 		<Unit filename="src/Physics/TransformData.cpp" />
-		<Unit filename="src/Physics/Vect2.cpp" />
-		<Unit filename="src/Rng/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Serialization/LevelLoader.cpp" />
 		<Unit filename="src/Serialization/StringOperations.cpp" />
 		<Unit filename="src/State/GameState.cpp" />
@@ -234,6 +237,12 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/EVector/EVectorAssignmentOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorBooleanOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/EVector/EVectorMathOperationsTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/EVector/EVectorModificationOperatorsTests.cpp">
@@ -260,13 +269,16 @@
 		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntTypeCastingTests.cpp">
 			<Option target="Testing" />
 		</Unit>
+		<Unit filename="tests/Math/RandomNumberGeneratorTests.cpp">
+			<Option target="Testing" />
+		</Unit>
 		<Unit filename="tests/Physics/AabbTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Physics/CollisionDectectorTests.cpp">
 			<Option target="Testing" />
 		</Unit>
-		<Unit filename="tests/Rng/RandomNumberGeneratorTests.cpp">
+		<Unit filename="tests/Physics/SpatialHashMapTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Serialization/StringOperationsTests.cpp">

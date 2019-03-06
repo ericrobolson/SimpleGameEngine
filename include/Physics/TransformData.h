@@ -1,7 +1,7 @@
 #ifndef TRANSFORMDATA_H
 #define TRANSFORMDATA_H
-#include "Coordinate.h"
 #include "FixedPointInt.h"
+#include "EVector.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -11,7 +11,7 @@ class TransformData
         TransformData();
         virtual ~TransformData();
 
-        Coordinate Coordinates;
+        EVector Position;
         FixedPointInt Radians;
 
     protected:
