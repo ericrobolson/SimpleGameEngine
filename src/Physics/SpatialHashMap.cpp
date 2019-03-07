@@ -5,6 +5,16 @@
 using namespace SGE_Physics;
 using namespace SGE_Math;
 
+
+SpatialHashMap::SpatialHashMap()
+{
+    _sceneWidth = (int)600.0_fp;
+    _sceneHeight = (int)480.0_fp;
+    _cellSize = (int)20.0_fp;
+
+    ClearGrid();
+}
+
 SpatialHashMap::SpatialHashMap(FixedPointInt sceneWidth, FixedPointInt sceneHeight, FixedPointInt cellSize)
 {
     _sceneWidth = (int)sceneWidth;
@@ -16,7 +26,7 @@ SpatialHashMap::SpatialHashMap(FixedPointInt sceneWidth, FixedPointInt sceneHeig
 
 SpatialHashMap::~SpatialHashMap()
 {
-    //dtor
+    ClearGrid();
 }
 
 SpatialHashMap::CellKey SpatialHashMap::HashEVector(const EVector& ev){
@@ -59,13 +69,15 @@ std::vector<int> SpatialHashMap::GetEntityIds(Aabb aabb){
             }
         }
     }
+
+    //todo: Make each entity id unique
 }
 
 
 void SpatialHashMap::AddBody(const int& entityId, Body body){
     CellKey minHash, maxHash;
 
-    Aabb bodyAabb = body.Shape.GetAabb();
+    Aabb bodyAabb = body.GetRoughAabb();
 
     minHash = HashEVector(bodyAabb.MinCoordinate());
     maxHash = HashEVector(bodyAabb.MaxCoordinate());

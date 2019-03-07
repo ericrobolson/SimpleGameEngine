@@ -50,6 +50,7 @@ class SpatialHashMap
         };
 
         SpatialHashMap(FixedPointInt sceneWidth, FixedPointInt sceneHeight, FixedPointInt cellSize);
+        SpatialHashMap();
         virtual ~SpatialHashMap();
 
         void ClearBuckets();
