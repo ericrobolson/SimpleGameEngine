@@ -1,9 +1,10 @@
 #include "SpatialHashMap.h"
 #include "EVector.h"
 #include "Aabb.h"
-
+#include "Algorithms/Deduplication.h"
 using namespace SGE_Physics;
 using namespace SGE_Math;
+using namespace SGE_Math_Algorithms;
 
 
 SpatialHashMap::SpatialHashMap()
@@ -70,7 +71,9 @@ std::vector<int> SpatialHashMap::GetEntityIds(Aabb aabb){
         }
     }
 
-    //todo: Make each entity id unique
+    Deduplication::Unique(entityIds);
+
+    return entityIds;
 }
 
 

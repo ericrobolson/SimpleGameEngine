@@ -160,6 +160,7 @@
 		<Unit filename="include/Debugger/Debugger.h" />
 		<Unit filename="include/EntityComponentManager.h" />
 		<Unit filename="include/InstructionMachine/InstructionMachine.h" />
+		<Unit filename="include/Math/Algorithms/Deduplication.h" />
 		<Unit filename="include/Math/Algorithms/MergeSort.h" />
 		<Unit filename="include/Math/DeterministicMath.h" />
 		<Unit filename="include/Math/EVector.h" />
@@ -232,6 +233,9 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/InstructionMachine/InstructionMachineTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/Algorithms/DeduplicationTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/Algorithms/MergeSortTests.cpp">
