@@ -50,6 +50,7 @@ class FixedPointInt{
         bool operator !=(const FixedPointInt& rhs) const;
 
 
+
         void SetValueFromDouble(const long double& rhs);
 
         // todo: reference these through a static "Constants" class for optimization

@@ -3918,10 +3918,12 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1551283773 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1551970127 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
+	"SpatialHashMap.h"
+	<memory>
 
 1551282733 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
@@ -4191,16 +4193,17 @@
 	"FixedPointInt.h"
 	"EVector.h"
 
-1550800652 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
+1551970054 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
 	"Body.h"
 
-1551730686 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+1551969930 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
 	"Physics/MaterialData.h"
 	"Physics/MassData.h"
 	"TransformData.h"
 	"FixedPointInt.h"
 	"EVector.h"
 	"ShapeData.h"
+	"Aabb.h"
 
 1550953316 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
 	"FixedPointInt.h"
@@ -4235,7 +4238,7 @@
 	<string>
 	<sstream>
 
-1551280420 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1552143326 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
 	<cstdint>
 
@@ -4353,7 +4356,7 @@
 	"SpatialHashMap.h"
 	"EVector.h"
 
-1551883228 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
+1552145199 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
 	"FixedPointInt.h"
 	"EVector.h"
 	"Aabb.h"
@@ -4363,8 +4366,27 @@
 	<utility>
 	<unordered_map>
 
-1551882921 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
+1552142178 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
 	"SpatialHashMap.h"
 	"EVector.h"
 	"Aabb.h"
+	"Algorithms/MergeSort.h"
+
+1552142064 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\algorithms\mergesorttests.cpp
+	"catch.hpp"
+	<memory>
+	"Algorithms/MergeSort.h"
+
+1552141954 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\mergesort.h
+	<memory>
+
+1552144250 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\algorithms\deduplicationtests.cpp
+	"catch.hpp"
+	<memory>
+	"Algorithms/Deduplication.h"
+	"FixedPointInt.h"
+
+1552144283 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\deduplication.h
+	<memory>
+	<set>
 

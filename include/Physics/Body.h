@@ -7,6 +7,7 @@
 #include "FixedPointInt.h"
 #include "EVector.h"
 #include "ShapeData.h"
+#include "Aabb.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -17,6 +18,8 @@ namespace SGE_Physics{
             virtual ~Body();
 
             ShapeData Shape;
+
+            Aabb GetRoughAabb();
 
             TransformData Transform;
 

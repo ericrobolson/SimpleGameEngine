@@ -21,6 +21,17 @@ namespace SGE_Physics{
 class SpatialHashMap
 {
     public:
+        ///todo: Change to use a hashmap instead of an array; as the array doesn't allow negative values
+        SpatialHashMap(FixedPointInt sceneWidth, FixedPointInt sceneHeight, FixedPointInt cellSize);
+        SpatialHashMap();
+        virtual ~SpatialHashMap();
+
+        void ClearBuckets();
+        std::vector<int> GetEntityIds(Aabb aabb); // takes an AABB and gets all entities in it
+
+        void AddBody(const int& entityId, Body body);// Todo: when hashing an object, get it's basic AABB and hash the Min/Max of that. Then add the entity to all cells/buckets in between that
+
+    private:
         class Node {
         public:
             int EntityId;
@@ -49,16 +60,9 @@ class SpatialHashMap
             int Y;
         };
 
-        SpatialHashMap(FixedPointInt sceneWidth, FixedPointInt sceneHeight, FixedPointInt cellSize);
-        virtual ~SpatialHashMap();
-
-        void ClearBuckets();
-        std::vector<int> GetEntityIds(Aabb aabb); // takes an AABB and gets all entities in it
-
-        void AddBody(const int& entityId, Body body);// Todo: when hashing an object, get it's basic AABB and hash the Min/Max of that. Then add the entity to all cells/buckets in between that
-
-    private:
         CellKey HashEVector(const EVector& ev);
+
+
 
         void ClearGrid();
 
