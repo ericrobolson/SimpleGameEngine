@@ -12,10 +12,9 @@ ShapeData::~ShapeData()
 }
 
 Aabb ShapeData::GetAabb(){
-    Aabb aabb;
+    return _aabb;
+}
 
-    //todo: calculate the AABB based on the shape
-
-    return aabb;
-
+void ShapeData::SetAabb(Aabb aabb){
+    _aabb = aabb;
 }

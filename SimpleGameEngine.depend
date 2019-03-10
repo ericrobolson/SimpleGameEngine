@@ -2362,37 +2362,37 @@
 1540666601 c:\users\eric\gamedev\simplegameengine\include\systems\gfx\hexagonshape.h
 	<SDL.h>
 
-1341006780 c:\tdm-gcc-32\include\sys\types.h
+1341010380 c:\tdm-gcc-32\include\sys\types.h
 	<_mingw.h>
 	<stddef.h>
 
-1341006771 c:\tdm-gcc-32\include\_mingw.h
+1341010371 c:\tdm-gcc-32\include\_mingw.h
 
-1341006776 c:\tdm-gcc-32\include\stdio.h
+1341010376 c:\tdm-gcc-32\include\stdio.h
 	<_mingw.h>
 	<stddef.h>
 	<stdarg.h>
 	<sys/types.h>
 
-1341006777 c:\tdm-gcc-32\include\stdlib.h
+1341010377 c:\tdm-gcc-32\include\stdlib.h
 	<_mingw.h>
 	<stddef.h>
 
-1341006774 c:\tdm-gcc-32\include\malloc.h
+1341010374 c:\tdm-gcc-32\include\malloc.h
 	<_mingw.h>
 	<stdlib.h>
 
-1341006775 c:\tdm-gcc-32\include\memory.h
+1341010375 c:\tdm-gcc-32\include\memory.h
 	<string.h>
 
-1341006777 c:\tdm-gcc-32\include\string.h
+1341010377 c:\tdm-gcc-32\include\string.h
 	<_mingw.h>
 	<stddef.h>
 
-1341006777 c:\tdm-gcc-32\include\strings.h
+1341010377 c:\tdm-gcc-32\include\strings.h
 	<string.h>
 
-1341006778 c:\tdm-gcc-32\include\wchar.h
+1341010378 c:\tdm-gcc-32\include\wchar.h
 	<_mingw.h>
 	<stddef.h>
 	<stdarg.h>
@@ -2402,41 +2402,41 @@
 	<stdint.h>
 	<stdint.h>
 
-1341006778 c:\tdm-gcc-32\include\wctype.h
+1341010378 c:\tdm-gcc-32\include\wctype.h
 	<_mingw.h>
 	<stddef.h>
 
-1341006776 c:\tdm-gcc-32\include\stdint.h
+1341010376 c:\tdm-gcc-32\include\stdint.h
 	<stddef.h>
 
-1341006773 c:\tdm-gcc-32\include\inttypes.h
+1341010373 c:\tdm-gcc-32\include\inttypes.h
 	<_mingw.h>
 	<stdint.h>
 	<stddef.h>
 
-1341006771 c:\tdm-gcc-32\include\ctype.h
+1341010371 c:\tdm-gcc-32\include\ctype.h
 	<_mingw.h>
 	<stddef.h>
 
-1341006774 c:\tdm-gcc-32\include\math.h
+1341010374 c:\tdm-gcc-32\include\math.h
 	<_mingw.h>
 
-1341006773 c:\tdm-gcc-32\include\float.h
+1341010373 c:\tdm-gcc-32\include\float.h
 	<_mingw.h>
 
-1341006776 c:\tdm-gcc-32\include\signal.h
+1341010376 c:\tdm-gcc-32\include\signal.h
 	<_mingw.h>
 
-1341006775 c:\tdm-gcc-32\include\process.h
+1341010375 c:\tdm-gcc-32\include\process.h
 	<_mingw.h>
 	<sys/types.h>
 	<stdint.h>
 
-1341006777 c:\tdm-gcc-32\include\time.h
+1341010377 c:\tdm-gcc-32\include\time.h
 	<_mingw.h>
 	<stddef.h>
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl.h
 	"SDL_main.h"
 	"SDL_stdinc.h"
 	"SDL_assert.h"
@@ -2468,12 +2468,12 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_main.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_main.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_stdinc.h
 	"SDL_config.h"
 	<sys/types.h>
 	<stdio.h>
@@ -2502,34 +2502,34 @@
 	<stdlib.h>
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_config.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_config.h
 	"SDL_platform.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_platform.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_platform.h
 	"AvailabilityMacros.h"
 	"TargetConditionals.h"
 	<winapifamily.h>
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\begin_code.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\begin_code.h
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\close_code.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\close_code.h
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_assert.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_assert.h
 	"SDL_config.h"
 	"begin_code.h"
 	<signal.h>
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_atomic.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_atomic.h
 	"SDL_stdinc.h"
 	"SDL_platform.h"
 	"begin_code.h"
 	<mbarrier.h>
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_audio.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_audio.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_endian.h"
@@ -2539,24 +2539,24 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_error.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_error.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_endian.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_endian.h
 	"SDL_stdinc.h"
 	<endian.h>
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_mutex.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_mutex.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_thread.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_thread.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_atomic.h"
@@ -2567,18 +2567,18 @@
 	<stdlib.h>
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_rwops.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_rwops.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_clipboard.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_cpuinfo.h
 	"SDL_stdinc.h"
 	<intrin.h>
 	<intrin.h>
@@ -2592,7 +2592,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_events.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_events.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -2606,7 +2606,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_video.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_video.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -2614,13 +2614,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_pixels.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_pixels.h
 	"SDL_stdinc.h"
 	"SDL_endian.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_rect.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_rect.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_pixels.h"
@@ -2628,7 +2628,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_surface.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_surface.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -2637,11 +2637,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_blendmode.h
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_keyboard.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_keycode.h"
@@ -2649,27 +2649,27 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_keycode.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_keycode.h
 	"SDL_stdinc.h"
 	"SDL_scancode.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_scancode.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_scancode.h
 	"SDL_stdinc.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_mouse.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_mouse.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_joystick.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_joystick.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_gamecontroller.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_rwops.h"
@@ -2677,11 +2677,11 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_quit.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_quit.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_gesture.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_gesture.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
@@ -2689,60 +2689,60 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_touch.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_touch.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_filesystem.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_haptic.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_haptic.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"SDL_joystick.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_hints.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_hints.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_loadso.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_loadso.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_log.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_log.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_messagebox.h
 	"SDL_stdinc.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_power.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_power.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_render.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_render.h
 	"SDL_stdinc.h"
 	"SDL_rect.h"
 	"SDL_video.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_shape.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_shape.h
 	"SDL_stdinc.h"
 	"SDL_pixels.h"
 	"SDL_rect.h"
@@ -2751,7 +2751,7 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_system.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_system.h
 	"SDL_stdinc.h"
 	"SDL_keyboard.h"
 	"SDL_render.h"
@@ -2759,13 +2759,13 @@
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_timer.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_timer.h
 	"SDL_stdinc.h"
 	"SDL_error.h"
 	"begin_code.h"
 	"close_code.h"
 
-1519922211 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_version.h
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_version.h
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
@@ -3211,7 +3211,7 @@
 	<algorithm>
 	<cassert>
 
-1301111162 c:\tdm-gcc-32\include\windows.h
+1301114762 c:\tdm-gcc-32\include\windows.h
 	<winresrc.h>
 	<stdarg.h>
 	<windef.h>
@@ -3241,7 +3241,7 @@
 	<winsock.h>
 	<ole2.h>
 
-1301111163 c:\tdm-gcc-32\include\winresrc.h
+1301114763 c:\tdm-gcc-32\include\winresrc.h
 	<winuser.h>
 	<winnt.h>
 	<winver.h>
@@ -3249,64 +3249,64 @@
 	<dlgs.h>
 	<commctrl.h>
 
-1301111164 c:\tdm-gcc-32\include\winuser.h
+1301114764 c:\tdm-gcc-32\include\winuser.h
 
-1301111163 c:\tdm-gcc-32\include\winnt.h
+1301114763 c:\tdm-gcc-32\include\winnt.h
 	<winerror.h>
 	<string.h>
 	<basetsd.h>
 	<pshpack4.h>
 	<poppack.h>
 
-1301111162 c:\tdm-gcc-32\include\winerror.h
+1301114762 c:\tdm-gcc-32\include\winerror.h
 
-1301111149 c:\tdm-gcc-32\include\basetsd.h
+1301114749 c:\tdm-gcc-32\include\basetsd.h
 
-1301111157 c:\tdm-gcc-32\include\pshpack4.h
+1301114757 c:\tdm-gcc-32\include\pshpack4.h
 
-1301111157 c:\tdm-gcc-32\include\poppack.h
+1301114757 c:\tdm-gcc-32\include\poppack.h
 
-1301111164 c:\tdm-gcc-32\include\winver.h
+1301114764 c:\tdm-gcc-32\include\winver.h
 
-1301111149 c:\tdm-gcc-32\include\dde.h
+1301114749 c:\tdm-gcc-32\include\dde.h
 
-1301111150 c:\tdm-gcc-32\include\dlgs.h
+1301114750 c:\tdm-gcc-32\include\dlgs.h
 
-1301111149 c:\tdm-gcc-32\include\commctrl.h
+1301114749 c:\tdm-gcc-32\include\commctrl.h
 	<prsht.h>
 
-1301111157 c:\tdm-gcc-32\include\prsht.h
+1301114757 c:\tdm-gcc-32\include\prsht.h
 
-1301111162 c:\tdm-gcc-32\include\windef.h
+1301114762 c:\tdm-gcc-32\include\windef.h
 	<winnt.h>
 
-1301111162 c:\tdm-gcc-32\include\wincon.h
+1301114762 c:\tdm-gcc-32\include\wincon.h
 
-1301111161 c:\tdm-gcc-32\include\winbase.h
+1301114761 c:\tdm-gcc-32\include\winbase.h
 
-1301111162 c:\tdm-gcc-32\include\wingdi.h
+1301114762 c:\tdm-gcc-32\include\wingdi.h
 
-1301111163 c:\tdm-gcc-32\include\winnls.h
+1301114763 c:\tdm-gcc-32\include\winnls.h
 
-1301111163 c:\tdm-gcc-32\include\winnetwk.h
+1301114763 c:\tdm-gcc-32\include\winnetwk.h
 
-1301111163 c:\tdm-gcc-32\include\winreg.h
+1301114763 c:\tdm-gcc-32\include\winreg.h
 
-1301111164 c:\tdm-gcc-32\include\winsvc.h
+1301114764 c:\tdm-gcc-32\include\winsvc.h
 
-1301111149 c:\tdm-gcc-32\include\cderr.h
+1301114749 c:\tdm-gcc-32\include\cderr.h
 
-1301111149 c:\tdm-gcc-32\include\ddeml.h
+1301114749 c:\tdm-gcc-32\include\ddeml.h
 
-1301111151 c:\tdm-gcc-32\include\imm.h
+1301114751 c:\tdm-gcc-32\include\imm.h
 
-1301111154 c:\tdm-gcc-32\include\lzexpand.h
+1301114754 c:\tdm-gcc-32\include\lzexpand.h
 
-1301111154 c:\tdm-gcc-32\include\mmsystem.h
+1301114754 c:\tdm-gcc-32\include\mmsystem.h
 
-1301111155 c:\tdm-gcc-32\include\nb30.h
+1301114755 c:\tdm-gcc-32\include\nb30.h
 
-1301111158 c:\tdm-gcc-32\include\rpc.h
+1301114758 c:\tdm-gcc-32\include\rpc.h
 	<windows.h>
 	<rpcdce.h>
 	<rpcnsi.h>
@@ -3314,71 +3314,71 @@
 	<winerror.h>
 	<excpt.h>
 
-1301111158 c:\tdm-gcc-32\include\rpcdce.h
+1301114758 c:\tdm-gcc-32\include\rpcdce.h
 	<basetyps.h>
 	<rpcdcep.h>
 
-1301111149 c:\tdm-gcc-32\include\basetyps.h
+1301114749 c:\tdm-gcc-32\include\basetyps.h
 
-1301111159 c:\tdm-gcc-32\include\rpcdcep.h
+1301114759 c:\tdm-gcc-32\include\rpcdcep.h
 
-1301111159 c:\tdm-gcc-32\include\rpcnsi.h
+1301114759 c:\tdm-gcc-32\include\rpcnsi.h
 
-1301111159 c:\tdm-gcc-32\include\rpcnterr.h
+1301114759 c:\tdm-gcc-32\include\rpcnterr.h
 
-1341006773 c:\tdm-gcc-32\include\excpt.h
+1341010373 c:\tdm-gcc-32\include\excpt.h
 	<_mingw.h>
 	<windef.h>
 
-1301111160 c:\tdm-gcc-32\include\shellapi.h
+1301114760 c:\tdm-gcc-32\include\shellapi.h
 	<pshpack2.h>
 	<poppack.h>
 
-1301111157 c:\tdm-gcc-32\include\pshpack2.h
+1301114757 c:\tdm-gcc-32\include\pshpack2.h
 
-1301111163 c:\tdm-gcc-32\include\winperf.h
+1301114763 c:\tdm-gcc-32\include\winperf.h
 
-1301111149 c:\tdm-gcc-32\include\commdlg.h
+1301114749 c:\tdm-gcc-32\include\commdlg.h
 	<unknwn.h>
 	<prsht.h>
 
-1301111161 c:\tdm-gcc-32\include\unknwn.h
+1301114761 c:\tdm-gcc-32\include\unknwn.h
 	<windows.h>
 	<objfwd.h>
 	<wtypes.h>
 
-1301111156 c:\tdm-gcc-32\include\objfwd.h
+1301114756 c:\tdm-gcc-32\include\objfwd.h
 	<basetyps.h>
 
-1301111164 c:\tdm-gcc-32\include\wtypes.h
+1301114764 c:\tdm-gcc-32\include\wtypes.h
 	<rpc.h>
 	<rpcndr.h>
 
-1301111159 c:\tdm-gcc-32\include\rpcndr.h
+1301114759 c:\tdm-gcc-32\include\rpcndr.h
 	<rpcnsip.h>
 	<objfwd.h>
 
-1301111159 c:\tdm-gcc-32\include\rpcnsip.h
+1301114759 c:\tdm-gcc-32\include\rpcnsip.h
 
-1301111163 c:\tdm-gcc-32\include\winspool.h
+1301114763 c:\tdm-gcc-32\include\winspool.h
 
-1301111163 c:\tdm-gcc-32\include\winsock2.h
+1301114763 c:\tdm-gcc-32\include\winsock2.h
 	<windows.h>
 
-1301111163 c:\tdm-gcc-32\include\winsock.h
+1301114763 c:\tdm-gcc-32\include\winsock.h
 	<windows.h>
 	<mswsock.h>
 
-1301111155 c:\tdm-gcc-32\include\mswsock.h
+1301114755 c:\tdm-gcc-32\include\mswsock.h
 
-1301111156 c:\tdm-gcc-32\include\ole2.h
+1301114756 c:\tdm-gcc-32\include\ole2.h
 	<winerror.h>
 	<objbase.h>
 	<olectlid.h>
 	<oleauto.h>
 	<oleidl.h>
 
-1301111155 c:\tdm-gcc-32\include\objbase.h
+1301114755 c:\tdm-gcc-32\include\objbase.h
 	<rpc.h>
 	<rpcndr.h>
 	<stdlib.h>
@@ -3388,37 +3388,37 @@
 	<objidl.h>
 	<cguid.h>
 
-1301111156 c:\tdm-gcc-32\include\objidl.h
+1301114756 c:\tdm-gcc-32\include\objidl.h
 	<objfwd.h>
 
-1301111149 c:\tdm-gcc-32\include\cguid.h
+1301114749 c:\tdm-gcc-32\include\cguid.h
 
-1301111156 c:\tdm-gcc-32\include\olectlid.h
+1301114756 c:\tdm-gcc-32\include\olectlid.h
 
-1301111156 c:\tdm-gcc-32\include\oleauto.h
+1301114756 c:\tdm-gcc-32\include\oleauto.h
 	<oaidl.h>
 
-1301111155 c:\tdm-gcc-32\include\oaidl.h
+1301114755 c:\tdm-gcc-32\include\oaidl.h
 	<windows.h>
 	<ole2.h>
 
-1301111156 c:\tdm-gcc-32\include\oleidl.h
+1301114756 c:\tdm-gcc-32\include\oleidl.h
 	<objfwd.h>
 
-1341006777 c:\tdm-gcc-32\include\unistd.h
+1341010377 c:\tdm-gcc-32\include\unistd.h
 	<io.h>
 	<process.h>
 	<getopt.h>
 	<sys/types.h>
 
-1341006774 c:\tdm-gcc-32\include\io.h
+1341010374 c:\tdm-gcc-32\include\io.h
 	<_mingw.h>
 	<sys/types.h>
 
-1341006773 c:\tdm-gcc-32\include\getopt.h
+1341010373 c:\tdm-gcc-32\include\getopt.h
 	<_mingw.h>
 
-1341006771 c:\tdm-gcc-32\include\assert.h
+1341010371 c:\tdm-gcc-32\include\assert.h
 	<_mingw.h>
 
 1542253879 source:c:\users\eric\gamedev\simplegameengine\tests\serialization\stringoperationstests.cpp
@@ -3554,12 +3554,12 @@
 	<GL/glext.h>
 	<GL/glu.h>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\basecomponent.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\basecomponent.cpp
 	"BaseComponent.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basecomponent.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basecomponent.h
 
-1548996324 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
+1548999924 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
@@ -3570,17 +3570,17 @@
 	"catch.hpp"
 	<iostream>
 
-1550759642 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
+1550763242 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
 	"GraphicsSystem.h"
 	"InputSystem.h"
 	"SystemTimer.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
-1551282692 c:\users\ericr\dev\simplegameengine\simplegameengine\include\entitycomponentmanager.h
+1551286292 c:\users\ericr\dev\simplegameengine\simplegameengine\include\entitycomponentmanager.h
 	<memory>
 	<typeindex>
 	<typeinfo>
@@ -3591,21 +3591,21 @@
 	<thread>
 	<mutex>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 	<mutex>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basesystem.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basesystem.h
 	"EntityComponentManager.h"
 	"SystemTimer.h"
 
-1551280593 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\systemtimer.h
+1551284193 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\systemtimer.h
 	<time.h>
 	"FixedPointInt.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\inputsystem.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\inputsystem.h
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 	<SDL.h>
@@ -3622,7 +3622,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\threadpool.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\threadpool.h
 	<functional>
 	<future>
 	<mutex>
@@ -3632,17 +3632,17 @@
 	<vector>
 	"SafeQueue.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\safequeue.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\safequeue.h
 	<mutex>
 	<queue>
 
-1550759628 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
+1550763228 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
 	"PlayerComponent.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\assemblages\playerassemblage.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\assemblages\playerassemblage.h
 	<memory>
 	"EntityComponentManager.h"
 
@@ -3652,7 +3652,7 @@
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\movementcomponent.h
 	<BaseComponent.h>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\playercomponent.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\playercomponent.h
 	"BaseComponent.h"
 
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\positioncomponent.h
@@ -3690,11 +3690,11 @@
 1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\assemblages\solidobjectassemblage.h
 	"EntityComponentManager.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\basesystem.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\basesystem.cpp
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\baseworld.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\baseworld.cpp
 	"BaseWorld.h"
 
 1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\canjumpcomponent.cpp
@@ -3731,27 +3731,27 @@
 	"Components/MovementComponent.h"
 	<math.h>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\playercomponent.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\playercomponent.cpp
 	"PlayerComponent.h"
 
 1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\positioncomponent.cpp
 	"PositionComponent.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\debugger\debugger.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\debugger\debugger.cpp
 	"Debugger.h"
 	<string>
 	<iostream>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\debugger\debugger.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\debugger\debugger.h
 	<string>
 
 1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\eventqueue\eventqueue.cpp
 	"EventQueue.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\instructionmachine\instructionmachine.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\instructionmachine\instructionmachine.cpp
 	"InstructionMachine.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\instructionmachine\instructionmachine.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\instructionmachine\instructionmachine.h
 	<memory>
 
 1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\levelgeneration\basicmaze.cpp
@@ -3768,7 +3768,7 @@
 	"RandomNumberGenerator.h"
 	"Debugger.h"
 
-1550759681 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\levelloader.cpp
+1550763281 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\levelloader.cpp
 	"LevelLoader.h"
 	"EntityComponentManager.h"
 	<string>
@@ -3778,27 +3778,27 @@
 	"PlayerAssemblage.h"
 	"StringOperations.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\levelloader.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\levelloader.h
 	"EntityComponentManager.h"
 	<string>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\stringoperations.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\serialization\stringoperations.h
 	<string>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\stringoperations.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\serialization\stringoperations.cpp
 	"StringOperations.h"
 	<string>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\state\gamestate.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\state\gamestate.cpp
 	"GameState.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\gamestate.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\gamestate.h
 	<vector>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\state\inputstate.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\state\inputstate.cpp
 	"InputState.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\inputstate.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\state\inputstate.h
 
 1550715634 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\collisionsystem.cpp
 	"CollisionSystem.h"
@@ -3812,7 +3812,7 @@
 	<future>
 	<memory>
 
-1550759726 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
+1550763326 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -3824,7 +3824,7 @@
 	<mutex>
 	"GameState.h"
 
-1550676915 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
+1550680515 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -3852,12 +3852,12 @@
 	<chrono>
 	"PlayerComponent.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\networksystem.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\networksystem.cpp
 	"NetworkSystem.h"
 	"ThreadPool.h"
 	"ThreadPool.h"
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\networksystem.h
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\networksystem.h
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 	<memory>
@@ -3873,11 +3873,11 @@
 	"HitboxComponent.h"
 	"GameState.h"
 
-1551280766 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\systemtimer.cpp
+1551284366 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\systemtimer.cpp
 	"SystemTimer.h"
 	<time.h>
 
-1551648660 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1551652260 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -3897,18 +3897,18 @@
 1550761836 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\vect2.h
 	"Physics/Coordinate.h"
 
-1551715303 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\aabb.cpp
+1551718903 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\aabb.cpp
 	"Physics/Aabb.h"
 	"EVector.h"
 
-1551715176 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\aabb.h
+1551718776 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\aabb.h
 	"FixedPointInt.h"
 	"EVector.h"
 
-1550677476 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\circle.cpp
+1550681076 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\circle.cpp
 	"Physics/Circle.h"
 
-1551279678 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
+1551283278 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\circle.h
 	"FixedPointInt.h"
 	"EVector.h"
 
@@ -3918,19 +3918,19 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1551970127 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1551973727 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
 	"SpatialHashMap.h"
 	<memory>
 
-1551282733 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
+1551286333 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
 	"FixedPointInt.h"
 	<memory>
 
-1548996317 c:\users\ericr\dev\simplegameengine\simplegameengine\tests\catch.hpp
+1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\tests\catch.hpp
 	<TargetConditionals.h>
 	<ciso646>
 	<iosfwd>
@@ -4146,22 +4146,22 @@
 	<algorithm>
 	<cassert>
 
-1551715320 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1551718920 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
 	"FixedPointInt.h"
 
-1550775741 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
+1550779341 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
 	"Aabb.h"
 	"Physics/Circle.h"
 
-1548996324 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\entitycomponentmanager\entitycomponentmanagertests.cpp
+1548999924 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\entitycomponentmanager\entitycomponentmanagertests.cpp
 	"catch.hpp"
 	"EntityComponentManager.h"
 	<vector>
 	<memory>
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\instructionmachine\instructionmachinetests.cpp
 	"catch.hpp"
 	"InstructionMachine.h"
 	<string>
@@ -4170,7 +4170,7 @@
 	"catch.hpp"
 	"RandomNumberGenerator.h"
 
-1548996317 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\serialization\stringoperationstests.cpp
+1548999917 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\serialization\stringoperationstests.cpp
 	"catch.hpp"
 	"StringOperations.h"
 	<string>
@@ -4181,22 +4181,22 @@
 1550976616 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
 	"Coordinate.h"
 
-1551280826 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
+1551284426 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
 	"catch.hpp"
 	"CollisionDectector.h"
 	"Aabb.h"
 	"Physics/Circle.h"
 
-1551715348 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
+1551718948 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\aabbtests.cpp
 	"catch.hpp"
 	"Aabb.h"
 	"FixedPointInt.h"
 	"EVector.h"
 
-1551970054 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
+1551973654 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
 	"Body.h"
 
-1551969930 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+1551973530 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
 	"Physics/MaterialData.h"
 	"Physics/MassData.h"
 	"TransformData.h"
@@ -4205,158 +4205,159 @@
 	"ShapeData.h"
 	"Aabb.h"
 
-1550953316 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
+1550956916 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
 	"FixedPointInt.h"
 
-1550801106 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
+1550804706 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
 	"MaterialData.h"
 
-1550953293 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
+1550956893 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
 	"FixedPointInt.h"
 
-1551715290 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\transformdata.h
+1551718890 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\transformdata.h
 	"FixedPointInt.h"
 	"EVector.h"
 
-1550801135 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\massdata.cpp
+1550804735 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\massdata.cpp
 	"MassData.h"
 
-1550801454 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\transformdata.cpp
+1550805054 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\transformdata.cpp
 	"TransformData.h"
 
 1550901078 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\determinsticmathtests.cpp
 	"catch.hpp"
 	"DeterministicMath.h"
 
-1550891180 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\deterministicmath.h
+1550894780 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\deterministicmath.h
 
-1550952936 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
+1550956536 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
 	"DeterministicMath.h"
 
-1551040711 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
+1551044311 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
 	"FixedPointInt.h"
 	<string>
 	<sstream>
 
-1552143326 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1552146926 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
 	<cstdint>
 
-1551150841 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
+1551154441 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1550978812 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintbooloperators.cpp
+1550982412 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintbooloperators.cpp
 	"FixedPointInt.h"
 
-1550978914 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintbooloperatorstests.cpp
+1550982514 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintbooloperatorstests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1550979239 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintassignmentoperators.cpp
+1550982839 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintassignmentoperators.cpp
 	"FixedPointInt.h"
 
-1550979372 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintassignmentoperatorstests.cpp
+1550982972 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintassignmentoperatorstests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551159323 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
+1551162923 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
 	"FixedPointInt.h"
 
-1550980639 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointinttypecastingtests.cpp
+1550984239 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointinttypecastingtests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551280537 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
+1551284137 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmodificationoperators.cpp
 	"FixedPointInt.h"
 	<cstdint>
 
-1551109716 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
+1551113316 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmodificationoperatorstests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551150481 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintselfmodificationoperatorstests.cpp
+1551154081 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintselfmodificationoperatorstests.cpp
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551109446 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintselfmodificationoperators.cpp
+1551113046 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintselfmodificationoperators.cpp
 	"FixedPointInt.h"
 
-1551159533 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector.cpp
+1551163133 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector.cpp
 	"EVector.h"
 
-1551231732 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
+1551235332 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
 	"FixedPointInt.h"
 
-1551157405 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorassignmentoperators.cpp
+1551161005 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorassignmentoperators.cpp
 	"EVector.h"
 
-1551157574 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorassignmentoperatorstests.cpp
+1551161174 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorassignmentoperatorstests.cpp
 	"catch.hpp"
 	"EVector.h"
 
-1551157908 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evectortests.cpp
+1551161508 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evectortests.cpp
 	"catch.hpp"
 	"EVector.h"
 
-1551194837 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormodificationoperatorstests.cpp
+1551198437 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormodificationoperatorstests.cpp
 	"catch.hpp"
 	"EVector.h"
 
-1551194845 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
+1551198445 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
 	"EVector.h"
 
-1551197272 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorselfmodificationoperators.cpp
+1551200872 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorselfmodificationoperators.cpp
 	"EVector.h"
 
-1551197260 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorselfmodificationoperatorstests.cpp
+1551200860 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorselfmodificationoperatorstests.cpp
 	"catch.hpp"
 	"EVector.h"
 
-1551231675 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormathoperations.cpp
+1551235275 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormathoperations.cpp
 	"EVector.h"
 
-1551231282 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormathoperationstests.cpp
+1551234882 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormathoperationstests.cpp
 	"catch.hpp"
 	"EVector.h"
 	"FixedPointInt.h"
 
-1551232081 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorbooleanoperators.cpp
+1551235681 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorbooleanoperators.cpp
 	"EVector.h"
 
-1551232164 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorbooleanoperatorstests.cpp
+1551235764 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectorbooleanoperatorstests.cpp
 	"catch.hpp"
 	"EVector.h"
 
-1551282299 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\physicsbodycomponent.cpp
+1551285899 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\physicsbodycomponent.cpp
 	"PhysicsBodyComponent.h"
 
-1551282357 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\physicsbodycomponent.h
+1551285957 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\physicsbodycomponent.h
 	"BaseComponent.h"
 	"Body.h"
 
-1551648548 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\randomnumbergenerator.cpp
+1551652148 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\randomnumbergenerator.cpp
 	"RandomNumberGenerator.h"
 
-1551648650 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\randomnumbergenerator.h
+1551652250 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\randomnumbergenerator.h
 
-1551648802 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\randomnumbergeneratortests.cpp
+1551652402 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\randomnumbergeneratortests.cpp
 	"catch.hpp"
 	"RandomNumberGenerator.h"
 
-1551730296 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\shapedata.h
+1552258564 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\shapedata.h
 	"Aabb.h"
 
-1551882494 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\shapedata.cpp
+1552258594 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\shapedata.cpp
 	"ShapeData.h"
 	"Aabb.h"
 
-1551881611 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\spatialhashmaptests.cpp
+1552148947 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\spatialhashmaptests.cpp
 	"catch.hpp"
 	"SpatialHashMap.h"
 	"EVector.h"
+	"Aabb.h"
 
-1552145199 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
+1552148961 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
 	"FixedPointInt.h"
 	"EVector.h"
 	"Aabb.h"
@@ -4366,27 +4367,27 @@
 	<utility>
 	<unordered_map>
 
-1552142178 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
+1552147958 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
 	"SpatialHashMap.h"
 	"EVector.h"
 	"Aabb.h"
-	"Algorithms/MergeSort.h"
+	"Algorithms/Deduplication.h"
 
-1552142064 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\algorithms\mergesorttests.cpp
+1552145664 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\algorithms\mergesorttests.cpp
 	"catch.hpp"
 	<memory>
 	"Algorithms/MergeSort.h"
 
-1552141954 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\mergesort.h
+1552145554 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\mergesort.h
 	<memory>
 
-1552144250 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\algorithms\deduplicationtests.cpp
+1552147850 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\algorithms\deduplicationtests.cpp
 	"catch.hpp"
 	<memory>
 	"Algorithms/Deduplication.h"
 	"FixedPointInt.h"
 
-1552144283 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\deduplication.h
+1552147883 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\deduplication.h
 	<memory>
 	<set>
 
