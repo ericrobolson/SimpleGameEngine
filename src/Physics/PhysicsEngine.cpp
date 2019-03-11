@@ -3,7 +3,11 @@
 
 #include "PhysicsBodyComponent.h"
 #include "SpatialHashMap.h"
+#include "CollisionDectector.h"
 #include <memory>
+#include <map>
+#include <utility>
+
 using namespace SGE_Physics;
 
 PhysicsEngine::PhysicsEngine()
@@ -46,6 +50,11 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             return (c.Body.Velocity.X != 0.0_fp && c.Body.Velocity.Y != 0.0_fp);
         });
 
+    // Create a map of entities that have been checked
+    std::map<std::pair<int, int>, bool> checkedEntities;
+
+    CollisionDectector collisionDectector;
+
     // Calculate collisions
     for (it = movingEntityIds.begin(); it != movingEntityIds.end(); it++){
         int entityId = *it;
@@ -63,9 +72,28 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             // Order the ids, as otherwise we'd end up doing duplicate checks. (entity1 and entity2) and (entity2 and entity1)
             OrderPair(entity1, entity2);
 
+            std::pair<int, int> key(entity1, entity2);
+
             // if checked, continue to next entity
+            auto checkedEntitiesResult = checkedEntities.find(key);
+            if (checkedEntitiesResult != checkedEntities.end()){
+                continue;
+            }
+
             // if not, add to hashmap of checked entities,
+            checkedEntities.insert(std::make_pair(key, true));
+
             // resolve collision
+            // todo: handle other shapes
+            std::shared_ptr<PhysicsBodyComponent> component2 = ecs.GetComponent<PhysicsBodyComponent>(*it2);
+
+            if (component == nullptr || component2 == nullptr){
+                continue;
+            }
+
+            if (collisionDectector.AabbVsAabb(component->Body.Shape.GetAabb(), component2->Body.Shape.GetAabb())){
+                // there was a collision
+            }
        }
 
 
