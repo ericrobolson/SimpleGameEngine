@@ -2,6 +2,7 @@
 #include <cmath>
 
 #include "FixedPointInt.h"
+#include "EVector.h"
 #include "ShapeData.h"
 using namespace SGE_Math;
 
@@ -83,7 +84,68 @@ bool CollisionDectector::CircleVsCircle(std::shared_ptr<CollisionData> cd){
 }
 
 bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
-    // todo
+
+    // todo: rename; but this is the vector from Entity1 to entity2
+    EVector n = cd->Entity1->Transform.Position - cd->Entity2->Transform.Position;
+
+    Aabb abox = cd->Entity1->Shape.GetAabb();
+    Aabb bbox = cd->Entity2->Shape.GetAabb();
+
+    // Calculate half extents along x axis for each object
+    FixedPointInt aExtentX = abox.HalfWidth;
+    FixedPointInt bExtentX = bbox.HalfWidth;
+
+    FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
+
+    // SAT test on x axis
+    if (xOverlap.Value > 0){
+        // Calculate half extents along y axis for each object
+        FixedPointInt aExtentY = abox.HalfHeight;
+        FixedPointInt bExtentY = bbox.HalfHeight;
+
+        FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
+
+        if (yOverlap.Value > 0){
+            // Find out which axis is axis of least penetration
+            if (xOverlap > yOverlap){
+                // Point towards A knowing that n points from A to B; not sure if accurate but that's the general idea
+                if (n.X.Value < 0){
+                    EVector ev;
+                    ev.X = -1.0_fp;
+                    ev.Y = 0.0_fp;
+                    cd->Normal = ev;
+                }
+                else{
+                    EVector ev;
+                    ev.X = 0.0_fp;
+                    ev.Y = 0.0_fp;
+                    cd->Normal = ev;
+                }
+
+                cd->Penetration = xOverlap;
+                return true;
+            }
+        }
+        else{
+            // Point towards B knowing that n points from A to B; not sure if accurate but that's the general idea
+             if (n.Y.Value < 0){
+                    EVector ev;
+                    ev.X = 0.0_fp;
+                    ev.Y = -1.0_fp;
+                    cd->Normal = ev;
+            }
+            else{
+                EVector ev;
+                ev.X = 0.0_fp;
+                ev.Y = 1.0_fp;
+                cd->Normal = ev;
+            }
+
+            cd->Penetration = yOverlap;
+            return true;
+        }
+    }
+
     return false;
 }
 

@@ -4150,10 +4150,11 @@
 	<algorithm>
 	<cassert>
 
-1552406483 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1552416382 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
 	"FixedPointInt.h"
+	"EVector.h"
 	"ShapeData.h"
 
 1552406430 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
@@ -4245,7 +4246,7 @@
 	<string>
 	<sstream>
 
-1552146926 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1552418562 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
 	<cstdint>
 
@@ -4406,4 +4407,11 @@
 	"FixedPointInt.h"
 	"EVector.h"
 	"Body.h"
+
+1552423422 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmathfunctions.cpp
+	"FixedPointInt.h"
+
+1552436176 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmathfunctionstests.cpp
+	"catch.hpp"
+	"FixedPointInt.h"
 
