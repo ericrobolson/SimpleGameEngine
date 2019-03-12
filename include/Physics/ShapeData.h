@@ -10,11 +10,18 @@ class ShapeData
         ShapeData();
         virtual ~ShapeData();
 
+        enum ShapeTypes{Circle, AABB};
+
+        const ShapeTypes ShapeType = ShapeTypes::AABB;
+
+        void SetAabb(Aabb aabb);
+
         Aabb GetAabb();
 
     protected:
 
     private:
+        Aabb _aabb;
 };
 
 }
