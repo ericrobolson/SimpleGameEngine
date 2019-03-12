@@ -2,6 +2,7 @@
 #include <cmath>
 
 #include "FixedPointInt.h"
+#include "ShapeData.h"
 using namespace SGE_Math;
 
 using namespace SGE_Physics;
@@ -52,3 +53,42 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
 
     return lowerBound <= distance && distance <= upperBound;
 }
+
+bool CollisionDectector::CheckCollision(std::shared_ptr<CollisionData> cd){
+    ShapeData::ShapeTypes entity1ShapeType = cd->Entity1->Shape.ShapeType;
+    ShapeData::ShapeTypes entity2ShapeType = cd->Entity2->Shape.ShapeType;
+
+    // Check the collision depending on the entity shapes
+    if (entity1ShapeType == entity2ShapeType){
+        if (entity1ShapeType == ShapeData::Circle){
+            return CircleVsCircle(cd);
+        }
+        else if (entity1ShapeType == ShapeData::AABB){
+            return AabbVsAabb(cd);
+        }
+    }
+    else{
+        if ((entity1ShapeType == ShapeData::AABB && entity2ShapeType == ShapeData::Circle)
+            || (entity1ShapeType == ShapeData::Circle && entity2ShapeType == ShapeData::AABB)){
+            return AabbVsCircle(cd);
+        }
+    }
+
+    return false;
+}
+
+bool CollisionDectector::CircleVsCircle(std::shared_ptr<CollisionData> cd){
+    // todo
+    return false;
+}
+
+bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
+    // todo
+    return false;
+}
+
+bool CollisionDectector::AabbVsCircle(std::shared_ptr<CollisionData> cd){
+    // todo
+    return false;
+}
+

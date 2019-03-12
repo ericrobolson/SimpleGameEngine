@@ -4,6 +4,7 @@
 #include "PhysicsBodyComponent.h"
 #include "SpatialHashMap.h"
 #include "CollisionDectector.h"
+#include "CollisionData.h"
 #include <memory>
 #include <map>
 #include <utility>
@@ -69,6 +70,13 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             int entity1 = entityId;
             int entity2 = *it2;
 
+            std::shared_ptr<PhysicsBodyComponent> component2 = ecs.GetComponent<PhysicsBodyComponent>(*it2);
+
+            // Break out if neither has a component
+            if (component == nullptr || component2 == nullptr){
+                continue;
+            }
+
             // Order the ids, as otherwise we'd end up doing duplicate checks. (entity1 and entity2) and (entity2 and entity1)
             OrderPair(entity1, entity2);
 
@@ -83,20 +91,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             // if not, add to hashmap of checked entities,
             checkedEntities.insert(std::make_pair(key, true));
 
-            // resolve collision
-            // todo: handle other shapes
-            std::shared_ptr<PhysicsBodyComponent> component2 = ecs.GetComponent<PhysicsBodyComponent>(*it2);
+            // Check if there was a collision
+            std::shared_ptr<CollisionData> collisionDataPtr = std::make_shared<CollisionData>();
+            collisionDataPtr->Entity1 = std::make_shared<Body>(component->Body);
+            collisionDataPtr->Entity2 = std::make_shared<Body>(component2->Body);
 
-            if (component == nullptr || component2 == nullptr){
-                continue;
-            }
-
-            if (collisionDectector.AabbVsAabb(component->Body.Shape.GetAabb(), component2->Body.Shape.GetAabb())){
-                // there was a collision
+            if (collisionDectector.CheckCollision(collisionDataPtr)){
+                // there was a collision, so resolve
             }
        }
-
-
-
     }
 }

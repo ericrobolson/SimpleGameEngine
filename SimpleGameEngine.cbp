@@ -169,6 +169,7 @@
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Body.h" />
 		<Unit filename="include/Physics/Circle.h" />
+		<Unit filename="include/Physics/CollisionData.h" />
 		<Unit filename="include/Physics/CollisionDectector.h" />
 		<Unit filename="include/Physics/MassData.h" />
 		<Unit filename="include/Physics/MaterialData.h" />
@@ -213,6 +214,7 @@
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Body.cpp" />
 		<Unit filename="src/Physics/Circle.cpp" />
+		<Unit filename="src/Physics/CollisionData.cpp" />
 		<Unit filename="src/Physics/CollisionDectector.cpp" />
 		<Unit filename="src/Physics/MassData.cpp" />
 		<Unit filename="src/Physics/MaterialData.cpp" />

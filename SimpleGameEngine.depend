@@ -3918,12 +3918,16 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1551973727 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1552406589 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
 	"SpatialHashMap.h"
+	"CollisionDectector.h"
+	"CollisionData.h"
 	<memory>
+	<map>
+	<utility>
 
 1551286333 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
@@ -4146,14 +4150,17 @@
 	<algorithm>
 	<cassert>
 
-1551718920 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1552406483 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
 	"FixedPointInt.h"
+	"ShapeData.h"
 
-1550779341 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
+1552406430 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondectector.h
 	"Aabb.h"
 	"Physics/Circle.h"
+	"CollisionData.h"
+	<memory>
 
 1548999924 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\entitycomponentmanager\entitycomponentmanagertests.cpp
 	"catch.hpp"
@@ -4390,4 +4397,13 @@
 1552147883 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\algorithms\deduplication.h
 	<memory>
 	<set>
+
+1552343960 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondata.cpp
+	"CollisionData.h"
+
+1552405016 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondata.h
+	<memory>
+	"FixedPointInt.h"
+	"EVector.h"
+	"Body.h"
 
