@@ -53,6 +53,8 @@ class FixedPointInt{
         FixedPointInt abs();
         FixedPointInt sqrt();
 
+        static FixedPointInt& min(FixedPointInt& a, FixedPointInt& b);
+
         void SetValueFromDouble(const long double& rhs);
 
         // todo: reference these through a static "Constants" class for optimization

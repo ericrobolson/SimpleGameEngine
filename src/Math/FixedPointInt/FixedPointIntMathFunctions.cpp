@@ -24,3 +24,11 @@ FixedPointInt FixedPointInt::sqrt(){
 
     return fp;
 }
+
+FixedPointInt& FixedPointInt::min(FixedPointInt& a, FixedPointInt& b){
+    if (a.Value <= b.Value){
+        return a;
+    }
+
+    return b;
+}

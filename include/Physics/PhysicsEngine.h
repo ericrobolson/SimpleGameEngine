@@ -3,6 +3,7 @@
 
 #include "EntityComponentManager.h"
 #include "FixedPointInt.h"
+#include "CollisionData.h"
 #include <memory>
 
 using namespace SGE_Math;
@@ -17,6 +18,7 @@ class PhysicsEngine
 
         void UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs);
 
+        void ResolveCollision(CollisionData& cd);
     private:
 
 };

@@ -30,6 +30,33 @@ void OrderPair(int& a, int& b){
     }
 }
 
+void PhysicsEngine::ResolveCollision(CollisionData& cd){
+
+    EVector relativeVelocity = cd.Entity2->Velocity - cd.Entity1->Velocity;
+
+    // Calculate relative velocity in terms of the normal
+    FixedPointInt velocityAlongNormal = rv.dot(cd.Normal);
+
+    // Do not resolve if velocities are separating
+    if (velocityAlongNormal > 0){
+        return;
+    }
+
+    // Calculate restitution
+    FixedPointInt e = FixedPointInt::min(cd.Entity1->Material.Restitution, cd.Entity2->Material.Restitution);
+
+    // Calculate impulse scalar
+float j = -(1 + e) * velAlongNormal
+  j /= 1 / A.mass + 1 / B.mass
+    // Apply impulse
+Vec2 impulse = j * normal
+  A.velocity -= 1 / A.mass * impulse
+  B.velocity += 1 / B.mass * impulse
+
+}
+
+
+
 void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs){
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();

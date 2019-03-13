@@ -32,3 +32,13 @@ SCENARIO("FixedPointInt:: sqrt()"){
     REQUIRE(fp1 == 1.0_fp);
     REQUIRE(true == false);
 }
+
+SCENARIO("FixedPointInt::min()"){
+    FixedPointInt fp1, fp2;
+    //todo: need to implement
+
+    fp1 = 1.0_fp;
+    fp2 = 2.0_fp;
+
+    REQUIRE(true == false);
+}
