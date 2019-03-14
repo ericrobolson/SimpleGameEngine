@@ -26,10 +26,12 @@ class EVector
 
         EVector operator -(const EVector& rhs);
         EVector operator +(const EVector& rhs);
+        EVector operator *(const FixedPointInt& rhs);
 
         // Self modification operators
         EVector& operator -=(const EVector& rhs);
         EVector& operator +=(const EVector& rhs);
+
 
         // Boolean operators
         bool operator ==(const EVector& rhs) const;

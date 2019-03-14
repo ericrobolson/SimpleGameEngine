@@ -2,6 +2,7 @@
 #define MASSDATA_H
 
 #include "FixedPointInt.h"
+#include <memory>
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -12,7 +13,7 @@ class MassData
         virtual ~MassData();
 
         FixedPointInt Mass;
-        FixedPointInt InverseMass;
+        FixedPointInt InverseMass();
 
         FixedPointInt Inertia;
         FixedPointInt InverseInertia;
@@ -23,6 +24,7 @@ class MassData
     protected:
 
     private:
+        std::shared_ptr<FixedPointInt> _inverseMass;
 };
 
 }

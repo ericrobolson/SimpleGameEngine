@@ -35,10 +35,10 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     EVector relativeVelocity = cd.Entity2->Velocity - cd.Entity1->Velocity;
 
     // Calculate relative velocity in terms of the normal
-    FixedPointInt velocityAlongNormal = rv.dot(cd.Normal);
+    FixedPointInt velocityAlongNormal = relativeVelocity.dot(cd.Normal);
 
     // Do not resolve if velocities are separating
-    if (velocityAlongNormal > 0){
+    if (velocityAlongNormal.Value > 0){
         return;
     }
 
@@ -46,13 +46,26 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     FixedPointInt e = FixedPointInt::min(cd.Entity1->Material.Restitution, cd.Entity2->Material.Restitution);
 
     // Calculate impulse scalar
-float j = -(1 + e) * velAlongNormal
-  j /= 1 / A.mass + 1 / B.mass
-    // Apply impulse
-Vec2 impulse = j * normal
-  A.velocity -= 1 / A.mass * impulse
-  B.velocity += 1 / B.mass * impulse
+    FixedPointInt j = -(1.0_fp + e) * velocityAlongNormal;
+    j /= cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass();
 
+    // Apply impulse and scale it by the mass of the two objects
+    EVector impulse = cd.Normal * j;
+
+    FixedPointInt massSum = cd.Entity1->Mass.Mass + cd.Entity2->Mass.Mass;
+
+    FixedPointInt velocityRatio = cd.Entity1->Mass.Mass / massSum;
+    cd.Entity1->Velocity -= impulse * velocityRatio;
+
+
+    velocityRatio = cd.Entity2->Mass.Mass / massSum;
+    cd.Entity2->Velocity += impulse * velocityRatio;
+
+    // Positional correction using linear projection; scale by total mass in system compared to the mass of the two entities
+    const FixedPointInt positionalPercentCorrection = 0.2_fp;
+    EVector correction = cd.Normal * positionalPercentCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
+    cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
+    cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
 }
 
 
@@ -60,6 +73,9 @@ Vec2 impulse = j * normal
 void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs){
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
+
+    // Reset the total mass in the system
+    _totalMassInSystem.Value = 0;
 
     // Apply gravity?
 
@@ -70,6 +86,11 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
 
         hashMap.AddBody(*it, component->Body);
+
+        // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
+        _totalMassInSystem += component->Body.Mass.Mass;
+
+
     }
 
     // Get a list of all entities with Velocity != 0, as only those need to check for collisions that need to be resolved
@@ -125,6 +146,7 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
             if (collisionDectector.CheckCollision(collisionDataPtr)){
                 // there was a collision, so resolve
+                ResolveCollision(*collisionDataPtr);
             }
        }
     }

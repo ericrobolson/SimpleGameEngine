@@ -20,7 +20,7 @@ class PhysicsEngine
 
         void ResolveCollision(CollisionData& cd);
     private:
-
+        FixedPointInt _totalMassInSystem;
 };
 }
 
