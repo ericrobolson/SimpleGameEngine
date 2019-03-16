@@ -26,7 +26,7 @@ class SpatialHashMap
         SpatialHashMap();
         virtual ~SpatialHashMap();
 
-        void ClearBuckets();
+        void ClearGrid();
         std::vector<int> GetEntityIds(Aabb aabb); // takes an AABB and gets all entities in it
 
         void AddBody(const int& entityId, Body body);// Todo: when hashing an object, get it's basic AABB and hash the Min/Max of that. Then add the entity to all cells/buckets in between that
@@ -62,9 +62,6 @@ class SpatialHashMap
 
         CellKey HashEVector(const EVector& ev);
 
-
-
-        void ClearGrid();
 
         int _sceneWidth;
         int _sceneHeight;

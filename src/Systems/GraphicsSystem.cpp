@@ -8,9 +8,11 @@
 #include "InputState.h"
 #include <mutex>
 #include "GameState.h"
-const int SCREEN_WIDTH = 1920;
+#include "PhysicsBodyComponent.h"
+#include "Debugger.h"
+const int SCREEN_WIDTH = 800;
 const int SCREEN_BITSPERPIXEL = 32;
-const int SCREEN_HEIGHT = 1080;
+const int SCREEN_HEIGHT = 600;
 
 int ScaleGraphics(int value){
     return GameState::GfxScaling * value;
@@ -67,6 +69,38 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
     SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
     SDL_RenderClear(_renderer);
+
+    //todo: fix this up; use spatialHashMap
+    std::vector<int> entityIds = ecs.Search<PhysicsBodyComponent>();
+    while (entityIds.empty() == false){
+            int entityId = entityIds.back();
+            entityIds.pop_back();
+
+            std::shared_ptr<PhysicsBodyComponent> body = ecs.GetComponent<PhysicsBodyComponent>(entityId);
+
+            SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
+
+            SGE::Debugger::Instance().WriteMessage(std::to_string((int)body->Body.Transform.Position.X.Value));
+
+            SDL_Rect sdlRect;
+
+            sdlRect.x = ((int)body->Body.Transform.Position.X);
+            sdlRect.y = ((int)body->Body.Transform.Position.Y);
+
+            int w = (int)body->Body.Shape.GetAabb().HalfWidth * 2;
+            int h = (int)body->Body.Shape.GetAabb().HalfHeight * 2;
+
+            sdlRect.w = (w);
+            sdlRect.h = (h);
+
+            SDL_RenderDrawRect(_renderer, &sdlRect);
+
+
+           // ThreadPool::Instance().submit([this, &ecs, entityId](){
+           //                                     ProcessJob(ecs, entityId);
+           //                                 });
+        }
+
 
     lock.unlock();
 

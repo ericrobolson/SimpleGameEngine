@@ -9,9 +9,9 @@ using namespace SGE_Math_Algorithms;
 
 SpatialHashMap::SpatialHashMap()
 {
-    _sceneWidth = (int)600.0_fp;
-    _sceneHeight = (int)480.0_fp;
-    _cellSize = (int)20.0_fp;
+    _sceneWidth = (int)800.0_fp;
+    _sceneHeight = (int)600.0_fp;
+    _cellSize = (int)100.0_fp;
 
     ClearGrid();
 }

@@ -6,6 +6,7 @@
 #include "GraphicsSystem.h"
 #include "InputSystem.h"
 #include "SystemTimer.h"
+#include "PhysicsEngine.h"
 
 class GameWorld : public BaseWorld
 {
@@ -17,6 +18,8 @@ class GameWorld : public BaseWorld
     private:
         GraphicsSystem _graphicsSystem;
         InputSystem _inputSystem;
+        SGE_Physics::PhysicsEngine _physicsEngine;
+
        // NetworkSystem _networkSystem;
 
         clock_t _cycleClock;

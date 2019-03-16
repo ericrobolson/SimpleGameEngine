@@ -70,7 +70,7 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
 
 
-void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs){
+void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, SpatialHashMap& hashMap){
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
 
@@ -80,7 +80,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
     // Apply gravity?
 
     // Build hashmap
-    SpatialHashMap hashMap;
+    hashMap.ClearGrid();
+
     std::vector<int>::iterator it;
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
@@ -109,6 +110,10 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         int entityId = *it;
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
 
+        if (component == nullptr){
+            continue;
+        }
+
         // Broad phase collision checks
         std::vector<int> entitiesToCheck = hashMap.GetEntityIds(component->Body.GetRoughAabb());
 
@@ -118,10 +123,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             int entity1 = entityId;
             int entity2 = *it2;
 
+            if (entity1 == entity2){
+                continue;
+            }
+
             std::shared_ptr<PhysicsBodyComponent> component2 = ecs.GetComponent<PhysicsBodyComponent>(*it2);
 
             // Break out if neither has a component
-            if (component == nullptr || component2 == nullptr){
+            if (component2 == nullptr){
                 continue;
             }
 
@@ -149,5 +158,13 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
                 ResolveCollision(*collisionDataPtr);
             }
        }
+    }
+
+    // apply velocities
+    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+
+        component->Body.Transform.Position += component->Body.Velocity;
+
     }
 }

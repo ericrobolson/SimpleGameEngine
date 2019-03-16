@@ -3570,12 +3570,13 @@
 	"catch.hpp"
 	<iostream>
 
-1550763242 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
+1552777624 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
 	"GraphicsSystem.h"
 	"InputSystem.h"
 	"SystemTimer.h"
+	"PhysicsEngine.h"
 
 1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
@@ -3812,7 +3813,7 @@
 	<future>
 	<memory>
 
-1550763326 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
+1552780739 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -3823,6 +3824,8 @@
 	"InputState.h"
 	<mutex>
 	"GameState.h"
+	"PhysicsBodyComponent.h"
+	"Debugger.h"
 
 1550680515 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
@@ -3877,7 +3880,7 @@
 	"SystemTimer.h"
 	<time.h>
 
-1551652260 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1552780981 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -3888,7 +3891,11 @@
 	"GameState.h"
 	"LevelLoader.h"
 	"SystemTimer.h"
+	"Debugger.h"
+	"SpatialHashMap.h"
+	"Aabb.h"
 	"RandomNumberGenerator.h"
+	"PhysicsBodyComponent.h"
 	<iostream>
 
 1550762145 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\vect2.cpp
@@ -3918,7 +3925,7 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1552406589 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1552780802 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
@@ -3929,9 +3936,11 @@
 	<map>
 	<utility>
 
-1551286333 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
+1552777656 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
 	"FixedPointInt.h"
+	"CollisionData.h"
+	"SpatialHashMap.h"
 	<memory>
 
 1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\tests\catch.hpp
@@ -4366,7 +4375,7 @@
 	"EVector.h"
 	"Aabb.h"
 
-1552148961 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
+1552777774 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\spatialhashmap.h
 	"FixedPointInt.h"
 	"EVector.h"
 	"Aabb.h"
@@ -4376,7 +4385,7 @@
 	<utility>
 	<unordered_map>
 
-1552147958 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
+1552781196 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\spatialhashmap.cpp
 	"SpatialHashMap.h"
 	"EVector.h"
 	"Aabb.h"
