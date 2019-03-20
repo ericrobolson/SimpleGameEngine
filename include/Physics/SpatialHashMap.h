@@ -31,7 +31,12 @@ class BucketTree{
 public:
 
     BucketTree(int levels, EVector minCoordinate, EVector maxCoordinate){
-        _parent = nullptr;
+        _parentPtr = nullptr;
+
+        //todo: check that it doesn't matter which coordinate is larger and which is smaller; if it does, need to order them
+
+        _minCoordinate = minCoordinate;
+        _maxCoordinate = maxCoordinate;
 
         if (levels <= 0){
             // recursive stop
@@ -55,8 +60,8 @@ public:
             calculatedMax.X = minCoordinate.X + halfWidth;
             calculatedMax.Y = minCoordinate.Y + halfHeight;
 
-        NeQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
-        NeQuadTree->_parent = this;
+        NeBucketTreePtr = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        NeBucketTreePtr->_parentPtr = this;
 
         // Create NW quadrant
             // calculate min NW quadrant
@@ -67,8 +72,8 @@ public:
             calculatedMax.X = minCoordinate.X + halfWidth;
             calculatedMax.Y = maxCoordinate.Y;
 
-        NwQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
-        NwQuadTree->_parent = this;
+        NwBucketTreePtr = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        NwBucketTreePtr->_parentPtr = this;
 
         // Create SE quadrant
             // calculate min SE quadrant
@@ -79,8 +84,8 @@ public:
             calculatedMax.X = maxCoordinate.X;
             calculatedMax.Y = minCoordinate.Y + halfHeight;
 
-        SeQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
-        SeQuadTree->_parent = this;
+        SeBucketTreePtr = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        SeBucketTreePtr->_parentPtr = this;
 
         // Create NE quadrant
             // calculate min NE quadrant
@@ -91,23 +96,55 @@ public:
             calculatedMax.X = maxCoordinate.X;
             calculatedMax.Y = maxCoordinate.Y;
 
-        NeQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
-        NeQuadTree->_parent = this;
+        NeBucketTreePtr = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        NeBucketTreePtr->_parentPtr = this;
     }
 
-    std::shared_ptr<BucketTree> NeQuadTree;
-    std::shared_ptr<BucketTree> NwQuadTree;
+    std::shared_ptr<BucketTree> NeBucketTreePtr;
+    std::shared_ptr<BucketTree> NwBucketTreePtr;
 
-    std::shared_ptr<BucketTree> SeQuadTree;
-    std::shared_ptr<BucketTree> SwQuadTree;
+    std::shared_ptr<BucketTree> SeBucketTreePtr;
+    std::shared_ptr<BucketTree> SwBucketTreePtr;
 
-    //todo: destructor
+    virtual ~BucketTree(){
+        if (NeBucketTreePtr != nullptr){
+            NeBucketTreePtr.reset();
+        }
+
+        if (SeBucketTreePtr != nullptr){
+            SeBucketTreePtr.reset();
+        }
+
+        if (NwBucketTreePtr != nullptr){
+            NwBucketTreePtr.reset();
+        }
+
+        if (SwBucketTreePtr != nullptr){
+            SwBucketTreePtr.reset();
+        }
+
+        // Delete bucket?
+    }
+
     //todo: searching
+    std::vector<int> GetEntities(EVector minCoordinate, EVector maxCoordinate){
+
+        // Check if it's in the box
+            // If not, return nullptr/empty vector?
+        // If it is,
+        // Check children and return their entities
+        // If no children, return bucket
+
+    }
+
     //todo: moving of items in buckets
     //todo:adding?
 
 private:
-    BucketTree* _parent;
+    BucketTree* _parentPtr;
+    EVector _minCoordinate;
+    EVector _maxCoordinate;
+
 };
 
 class SpatialHashMap
