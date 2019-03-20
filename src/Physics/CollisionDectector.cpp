@@ -4,6 +4,7 @@
 #include "FixedPointInt.h"
 #include "EVector.h"
 #include "ShapeData.h"
+#include "Debugger.h"
 using namespace SGE_Math;
 
 using namespace SGE_Physics;
@@ -56,6 +57,7 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
 }
 
 bool CollisionDectector::CheckCollision(std::shared_ptr<CollisionData> cd){
+
     ShapeData::ShapeTypes entity1ShapeType = cd->Entity1->Shape.ShapeType;
     ShapeData::ShapeTypes entity2ShapeType = cd->Entity2->Shape.ShapeType;
 
@@ -96,6 +98,8 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
     FixedPointInt bExtentX = bbox.HalfWidth;
 
     FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
+
+    SGE::Debugger::Instance().WriteMessage("Checking collision.");
 
     // SAT test on x axis
     if (xOverlap.Value > 0){
@@ -146,6 +150,8 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
         }
     }
 
+
+    SGE::Debugger::Instance().WriteMessage("No collision.");
     return false;
 }
 

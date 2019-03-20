@@ -17,13 +17,104 @@ namespace SGE_Physics{
 // todo: implement R/W lock? or multithreading
 // make an array of linked lists that take ints for entity ids?
 
+class BucketNode{
+public:
+
+
+
+//    std::shared_ptr<BucketTree> _treePtr;
+
+
+};
+
+class BucketTree{
+public:
+
+    BucketTree(int levels, EVector minCoordinate, EVector maxCoordinate){
+        _parent = nullptr;
+
+        if (levels <= 0){
+            // recursive stop
+            return;
+        }
+
+        // Initialize children
+        levels -= 1;
+
+        EVector calculatedMax;
+        EVector calculatedMin;
+
+        FixedPointInt halfWidth = (maxCoordinate.X - minCoordinate.X).abs();
+        FixedPointInt halfHeight = (maxCoordinate.Y - minCoordinate.Y).abs();
+
+        // Create SW quadrant
+            // calculate min NE quadrant
+            calculatedMin = minCoordinate;
+
+            // calculate max NE quadrant
+            calculatedMax.X = minCoordinate.X + halfWidth;
+            calculatedMax.Y = minCoordinate.Y + halfHeight;
+
+        NeQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        NeQuadTree->_parent = this;
+
+        // Create NW quadrant
+            // calculate min NW quadrant
+            calculatedMin.X = minCoordinate.X;
+            calculatedMin.Y = minCoordinate.Y + halfHeight;
+
+            // calculate max NW quadrant
+            calculatedMax.X = minCoordinate.X + halfWidth;
+            calculatedMax.Y = maxCoordinate.Y;
+
+        NwQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        NwQuadTree->_parent = this;
+
+        // Create SE quadrant
+            // calculate min SE quadrant
+            calculatedMin.X = minCoordinate.X + halfWidth;
+            calculatedMin.Y = minCoordinate.Y;
+
+            // calculate max SE quadrant
+            calculatedMax.X = maxCoordinate.X;
+            calculatedMax.Y = minCoordinate.Y + halfHeight;
+
+        SeQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        SeQuadTree->_parent = this;
+
+        // Create NE quadrant
+            // calculate min NE quadrant
+            calculatedMin.X = minCoordinate.X + halfWidth;
+            calculatedMin.Y = minCoordinate.Y + halfHeight;
+
+            // calculate max NE quadrant
+            calculatedMax.X = maxCoordinate.X;
+            calculatedMax.Y = maxCoordinate.Y;
+
+        NeQuadTree = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        NeQuadTree->_parent = this;
+    }
+
+    std::shared_ptr<BucketTree> NeQuadTree;
+    std::shared_ptr<BucketTree> NwQuadTree;
+
+    std::shared_ptr<BucketTree> SeQuadTree;
+    std::shared_ptr<BucketTree> SwQuadTree;
+
+    //todo: destructor
+    //todo: searching
+    //todo: moving of items in buckets
+    //todo:adding?
+
+private:
+    BucketTree* _parent;
+};
 
 class SpatialHashMap
 {
     public:
         ///todo: Change to use a hashmap instead of an array; as the array doesn't allow negative values
-        SpatialHashMap(FixedPointInt sceneWidth, FixedPointInt sceneHeight, FixedPointInt cellSize);
-        SpatialHashMap();
+        SpatialHashMap(EVector minVector, EVector maxVector);
         virtual ~SpatialHashMap();
 
         void ClearGrid();
@@ -32,6 +123,9 @@ class SpatialHashMap
         void AddBody(const int& entityId, Body body);// Todo: when hashing an object, get it's basic AABB and hash the Min/Max of that. Then add the entity to all cells/buckets in between that
 
     private:
+        EVector _minVector;
+        EVector _maxVector;
+
         class Node {
         public:
             int EntityId;
@@ -62,14 +156,12 @@ class SpatialHashMap
 
         CellKey HashEVector(const EVector& ev);
 
-
-        int _sceneWidth;
-        int _sceneHeight;
+        int _sceneSize;
         int _cellSize;
-        static const int _columns = 10;
-        static const int _rows = 10;
 
-        std::shared_ptr<Node> _cells[_rows][_columns];
+        static const int _numberOfBuckets = 10;
+
+        std::shared_ptr<Node> _cells[_numberOfBuckets][_numberOfBuckets];
 };
 
 

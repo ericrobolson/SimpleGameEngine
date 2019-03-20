@@ -80,7 +80,6 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
 
             SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
 
-            SGE::Debugger::Instance().WriteMessage(std::to_string((int)body->Body.Transform.Position.X.Value));
 
             SDL_Rect sdlRect;
 

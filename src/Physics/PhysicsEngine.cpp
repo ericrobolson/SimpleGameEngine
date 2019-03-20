@@ -8,6 +8,7 @@
 #include <memory>
 #include <map>
 #include <utility>
+#include "Debugger.h"
 
 using namespace SGE_Physics;
 
@@ -66,6 +67,10 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     EVector correction = cd.Normal * positionalPercentCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
     cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
     cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
+
+    EVector evZero;
+    cd.Entity1->Velocity = evZero;
+    cd.Entity2->Velocity = evZero;
 }
 
 
@@ -97,7 +102,7 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
     // Get a list of all entities with Velocity != 0, as only those need to check for collisions that need to be resolved
     std::vector<int> movingEntityIds = ecs.SearchOn<PhysicsBodyComponent>(matchingEntityIds,
         [](PhysicsBodyComponent c){
-            return (c.Body.Velocity.X != 0.0_fp && c.Body.Velocity.Y != 0.0_fp);
+            return (c.Body.Velocity.X != 0.0_fp || c.Body.Velocity.Y != 0.0_fp);
         });
 
     // Create a map of entities that have been checked
@@ -113,13 +118,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         if (component == nullptr){
             continue;
         }
-
         // Broad phase collision checks
         std::vector<int> entitiesToCheck = hashMap.GetEntityIds(component->Body.GetRoughAabb());
 
         // Near phase collision checks and resolutions
         std::vector<int>::iterator it2;
         for (it2 = entitiesToCheck.begin(); it2 != entitiesToCheck.end(); it2++){
+SGE::Debugger::Instance().WriteMessage("Checking collision.2");
+
             int entity1 = entityId;
             int entity2 = *it2;
 
@@ -156,6 +162,7 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             if (collisionDectector.CheckCollision(collisionDataPtr)){
                 // there was a collision, so resolve
                 ResolveCollision(*collisionDataPtr);
+
             }
        }
     }
