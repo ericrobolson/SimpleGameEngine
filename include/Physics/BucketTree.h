@@ -167,18 +167,18 @@ public:
         bool insideBox;
 
         // Check to see if min and max are totally inside the bucket
-        if (minCoordinate.X > _minCoordinate.X && maxCoordinate.X < _maxCoordinate.X
-        && minCoordinate.Y > _minCoordinate.Y && maxCoordinate.Y < _maxCoordinate.Y){
+        if (minCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X
+        && minCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
             insideBox = true;
         }
         // if max coordinate is in between _min and _max
-        else if (maxCoordinate.X < _maxCoordinate.X && maxCoordinate.X > _minCoordinate.X
-            && maxCoordinate.Y > _minCoordinate.Y && maxCoordinate.Y < _maxCoordinate.Y){
+        else if (maxCoordinate.X <= _maxCoordinate.X && maxCoordinate.X >= _minCoordinate.X
+            && maxCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
                 insideBox = true;
         }
         // if min coordinate is in between _min and _max
-        else if (minCoordinate.X < _maxCoordinate.X && minCoordinate.X > _minCoordinate.X
-            && minCoordinate.Y > _minCoordinate.Y && minCoordinate.Y < _maxCoordinate.Y){
+        else if (minCoordinate.X <= _maxCoordinate.X && minCoordinate.X >= _minCoordinate.X
+            && minCoordinate.Y >= _minCoordinate.Y && minCoordinate.Y <= _maxCoordinate.Y){
                 insideBox = true;
         }
 
