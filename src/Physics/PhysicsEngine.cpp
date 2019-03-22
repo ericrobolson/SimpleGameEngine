@@ -44,7 +44,7 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     }
 
     // Calculate restitution
-    FixedPointInt e = FixedPointInt::min(cd.Entity1->Material.Restitution, cd.Entity2->Material.Restitution);
+    FixedPointInt e = FixedPointInt::minimum(cd.Entity1->Material.Restitution, cd.Entity2->Material.Restitution);
 
     // Calculate impulse scalar
     FixedPointInt j = -(1.0_fp + e) * velocityAlongNormal;

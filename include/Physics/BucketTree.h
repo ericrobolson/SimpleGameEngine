@@ -47,7 +47,7 @@ public:
         _parentPtr = nullptr;
         _bucketPtr = nullptr;
 
-        //todo: check that it doesn't matter which coordinate is larger and which is smaller; if it does, need to order them
+        OrderVectors(minCoordinate, maxCoordinate);
 
         _minCoordinate = minCoordinate;
         _maxCoordinate = maxCoordinate;
@@ -158,12 +158,29 @@ public:
         }
     }
 
-    //todo: searching
     std::vector<int> GetEntities(EVector minCoordinate, EVector maxCoordinate){
+        OrderVectors(minCoordinate, maxCoordinate);
+
         std::vector<int> entityIds;
 
         // Check if it's in the box at all
-        bool insideBox; //todo:
+        bool insideBox;
+
+        // Check to see if min and max are totally inside the bucket
+        if (minCoordinate.X > _minCoordinate.X && maxCoordinate.X < _maxCoordinate.X
+        && minCoordinate.Y > _minCoordinate.Y && maxCoordinate.Y < _maxCoordinate.Y){
+            insideBox = true;
+        }
+        // if max coordinate is in between _min and _max
+        else if (maxCoordinate.X < _maxCoordinate.X && maxCoordinate.X > _minCoordinate.X
+            && maxCoordinate.Y > _minCoordinate.Y && maxCoordinate.Y < _maxCoordinate.Y){
+                insideBox = true;
+        }
+        // if min coordinate is in between _min and _max
+        else if (minCoordinate.X < _maxCoordinate.X && minCoordinate.X > _minCoordinate.X
+            && minCoordinate.Y > _minCoordinate.Y && minCoordinate.Y < _maxCoordinate.Y){
+                insideBox = true;
+        }
 
         if (!insideBox){
             return entityIds;
@@ -215,6 +232,27 @@ public:
     //todo:adding?
 
 private:
+    // Sort the vectors, so that vec1 is the minimum and vec2 is the maximum
+    void OrderVectors(EVector& vec1, EVector& vec2){
+        FixedPointInt i;
+
+        i = FixedPointInt::minimum(vec1.X, vec2.X);
+
+        if (vec1.X != i){
+            i = vec1.X;
+            vec1.X = vec2.X;
+            vec2.X = i;
+        }
+
+        i = FixedPointInt::minimum(vec1.Y, vec2.Y);
+
+        if (vec1.Y != i){
+            i = vec1.Y;
+            vec1.Y = vec2.Y;
+            vec2.Y = i;
+        }
+    }
+
     BucketTree* _parentPtr;
     BucketNode* _bucketPtr;
 
