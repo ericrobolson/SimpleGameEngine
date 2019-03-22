@@ -168,6 +168,7 @@
 		<Unit filename="include/Math/RandomNumberGenerator.h" />
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Body.h" />
+		<Unit filename="include/Physics/BucketTree.h" />
 		<Unit filename="include/Physics/Circle.h" />
 		<Unit filename="include/Physics/CollisionData.h" />
 		<Unit filename="include/Physics/CollisionDectector.h" />
@@ -207,12 +208,14 @@
 		<Unit filename="src/Math/FixedPointInt.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntAssignmentOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntBoolOperators.cpp" />
+		<Unit filename="src/Math/FixedPointInt/FixedPointIntMathFunctions.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntSelfModificationOperators.cpp" />
 		<Unit filename="src/Math/FixedPointInt/FixedPointIntTypeCasting.cpp" />
 		<Unit filename="src/Math/RandomNumberGenerator.cpp" />
 		<Unit filename="src/Physics/Aabb.cpp" />
 		<Unit filename="src/Physics/Body.cpp" />
+		<Unit filename="src/Physics/BucketTree.cpp" />
 		<Unit filename="src/Physics/Circle.cpp" />
 		<Unit filename="src/Physics/CollisionData.cpp" />
 		<Unit filename="src/Physics/CollisionDectector.cpp" />
@@ -268,6 +271,9 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntBoolOperatorsTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntMathFunctionsTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Math/FixedPointIntTests/FixedPointIntModificationOperatorsTests.cpp">

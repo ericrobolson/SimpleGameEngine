@@ -27,3 +27,13 @@ EVector EVector::operator +(const EVector& rhs){
 
     return ev;
 }
+
+
+EVector EVector::operator *(const FixedPointInt& rhs){
+    EVector ev = *this;
+
+    ev.X = ev.X * rhs;
+    ev.Y = ev.Y * rhs;
+
+    return ev;
+}

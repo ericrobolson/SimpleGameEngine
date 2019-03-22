@@ -3,6 +3,8 @@
 
 #include "EntityComponentManager.h"
 #include "FixedPointInt.h"
+#include "CollisionData.h"
+#include "SpatialHashMap.h"
 #include <memory>
 
 using namespace SGE_Math;
@@ -15,10 +17,11 @@ class PhysicsEngine
         PhysicsEngine();
         virtual ~PhysicsEngine();
 
-        void UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs);
+        void UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, SpatialHashMap& hashMap);
 
+        void ResolveCollision(CollisionData& cd);
     private:
-
+        FixedPointInt _totalMassInSystem;
 };
 }
 

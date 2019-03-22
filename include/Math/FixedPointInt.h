@@ -49,7 +49,11 @@ class FixedPointInt{
         bool operator ==(const FixedPointInt& rhs) const;
         bool operator !=(const FixedPointInt& rhs) const;
 
+        // Mathematical operations
+        FixedPointInt abs();
+        FixedPointInt sqrt();
 
+        static FixedPointInt& minimum(FixedPointInt& a, FixedPointInt& b);
 
         void SetValueFromDouble(const long double& rhs);
 

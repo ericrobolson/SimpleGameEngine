@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <set>
-
+#include <vector>
 namespace SGE_Math_Algorithms
 {
 
