@@ -231,6 +231,14 @@ public:
     //todo: moving of items in buckets
     //todo:adding?
 
+    EVector GetMinCoordinate(){
+        return _minCoordinate;
+    }
+
+    EVector GetMaxCoordinate(){
+        return _maxCoordinate;
+    }
+
 private:
     // Sort the vectors, so that vec1 is the minimum and vec2 is the maximum
     void OrderVectors(EVector& vec1, EVector& vec2){
