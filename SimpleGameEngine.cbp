@@ -291,6 +291,9 @@
 		<Unit filename="tests/Physics/AabbTests.cpp">
 			<Option target="Testing" />
 		</Unit>
+		<Unit filename="tests/Physics/BucketTreeTests.cpp">
+			<Option target="Testing" />
+		</Unit>
 		<Unit filename="tests/Physics/CollisionDectectorTests.cpp">
 			<Option target="Testing" />
 		</Unit>

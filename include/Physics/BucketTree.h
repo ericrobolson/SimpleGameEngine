@@ -67,15 +67,15 @@ public:
         FixedPointInt halfHeight = (maxCoordinate.Y - minCoordinate.Y).abs();
 
         // Create SW quadrant
-            // calculate min NE quadrant
+            // calculate min SW quadrant
             calculatedMin = minCoordinate;
 
-            // calculate max NE quadrant
+            // calculate max SW quadrant
             calculatedMax.X = minCoordinate.X + halfWidth;
             calculatedMax.Y = minCoordinate.Y + halfHeight;
 
-        NeBucketTreePtr = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
-        NeBucketTreePtr->_parentPtr = this;
+        SwBucketTreePtr = std::make_shared<BucketTree>(levels, calculatedMin, calculatedMax);
+        SwBucketTreePtr->_parentPtr = this;
 
         // Create NW quadrant
             // calculate min NW quadrant

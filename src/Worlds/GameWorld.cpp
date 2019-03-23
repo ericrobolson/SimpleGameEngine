@@ -56,7 +56,7 @@ GameWorld::GameWorld() : BaseWorld()
         SGE_Physics::Aabb aabb;
         aabb.HalfHeight = 10.0_fp;
         aabb.HalfWidth = 10.0_fp;
-body.Body.Mass.Mass = 2.0_fp;
+        body.Body.Mass.Mass = 2.0_fp;
         body.Body.Material.Density = 4.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
         body.Body.Shape.SetAabb(aabb);

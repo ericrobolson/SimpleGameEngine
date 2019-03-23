@@ -1,6 +1,20 @@
 #include "catch.hpp"
 #include "FixedPointInt.h"
+#include <string>
 using namespace SGE_Math;
+
+SCENARIO("FixedPointInt:: (string)"){
+    FixedPointInt fp1;
+
+    fp1 = 2.09_fp;
+    REQUIRE((std::string)fp1 == "2.09");
+
+    fp1 = -2.09_fp;
+    REQUIRE((std::string)fp1 == "-2.09");
+
+    fp1 = 0.0_fp;
+    REQUIRE((std::string)fp1 == "0.00");
+}
 
 SCENARIO("FixedPointInt:: (int)"){
     FixedPointInt fp1;

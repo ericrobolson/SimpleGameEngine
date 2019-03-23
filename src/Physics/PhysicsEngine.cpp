@@ -124,8 +124,6 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         // Near phase collision checks and resolutions
         std::vector<int>::iterator it2;
         for (it2 = entitiesToCheck.begin(); it2 != entitiesToCheck.end(); it2++){
-SGE::Debugger::Instance().WriteMessage("Checking collision.2");
-
             int entity1 = entityId;
             int entity2 = *it2;
 
@@ -171,6 +169,7 @@ SGE::Debugger::Instance().WriteMessage("Checking collision.2");
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
 
+        //todo: recalculate what bucket it's' in?
         component->Body.Transform.Position += component->Body.Velocity;
 
     }

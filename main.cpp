@@ -8,6 +8,8 @@
 #include "Worlds/GameWorld.h"
 #include "ThreadPool.h"
 
+#include "FixedPointInt.h"
+
 using namespace std;
 
 #ifdef UNIT_TESTING
@@ -19,6 +21,9 @@ using namespace std;
 int main( int argc, char* args[] )
 {
     ThreadPool::Instance();
+
+    cout << 1.21_fp << endl;
+
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
         printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );

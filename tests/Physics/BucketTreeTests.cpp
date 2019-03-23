@@ -1,8 +1,35 @@
-#include "catch.hpp"
 #include "FixedPointInt.h"
 #include "EVector.h"
 #include "BucketTree.h"
+
+#include "catch.hpp"
 using namespace SGE_Physics;
+
+SCENARIO("BucketTree: Constructor: 1 level"){
+    EVector ev1, ev2;
+
+    ev1.X = -10.0_fp;
+    ev1.Y = -10.0_fp;
+
+    ev2.X = 10.0_fp;
+    ev2.Y = 10.0_fp;
+
+    BucketTree bt(1, ev1, ev2);
+
+    REQUIRE(bt.GetMinCoordinate().X == ev1.X);
+    REQUIRE(bt.GetMinCoordinate().Y == ev1.Y);
+
+    REQUIRE(bt.GetMaxCoordinate().X == ev2.X);
+    REQUIRE(bt.GetMaxCoordinate().Y == ev2.Y);
+
+    REQUIRE(bt.NeBucketTreePtr != nullptr);
+    REQUIRE(bt.NeBucketTreePtr->GetMinCoordinate().X == 2.0_fp);
+
+    REQUIRE(bt.NwBucketTreePtr != nullptr);
+    REQUIRE(bt.SeBucketTreePtr != nullptr);
+    REQUIRE(bt.SwBucketTreePtr != nullptr);
+}
+
 
 SCENARIO("BucketTree: Constructor: No children"){
     EVector ev1, ev2;

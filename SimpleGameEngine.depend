@@ -3559,7 +3559,7 @@
 
 1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basecomponent.h
 
-1548999924 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
+1553306614 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
@@ -3567,6 +3567,7 @@
 	<iostream>
 	"Worlds/GameWorld.h"
 	"ThreadPool.h"
+	"FixedPointInt.h"
 	"catch.hpp"
 	<iostream>
 
@@ -3880,7 +3881,7 @@
 	"SystemTimer.h"
 	<time.h>
 
-1553055457 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1553305793 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -3925,7 +3926,7 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1553269864 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1553306453 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
@@ -3944,17 +3945,18 @@
 	"SpatialHashMap.h"
 	<memory>
 
-1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\tests\catch.hpp
+1553304413 c:\users\ericr\dev\simplegameengine\simplegameengine\tests\catch.hpp
 	<TargetConditionals.h>
 	<ciso646>
 	<iosfwd>
 	<string>
 	<cstdint>
 	<vector>
-	<memory>
 	<cstddef>
 	<string>
 	<iosfwd>
+	<type_traits>
+	<type_traits>
 	<vector>
 	<cstddef>
 	<type_traits>
@@ -3964,6 +3966,7 @@
 	<ostream>
 	<string_view>
 	<utility>
+	<optional>
 	<tuple>
 	<variant>
 	<ctime>
@@ -4001,18 +4004,21 @@
 	<vector>
 	<cassert>
 	<utility>
-	<string>
-	<vector>
+	<exception>
 	<memory>
-	<string>
-	<string>
-	<vector>
-	<memory>
-	<string>
 	<iosfwd>
 	<string>
 	<vector>
 	<memory>
+	<random>
+	<string>
+	<vector>
+	<memory>
+	<string>
+	<string>
+	<vector>
+	<memory>
+	<string>
 	<memory>
 	<vector>
 	<string>
@@ -4035,7 +4041,6 @@
 	<memory>
 	<cmath>
 	<limits>
-	<memory>
 	<signal.h>
 	<AfxWin.h>
 	<windows.h>
@@ -4046,6 +4051,7 @@
 	<ostream>
 	<sstream>
 	<vector>
+	<cctype>
 	<string>
 	<memory>
 	<set>
@@ -4085,6 +4091,7 @@
 	<cstring>
 	<regex>
 	<cassert>
+	<stack>
 	<cstdio>
 	<iosfwd>
 	<string>
@@ -4095,6 +4102,7 @@
 	<stdexcept>
 	<io.h>
 	<unistd.h>
+	<cmath>
 	<vector>
 	<set>
 	<algorithm>
@@ -4253,14 +4261,16 @@
 1550956536 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\deterministicmath.cpp
 	"DeterministicMath.h"
 
-1551044311 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
+1553306524 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint.cpp
 	"FixedPointInt.h"
 	<string>
 	<sstream>
 
-1553269830 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
+1553306548 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\fixedpointint.h
 	<limits>
 	<cstdint>
+	<string>
+	<iostream>
 
 1551154441 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests.cpp
 	"catch.hpp"
@@ -4280,7 +4290,7 @@
 	"catch.hpp"
 	"FixedPointInt.h"
 
-1551162923 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
+1553306566 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointinttypecasting.cpp
 	"FixedPointInt.h"
 
 1550984239 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointinttypecastingtests.cpp
@@ -4432,9 +4442,15 @@
 1553113316 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\buckettree.cpp
 	"BucketTree.h"
 
-1553282249 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\buckettree.h
+1553301537 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\buckettree.h
 	"EVector.h"
 	"Algorithms/Deduplication.h"
 	<memory>
 	<vector>
+
+1553304245 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\buckettreetests.cpp
+	"FixedPointInt.h"
+	"EVector.h"
+	"BucketTree.h"
+	"catch.hpp"
 
