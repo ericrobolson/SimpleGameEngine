@@ -7,6 +7,7 @@
 #include "InputSystem.h"
 #include "SystemTimer.h"
 #include "PhysicsEngine.h"
+#include "BucketTree.h"
 
 class GameWorld : public BaseWorld
 {
@@ -20,7 +21,7 @@ class GameWorld : public BaseWorld
         InputSystem _inputSystem;
         SGE_Physics::PhysicsEngine _physicsEngine;
 
-       // NetworkSystem _networkSystem;
+        SGE_Physics::BucketTree* _bucketTree;
 
         clock_t _cycleClock;
         SystemTimer _systemTimer;

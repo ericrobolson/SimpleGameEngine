@@ -14,6 +14,7 @@
 #include "Aabb.h"
 #include "RandomNumberGenerator.h"
 #include "PhysicsBodyComponent.h"
+#include "InputState.h"
 
 #include <iostream>
 
@@ -24,6 +25,17 @@ GameWorld::GameWorld() : BaseWorld()
     _graphicsSystem.DrawHitboxes = true;
 
     _cycleClock = clock();
+
+    EVector minCoordinate, maxCoordinate;
+    minCoordinate.X = 0.0_fp;
+    minCoordinate.Y = 0.0_fp;
+
+    maxCoordinate.X = 800.0_fp;
+    maxCoordinate.Y = 600.0_fp;
+
+    int levels = 4;
+    _bucketTree = new SGE_Physics::BucketTree(levels, minCoordinate, maxCoordinate);
+
 
     // testing for physics
     for (int i = 0; i < 1; i++){
@@ -36,19 +48,17 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 10.0_fp;
-        aabb.HalfWidth = 10.0_fp;
+        aabb.HalfHeight = 20.0_fp;
+        aabb.HalfWidth = 300.0_fp;
 
         body.Body.Shape.SetAabb(aabb);
-        body.Body.Transform.Position.X = 20.0_fp;
-        body.Body.Transform.Position.Y = 20.0_fp;
+        body.Body.Transform.Position.X = 15.0_fp;
+        body.Body.Transform.Position.Y = 400.0_fp;
 
-        body.Body.Mass.Mass = 2.0_fp;
+        body.Body.Mass.Mass = 20.0_fp;
         body.Body.Material.Density = 4.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
-        body.Body.Velocity.X = 3.0_fp;
-        body.Body.Velocity.Y = 0.00_fp;
-        body.Body.GravityScale = 0.4_fp;
+        body.Body.GravityScale = 0.0_fp;
     }
         std::shared_ptr<int> e = entityComponentManager.AddEntity();
 
@@ -77,11 +87,12 @@ GameWorld::GameWorld() : BaseWorld()
 
 GameWorld::~GameWorld()
 {
+    delete _bucketTree;
     //dtor
 }
 
 bool GameWorld::Process(){
-    if (_systemTimer.CanRun(60.0_fp)){
+        if (_systemTimer.CanRun(60.0_fp)){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);
@@ -89,26 +100,21 @@ bool GameWorld::Process(){
 
         // Run physics updates at 30hz?
         // todo: fix
-        EVector minCoordinate, maxCoordinate;
-        minCoordinate.X = 0.0_fp;
-        minCoordinate.Y = 0.0_fp;
 
-        maxCoordinate.X = 1200.0_fp;
-        maxCoordinate.Y = 800.0_fp;
-
-        int levels = 4;
-        SGE_Physics::BucketTree bucketTree(levels, minCoordinate, maxCoordinate);
-        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bucketTree);
+        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, *_bucketTree);
 
         bool finishedProcessing = true;
-        while(_graphicsSystem.Process(entityComponentManager, bucketTree) != finishedProcessing);
+        while(_graphicsSystem.Process(entityComponentManager, *_bucketTree) != finishedProcessing);
 
         if (InputState::Instance().Exit == true){
             return false;
         }
 
         _systemTimer.ResetClock();
+
     }
+
+
 
     return true;
 }

@@ -329,38 +329,34 @@ private:
     bool InsideBox(EVector & minCoordinate, EVector& maxCoordinate){
         bool insideBox;
     //todo: simplify and rework
+
+        bool yAxisIntersects = (minCoordinate.Y >= _minCoordinate.Y && minCoordinate.Y <= _maxCoordinate.Y)
+            || (maxCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y);
+
+        bool xAxisIntersects = (minCoordinate.X >= _minCoordinate.X && minCoordinate.X <= _maxCoordinate.X)
+            || (maxCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X);
+
         // Check to see if min and max are totally inside the bucket
         if (minCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X
         && minCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
             insideBox = true;
         }
-        /*
 
-        need more checks
-        // if max coordinate is in between _min and _max
-        else if (maxCoordinate.X <= _maxCoordinate.X && maxCoordinate.X >= _minCoordinate.X
-            && maxCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
-                insideBox = true;
+        if (yAxisIntersects && xAxisIntersects){
+            insideBox = true;
         }
-        // if min coordinate is in between _min and _max
-        else if (minCoordinate.X <= _maxCoordinate.X && minCoordinate.X >= _minCoordinate.X
-            && minCoordinate.Y >= _minCoordinate.Y && minCoordinate.Y <= _maxCoordinate.Y){
-                insideBox = true;
+        else if (yAxisIntersects && minCoordinate.X <= _minCoordinate.X && maxCoordinate.X >= _maxCoordinate.X){
+            insideBox = true;
         }
-        // if min + max aren't inside box, but go through coordinates:
-        else if (minCoordinate.X <= _minCoordinate.X && maxCoordinate.X >= _maxCoordinate.X
-                 && minCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y >= _maxCoordinate.Y){
-                    insideBox = true;
-                 }
-        else if (minCoordinate.X <= _minCoordinate.X && maxCoordinate.X >= _maxCoordinate.X
-                 && minCoordinate.Y <= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
-                    insideBox = true;
-                 }
-        else if (minCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X
-                 && minCoordinate.Y <= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
-                    insideBox = true;
-                 }
-*/
+        else if (xAxisIntersects && minCoordinate.Y <= _minCoordinate.Y && maxCoordinate.Y >= _maxCoordinate.Y){
+            insideBox = true;
+        }
+
+
+
+
+        // yaxis intersects
+
 
          return insideBox;
     }
