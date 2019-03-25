@@ -6,6 +6,7 @@
 #include "CollisionData.h"
 #include "SpatialHashMap.h"
 #include <memory>
+#include "BucketTree.h"
 
 using namespace SGE_Math;
 
@@ -17,7 +18,7 @@ class PhysicsEngine
         PhysicsEngine();
         virtual ~PhysicsEngine();
 
-        void UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, SpatialHashMap& hashMap);
+        void UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree);
 
         void ResolveCollision(CollisionData& cd);
     private:

@@ -10,13 +10,11 @@
 #include "GameState.h"
 #include "PhysicsBodyComponent.h"
 #include "Debugger.h"
-const int SCREEN_WIDTH = 800;
+#include "EVector.h"
+const int SCREEN_WIDTH = 1200;
 const int SCREEN_BITSPERPIXEL = 32;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_HEIGHT = 800;
 
-int ScaleGraphics(int value){
-    return GameState::GfxScaling * value;
-}
 
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
@@ -64,11 +62,82 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     */
 }
 
-bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs){
+
+void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer){
+    // draw children
+    if (bucketTree.NeBucketTreePtr != nullptr){
+        DrawBucketTree(*bucketTree.NeBucketTreePtr, renderer);
+    }
+
+    if (bucketTree.NwBucketTreePtr != nullptr){
+        DrawBucketTree(*bucketTree.NwBucketTreePtr, renderer);
+    }
+
+    if (bucketTree.SeBucketTreePtr != nullptr){
+        DrawBucketTree(*bucketTree.SeBucketTreePtr, renderer);
+    }
+
+    if (bucketTree.SwBucketTreePtr != nullptr){
+        DrawBucketTree(*bucketTree.SwBucketTreePtr, renderer);
+    }
+
+    SDL_Rect sdlRect;
+
+    SGE_Math::EVector minCoordinate, maxCoordinate;
+
+    minCoordinate = bucketTree.GetMinCoordinate();
+    maxCoordinate = bucketTree.GetMaxCoordinate();
+
+    sdlRect.x = ((int)minCoordinate.X);
+    sdlRect.y = ((int)minCoordinate.Y);
+
+    int w = (int)(maxCoordinate.X - minCoordinate.X);
+    int h = (int)(maxCoordinate.Y - minCoordinate.Y);
+
+    sdlRect.w = (w);
+    sdlRect.h = (h);
+
+    // Only draw if no more children
+    if (bucketTree.NeBucketTreePtr == nullptr && bucketTree.NwBucketTreePtr == nullptr && bucketTree.SwBucketTreePtr == nullptr && bucketTree.SeBucketTreePtr == nullptr){
+        // If it has entities, fill in the rectangle
+        if (bucketTree.HasEntities()){
+            SDL_SetRenderDrawColor(renderer, 255,250,205, 75);  // #FFFACD, pale yellow
+
+
+            SDL_RenderFillRect(renderer, &sdlRect);
+        }else{
+            SDL_SetRenderDrawColor(renderer, 255,250,205, 255);  // #FFFACD, pale yellow
+
+            SDL_RenderDrawRect(renderer, &sdlRect);
+        }
+    }else{
+        SDL_SetRenderDrawColor(renderer, 0,255,255, 255);  // #FFFACD, pale yellow
+        SDL_RenderDrawRect(renderer, &sdlRect);
+
+    }
+
+
+
+
+
+
+
+
+}
+
+bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
     SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
     SDL_RenderClear(_renderer);
+
+
+    // if Debug mode
+    if (true){
+        // draw bucketTree and buckets
+        DrawBucketTree(bucketTree, _renderer);
+
+    }
 
     //todo: fix this up; use spatialHashMap
     std::vector<int> entityIds = ecs.Search<PhysicsBodyComponent>();

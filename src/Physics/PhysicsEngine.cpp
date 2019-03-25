@@ -2,7 +2,6 @@
 #include "Aabb.h"
 
 #include "PhysicsBodyComponent.h"
-#include "SpatialHashMap.h"
 #include "CollisionDectector.h"
 #include "CollisionData.h"
 #include <memory>
@@ -75,28 +74,31 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
 
 
-void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, SpatialHashMap& hashMap){
+void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
 
     // Reset the total mass in the system
     _totalMassInSystem.Value = 0;
 
-    // Apply gravity?
-
-    // Build hashmap
-    hashMap.ClearGrid();
+    // Build buckettree
+    bucketTree.FlushBuckets();
 
     std::vector<int>::iterator it;
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
 
-        hashMap.AddBody(*it, component->Body);
+        bucketTree.AddBody(*it, component->Body);
+
+        // apply gravity
+        EVector gravity;
+        gravity.Y += 0.2_fp * component->Body.GravityScale;
+
+        component->Body.Velocity += gravity;
+
 
         // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
         _totalMassInSystem += component->Body.Mass.Mass;
-
-
     }
 
     // Get a list of all entities with Velocity != 0, as only those need to check for collisions that need to be resolved
@@ -119,7 +121,7 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             continue;
         }
         // Broad phase collision checks
-        std::vector<int> entitiesToCheck = hashMap.GetEntityIds(component->Body.GetRoughAabb());
+        std::vector<int> entitiesToCheck = bucketTree.GetEntityIds(component->Body.GetRoughAabb());
 
         // Near phase collision checks and resolutions
         std::vector<int>::iterator it2;
@@ -160,7 +162,6 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             if (collisionDectector.CheckCollision(collisionDataPtr)){
                 // there was a collision, so resolve
                 ResolveCollision(*collisionDataPtr);
-
             }
        }
     }
@@ -171,6 +172,5 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
         //todo: recalculate what bucket it's' in?
         component->Body.Transform.Position += component->Body.Velocity;
-
     }
 }

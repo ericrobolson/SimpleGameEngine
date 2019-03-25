@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "BaseSystem.h"
 #include "EntityComponentManager.h"
+#include "BucketTree.h"
 #include <mutex>
 
 class GraphicsSystem : public BaseSystem
@@ -10,9 +11,10 @@ class GraphicsSystem : public BaseSystem
     public:
         GraphicsSystem();
         virtual ~GraphicsSystem();
-        bool Process(ECS::EntityComponentManager &ecs);
+        bool Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree);
         SDL_Renderer* GetRenderer();
         bool DrawHitboxes;
+        bool DebugMode = true;
     private:
         void ProcessJob(ECS::EntityComponentManager &ecs, int entityId);
         std::mutex _resourceMutex;

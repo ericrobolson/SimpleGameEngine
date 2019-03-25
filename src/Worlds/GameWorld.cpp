@@ -10,7 +10,7 @@
 #include "LevelLoader.h"
 #include "SystemTimer.h"
 #include "Debugger.h"
-#include "SpatialHashMap.h"
+#include "BucketTree.h"
 #include "Aabb.h"
 #include "RandomNumberGenerator.h"
 #include "PhysicsBodyComponent.h"
@@ -48,6 +48,7 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.Material.Restitution = 0.2_fp;
         body.Body.Velocity.X = 3.0_fp;
         body.Body.Velocity.Y = 0.00_fp;
+        body.Body.GravityScale = 0.4_fp;
     }
         std::shared_ptr<int> e = entityComponentManager.AddEntity();
 
@@ -88,12 +89,19 @@ bool GameWorld::Process(){
 
         // Run physics updates at 30hz?
         // todo: fix
-        EVector ev;
-        SGE_Physics::SpatialHashMap hashMap(ev, ev);
-        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, hashMap);
+        EVector minCoordinate, maxCoordinate;
+        minCoordinate.X = 0.0_fp;
+        minCoordinate.Y = 0.0_fp;
+
+        maxCoordinate.X = 1200.0_fp;
+        maxCoordinate.Y = 800.0_fp;
+
+        int levels = 4;
+        SGE_Physics::BucketTree bucketTree(levels, minCoordinate, maxCoordinate);
+        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bucketTree);
 
         bool finishedProcessing = true;
-        while(_graphicsSystem.Process(entityComponentManager) != finishedProcessing);
+        while(_graphicsSystem.Process(entityComponentManager, bucketTree) != finishedProcessing);
 
         if (InputState::Instance().Exit == true){
             return false;
