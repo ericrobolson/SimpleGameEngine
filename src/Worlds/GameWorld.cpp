@@ -33,8 +33,9 @@ GameWorld::GameWorld() : BaseWorld()
     maxCoordinate.X = 800.0_fp;
     maxCoordinate.Y = 600.0_fp;
 
-    int levels = 4;
-    _bucketTree = new SGE_Physics::BucketTree(levels, minCoordinate, maxCoordinate);
+    int levels = 5;
+
+    _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
 
     // testing for physics
@@ -65,14 +66,16 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 10.0_fp;
-        aabb.HalfWidth = 10.0_fp;
+        aabb.HalfHeight = 4.0_fp;
+        aabb.HalfWidth = 4.0_fp;
         body.Body.Mass.Mass = 2.0_fp;
         body.Body.Material.Density = 4.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
         body.Body.Shape.SetAabb(aabb);
         body.Body.Transform.Position.X = 320.0_fp;
         body.Body.Transform.Position.Y = 20.0_fp;
+        body.Body.GravityScale = 0.7_fp;
+
 
 
         body.Body.Velocity.X = -1.0_fp;
@@ -87,12 +90,11 @@ GameWorld::GameWorld() : BaseWorld()
 
 GameWorld::~GameWorld()
 {
-    delete _bucketTree;
-    //dtor
+    _bucketTree.reset();
 }
 
 bool GameWorld::Process(){
-        if (_systemTimer.CanRun(60.0_fp)){
+        if (_systemTimer.CanRun(30.0_fp)){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);
@@ -101,10 +103,12 @@ bool GameWorld::Process(){
         // Run physics updates at 30hz?
         // todo: fix
 
-        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, *_bucketTree);
+        SGE_Physics::BucketTree& bt = *_bucketTree.get();
+
+        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bt);
 
         bool finishedProcessing = true;
-        while(_graphicsSystem.Process(entityComponentManager, *_bucketTree) != finishedProcessing);
+        while(_graphicsSystem.Process(entityComponentManager, bt) != finishedProcessing);
 
         if (InputState::Instance().Exit == true){
             return false;

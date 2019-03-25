@@ -16,8 +16,8 @@ Aabb::~Aabb()
 EVector Aabb::MinCoordinate(){
     EVector v;
 
-    v.X = Position.X - HalfWidth;
-    v.Y = Position.Y - HalfHeight;
+    v.X = Position.X;
+    v.Y = Position.Y;
 
     return v;
 }
@@ -25,8 +25,8 @@ EVector Aabb::MinCoordinate(){
 EVector Aabb::MaxCoordinate(){
       EVector v;
 
-    v.X = Position.X + HalfWidth;
-    v.Y = Position.Y + HalfHeight;
+    v.X = Position.X + (HalfWidth * 2.0_fp);
+    v.Y = Position.Y + (HalfHeight * 2.0_fp);
 
     return v;
 }

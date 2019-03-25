@@ -11,9 +11,9 @@
 #include "PhysicsBodyComponent.h"
 #include "Debugger.h"
 #include "EVector.h"
-const int SCREEN_WIDTH = 800;
+const int SCREEN_WIDTH = 860;
 const int SCREEN_BITSPERPIXEL = 32;
-const int SCREEN_HEIGHT = 600;
+const int SCREEN_HEIGHT = 640;
 
 // Initialize SDL
 GraphicsSystem::GraphicsSystem() : BaseSystem()
@@ -135,7 +135,6 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::Buck
     if (true){
         // draw bucketTree and buckets
         DrawBucketTree(bucketTree, _renderer);
-
     }
 
     //todo: fix this up; use spatialHashMap
@@ -160,7 +159,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::Buck
             sdlRect.w = (w);
             sdlRect.h = (h);
 
-            SDL_RenderFillRect(_renderer, &sdlRect);
+            SDL_RenderDrawRect(_renderer, &sdlRect);
 
 
            // ThreadPool::Instance().submit([this, &ecs, entityId](){

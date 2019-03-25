@@ -17,34 +17,6 @@ namespace SGE_Physics{
 class BucketTree{
 public:
     // remember: (0,0) starts at top left corner, (100,100) would be bottom right
-    class BucketNode{
-        public:
-
-        int EntityId;
-
-        BucketNode* NextPtr;
-
-        void AddEntityId(int entityId){
-
-            // Add new node
-            BucketNode* nextPtr = NextPtr;
-
-            NextPtr = new BucketNode(entityId);
-            NextPtr->NextPtr = nextPtr;
-        }
-
-        BucketNode(int entityId){
-            NextPtr = nullptr;
-            EntityId = entityId;
-        }
-
-        virtual ~BucketNode(){
-            if (NextPtr != nullptr){
-                delete NextPtr;
-            }
-        }
-    };
-
 
     // Child buckets
     std::shared_ptr<BucketTree> NeBucketTreePtr;
@@ -55,8 +27,6 @@ public:
 
     BucketTree(int levels, EVector minCoordinate, EVector maxCoordinate){
         _parentPtr = nullptr;
-        _bucketPtr = nullptr;
-
         OrderVectors(minCoordinate, maxCoordinate);
 
         _minCoordinate = minCoordinate;
@@ -144,9 +114,8 @@ public:
             SwBucketTreePtr->FlushBuckets();
         }
 
-        if (_bucketPtr != nullptr){
-            delete _bucketPtr;
-        }
+        // delete bucket
+        _bucket.clear();
     }
 
     virtual ~BucketTree(){
@@ -166,9 +135,8 @@ public:
             SwBucketTreePtr.reset();
         }
 
-        if (_bucketPtr != nullptr){
-            delete _bucketPtr;
-        }
+        // cleanup bucket
+        _bucket.clear();
     }
 
     std::vector<int> GetEntityIds(Aabb aabb){
@@ -227,7 +195,7 @@ public:
     }
 
     bool HasEntities(){
-        return _bucketPtr != nullptr;
+        return !_bucket.empty();
     }
 
 private:
@@ -272,12 +240,7 @@ private:
         }
         else{
             // Add all entities inside bucket
-            BucketNode* bucketPtr = _bucketPtr;
-            while(bucketPtr != nullptr){
-                entityIds.push_back(bucketPtr->EntityId);
-
-                bucketPtr = bucketPtr->NextPtr;
-            }
+            entityIds.insert(entityIds.end(), _bucket.begin(), _bucket.end());
         }
 
         // If no parent, dedup entities as this will be returning all calculated entities
@@ -298,12 +261,7 @@ private:
 
         if (!_hasChildren){
             // add to bucket
-            if (_bucketPtr != nullptr){
-                _bucketPtr->AddEntityId(entityId);
-            }
-            else{
-                _bucketPtr = new BucketNode(entityId);
-            }
+            _bucket.push_back(entityId);
         }
         else{
             // add to children
@@ -337,12 +295,18 @@ private:
             || (maxCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X);
 
         // Check to see if min and max are totally inside the bucket
-        if (minCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X
+        if (minCoordinate.X <= _minCoordinate.X && minCoordinate.Y <= _minCoordinate.Y
+            && maxCoordinate.X >= _maxCoordinate.X && maxCoordinate.Y >= _maxCoordinate.Y){
+                insideBox = true;
+            }
+
+
+        else if (minCoordinate.X >= _minCoordinate.X && maxCoordinate.X <= _maxCoordinate.X
         && minCoordinate.Y >= _minCoordinate.Y && maxCoordinate.Y <= _maxCoordinate.Y){
             insideBox = true;
         }
 
-        if (yAxisIntersects && xAxisIntersects){
+        else if (yAxisIntersects && xAxisIntersects){
             insideBox = true;
         }
         else if (yAxisIntersects && minCoordinate.X <= _minCoordinate.X && maxCoordinate.X >= _maxCoordinate.X){
@@ -387,7 +351,8 @@ private:
     bool _hasChildren;
 
     BucketTree* _parentPtr;
-    BucketNode* _bucketPtr;
+
+    std::vector<int> _bucket;
 
     EVector _minCoordinate;
     EVector _maxCoordinate;
