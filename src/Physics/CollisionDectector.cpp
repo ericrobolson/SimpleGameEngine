@@ -100,6 +100,7 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
     FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
 
     // SAT test on x axis
+
     if (xOverlap.Value > 0){
         // Calculate half extents along y axis for each object
         FixedPointInt aExtentY = abox.HalfHeight;
@@ -126,7 +127,7 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
 
                 cd->Penetration = xOverlap;
 
-                SGE::Debugger::Instance().WriteMessage("Collision.");
+            SGE::Debugger::Instance().WriteMessage("There was a collision.");
                 return true;
             }
         }
@@ -147,7 +148,7 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
 
             cd->Penetration = yOverlap;
 
-            SGE::Debugger::Instance().WriteMessage("Collision.");
+            SGE::Debugger::Instance().WriteMessage("There was a collision.");
             return true;
         }
     }

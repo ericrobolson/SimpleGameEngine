@@ -30,10 +30,10 @@ GameWorld::GameWorld() : BaseWorld()
     minCoordinate.X = 0.0_fp;
     minCoordinate.Y = 0.0_fp;
 
-    maxCoordinate.X = 800.0_fp;
-    maxCoordinate.Y = 600.0_fp;
+    maxCoordinate.X = 1920.0_fp;
+    maxCoordinate.Y = 1080.0_fp;
 
-    int levels = 5;
+    int levels = 6;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -94,7 +94,7 @@ GameWorld::~GameWorld()
 }
 
 bool GameWorld::Process(){
-        if (_systemTimer.CanRun(30.0_fp)){
+        if (_systemTimer.CanRun(60.0_fp)){
         _inputSystem.Process(entityComponentManager);
 
       //  _networkSystem.Process(entityComponentManager);
@@ -106,6 +106,7 @@ bool GameWorld::Process(){
         SGE_Physics::BucketTree& bt = *_bucketTree.get();
 
         _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bt);
+
 
         bool finishedProcessing = true;
         while(_graphicsSystem.Process(entityComponentManager, bt) != finishedProcessing);

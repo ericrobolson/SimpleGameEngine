@@ -126,6 +126,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         // Near phase collision checks and resolutions
         std::vector<int>::iterator it2;
         for (it2 = entitiesToCheck.begin(); it2 != entitiesToCheck.end(); it2++){
+            SGE::Debugger::Instance().WriteMessage("Checking Possible collision...");
+
             int entity1 = entityId;
             int entity2 = *it2;
 
@@ -156,12 +158,13 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
             // Check if there was a collision
             std::shared_ptr<CollisionData> collisionDataPtr = std::make_shared<CollisionData>();
-            collisionDataPtr->Entity1 = std::make_shared<Body>(component->Body);
-            collisionDataPtr->Entity2 = std::make_shared<Body>(component2->Body);
+            collisionDataPtr->Entity1 = std::make_shared<Body>(component->Body); // is this not referencing the proper data?
+            collisionDataPtr->Entity2 = std::make_shared<Body>(component2->Body); // is this not referencing the proper data?
 
             if (collisionDectector.CheckCollision(collisionDataPtr)){
                 // there was a collision, so resolve
                 ResolveCollision(*collisionDataPtr);
+
             }
        }
     }
@@ -172,5 +175,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
         //todo: recalculate what bucket it's' in?
         component->Body.Transform.Position += component->Body.Velocity;
+    }
+
+    // recalculate bucketTree based on new positions
+    bucketTree.FlushBuckets();
+    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+
+        bucketTree.AddBody(*it, component->Body);
+
     }
 }

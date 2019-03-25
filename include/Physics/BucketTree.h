@@ -240,8 +240,10 @@ private:
         }
         else{
             // Add all entities inside bucket
-            entityIds.insert(entityIds.end(), _bucket.begin(), _bucket.end());
+
         }
+
+        entityIds.insert(entityIds.end(), _bucket.begin(), _bucket.end());
 
         // If no parent, dedup entities as this will be returning all calculated entities
         if (_parentPtr == nullptr){
