@@ -86,12 +86,11 @@ bool CollisionDectector::CircleVsCircle(CollisionData& cd){
 }
 
 bool CollisionDectector::AabbVsAabb(CollisionData& cd){
-
     // todo: rename; but this is the vector from Entity1 to entity2
     EVector n = cd.Entity1->Transform.Position - cd.Entity2->Transform.Position;
 
-    Aabb abox = cd.Entity1->Shape.GetAabb();
-    Aabb bbox = cd.Entity2->Shape.GetAabb();
+    Aabb abox = cd.Entity1->GetRoughAabb();
+    Aabb bbox = cd.Entity2->GetRoughAabb();
 
     // Calculate half extents along x axis for each object
     FixedPointInt aExtentX = abox.HalfWidth;
@@ -153,6 +152,7 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
         }
     }
 
+    SGE::Debugger::Instance().WriteMessage("There was no collision.");
     return false;
 }
 

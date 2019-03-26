@@ -33,7 +33,7 @@ GameWorld::GameWorld() : BaseWorld()
     maxCoordinate.X = 1920.0_fp;
     maxCoordinate.Y = 1080.0_fp;
 
-    int levels = 4;
+    int levels = 5;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -57,30 +57,13 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.Transform.Position.Y = 400.0_fp;
 
         body.Body.Mass.Mass = 0.0_fp;
-        body.Body.Material.Density = 4.0_fp;
+        body.Body.Material.Density = 0.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
         body.Body.GravityScale = 0.0_fp;
     }
-        std::shared_ptr<int> e = entityComponentManager.AddEntity();
-
-        PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
-
-        SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 16.0_fp;
-        aabb.HalfWidth = 16.0_fp;
-        body.Body.Mass.Mass = 0.5_fp;
-        body.Body.Material.Density = 4.0_fp;
-        body.Body.Material.Restitution = 0.2_fp;
-        body.Body.Shape.SetAabb(aabb);
-        body.Body.Transform.Position.X = 320.0_fp;
-        body.Body.Transform.Position.Y = 20.0_fp;
-        body.Body.GravityScale = 0.7_fp;
 
 
-
-        body.Body.Velocity.X = -0.0_fp;
-        body.Body.Velocity.Y = -0.0_fp;
-
+    PlayerAssemblage::BuildPlayer(entityComponentManager, 300.0_fp, 0.0_fp);
 
 
 
@@ -97,6 +80,7 @@ bool GameWorld::Process(){
         if (_systemTimer.CanRun(60.0_fp)){
         _inputSystem.Process(entityComponentManager);
 
+        _actionSystem.Process(entityComponentManager);
       //  _networkSystem.Process(entityComponentManager);
 
 
