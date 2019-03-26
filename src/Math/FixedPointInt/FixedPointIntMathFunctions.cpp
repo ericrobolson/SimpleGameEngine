@@ -25,6 +25,15 @@ FixedPointInt FixedPointInt::sqrt(){
     return fp;
 }
 
+
+FixedPointInt& FixedPointInt::maximum(FixedPointInt& a, FixedPointInt& b){
+    if (a.Value >= b.Value){
+        return a;
+    }
+
+    return b;
+}
+
 FixedPointInt& FixedPointInt::minimum(FixedPointInt& a, FixedPointInt& b){
     if (a.Value <= b.Value){
         return a;

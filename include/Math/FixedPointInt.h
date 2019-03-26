@@ -57,6 +57,7 @@ class FixedPointInt{
         FixedPointInt sqrt();
 
         static FixedPointInt& minimum(FixedPointInt& a, FixedPointInt& b);
+        static FixedPointInt& maximum(FixedPointInt& a, FixedPointInt& b);
 
         void SetValueFromDouble(const long double& rhs);
 

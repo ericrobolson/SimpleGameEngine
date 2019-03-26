@@ -17,11 +17,11 @@ class CollisionDectector
 
         static bool CircleVsCircle(Circle a, Circle b);
 
-        static bool CircleVsCircle(std::shared_ptr<CollisionData> cd);
-        static bool AabbVsAabb(std::shared_ptr<CollisionData> cd);
-        static bool AabbVsCircle(std::shared_ptr<CollisionData> cd);
+        static bool CircleVsCircle(CollisionData& cd);
+        static bool AabbVsAabb(CollisionData& cd);
+        static bool AabbVsCircle(CollisionData& cd);
 
-        static bool CheckCollision(std::shared_ptr<CollisionData> cd);
+        static bool CheckCollision(CollisionData& cd);
 
     protected:
 

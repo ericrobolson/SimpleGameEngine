@@ -33,7 +33,7 @@ GameWorld::GameWorld() : BaseWorld()
     maxCoordinate.X = 1920.0_fp;
     maxCoordinate.Y = 1080.0_fp;
 
-    int levels = 6;
+    int levels = 4;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -56,7 +56,7 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.Transform.Position.X = 15.0_fp;
         body.Body.Transform.Position.Y = 400.0_fp;
 
-        body.Body.Mass.Mass = 20.0_fp;
+        body.Body.Mass.Mass = 0.0_fp;
         body.Body.Material.Density = 4.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
         body.Body.GravityScale = 0.0_fp;
@@ -66,9 +66,9 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 4.0_fp;
-        aabb.HalfWidth = 4.0_fp;
-        body.Body.Mass.Mass = 2.0_fp;
+        aabb.HalfHeight = 16.0_fp;
+        aabb.HalfWidth = 16.0_fp;
+        body.Body.Mass.Mass = 0.5_fp;
         body.Body.Material.Density = 4.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
         body.Body.Shape.SetAabb(aabb);
@@ -78,7 +78,7 @@ GameWorld::GameWorld() : BaseWorld()
 
 
 
-        body.Body.Velocity.X = -1.0_fp;
+        body.Body.Velocity.X = -0.0_fp;
         body.Body.Velocity.Y = -0.0_fp;
 
 
@@ -105,7 +105,10 @@ bool GameWorld::Process(){
 
         SGE_Physics::BucketTree& bt = *_bucketTree.get();
 
-        _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bt);
+       // if (InputState::Instance().ButtonDownIsPressed){
+            _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bt);
+     //   }
+
 
 
         bool finishedProcessing = true;

@@ -56,10 +56,10 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
     return lowerBound <= distance && distance <= upperBound;
 }
 
-bool CollisionDectector::CheckCollision(std::shared_ptr<CollisionData> cd){
+bool CollisionDectector::CheckCollision(CollisionData& cd){
 
-    ShapeData::ShapeTypes entity1ShapeType = cd->Entity1->Shape.ShapeType;
-    ShapeData::ShapeTypes entity2ShapeType = cd->Entity2->Shape.ShapeType;
+    ShapeData::ShapeTypes entity1ShapeType = cd.Entity1->Shape.ShapeType;
+    ShapeData::ShapeTypes entity2ShapeType = cd.Entity2->Shape.ShapeType;
 
     // Check the collision depending on the entity shapes
     if (entity1ShapeType == entity2ShapeType){
@@ -80,18 +80,18 @@ bool CollisionDectector::CheckCollision(std::shared_ptr<CollisionData> cd){
     return false;
 }
 
-bool CollisionDectector::CircleVsCircle(std::shared_ptr<CollisionData> cd){
+bool CollisionDectector::CircleVsCircle(CollisionData& cd){
     // todo
     return false;
 }
 
-bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
+bool CollisionDectector::AabbVsAabb(CollisionData& cd){
 
     // todo: rename; but this is the vector from Entity1 to entity2
-    EVector n = cd->Entity1->Transform.Position - cd->Entity2->Transform.Position;
+    EVector n = cd.Entity1->Transform.Position - cd.Entity2->Transform.Position;
 
-    Aabb abox = cd->Entity1->Shape.GetAabb();
-    Aabb bbox = cd->Entity2->Shape.GetAabb();
+    Aabb abox = cd.Entity1->Shape.GetAabb();
+    Aabb bbox = cd.Entity2->Shape.GetAabb();
 
     // Calculate half extents along x axis for each object
     FixedPointInt aExtentX = abox.HalfWidth;
@@ -116,16 +116,16 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
                     EVector ev;
                     ev.X = -1.0_fp;
                     ev.Y = 0.0_fp;
-                    cd->Normal = ev;
+                    cd.Normal = ev;
                 }
                 else{
                     EVector ev;
                     ev.X = 0.0_fp;
                     ev.Y = 0.0_fp;
-                    cd->Normal = ev;
+                    cd.Normal = ev;
                 }
 
-                cd->Penetration = xOverlap;
+                cd.Penetration = xOverlap;
 
             SGE::Debugger::Instance().WriteMessage("There was a collision.");
                 return true;
@@ -136,17 +136,17 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
              if (n.Y.Value < 0){
                     EVector ev;
                     ev.X = 0.0_fp;
-                    ev.Y = -1.0_fp;
-                    cd->Normal = ev;
+                    ev.Y = 1.0_fp;
+                    cd.Normal = ev;
             }
             else{
                 EVector ev;
                 ev.X = 0.0_fp;
-                ev.Y = 1.0_fp;
-                cd->Normal = ev;
+                ev.Y = -1.0_fp;
+                cd.Normal = ev;
             }
 
-            cd->Penetration = yOverlap;
+            cd.Penetration = yOverlap;
 
             SGE::Debugger::Instance().WriteMessage("There was a collision.");
             return true;
@@ -156,7 +156,7 @@ bool CollisionDectector::AabbVsAabb(std::shared_ptr<CollisionData> cd){
     return false;
 }
 
-bool CollisionDectector::AabbVsCircle(std::shared_ptr<CollisionData> cd){
+bool CollisionDectector::AabbVsCircle(CollisionData& cd){
     // todo
     return false;
 }
