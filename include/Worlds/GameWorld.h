@@ -7,6 +7,9 @@
 #include "InputSystem.h"
 #include "SystemTimer.h"
 #include "PhysicsEngine.h"
+#include "ActionSystem.h"
+#include "BucketTree.h"
+#include <memory>
 
 class GameWorld : public BaseWorld
 {
@@ -19,8 +22,9 @@ class GameWorld : public BaseWorld
         GraphicsSystem _graphicsSystem;
         InputSystem _inputSystem;
         SGE_Physics::PhysicsEngine _physicsEngine;
+        ActionSystem _actionSystem;
 
-       // NetworkSystem _networkSystem;
+        std::shared_ptr<SGE_Physics::BucketTree> _bucketTree;
 
         clock_t _cycleClock;
         SystemTimer _systemTimer;

@@ -29,7 +29,7 @@ namespace SGE_Physics{
             EVector Velocity;
             EVector Force;
 
-            FixedPointInt GravityScale;
+            FixedPointInt GravityScale = 1.0_fp;
 
         protected:
 

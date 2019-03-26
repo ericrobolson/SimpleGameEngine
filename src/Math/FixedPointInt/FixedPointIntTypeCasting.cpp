@@ -31,3 +31,17 @@ FixedPointInt::operator int() const{
 
     return i;
 }
+
+FixedPointInt::operator std::string() const{
+    std::string s = std::to_string(Value);
+
+    // pad with leading 0's
+    while (s.size() <= 2){
+        s.insert(0, "0");
+    }
+
+    // insert decimal
+    s.insert(s.size() -2, ".");
+
+    return s;
+}

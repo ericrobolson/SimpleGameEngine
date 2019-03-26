@@ -3,6 +3,8 @@
 
 #include <limits>
 #include <cstdint>
+#include <string>
+#include <iostream>
 
 namespace SGE_Math{
 
@@ -20,6 +22,7 @@ class FixedPointInt{
 
         // Type casting
         explicit operator int() const;
+        explicit operator std::string() const;
 
         // Assignment operators
         FixedPointInt& operator =(const FixedPointInt& rhs);
@@ -54,13 +57,13 @@ class FixedPointInt{
         FixedPointInt sqrt();
 
         static FixedPointInt& minimum(FixedPointInt& a, FixedPointInt& b);
+        static FixedPointInt& maximum(FixedPointInt& a, FixedPointInt& b);
 
         void SetValueFromDouble(const long double& rhs);
 
         // todo: reference these through a static "Constants" class for optimization
         const int_fast32_t MINVALUE = std::numeric_limits<int>::min(); // Minimum allowed integer value
         const int_fast32_t MAXVALUE = std::numeric_limits<int>::max(); // Maximum allowed integer value
-
     private:
         // todo: reference these through a static "Constants" class for optimization
 
@@ -75,5 +78,9 @@ class FixedPointInt{
 }
 
 SGE_Math::FixedPointInt operator"" _fp(long double d);
+
+std::ostream& operator<<(std::ostream& os, const SGE_Math::FixedPointInt& value);
+
+
 
 #endif // FIXEDPOINTINT_H

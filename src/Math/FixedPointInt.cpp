@@ -33,6 +33,13 @@ FixedPointInt::~FixedPointInt()
     //dtor
 }
 
+std::ostream& operator<<(std::ostream& os, const FixedPointInt& value)
+{
+
+    return os << ((std::string)value);
+}
+
+
 //todo: test
 void FixedPointInt::SetValueFromDouble(const long double& rhs){
     long double d = rhs * _scalingFactor;

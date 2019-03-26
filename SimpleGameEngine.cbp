@@ -38,6 +38,7 @@
 					<Add directory="include/InstructionMachine" />
 					<Add directory="include/Physics" />
 					<Add directory="include/Math" />
+					<Add directory="include/Audio" />
 				</Compiler>
 				<Linker>
 					<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
@@ -82,6 +83,7 @@
 					<Add directory="include/InstructionMachine" />
 					<Add directory="include/Physics" />
 					<Add directory="include/Math" />
+					<Add directory="include/Audio" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -128,6 +130,7 @@
 					<Add directory="include/InstructionMachine" />
 					<Add directory="include/Physics" />
 					<Add directory="include/Math" />
+					<Add directory="include/Audio" />
 				</Compiler>
 				<Linker>
 					<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
@@ -152,6 +155,7 @@
 		</Linker>
 		<Unit filename="include/Assemblages/PlayerAssemblage.h" />
 		<Unit filename="include/Assemblages/SolidObjectAssemblage.h" />
+		<Unit filename="include/Audio/Operator.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
@@ -191,6 +195,7 @@
 		<Unit filename="include/Worlds/GameWorld.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Assemblages/PlayerAssemblage.cpp" />
+		<Unit filename="src/Audio/Operator.cpp" />
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
@@ -289,6 +294,9 @@
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Physics/AabbTests.cpp">
+			<Option target="Testing" />
+		</Unit>
+		<Unit filename="tests/Physics/BucketTreeTests.cpp">
 			<Option target="Testing" />
 		</Unit>
 		<Unit filename="tests/Physics/CollisionDectectorTests.cpp">

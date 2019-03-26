@@ -2,7 +2,6 @@
 #include "Aabb.h"
 
 #include "PhysicsBodyComponent.h"
-#include "SpatialHashMap.h"
 #include "CollisionDectector.h"
 #include "CollisionData.h"
 #include <memory>
@@ -58,45 +57,49 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     FixedPointInt velocityRatio = cd.Entity1->Mass.Mass / massSum;
     cd.Entity1->Velocity -= impulse * velocityRatio;
 
-
     velocityRatio = cd.Entity2->Mass.Mass / massSum;
     cd.Entity2->Velocity += impulse * velocityRatio;
 
     // Positional correction using linear projection; scale by total mass in system compared to the mass of the two entities
-    const FixedPointInt positionalPercentCorrection = 0.2_fp;
-    EVector correction = cd.Normal * positionalPercentCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
+    const FixedPointInt positionalPercentCorrection = 0.2_fp; // .2 to .8
+    const FixedPointInt slop = 0.01_fp; // .01 to .1
+    FixedPointInt slopCorrection = (cd.Penetration - slop);
+    FixedPointInt zero = 0.0_fp;
+    slopCorrection = FixedPointInt::maximum(slopCorrection, zero);
+
+    EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
     cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
     cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
 
-    EVector evZero;
-    cd.Entity1->Velocity = evZero;
-    cd.Entity2->Velocity = evZero;
 }
 
 
 
-void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, SpatialHashMap& hashMap){
+void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
 
     // Reset the total mass in the system
     _totalMassInSystem.Value = 0;
 
-    // Apply gravity?
-
-    // Build hashmap
-    hashMap.ClearGrid();
+    // Build buckettree
+    bucketTree.FlushBuckets();
 
     std::vector<int>::iterator it;
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
 
-        hashMap.AddBody(*it, component->Body);
+        bucketTree.AddBody(*it, component->Body);
+
+        // apply gravity
+        EVector gravity;
+        gravity.Y += 0.2_fp * component->Body.GravityScale;
+
+        component->Body.Velocity += gravity;
+
 
         // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
         _totalMassInSystem += component->Body.Mass.Mass;
-
-
     }
 
     // Get a list of all entities with Velocity != 0, as only those need to check for collisions that need to be resolved
@@ -119,12 +122,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             continue;
         }
         // Broad phase collision checks
-        std::vector<int> entitiesToCheck = hashMap.GetEntityIds(component->Body.GetRoughAabb());
+        std::vector<int> entitiesToCheck = bucketTree.GetEntityIds(component->Body.GetRoughAabb());
 
         // Near phase collision checks and resolutions
+        EVector originalPosition = component->Body.Transform.Position;
+
         std::vector<int>::iterator it2;
         for (it2 = entitiesToCheck.begin(); it2 != entitiesToCheck.end(); it2++){
-SGE::Debugger::Instance().WriteMessage("Checking collision.2");
+            SGE::Debugger::Instance().WriteMessage("Checking Possible collision...");
 
             int entity1 = entityId;
             int entity2 = *it2;
@@ -155,15 +160,19 @@ SGE::Debugger::Instance().WriteMessage("Checking collision.2");
             checkedEntities.insert(std::make_pair(key, true));
 
             // Check if there was a collision
-            std::shared_ptr<CollisionData> collisionDataPtr = std::make_shared<CollisionData>();
-            collisionDataPtr->Entity1 = std::make_shared<Body>(component->Body);
-            collisionDataPtr->Entity2 = std::make_shared<Body>(component2->Body);
+            CollisionData collisionData;;
+            collisionData.Entity1 = &component->Body; // is this not referencing the proper data?
+            collisionData.Entity2 = &component2->Body; // is this not referencing the proper data?
 
-            if (collisionDectector.CheckCollision(collisionDataPtr)){
+            if (collisionDectector.CheckCollision(collisionData)){
                 // there was a collision, so resolve
-                ResolveCollision(*collisionDataPtr);
-
+                ResolveCollision(collisionData);
             }
+       }
+
+       if (originalPosition == component->Body.Transform.Position){
+        // apply normal position transforms
+                component->Body.Transform.Position += component->Body.Velocity;
        }
     }
 
@@ -171,7 +180,16 @@ SGE::Debugger::Instance().WriteMessage("Checking collision.2");
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
 
-        component->Body.Transform.Position += component->Body.Velocity;
+        //todo: recalculate what bucket it's' in?
+
+    }
+
+    // recalculate bucketTree based on new positions
+    bucketTree.FlushBuckets();
+    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+
+        bucketTree.AddBody(*it, component->Body);
 
     }
 }

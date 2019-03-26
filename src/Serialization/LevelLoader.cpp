@@ -32,7 +32,7 @@ void CreatePlayer(std::vector<std::string> collection, ECS::EntityComponentManag
         }
     }
 
-    PlayerAssemblage::BuildPlayer(ecs, x, y);
+    PlayerAssemblage::BuildPlayer(ecs, 300.0_fp, 0.0_fp);
 }
 
 

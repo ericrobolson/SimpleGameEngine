@@ -13,9 +13,8 @@ class CollisionData
         CollisionData();
         virtual ~CollisionData();
 
-        std::shared_ptr<Body> Entity1;
-        std::shared_ptr<Body> Entity2;
-
+        Body* Entity1;
+        Body* Entity2;
 
         FixedPointInt Penetration;
         EVector Normal;

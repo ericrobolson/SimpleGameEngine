@@ -3,13 +3,14 @@
 
 #include <memory>
 #include "EntityComponentManager.h"
+#include "FixedPointInt.h"
 class PlayerAssemblage
 {
     public:
         PlayerAssemblage();
         virtual ~PlayerAssemblage();
 
-        static std::shared_ptr<int> BuildPlayer(ECS::EntityComponentManager &ecs, int x, int y);
+        static std::shared_ptr<int> BuildPlayer(ECS::EntityComponentManager &ecs, SGE_Math::FixedPointInt x, SGE_Math::FixedPointInt y);
 
     protected:
 
