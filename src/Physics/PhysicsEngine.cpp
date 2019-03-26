@@ -8,6 +8,7 @@
 #include <map>
 #include <utility>
 #include "Debugger.h"
+#include <algorithm>
 
 using namespace SGE_Physics;
 
@@ -66,11 +67,12 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     FixedPointInt slopCorrection = (cd.Penetration - slop);
     FixedPointInt zero = 0.0_fp;
     slopCorrection = FixedPointInt::maximum(slopCorrection, zero);
+    FixedPointInt totalMass = cd.Entity1->Mass.Mass + cd.Entity2->Mass.Mass;
 
-    EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
+
+    EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (totalMass / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
     cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
     cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
-
 }
 
 
@@ -93,9 +95,9 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
         // apply gravity
         EVector gravity;
-        gravity.Y += 0.2_fp * component->Body.GravityScale;
+      //  gravity.Y += 0.1_fp * component->Body.GravityScale;
 
-        component->Body.Velocity += gravity;
+      //  component->Body.Velocity += gravity;
 
 
         // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
@@ -112,6 +114,11 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
     std::map<std::pair<int, int>, bool> checkedEntities;
 
     CollisionDectector collisionDectector;
+
+
+    std::vector<CollisionData> collisionManifolds;
+    std::vector<int> entitiesWithoutCollisions = matchingEntityIds;
+
 
     // Calculate collisions
     for (it = movingEntityIds.begin(); it != movingEntityIds.end(); it++){
@@ -166,20 +173,24 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
             if (collisionDectector.CheckCollision(collisionData)){
                 // there was a collision, so resolve
-                ResolveCollision(collisionData);
+                collisionManifolds.push_back(collisionData);
+                std::remove(entitiesWithoutCollisions.begin(), entitiesWithoutCollisions.end(), entity1);
+                std::remove(entitiesWithoutCollisions.begin(), entitiesWithoutCollisions.end(), entity2);
             }
-       }
-
-       if (originalPosition == component->Body.Transform.Position){
-        // apply normal position transforms
-                component->Body.Transform.Position += component->Body.Velocity;
        }
     }
 
-    // apply velocities
-    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+    std::vector<CollisionData>::iterator cdIterator;
+    for (cdIterator = collisionManifolds.begin(); cdIterator != collisionManifolds.end(); cdIterator++){
+        ResolveCollision(*cdIterator);
+    }
 
+    // apply velocities
+    for (it = entitiesWithoutCollisions.begin(); it != entitiesWithoutCollisions.end(); it++){
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+        if (component != nullptr){
+            component->Body.Transform.Position += component->Body.Velocity;
+        }
         //todo: recalculate what bucket it's' in?
 
     }

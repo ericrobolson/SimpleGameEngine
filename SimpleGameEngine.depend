@@ -3642,7 +3642,7 @@
 	<mutex>
 	<queue>
 
-1553580468 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
+1553612761 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
@@ -3821,7 +3821,7 @@
 	<future>
 	<memory>
 
-1553564215 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
+1553610618 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -3835,6 +3835,7 @@
 	"PhysicsBodyComponent.h"
 	"Debugger.h"
 	"EVector.h"
+	"Aabb.h"
 
 1550680515 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
@@ -3889,7 +3890,7 @@
 	"SystemTimer.h"
 	<time.h>
 
-1553581266 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1553615348 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -3935,7 +3936,7 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1553579701 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1553615274 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
@@ -3945,6 +3946,7 @@
 	<map>
 	<utility>
 	"Debugger.h"
+	<algorithm>
 
 1553524390 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
@@ -4177,7 +4179,7 @@
 	<algorithm>
 	<cassert>
 
-1553579567 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1553614254 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
 	"FixedPointInt.h"
@@ -4475,11 +4477,13 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1553581209 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\actionsystem.cpp
+1553616034 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\actionsystem.cpp
 	"ActionSystem.h"
 	"InputState.h"
 	<memory>
 	<vector>
 	"PlayerComponent.h"
 	"PhysicsBodyComponent.h"
+	<memory>
+	"RandomNumberGenerator.h"
 

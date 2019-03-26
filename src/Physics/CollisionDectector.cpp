@@ -92,18 +92,22 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
     Aabb abox = cd.Entity1->GetRoughAabb();
     Aabb bbox = cd.Entity2->GetRoughAabb();
 
+
     // Calculate half extents along x axis for each object
-    FixedPointInt aExtentX = abox.HalfWidth;
-    FixedPointInt bExtentX = bbox.HalfWidth;
+    FixedPointInt aExtentX = (abox.MaxCoordinate().X - abox.MinCoordinate().X);// / 2.0_fp;
+    FixedPointInt bExtentX = (bbox.MaxCoordinate().X - bbox.MinCoordinate().X);// / 2.0_fp;
 
     FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
+
+
+
 
     // SAT test on x axis
 
     if (xOverlap.Value > 0){
         // Calculate half extents along y axis for each object
-        FixedPointInt aExtentY = abox.HalfHeight;
-        FixedPointInt bExtentY = bbox.HalfHeight;
+        FixedPointInt aExtentY = (abox.MaxCoordinate().Y - abox.MinCoordinate().Y) / 2.0_fp;
+        FixedPointInt bExtentY = (bbox.MaxCoordinate().Y - bbox.MinCoordinate().Y) / 2.0_fp;
 
         FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
 
@@ -119,7 +123,7 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
                 }
                 else{
                     EVector ev;
-                    ev.X = 0.0_fp;
+                    ev.X = 1.0_fp;
                     ev.Y = 0.0_fp;
                     cd.Normal = ev;
                 }
