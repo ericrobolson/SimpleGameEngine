@@ -102,6 +102,63 @@ void OrderVectors(EVector& a, EVector& b){
     }
 }
 
+bool CollisionDectector::AabbVsAabb2(CollisionData& cd, Aabb abox, Aabb bbox, EVector entity1Position, EVector entity2Position){
+    EVector n = entity1Position - entity2Position;
+
+    EVector aMin = abox.MinCoordinate();
+    EVector aMax = abox.MaxCoordinate();
+    OrderVectors(aMin, aMax);
+
+
+    EVector bMin = bbox.MinCoordinate();
+    EVector bMax = bbox.MaxCoordinate();
+    OrderVectors(aMin, aMax);
+
+
+    if(aMax.X < bMin.X || aMin.X > bMax.X){
+        return false;
+    }
+
+    if(aMax.Y < bMin.Y || aMin.Y > bMax.Y){
+        return false;
+    }
+
+    // Calculate half extents along x axis for each object
+    FixedPointInt aExtentX = (aMax.X - aMin.X) / 2.0_fp;
+    FixedPointInt bExtentX = (bMax.X - bMin.X) / 2.0_fp;
+
+    FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
+
+    FixedPointInt aExtentY = (aMax.Y - aMin.Y) / 2.0_fp;
+    FixedPointInt bExtentY = (bMax.Y - bMin.Y) / 2.0_fp;
+
+    FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
+
+
+    EVector ev;
+    if (xOverlap > yOverlap){
+
+        if (n.X.Value < 0){
+            ev.X = 1.0_fp;
+        }else{
+            ev.X = -1.0_fp;
+        }
+
+        cd.Penetration = xOverlap;
+    }else{
+        if (n.Y.Value < 0){
+            ev.Y = 1.0_fp;
+        }else{
+            ev.Y = -1.0_fp;
+        }
+
+        cd.Penetration = yOverlap;
+    }
+
+    cd.Normal = ev;
+    return true;
+}
+
 bool CollisionDectector::AabbVsAabb(CollisionData& cd){
     // does the ordering matter? Something seems funky with all collision resolution except when small object collides with bottom of big object
 

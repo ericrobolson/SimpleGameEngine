@@ -11,6 +11,18 @@ namespace SGE_Physics{
             MaterialData();
             virtual ~MaterialData();
 
+            enum MaterialType{
+                Rock,
+                Wood,
+                Metal,
+                BouncyBall,
+                SuperBall,
+                Pillow,
+                StaticObject
+            };
+
+            void SetMaterialType(MaterialType mType);
+
             FixedPointInt Density;
             FixedPointInt Restitution;
     };

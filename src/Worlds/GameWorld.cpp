@@ -34,7 +34,7 @@ GameWorld::GameWorld() : BaseWorld()
     maxCoordinate.X = 900.0_fp;
     maxCoordinate.Y = 900.0_fp;
 
-    int levels = 5;
+    int levels = 3;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -59,8 +59,7 @@ GameWorld::GameWorld() : BaseWorld()
 
         body.Body.Mass.Mass = 0.0_fp;
         body.Body.IsStaticObject = true;
-        body.Body.Material.Density = 0.0_fp;
-        body.Body.Material.Restitution = 0.2_fp;
+        body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::StaticObject);
         body.Body.GravityScale = 1.0_fp;
     }
 
@@ -78,9 +77,8 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.Transform.Position.X = 300.0_fp;
         body.Body.Transform.Position.Y = 40.0_fp;
 
-        body.Body.Mass.Mass = 5.0_fp;
-        body.Body.Material.Density = 0.0_fp;
-        body.Body.Material.Restitution = 0.2_fp;
+        body.Body.Mass.Mass = 1.25_fp;
+        body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::Wood);
         body.Body.GravityScale = 1.0_fp;
     }
 
@@ -94,9 +92,8 @@ GameWorld::GameWorld() : BaseWorld()
         SGE_Physics::Aabb aabb;
         aabb.HalfHeight = 32.0_fp;
         aabb.HalfWidth = 32.0_fp;
-        body.Body.Mass.Mass = 4.25_fp;
-        body.Body.Material.Density = 1.0_fp;
-        body.Body.Material.Restitution = 0.1_fp;
+        body.Body.Mass.Mass = 1.25_fp;
+        body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::Pillow);
         body.Body.Shape.SetAabb(aabb);
         body.Body.Transform.Position.X = 300.1_fp;
         body.Body.Transform.Position.Y = 244.0_fp;

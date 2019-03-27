@@ -137,7 +137,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::Buck
     // if Debug mode
     if (true){
         // draw bucketTree and buckets
-        DrawBucketTree(bucketTree, _renderer);
+        //DrawBucketTree(bucketTree, _renderer);
     }
 
     //todo: fix this up; use spatialHashMap
