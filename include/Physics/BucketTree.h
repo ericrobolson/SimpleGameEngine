@@ -143,12 +143,12 @@ public:
         return GetEntities(aabb.MinCoordinate(), aabb.MaxCoordinate());
     }
 
+    void AddEntity(EVector minCoordinate, EVector maxCoordinate, int entityId){
+        bool insideBox = InsideBox(minCoordinate, maxCoordinate);
 
-    void AddBody(const int& entityId, Body& body){
-        EVector minCoordinate, maxCoordinate;
-
-        minCoordinate = body.GetRoughAabb().MinCoordinate();
-        maxCoordinate = body.GetRoughAabb().MaxCoordinate();
+        if (!insideBox){
+            return;
+        }
 
         // boundary checking
         if (minCoordinate.X < _minCoordinate.X){
@@ -183,8 +183,31 @@ public:
             maxCoordinate.Y = _maxCoordinate.Y;
         }
 
-        AddEntity(minCoordinate, maxCoordinate, entityId);
+
+        if (!_hasChildren){
+            // add to bucket
+            _bucket.push_back(entityId);
+        }
+        else{
+            // add to children
+            if (SwBucketTreePtr != nullptr){
+                SwBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
+            }
+
+            if (SeBucketTreePtr != nullptr){
+                SeBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
+            }
+
+            if (NwBucketTreePtr != nullptr){
+                NwBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
+            }
+
+            if (NeBucketTreePtr != nullptr){
+                NeBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
+            }
+      }
     }
+
 
     EVector GetMinCoordinate(){
         return _minCoordinate;
@@ -253,39 +276,6 @@ private:
         return entityIds;
     }
 
-
-    void AddEntity(EVector minCoordinate, EVector maxCoordinate, int entityId){
-        bool insideBox = InsideBox(minCoordinate, maxCoordinate);
-
-        if (!insideBox){
-            return;
-        }
-
-        if (!_hasChildren){
-            // add to bucket
-            _bucket.push_back(entityId);
-        }
-        else{
-            // add to children
-            if (SwBucketTreePtr != nullptr){
-                SwBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
-            }
-
-            if (SeBucketTreePtr != nullptr){
-                SeBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
-            }
-
-            if (NwBucketTreePtr != nullptr){
-                NwBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
-            }
-
-            if (NeBucketTreePtr != nullptr){
-                NeBucketTreePtr->AddEntity(minCoordinate, maxCoordinate, entityId);
-            }
-      }
-
-    }
-
     bool InsideBox(EVector & minCoordinate, EVector& maxCoordinate){
         bool insideBox;
     //todo: simplify and rework
@@ -333,21 +323,18 @@ private:
 
         FixedPointInt i;
 
-        i = FixedPointInt::minimum(vec1.X, vec2.X);
-
-        if (vec1.X != i){
-            i = vec1.X;
-            vec1.X = vec2.X;
-            vec2.X = i;
+        if (vec1.X > vec2.X){
+            i = vec2.X;
+            vec2.X = vec1.X;
+            vec1.X = i;
         }
 
-        i = FixedPointInt::minimum(vec1.Y, vec2.Y);
-
-        if (vec1.Y != i){
-            i = vec1.Y;
-            vec1.Y = vec2.Y;
-            vec2.Y = i;
+        if (vec1.Y > vec2.Y){
+            i = vec2.X;
+            vec2.Y = vec1.Y;
+            vec1.Y = i;
         }
+
     }
 
     bool _hasChildren;

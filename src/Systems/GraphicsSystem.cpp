@@ -62,7 +62,6 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     */
 }
 
-
 void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer){
     // draw children
     if (bucketTree.NeBucketTreePtr != nullptr){
@@ -87,6 +86,7 @@ void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer)
 
     minCoordinate = bucketTree.GetMinCoordinate();
     maxCoordinate = bucketTree.GetMaxCoordinate();
+
 
     sdlRect.x = ((int)minCoordinate.X);
     sdlRect.y = ((int)minCoordinate.Y);
@@ -124,6 +124,8 @@ void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer)
 
 
 }
+
+
 
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
     std::unique_lock<std::mutex> lock(_resourceMutex);

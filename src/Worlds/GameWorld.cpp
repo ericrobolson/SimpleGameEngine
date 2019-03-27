@@ -18,6 +18,7 @@
 
 #include <iostream>
 
+
 GameWorld::GameWorld() : BaseWorld()
 {
     SGE_Math::RandomNumberGenerator::Instance().Seed(3);
@@ -30,10 +31,10 @@ GameWorld::GameWorld() : BaseWorld()
     minCoordinate.X = 0.0_fp;
     minCoordinate.Y = 0.0_fp;
 
-    maxCoordinate.X = 1920.0_fp;
-    maxCoordinate.Y = 1080.0_fp;
+    maxCoordinate.X = 900.0_fp;
+    maxCoordinate.Y = 900.0_fp;
 
-    int levels = 4;
+    int levels = 5;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -54,12 +55,33 @@ GameWorld::GameWorld() : BaseWorld()
 
         body.Body.Shape.SetAabb(aabb);
         body.Body.Transform.Position.X = 15.0_fp;
-        body.Body.Transform.Position.Y = 400.0_fp;
+        body.Body.Transform.Position.Y = 600.0_fp;
 
         body.Body.Mass.Mass = 0.0_fp;
+        body.Body.IsStaticObject = true;
         body.Body.Material.Density = 0.0_fp;
         body.Body.Material.Restitution = 0.2_fp;
-        body.Body.GravityScale = 0.0_fp;
+        body.Body.GravityScale = 1.0_fp;
+    }
+
+    {
+
+        std::shared_ptr<int> e = entityComponentManager.AddEntity();
+
+        PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
+
+        SGE_Physics::Aabb aabb;
+        aabb.HalfHeight = 50.0_fp;
+        aabb.HalfWidth = 50.0_fp;
+
+        body.Body.Shape.SetAabb(aabb);
+        body.Body.Transform.Position.X = 300.0_fp;
+        body.Body.Transform.Position.Y = 40.0_fp;
+
+        body.Body.Mass.Mass = 5.0_fp;
+        body.Body.Material.Density = 0.0_fp;
+        body.Body.Material.Restitution = 0.2_fp;
+        body.Body.GravityScale = 1.0_fp;
     }
 
     std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
@@ -70,14 +92,14 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(id);
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 16.0_fp;
-        aabb.HalfWidth = 16.0_fp;
-        body.Body.Mass.Mass = 1.25_fp;
+        aabb.HalfHeight = 32.0_fp;
+        aabb.HalfWidth = 32.0_fp;
+        body.Body.Mass.Mass = 4.25_fp;
         body.Body.Material.Density = 1.0_fp;
-        body.Body.Material.Restitution = 0.4_fp;
+        body.Body.Material.Restitution = 0.1_fp;
         body.Body.Shape.SetAabb(aabb);
-        body.Body.Transform.Position.X = 10.1_fp;
-        body.Body.Transform.Position.Y = 2.0_fp;
+        body.Body.Transform.Position.X = 300.1_fp;
+        body.Body.Transform.Position.Y = 244.0_fp;
         body.Body.GravityScale = 1.0_fp;
     }
 

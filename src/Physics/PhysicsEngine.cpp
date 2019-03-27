@@ -48,22 +48,23 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
     // Calculate impulse scalar
     FixedPointInt j = -(1.0_fp + e) * velocityAlongNormal;
-    j /= cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass();
+    j /= (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass());
 
     // Apply impulse and scale it by the mass of the two objects
     EVector impulse = cd.Normal * j;
 
-    FixedPointInt massSum = cd.Entity1->Mass.Mass + cd.Entity2->Mass.Mass;
-
-    FixedPointInt velocityRatio = cd.Entity1->Mass.Mass / massSum;
-    cd.Entity1->Velocity -= impulse * velocityRatio;
-
-    velocityRatio = cd.Entity2->Mass.Mass / massSum;
-    cd.Entity2->Velocity += impulse * velocityRatio;
+    if (cd.Entity1->IsStaticObject && !cd.Entity2->IsStaticObject){
+        cd.Entity2->Velocity += impulse;
+    }else if (!cd.Entity1->IsStaticObject && cd.Entity2->IsStaticObject){
+        cd.Entity1->Velocity -= impulse;
+    }else{
+        cd.Entity1->Velocity -= impulse * cd.Entity1->Mass.InverseMass();
+        cd.Entity2->Velocity += impulse * cd.Entity2->Mass.InverseMass();
+    }
 
     // Positional correction using linear projection; scale by total mass in system compared to the mass of the two entities
-    const FixedPointInt positionalPercentCorrection = 0.2_fp; // .2 to .8
-    const FixedPointInt slop = 0.01_fp; // .01 to .1
+    const FixedPointInt positionalPercentCorrection = 0.1_fp; // .2 to .8
+    const FixedPointInt slop = 0.2_fp; // .01 to .1
     FixedPointInt slopCorrection = (cd.Penetration - slop);
     FixedPointInt zero = 0.0_fp;
     slopCorrection = FixedPointInt::maximum(slopCorrection, zero);
@@ -71,13 +72,23 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
 
     EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (totalMass / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
-    cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
-    cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
+
+    if (cd.Entity1->IsStaticObject == false){
+        cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
+    }
+
+    if (cd.Entity2->IsStaticObject == false){
+        cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
+    }
 }
 
 
 
 void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
+    // Think of this as building a snapshot of a valid world
+    // E.g. you pass in valid data, then when this is done running it leaves it in a valid state.
+
+
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
 
@@ -89,20 +100,23 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
     std::vector<int>::iterator it;
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+        int entityId = *it;
 
-        bucketTree.AddBody(*it, component->Body);
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
 
-        // apply gravity
-        EVector gravity;
-      //  gravity.Y += 0.1_fp * component->Body.GravityScale;
 
-      //  component->Body.Velocity += gravity;
 
+        bucketTree.AddEntity(component->Body.GetRoughAabb().MinCoordinate(), component->Body.GetRoughAabb().MaxCoordinate(), entityId);
 
         // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
         _totalMassInSystem += component->Body.Mass.Mass;
     }
+
+    // Change to use projected entity positions, then resolve those. Make it so that entities never actually touch.
+    // Whenever an entity is adjusted due to collision issues, recheck all collisions?
+
+
+
 
     // Get a list of all entities with Velocity != 0, as only those need to check for collisions that need to be resolved
     std::vector<int> movingEntityIds = ecs.SearchOn<PhysicsBodyComponent>(matchingEntityIds,
@@ -118,6 +132,20 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
     std::vector<CollisionData> collisionManifolds;
     std::vector<int> entitiesWithoutCollisions = matchingEntityIds;
+
+
+    // apply velocities
+    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+        if (component != nullptr){
+
+            if (component->Body.IsStaticObject == false){
+                component->Body.Transform.Position += component->Body.Velocity;
+            }
+        }
+        //todo: recalculate what bucket it's' in?
+
+    }
 
 
     // Calculate collisions
@@ -171,36 +199,48 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             collisionData.Entity1 = &component->Body; // is this not referencing the proper data?
             collisionData.Entity2 = &component2->Body; // is this not referencing the proper data?
 
+            // Get the initial velocities, so that we can adjust if there's issues
+            EVector entity1Velocity = component->Body.Velocity;
+            EVector entity2Velocity = component2->Body.Velocity;
+
             if (collisionDectector.CheckCollision(collisionData)){
-                // there was a collision, so resolve
-                collisionManifolds.push_back(collisionData);
-                std::remove(entitiesWithoutCollisions.begin(), entitiesWithoutCollisions.end(), entity1);
-                std::remove(entitiesWithoutCollisions.begin(), entitiesWithoutCollisions.end(), entity2);
+                    ResolveCollision(collisionData);
+
+                    while (collisionDectector.CheckCollision(collisionData)){
+                        FixedPointInt positionShift = 0.1_fp;
+
+                        if (component->Body.IsStaticObject == false){
+                            component->Body.Transform.Position -= entity1Velocity * 2.0_fp;
+                        }
+
+                        if (component2->Body.IsStaticObject == false){
+                            component2->Body.Transform.Position -= entity2Velocity * 2.0_fp;
+                        }
+
+                        if (component2->Body.IsStaticObject && component->Body.IsStaticObject){
+                            break;
+                        }
+                    }
+                    // this part is key, but need to figure it out. Basically, when you create the collision, just separate bodies until there's no more collision
+
+                    // goal; change from reactive to predictive collision detection?
             }
        }
-    }
-
-    std::vector<CollisionData>::iterator cdIterator;
-    for (cdIterator = collisionManifolds.begin(); cdIterator != collisionManifolds.end(); cdIterator++){
-        ResolveCollision(*cdIterator);
-    }
-
-    // apply velocities
-    for (it = entitiesWithoutCollisions.begin(); it != entitiesWithoutCollisions.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
-        if (component != nullptr){
-            component->Body.Transform.Position += component->Body.Velocity;
-        }
-        //todo: recalculate what bucket it's' in?
-
     }
 
     // recalculate bucketTree based on new positions
     bucketTree.FlushBuckets();
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+        int entityId = *it;
 
-        bucketTree.AddBody(*it, component->Body);
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
 
+
+
+        bucketTree.AddEntity(component->Body.GetRoughAabb().MinCoordinate(), component->Body.GetRoughAabb().MaxCoordinate(), entityId);
+
+        // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
     }
+
+
 }

@@ -31,6 +31,8 @@ namespace SGE_Physics{
 
             FixedPointInt GravityScale = 1.0_fp;
 
+            bool IsStaticObject = false;
+
         protected:
 
         private:
