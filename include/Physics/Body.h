@@ -9,7 +9,6 @@
 #include "ShapeData.h"
 #include "Aabb.h"
 
-#include "Physics/Constants.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -30,10 +29,12 @@ namespace SGE_Physics{
                 Shape.SetAabb(aabb);
 
                 // Calculate mass
-                FixedPointInt mass = Material.Density * Shape.GetVolume();
-                Mass.Mass = mass / Constants::GetMeterRatio();// / PhysicsScale;
+                // NOTE: Run into issues when Volume >15^2 and density >=.9. Not sure why, but that's a hard limit.
+                FixedPointInt calculatedMass = Material.Density * Shape.GetVolume();
+                FixedPointInt maxMass = 15.0_fp * 15.0_fp * 0.9_fp;
+
+                Mass.Mass = FixedPointInt::minimum(calculatedMass, maxMass);
                 Mass.InverseMass(); // precalculate inv mass
-                IsStaticObject = false;
             };
 
             ShapeData Shape;
@@ -49,8 +50,6 @@ namespace SGE_Physics{
             EVector Force;
 
             FixedPointInt GravityScale = 1.0_fp;
-
-            bool IsStaticObject = false;
 
         protected:
 

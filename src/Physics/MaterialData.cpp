@@ -12,20 +12,29 @@ MaterialData::~MaterialData()
 }
 
 void MaterialData::SetMaterialType(MaterialType mType){
+    // Check out https://www.engineeringtoolbox.com/wood-density-d_40.html
+    // and https://www.engineeringtoolbox.com/density-solids-d_1265.html
+    // for densities
+
     // Densest object is .99, which is steel which is 488 lb/ft^3
-    FixedPointInt steelPhysicsDensity = 0.2_fp;
+    FixedPointInt steelPhysicsDensity = 0.9_fp;
     FixedPointInt steelActualDensity = 488.0_fp;
 
-    FixedPointInt oakActualDensity = 50.0_fp;
+    FixedPointInt oakActualDensity = 50.0_fp; // 50 lb/ft^3
+    FixedPointInt oakPhysicsDensity = steelPhysicsDensity * (oakActualDensity / steelActualDensity);
+
+    FixedPointInt rockActualDensity = 125.0_fp; // dense concrete, 125-150 lb/ft^3
+    FixedPointInt rockPhysicalDensity = steelPhysicsDensity * (rockActualDensity / steelActualDensity);
+
 
 
     switch (mType){
     case (MaterialData::MaterialType::Rock):
-        Density = 0.6_fp;
+        Density = rockPhysicalDensity;
         Restitution = 0.1_fp;
         break;
     case (MaterialData::MaterialType::Wood):
-        Density = steelPhysicsDensity * (oakActualDensity / steelActualDensity);
+        Density = oakActualDensity;
         Restitution = 0.2_fp;
         break;
     case (MaterialData::MaterialType::Metal):

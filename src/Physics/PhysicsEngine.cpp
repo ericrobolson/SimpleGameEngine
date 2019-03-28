@@ -9,7 +9,6 @@
 #include <utility>
 #include "Debugger.h"
 #include <algorithm>
-#include "Physics/Constants.h"
 
 using namespace SGE_Physics;
 
@@ -71,7 +70,7 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 //    EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
 
     return;
-
+/*
     if (cd.Entity1->IsStaticObject == false){
         cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
     }
@@ -79,7 +78,7 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     if (cd.Entity2->IsStaticObject == false){
         cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
     }
-
+*/
 }
 
 
@@ -89,7 +88,7 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
     // E.g. you pass in valid data, then when this is done running it leaves it in a valid state.
 
     EVector gravityVector;
-    gravityVector.Y = (Constants::GetGravity() / hz);
+    gravityVector.Y = (PhysicsEngine::GetGravity() / hz);
 
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
@@ -117,10 +116,6 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
         EVector minCoordinate = component->Body.GetRoughAabb().MinCoordinate();
         EVector maxCoordinate = component->Body.GetRoughAabb().MaxCoordinate();
 
-        if (component->Body.IsStaticObject){
-            component->Body.Velocity.X = 0.0_fp;
-            component->Body.Velocity.Y = 0.0_fp;
-        }
 
         // Create bucket tree using projected positions
         minCoordinate += component->Body.Velocity;
@@ -292,9 +287,9 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
 
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
 
-        if (component->Body.IsStaticObject == false){
+
             component->Body.Transform.Position += component->Body.Velocity;
-        }
+
 
 
         bucketTree.AddEntity(component->Body.GetRoughAabb().MinCoordinate(), component->Body.GetRoughAabb().MaxCoordinate(), entityId);

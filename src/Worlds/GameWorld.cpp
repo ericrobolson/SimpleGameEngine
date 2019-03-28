@@ -58,7 +58,6 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.Transform.Position.Y = 600.0_fp;
 
         body.Body.Mass.Mass = 0.0_fp;
-        body.Body.IsStaticObject = true;
         body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::StaticObject);
         body.Body.GravityScale = 1.0_fp;
     }
@@ -71,14 +70,14 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(id);
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 70.0_fp;
-        aabb.HalfWidth = 70.0_fp;
+        aabb.HalfHeight = 17.5_fp;
+        aabb.HalfWidth = 7.5_fp;
 
         EVector position;
         position.X = 450.0_fp;
         position.Y = 155.0_fp;
 
-        body.Body.Initialize(SGE_Physics::MaterialData::MaterialType::Wood, position, aabb);
+        body.Body.Initialize(SGE_Physics::MaterialData::MaterialType::Rock, position, aabb);
     }
 
     PlayerAssemblage::BuildPlayer(entityComponentManager, 300.0_fp, 0.0_fp);

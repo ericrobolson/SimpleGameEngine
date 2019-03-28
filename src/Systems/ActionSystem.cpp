@@ -23,8 +23,8 @@ bool ActionSystem::Process(ECS::EntityComponentManager &ecs){
 
     // do boundary checks, e.g. if moving faster than X speed left, where X is the max normal move speed, don't do anything
 
-     FixedPointInt moveSpeed = 0.3_fp;
-     FixedPointInt jumpSpeed = 5.0_fp;
+     FixedPointInt moveSpeed = 0.03_fp;
+     FixedPointInt jumpSpeed = 50.0_fp;
 
     // get entities
     std::vector<int> matchingEntityIds = ecs.Search<PlayerComponent>();
@@ -47,7 +47,7 @@ bool ActionSystem::Process(ECS::EntityComponentManager &ecs){
         }
 
         if (InputState::Instance().ButtonUpIsPressed){
-            component->Body.Velocity.Y -= moveSpeed;
+            component->Body.Force.Y = -jumpSpeed;
         }
 
         if (InputState::Instance().ButtonDownIsPressed){
