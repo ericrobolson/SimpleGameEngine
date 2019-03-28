@@ -85,75 +85,142 @@ bool CollisionDectector::CircleVsCircle(CollisionData& cd){
     return false;
 }
 
+// Order the vectors, so A contains the smallest points and B contains the max points
+void OrderVectors(EVector& a, EVector& b){
+    FixedPointInt i;
+
+    if (a.X > b.X){
+        i = b.X;
+        b.X = a.X;
+        a.X = i;
+    }
+
+    if (a.Y > b.Y){
+        i = b.Y;
+        b.Y = a.Y;
+        a.Y = i;
+    }
+}
+
+bool CollisionDectector::AabbVsAabb2(CollisionData& cd, Aabb abox, Aabb bbox, EVector entity1Position, EVector entity2Position){
+    EVector n = entity1Position - entity2Position;
+
+    EVector aMin = abox.MinCoordinate();
+    EVector aMax = abox.MaxCoordinate();
+    OrderVectors(aMin, aMax);
+
+
+    EVector bMin = bbox.MinCoordinate();
+    EVector bMax = bbox.MaxCoordinate();
+    OrderVectors(aMin, aMax);
+
+
+    if(aMax.X < bMin.X || aMin.X > bMax.X){
+        return false;
+    }
+
+    if(aMax.Y < bMin.Y || aMin.Y > bMax.Y){
+        return false;
+    }
+
+    // Calculate half extents along x axis for each object
+    FixedPointInt aExtentX = (aMax.X - aMin.X) / 2.0_fp;
+    FixedPointInt bExtentX = (bMax.X - bMin.X) / 2.0_fp;
+
+    FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
+
+    FixedPointInt aExtentY = (aMax.Y - aMin.Y) / 2.0_fp;
+    FixedPointInt bExtentY = (bMax.Y - bMin.Y) / 2.0_fp;
+
+    FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
+
+
+    EVector ev;
+    if (xOverlap > yOverlap){
+
+        if (n.X.Value < 0){
+            ev.X = 1.0_fp;
+        }else{
+            ev.X = -1.0_fp;
+        }
+
+        cd.Penetration = xOverlap;
+    }else{
+        if (n.Y.Value < 0){
+            ev.Y = 1.0_fp;
+        }else{
+            ev.Y = -1.0_fp;
+        }
+
+        cd.Penetration = yOverlap;
+    }
+
+    cd.Normal = ev;
+    return true;
+}
+
 bool CollisionDectector::AabbVsAabb(CollisionData& cd){
+    // does the ordering matter? Something seems funky with all collision resolution except when small object collides with bottom of big object
+
+
     // todo: rename; but this is the vector from Entity1 to entity2
     EVector n = cd.Entity1->Transform.Position - cd.Entity2->Transform.Position;
 
     Aabb abox = cd.Entity1->GetRoughAabb();
     Aabb bbox = cd.Entity2->GetRoughAabb();
 
+    EVector aMin = abox.MinCoordinate();
+    EVector aMax = abox.MaxCoordinate();
+    OrderVectors(aMin, aMax);
+
+
+    EVector bMin = bbox.MinCoordinate();
+    EVector bMax = bbox.MaxCoordinate();
+    OrderVectors(aMin, aMax);
+
+
+    if(aMax.X < bMin.X || aMin.X > bMax.X){
+        return false;
+    }
+
+    if(aMax.Y < bMin.Y || aMin.Y > bMax.Y){
+        return false;
+    }
+
     // Calculate half extents along x axis for each object
-    FixedPointInt aExtentX = abox.HalfWidth;
-    FixedPointInt bExtentX = bbox.HalfWidth;
+    FixedPointInt aExtentX = (aMax.X - aMin.X) / 2.0_fp;
+    FixedPointInt bExtentX = (bMax.X - bMin.X) / 2.0_fp;
 
     FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
 
-    // SAT test on x axis
+    FixedPointInt aExtentY = (aMax.Y - aMin.Y) / 2.0_fp;
+    FixedPointInt bExtentY = (bMax.Y - bMin.Y) / 2.0_fp;
 
-    if (xOverlap.Value > 0){
-        // Calculate half extents along y axis for each object
-        FixedPointInt aExtentY = abox.HalfHeight;
-        FixedPointInt bExtentY = bbox.HalfHeight;
+    FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
 
-        FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
 
-        if (yOverlap.Value > 0){
-            // Find out which axis is axis of least penetration
-            if (xOverlap > yOverlap){
-                // Point towards A knowing that n points from A to B; not sure if accurate but that's the general idea
-                if (n.X.Value < 0){
-                    EVector ev;
-                    ev.X = -1.0_fp;
-                    ev.Y = 0.0_fp;
-                    cd.Normal = ev;
-                }
-                else{
-                    EVector ev;
-                    ev.X = 0.0_fp;
-                    ev.Y = 0.0_fp;
-                    cd.Normal = ev;
-                }
+    EVector ev;
+    if (xOverlap > yOverlap){
 
-                cd.Penetration = xOverlap;
-
-            SGE::Debugger::Instance().WriteMessage("There was a collision.");
-                return true;
-            }
+        if (n.X.Value < 0){
+            ev.X = 1.0_fp;
+        }else{
+            ev.X = -1.0_fp;
         }
-        else{
-            // Point towards B knowing that n points from A to B; not sure if accurate but that's the general idea
-             if (n.Y.Value < 0){
-                    EVector ev;
-                    ev.X = 0.0_fp;
-                    ev.Y = 1.0_fp;
-                    cd.Normal = ev;
-            }
-            else{
-                EVector ev;
-                ev.X = 0.0_fp;
-                ev.Y = -1.0_fp;
-                cd.Normal = ev;
-            }
 
-            cd.Penetration = yOverlap;
-
-            SGE::Debugger::Instance().WriteMessage("There was a collision.");
-            return true;
+        cd.Penetration = xOverlap;
+    }else{
+        if (n.Y.Value < 0){
+            ev.Y = 1.0_fp;
+        }else{
+            ev.Y = -1.0_fp;
         }
+
+        cd.Penetration = yOverlap;
     }
 
-    SGE::Debugger::Instance().WriteMessage("There was no collision.");
-    return false;
+    cd.Normal = ev;
+    return true;
 }
 
 bool CollisionDectector::AabbVsCircle(CollisionData& cd){

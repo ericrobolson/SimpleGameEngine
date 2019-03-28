@@ -8,6 +8,7 @@
 #include "EVector.h"
 #include "ShapeData.h"
 #include "Aabb.h"
+
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -16,6 +17,25 @@ namespace SGE_Physics{
         public:
             Body();
             virtual ~Body();
+
+            void Initialize(MaterialData::MaterialType mType, EVector position, Aabb aabb){
+                Transform.Position = position;
+
+                // Set material data
+                Material.SetMaterialType(mType);
+
+                // Set shape
+                // note: assuming aabbs are the only type right now
+                Shape.SetAabb(aabb);
+
+                // Calculate mass
+                // NOTE: Run into issues when Volume >15^2 and density >=.9. Not sure why, but that's a hard limit.
+                FixedPointInt calculatedMass = Material.Density * Shape.GetVolume();
+                FixedPointInt maxMass = 15.0_fp * 15.0_fp * 0.9_fp;
+
+                Mass.Mass = FixedPointInt::minimum(calculatedMass, maxMass);
+                Mass.InverseMass(); // precalculate inv mass
+            };
 
             ShapeData Shape;
 

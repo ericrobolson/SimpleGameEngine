@@ -2,6 +2,7 @@
 using namespace SGE_Physics;
 Body::Body()
 {
+    GravityScale = 1.0_fp;
     //ctor
 }
 

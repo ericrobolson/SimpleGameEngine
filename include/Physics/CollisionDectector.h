@@ -3,6 +3,7 @@
 
 #include "Aabb.h"
 #include "Physics/Circle.h"
+#include "EVector.h"
 #include "CollisionData.h"
 #include <memory>
 
@@ -19,6 +20,7 @@ class CollisionDectector
 
         static bool CircleVsCircle(CollisionData& cd);
         static bool AabbVsAabb(CollisionData& cd);
+        static bool AabbVsAabb2(CollisionData& cd, Aabb aabb1, Aabb aabb2, SGE_Math::EVector entity1Position, SGE_Math::EVector entity2Position);
         static bool AabbVsCircle(CollisionData& cd);
 
         static bool CheckCollision(CollisionData& cd);

@@ -18,6 +18,7 @@
 
 #include <iostream>
 
+
 GameWorld::GameWorld() : BaseWorld()
 {
     SGE_Math::RandomNumberGenerator::Instance().Seed(3);
@@ -30,10 +31,10 @@ GameWorld::GameWorld() : BaseWorld()
     minCoordinate.X = 0.0_fp;
     minCoordinate.Y = 0.0_fp;
 
-    maxCoordinate.X = 1920.0_fp;
-    maxCoordinate.Y = 1080.0_fp;
+    maxCoordinate.X = 900.0_fp;
+    maxCoordinate.Y = 900.0_fp;
 
-    int levels = 5;
+    int levels = 4;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -49,19 +50,35 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 20.0_fp;
+        aabb.HalfHeight = 50.0_fp;
         aabb.HalfWidth = 300.0_fp;
 
         body.Body.Shape.SetAabb(aabb);
         body.Body.Transform.Position.X = 15.0_fp;
-        body.Body.Transform.Position.Y = 400.0_fp;
+        body.Body.Transform.Position.Y = 600.0_fp;
 
         body.Body.Mass.Mass = 0.0_fp;
-        body.Body.Material.Density = 0.0_fp;
-        body.Body.Material.Restitution = 0.2_fp;
-        body.Body.GravityScale = 0.0_fp;
+        body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::StaticObject);
+        body.Body.GravityScale = 1.0_fp;
     }
 
+    std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
+
+    if (entityId != nullptr){
+        int id = *entityId.get();
+
+        PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(id);
+
+        SGE_Physics::Aabb aabb;
+        aabb.HalfHeight = 17.5_fp;
+        aabb.HalfWidth = 7.5_fp;
+
+        EVector position;
+        position.X = 450.0_fp;
+        position.Y = 155.0_fp;
+
+        body.Body.Initialize(SGE_Physics::MaterialData::MaterialType::Rock, position, aabb);
+    }
 
     PlayerAssemblage::BuildPlayer(entityComponentManager, 300.0_fp, 0.0_fp);
 
@@ -77,36 +94,34 @@ GameWorld::~GameWorld()
 }
 
 bool GameWorld::Process(){
-        if (_systemTimer.CanRun(60.0_fp)){
+
+    SGE_Physics::BucketTree& bt = *_bucketTree.get();
+
+    // Physics loop
+    FixedPointInt physicsHz = 60.0_fp;
+    if (_physicsTimer.CanRun(physicsHz)){
+
+        _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
+
+        _physicsTimer.ResetClock();
+    }
+
+    if (_systemTimer.CanRun(60.0_fp)){
+        // Input
         _inputSystem.Process(entityComponentManager);
-
         _actionSystem.Process(entityComponentManager);
-      //  _networkSystem.Process(entityComponentManager);
 
-
-        // Run physics updates at 30hz?
-        // todo: fix
-
-        SGE_Physics::BucketTree& bt = *_bucketTree.get();
-
-       // if (InputState::Instance().ButtonDownIsPressed){
-            _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bt);
-     //   }
-
-
-
+        // Graphics
+        // this smells...
         bool finishedProcessing = true;
         while(_graphicsSystem.Process(entityComponentManager, bt) != finishedProcessing);
 
-        if (InputState::Instance().Exit == true){
-            return false;
-        }
-
         _systemTimer.ResetClock();
-
     }
 
-
+    if (InputState::Instance().Exit == true){
+            return false;
+    }
 
     return true;
 }

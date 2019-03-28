@@ -8,6 +8,7 @@
 #include <map>
 #include <utility>
 #include "Debugger.h"
+#include <algorithm>
 
 using namespace SGE_Physics;
 
@@ -47,35 +48,48 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
     // Calculate impulse scalar
     FixedPointInt j = -(1.0_fp + e) * velocityAlongNormal;
-    j /= cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass();
+    j /= (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass());
 
     // Apply impulse and scale it by the mass of the two objects
     EVector impulse = cd.Normal * j;
 
-    FixedPointInt massSum = cd.Entity1->Mass.Mass + cd.Entity2->Mass.Mass;
+    cd.Entity1->Velocity -= impulse * cd.Entity1->Mass.InverseMass();
+    cd.Entity2->Velocity += impulse * cd.Entity2->Mass.InverseMass();
 
-    FixedPointInt velocityRatio = cd.Entity1->Mass.Mass / massSum;
-    cd.Entity1->Velocity -= impulse * velocityRatio;
-
-    velocityRatio = cd.Entity2->Mass.Mass / massSum;
-    cd.Entity2->Velocity += impulse * velocityRatio;
 
     // Positional correction using linear projection; scale by total mass in system compared to the mass of the two entities
     const FixedPointInt positionalPercentCorrection = 0.2_fp; // .2 to .8
-    const FixedPointInt slop = 0.01_fp; // .01 to .1
-    FixedPointInt slopCorrection = (cd.Penetration - slop);
+    const FixedPointInt slop = 0.07_fp; // .01 to .1
+
     FixedPointInt zero = 0.0_fp;
-    slopCorrection = FixedPointInt::maximum(slopCorrection, zero);
+    FixedPointInt slopPen = cd.Penetration - slop;
 
-    EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
-    cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
-    cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
+    EVector correction = cd.Normal * (FixedPointInt::maximum(slopPen, zero) / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass())) * positionalPercentCorrection;
 
+
+//    EVector correction = cd.Normal * positionalPercentCorrection * slopCorrection * (_totalMassInSystem / (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass()));
+
+    return;
+/*
+    if (cd.Entity1->IsStaticObject == false){
+        cd.Entity1->Transform.Position -= correction * cd.Entity1->Mass.InverseMass();
+    }
+
+    if (cd.Entity2->IsStaticObject == false){
+        cd.Entity2->Transform.Position += correction * cd.Entity2->Mass.InverseMass();
+    }
+*/
 }
 
 
 
-void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
+void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
+    // Think of this as building a snapshot of a valid world
+    // E.g. you pass in valid data, then when this is done running it leaves it in a valid state.
+
+    EVector gravityVector;
+    gravityVector.Y = (PhysicsEngine::GetGravity() / hz);
+
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
 
@@ -87,31 +101,52 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
     std::vector<int>::iterator it;
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+        int entityId = *it;
 
-        bucketTree.AddBody(*it, component->Body);
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
 
-        // apply gravity
-        EVector gravity;
-        gravity.Y += 0.2_fp * component->Body.GravityScale;
+        component->Body.Force += gravityVector * component->Body.Mass.Mass;
+        component->Body.Velocity += (component->Body.Force * component->Body.Mass.InverseMass());
 
-        component->Body.Velocity += gravity;
+        // Reset force
+        component->Body.Force.X = 0.0_fp;
+        component->Body.Force.Y = 0.0_fp;
 
+        // Project collisions
+        EVector minCoordinate = component->Body.GetRoughAabb().MinCoordinate();
+        EVector maxCoordinate = component->Body.GetRoughAabb().MaxCoordinate();
+
+
+        // Create bucket tree using projected positions
+        minCoordinate += component->Body.Velocity;
+        maxCoordinate += component->Body.Velocity;
+
+        bucketTree.AddEntity(minCoordinate, maxCoordinate, entityId);
 
         // Get total mass of the system; todo: good canidate for refactoring as it's not likely mass will change much so may only do it when adding/deleting entities?
         _totalMassInSystem += component->Body.Mass.Mass;
     }
 
     // Get a list of all entities with Velocity != 0, as only those need to check for collisions that need to be resolved
+    // could optimize by putting in the above
     std::vector<int> movingEntityIds = ecs.SearchOn<PhysicsBodyComponent>(matchingEntityIds,
         [](PhysicsBodyComponent c){
             return (c.Body.Velocity.X != 0.0_fp || c.Body.Velocity.Y != 0.0_fp);
         });
 
     // Create a map of entities that have been checked
-    std::map<std::pair<int, int>, bool> checkedEntities;
 
     CollisionDectector collisionDectector;
+
+    std::vector<CollisionData> collisions;
+
+    // loop until all collisions are resolved, or X number of iterations have completed
+    bool noCollisions;
+    int counter = 75;
+
+    do{
+    noCollisions = true;
+    std::map<std::pair<int, int>, bool> checkedEntities;
 
     // Calculate collisions
     for (it = movingEntityIds.begin(); it != movingEntityIds.end(); it++){
@@ -121,6 +156,7 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         if (component == nullptr){
             continue;
         }
+
         // Broad phase collision checks
         std::vector<int> entitiesToCheck = bucketTree.GetEntityIds(component->Body.GetRoughAabb());
 
@@ -129,21 +165,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
         std::vector<int>::iterator it2;
         for (it2 = entitiesToCheck.begin(); it2 != entitiesToCheck.end(); it2++){
-            SGE::Debugger::Instance().WriteMessage("Checking Possible collision...");
-
             int entity1 = entityId;
             int entity2 = *it2;
-
-            if (entity1 == entity2){
-                continue;
-            }
-
-            std::shared_ptr<PhysicsBodyComponent> component2 = ecs.GetComponent<PhysicsBodyComponent>(*it2);
-
-            // Break out if neither has a component
-            if (component2 == nullptr){
-                continue;
-            }
 
             // Order the ids, as otherwise we'd end up doing duplicate checks. (entity1 and entity2) and (entity2 and entity1)
             OrderPair(entity1, entity2);
@@ -159,37 +182,117 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             // if not, add to hashmap of checked entities,
             checkedEntities.insert(std::make_pair(key, true));
 
+            // if same entity, continue
+            if (entity1 == entity2){
+                continue;
+            }
+
+            // Break out if neither has a component
+            std::shared_ptr<PhysicsBodyComponent> component2 = ecs.GetComponent<PhysicsBodyComponent>(*it2);
+
+            if (component2 == nullptr){
+                continue;
+            }
+
+            // Apply projected velocities to the AABBs
+
+            /*
+            // Mid phase check? Maybe add in if need performance? If so, readjust the aabbs
+            if (collisionDectector.AabbVsAabb(component->Body.GetRoughAabb(), component2->Body.GetRoughAabb()) == false){
+                continue;
+            }
+            */
+
+
             // Check if there was a collision
             CollisionData collisionData;;
             collisionData.Entity1 = &component->Body; // is this not referencing the proper data?
             collisionData.Entity2 = &component2->Body; // is this not referencing the proper data?
 
-            if (collisionDectector.CheckCollision(collisionData)){
-                // there was a collision, so resolve
+            // Get the original positions
+            EVector entity1OriginalPosition = component->Body.Transform.Position;
+            EVector entity2OriginalPosition = component2->Body.Transform.Position;
+
+            // Apply the velocities
+            component->Body.Transform.Position += component->Body.Velocity;
+            component2->Body.Transform.Position += component2->Body.Velocity;
+
+            bool collided = collisionDectector.CheckCollision(collisionData);
+
+            // Reset original positions
+            component->Body.Transform.Position = entity1OriginalPosition;
+            component2->Body.Transform.Position = entity2OriginalPosition;
+
+            if (collided){
+                //collisions.push_back(collisionData);
+                ResolveCollision(collisionData);
+                noCollisions = false;
+                /*
+                // Sleep entity if velocity is minimal
+                EVector evZero;
+                if (component->Body.Velocity.X.abs() < 0.1_fp && component->Body.Velocity.Y.abs() < 0.1_fp){
+                    component->Body.Velocity = evZero;
+                }
+
+                if (component2->Body.Velocity.X.abs() < 0.1_fp && component2->Body.Velocity.Y.abs() < 0.1_fp){
+                    component2->Body.Velocity = evZero;
+                }
+                */
+            }
+
+
+       }
+    }
+
+    counter--;
+    }while(counter > 0 && noCollisions == false);
+
+/*
+    // Go through all collisions, and resolve them multiple times. This should increase believability
+    std::vector<CollisionData>::iterator cIt;
+
+    bool collided = true;
+    int counter = 100;
+    do{
+        for (cIt = collisions.begin(); cIt != collisions.end(); cIt++){
+            CollisionData collisionData = *cIt;
+
+             // Get the original positions
+            EVector entity1OriginalPosition = collisionData.Entity1->Transform.Position;
+            EVector entity2OriginalPosition = collisionData.Entity2->Transform.Position;
+
+            // Apply the velocities
+            collisionData.Entity1->Transform.Position += collisionData.Entity1->Velocity;
+            collisionData.Entity2->Transform.Position += collisionData.Entity2->Velocity;
+
+
+            collided = collisionDectector.CheckCollision(collisionData);
+
+            // Reset original positions
+            collisionData.Entity1->Transform.Position = entity1OriginalPosition;
+            collisionData.Entity2->Transform.Position = entity2OriginalPosition;
+
+            if (collided){
                 ResolveCollision(collisionData);
             }
-       }
+        }
+        counter--;
+    }while(collided && counter > 0);
+*/
 
-       if (originalPosition == component->Body.Transform.Position){
-        // apply normal position transforms
-                component->Body.Transform.Position += component->Body.Velocity;
-       }
-    }
-
-    // apply velocities
-    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
-
-        //todo: recalculate what bucket it's' in?
-
-    }
-
-    // recalculate bucketTree based on new positions
+    // Apply velocities and recalculate bucketTree
     bucketTree.FlushBuckets();
     for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
-        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(*it);
+        int entityId = *it;
 
-        bucketTree.AddBody(*it, component->Body);
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
+
+
+            component->Body.Transform.Position += component->Body.Velocity;
+
+
+
+        bucketTree.AddEntity(component->Body.GetRoughAabb().MinCoordinate(), component->Body.GetRoughAabb().MaxCoordinate(), entityId);
 
     }
 }

@@ -11,6 +11,7 @@
 #include "PhysicsBodyComponent.h"
 #include "Debugger.h"
 #include "EVector.h"
+#include "Aabb.h"
 const int SCREEN_WIDTH = 860;
 const int SCREEN_BITSPERPIXEL = 32;
 const int SCREEN_HEIGHT = 640;
@@ -61,7 +62,6 @@ void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     */
 }
 
-
 void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer){
     // draw children
     if (bucketTree.NeBucketTreePtr != nullptr){
@@ -86,6 +86,7 @@ void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer)
 
     minCoordinate = bucketTree.GetMinCoordinate();
     maxCoordinate = bucketTree.GetMaxCoordinate();
+
 
     sdlRect.x = ((int)minCoordinate.X);
     sdlRect.y = ((int)minCoordinate.Y);
@@ -124,6 +125,8 @@ void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer)
 
 }
 
+
+
 bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
@@ -153,8 +156,10 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::Buck
             sdlRect.x = ((int)body->Body.Transform.Position.X);
             sdlRect.y = ((int)body->Body.Transform.Position.Y);
 
-            int w = (int)body->Body.Shape.GetAabb().HalfWidth * 2;
-            int h = (int)body->Body.Shape.GetAabb().HalfHeight * 2;
+            SGE_Physics::Aabb aabb = body->Body.GetRoughAabb();
+
+            int w = (int)(aabb.MaxCoordinate().X - aabb.MinCoordinate().X);
+            int h = (int)(aabb.MaxCoordinate().Y - aabb.MinCoordinate().Y);
 
             sdlRect.w = (w);
             sdlRect.h = (h);

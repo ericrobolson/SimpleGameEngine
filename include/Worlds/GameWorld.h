@@ -28,6 +28,7 @@ class GameWorld : public BaseWorld
 
         clock_t _cycleClock;
         SystemTimer _systemTimer;
+        SystemTimer _physicsTimer;
 };
 
 #endif // GAMEWORLD_H
