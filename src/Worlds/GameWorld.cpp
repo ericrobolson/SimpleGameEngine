@@ -34,7 +34,7 @@ GameWorld::GameWorld() : BaseWorld()
     maxCoordinate.X = 900.0_fp;
     maxCoordinate.Y = 900.0_fp;
 
-    int levels = 3;
+    int levels = 4;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -63,25 +63,6 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.GravityScale = 1.0_fp;
     }
 
-    {
-
-        std::shared_ptr<int> e = entityComponentManager.AddEntity();
-
-        PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(*e.get());
-
-        SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 50.0_fp;
-        aabb.HalfWidth = 50.0_fp;
-
-        body.Body.Shape.SetAabb(aabb);
-        body.Body.Transform.Position.X = 300.0_fp;
-        body.Body.Transform.Position.Y = 40.0_fp;
-
-        body.Body.Mass.Mass = 1.25_fp;
-        body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::Wood);
-        body.Body.GravityScale = 1.0_fp;
-    }
-
     std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
 
     if (entityId != nullptr){
@@ -90,14 +71,14 @@ GameWorld::GameWorld() : BaseWorld()
         PhysicsBodyComponent& body = entityComponentManager.AddComponent<PhysicsBodyComponent>(id);
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 32.0_fp;
-        aabb.HalfWidth = 32.0_fp;
-        body.Body.Mass.Mass = 1.25_fp;
-        body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::Pillow);
-        body.Body.Shape.SetAabb(aabb);
-        body.Body.Transform.Position.X = 300.1_fp;
-        body.Body.Transform.Position.Y = 244.0_fp;
-        body.Body.GravityScale = 1.0_fp;
+        aabb.HalfHeight = 70.0_fp;
+        aabb.HalfWidth = 70.0_fp;
+
+        EVector position;
+        position.X = 450.0_fp;
+        position.Y = 155.0_fp;
+
+        body.Body.Initialize(SGE_Physics::MaterialData::MaterialType::Wood, position, aabb);
     }
 
     PlayerAssemblage::BuildPlayer(entityComponentManager, 300.0_fp, 0.0_fp);
@@ -114,36 +95,34 @@ GameWorld::~GameWorld()
 }
 
 bool GameWorld::Process(){
-        if (_systemTimer.CanRun(60.0_fp)){
+
+    SGE_Physics::BucketTree& bt = *_bucketTree.get();
+
+    // Physics loop
+    FixedPointInt physicsHz = 60.0_fp;
+    if (_physicsTimer.CanRun(physicsHz)){
+
+        _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
+
+        _physicsTimer.ResetClock();
+    }
+
+    if (_systemTimer.CanRun(60.0_fp)){
+        // Input
         _inputSystem.Process(entityComponentManager);
-
         _actionSystem.Process(entityComponentManager);
-      //  _networkSystem.Process(entityComponentManager);
 
-
-        // Run physics updates at 30hz?
-        // todo: fix
-
-        SGE_Physics::BucketTree& bt = *_bucketTree.get();
-
-       // if (InputState::Instance().ButtonDownIsPressed){
-            _physicsEngine.UpdatePhysics(1.0_fp, entityComponentManager, bt);
-     //   }
-
-
-
+        // Graphics
+        // this smells...
         bool finishedProcessing = true;
         while(_graphicsSystem.Process(entityComponentManager, bt) != finishedProcessing);
 
-        if (InputState::Instance().Exit == true){
-            return false;
-        }
-
         _systemTimer.ResetClock();
-
     }
 
-
+    if (InputState::Instance().Exit == true){
+            return false;
+    }
 
     return true;
 }

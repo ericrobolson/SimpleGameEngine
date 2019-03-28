@@ -18,7 +18,7 @@ class PhysicsEngine
         PhysicsEngine();
         virtual ~PhysicsEngine();
 
-        void UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree);
+        void UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager &ecs, BucketTree& bucketTree);
 
         void ResolveCollision(CollisionData& cd);
     private:

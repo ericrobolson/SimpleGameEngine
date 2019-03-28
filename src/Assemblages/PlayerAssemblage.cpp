@@ -30,15 +30,16 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         PhysicsBodyComponent& body = ecs.AddComponent<PhysicsBodyComponent>(id);
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 16.0_fp;
-        aabb.HalfWidth = 16.0_fp;
-        body.Body.Mass.Mass = 1.25_fp;
-        body.Body.Material.Density = 1.0_fp;
-        body.Body.Material.Restitution = 0.4_fp;
-        body.Body.Shape.SetAabb(aabb);
-        body.Body.Transform.Position.X = x;
-        body.Body.Transform.Position.Y = y;
-        body.Body.GravityScale = 1.0_fp;
+        aabb.HalfHeight = 50.0_fp;
+        aabb.HalfWidth = 20.0_fp;
+
+        EVector position;
+        position.X = 450.0_fp;
+        position.Y = 40.0_fp;
+
+        body.Body.IsStaticObject = false;
+
+        body.Body.Initialize(SGE_Physics::MaterialData::MaterialType::Wood, position, aabb);
     }
 
     return entityId;

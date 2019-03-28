@@ -9,6 +9,7 @@
 #include <utility>
 #include "Debugger.h"
 #include <algorithm>
+#include "Physics/Constants.h"
 
 using namespace SGE_Physics;
 
@@ -59,7 +60,7 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
     // Positional correction using linear projection; scale by total mass in system compared to the mass of the two entities
     const FixedPointInt positionalPercentCorrection = 0.2_fp; // .2 to .8
-    const FixedPointInt slop = 0.01_fp; // .01 to .1
+    const FixedPointInt slop = 0.1_fp; // .01 to .1
 
     FixedPointInt zero = 0.0_fp;
     FixedPointInt slopPen = cd.Penetration - slop;
@@ -80,9 +81,12 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
 
 
-void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
+void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager &ecs, BucketTree& bucketTree){
     // Think of this as building a snapshot of a valid world
     // E.g. you pass in valid data, then when this is done running it leaves it in a valid state.
+
+    EVector gravityVector;
+    gravityVector.Y = (Constants::GetGravity() / hz);
 
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
@@ -99,7 +103,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
         std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(entityId);
 
-        // Apply forces
+        // apply gravity
+        component->Body.Force += gravityVector * component->Body.Mass.Mass;
         component->Body.Velocity += (component->Body.Force * component->Body.Mass.InverseMass());
 
         // Reset force
@@ -109,6 +114,12 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
         // Project collisions
         EVector minCoordinate = component->Body.GetRoughAabb().MinCoordinate();
         EVector maxCoordinate = component->Body.GetRoughAabb().MaxCoordinate();
+
+
+        if (component->Body.IsStaticObject){
+            component->Body.Velocity.X = 0.0_fp;
+            component->Body.Velocity.Y = 0.0_fp;
+        }
 
         // Create bucket tree using projected positions
         minCoordinate += component->Body.Velocity;
@@ -196,8 +207,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
             // remove loop possibly?
             int counter = 20;
             while (counter > 0 && collisionDectector.CheckCollision(collisionData)){
-                ResolveCollision(collisionData);
                 counter--;
+                ResolveCollision(collisionData);
             }
        }
     }
@@ -211,7 +222,6 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt timeStep, ECS::EntityComponentMa
 
         if (component->Body.IsStaticObject == false){
             component->Body.Transform.Position += component->Body.Velocity;
-            component->Body.Force.Y += 0.08_fp;
         }
 
 

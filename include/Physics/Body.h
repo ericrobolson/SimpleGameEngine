@@ -8,6 +8,8 @@
 #include "EVector.h"
 #include "ShapeData.h"
 #include "Aabb.h"
+
+#include "Physics/Constants.h"
 using namespace SGE_Math;
 
 namespace SGE_Physics{
@@ -16,6 +18,23 @@ namespace SGE_Physics{
         public:
             Body();
             virtual ~Body();
+
+            void Initialize(MaterialData::MaterialType mType, EVector position, Aabb aabb){
+                Transform.Position = position;
+
+                // Set material data
+                Material.SetMaterialType(mType);
+
+                // Set shape
+                // note: assuming aabbs are the only type right now
+                Shape.SetAabb(aabb);
+
+                // Calculate mass
+                FixedPointInt mass = Material.Density * Shape.GetVolume();
+                Mass.Mass = mass / Constants::GetMeterRatio();// / PhysicsScale;
+                Mass.InverseMass(); // precalculate inv mass
+                IsStaticObject = false;
+            };
 
             ShapeData Shape;
 

@@ -14,12 +14,14 @@ MassData::~MassData()
 FixedPointInt MassData::InverseMass(){
     //todo: test
     if (_inverseMass == nullptr){
-        _inverseMass = std::make_shared<FixedPointInt>();
+        FixedPointInt inverseMass;
 
         // set the inverseMass
         if (Mass != 0.0_fp){
-            *_inverseMass = 1.0_fp / Mass;
+            inverseMass = 1.0_fp / Mass;
         }
+
+        _inverseMass = std::make_shared<FixedPointInt>(inverseMass);
     }
 
     return *_inverseMass;
