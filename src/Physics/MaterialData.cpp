@@ -13,7 +13,7 @@ MaterialData::~MaterialData()
 
 void MaterialData::SetMaterialType(MaterialType mType){
     // Densest object is .99, which is steel which is 488 lb/ft^3
-    FixedPointInt steelPhysicsDensity = 0.6_fp;
+    FixedPointInt steelPhysicsDensity = 0.2_fp;
     FixedPointInt steelActualDensity = 488.0_fp;
 
     FixedPointInt oakActualDensity = 50.0_fp;

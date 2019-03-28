@@ -30,8 +30,8 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
         PhysicsBodyComponent& body = ecs.AddComponent<PhysicsBodyComponent>(id);
 
         SGE_Physics::Aabb aabb;
-        aabb.HalfHeight = 50.0_fp;
-        aabb.HalfWidth = 20.0_fp;
+        aabb.HalfHeight = 25.0_fp;
+        aabb.HalfWidth = 25.0_fp;
 
         EVector position;
         position.X = 450.0_fp;
