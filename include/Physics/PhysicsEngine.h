@@ -20,20 +20,22 @@ class PhysicsEngine
 
 
     public:
-        PhysicsEngine();
+        PhysicsEngine(){
+            _gravity.Y = 2.0_fp;
+        };
+
         virtual ~PhysicsEngine();
 
         /// Get the gravity
-        static FixedPointInt GetGravity(){
-            return 2.0_fp;
-            return 9.81_fp;
+        EVector GetGravity(){ // todo: change to vector?
+            return _gravity;
         }
 
         void UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager &ecs, BucketTree& bucketTree);
 
         void ResolveCollision(CollisionData& cd);
     private:
-        FixedPointInt _totalMassInSystem;
+        EVector _gravity;
 };
 }
 

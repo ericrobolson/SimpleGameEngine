@@ -32,30 +32,38 @@ void MaterialData::SetMaterialType(MaterialType mType){
     case (MaterialData::MaterialType::Rock):
         Density = rockPhysicalDensity;
         Restitution = 0.1_fp;
+        Friction = 0.9_fp;
+
         break;
     case (MaterialData::MaterialType::Wood):
         Density = oakActualDensity;
         Restitution = 0.2_fp;
+        Friction = 0.5_fp;
         break;
     case (MaterialData::MaterialType::Metal):
         Density = steelPhysicsDensity;
         Restitution = 0.05_fp;
+        Friction = 0.7_fp;
         break;
     case (MaterialData::MaterialType::BouncyBall):
         Density = 0.3_fp;
         Restitution = 0.8_fp;
+        Friction = 0.5_fp;
         break;
     case (MaterialData::MaterialType::SuperBall):
         Density = 0.3_fp;
         Restitution = 0.95_fp;
+        Friction = 0.5_fp;
         break;
     case (MaterialData::MaterialType::Pillow):
         Density = 0.1_fp;
         Restitution = 0.2_fp;
+        Friction = 0.5_fp;
         break;
     case (MaterialData::MaterialType::StaticObject):
         Density = 0.0_fp;
         Restitution = 0.4_fp;
+        Friction = 0.7_fp;
         break;
 
     }
