@@ -3,8 +3,96 @@
 #include "CollisionDectector.h"
 #include "Aabb.h"
 #include "Physics/Circle.h"
+#include "CollisionData.h"
+#include "Body.h"
 using namespace SGE_Physics;
 
+
+void SetupBody(Body& body, FixedPointInt aabbHh, FixedPointInt aabbHw,FixedPointInt x, FixedPointInt y){
+
+    Aabb a;
+    a.HalfHeight = aabbHh;
+    a.HalfWidth = aabbHw;
+
+    EVector entity1Position;
+    entity1Position.X = x;
+    entity1Position.Y = y;
+
+    body.Initialize(MaterialData::MaterialType::Metal, entity1Position, a);
+
+}
+
+TEST_CASE("CollisionDectector::AabbVsAabb() No intersection bodies returns false."){
+
+    CollisionData cd;
+
+    cd.Entity1 = new Body();
+    SetupBody(*cd.Entity1, 2.0_fp, 2.0_fp, 0.0_fp, 0.0_fp);
+
+    cd.Entity2 = new Body();
+    SetupBody(*cd.Entity2, 2.0_fp, 2.0_fp, 1.0_fp, 10.0_fp);
+
+    REQUIRE(CollisionDectector::AabbVsAabb(cd) == false);
+
+    // usse actual data to check for collisions
+
+    /*
+// note: go through each of these and check to make sure that they return a position
+    e1 pos: (450, 543)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: 57
+no collision
+xxxxxxxxxxxxxxxxxxxxx
+e1 pos: (450, 545)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: 55
+no collision
+xxxxxxxxxxxxxxxxxxxxx
+e1 pos: (450, 547)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: 53
+no collision
+xxxxxxxxxxxxxxxxxxxxx
+e1 pos: (450, 548)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: 52
+no collision
+
+e1 pos: (450, 606)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: -6
+no collision
+xxxxxxxxxxxxxxxxxxxxx
+e1 pos: (450, 609)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: -9
+no collision
+xxxxxxxxxxxxxxxxxxxxx
+e1 pos: (450, 612)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: -12
+no collision
+xxxxxxxxxxxxxxxxxxxxx
+e1 pos: (450, 614)
+e2 pos: (15, 600)
+n.X: -435
+n.Y: -14
+no collision
+    */
+
+}
+
+
+
+
+/*
 
 SCENARIO("CollisionDectector::AabbVsAabb: No collision returns false"){
     Aabb a;
@@ -60,6 +148,15 @@ SCENARIO("CollisionDectector::AabbVsAabb: Overlap on Yaxis returns true"){
     REQUIRE(cd.AabbVsAabb(a, b) == true);
 }
 
+
+
+
+
+
+
+
+
+
 SCENARIO("CollisionDectector::CircleVsCircle: No collision returns false"){
     Circle a;
     a.Position.X = 0.0_fp;
@@ -92,3 +189,4 @@ SCENARIO("CollisionDectector::CircleVsCircle: Collision returns true"){
 
     REQUIRE(cd.CircleVsCircle(a, b) == true);
 }
+*/

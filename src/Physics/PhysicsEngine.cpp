@@ -179,8 +179,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
 
                 // Check if there was a collision
                 CollisionData collisionData;;
-                collisionData.Entity1 = &component->Body;
-                collisionData.Entity2 = &component2->Body;
+                collisionData.Entity1 = std::make_shared<Body>(component->Body);
+                collisionData.Entity2 = std::make_shared<Body>(component2->Body);
 
                 // Get the original positions
                 EVector entity1OriginalPosition = component->Body.Transform.Position;
@@ -201,9 +201,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
                     noCollisions = false;
 
                     // Note: apply friction after calculating the collision vectors, as otherwise it would lead to incorrect calculations
+
+                    FixedPointInt i;
+                    i = component2->Body.Material.Friction;
                     // use iterators to get entity ids as the other ids have been ordered
-                    entitiesThatGetFriction.insert({*it, component2->Body.Material.Friction});
-                    entitiesThatGetFriction.insert({*it2, component->Body.Material.Friction});
+                    entitiesThatGetFriction.insert({*it, i});
+
+                    i = component->Body.Material.Friction;
+                    entitiesThatGetFriction.insert({*it2, i});
                 }
            }
         }

@@ -5,6 +5,7 @@
 #include "EVector.h"
 #include "ShapeData.h"
 #include "Debugger.h"
+#include "MaterialData.h"
 using namespace SGE_Math;
 
 using namespace SGE_Physics;
@@ -57,6 +58,9 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
 }
 
 bool CollisionDectector::CheckCollision(CollisionData& cd){
+    return AabbVsAabb(cd);
+
+
 
     ShapeData::ShapeTypes entity1ShapeType = cd.Entity1->Shape.ShapeType;
     ShapeData::ShapeTypes entity2ShapeType = cd.Entity2->Shape.ShapeType;
@@ -67,7 +71,6 @@ bool CollisionDectector::CheckCollision(CollisionData& cd){
             return CircleVsCircle(cd);
         }
         else if (entity1ShapeType == ShapeData::AABB){
-            return AabbVsAabb(cd);
         }
     }
     else{
@@ -102,107 +105,64 @@ void OrderVectors(EVector& a, EVector& b){
     }
 }
 
-bool CollisionDectector::AabbVsAabb2(CollisionData& cd, Aabb abox, Aabb bbox, EVector entity1Position, EVector entity2Position){
-    EVector n = entity1Position - entity2Position;
-
-    EVector aMin = abox.MinCoordinate();
-    EVector aMax = abox.MaxCoordinate();
-    OrderVectors(aMin, aMax);
-
-
-    EVector bMin = bbox.MinCoordinate();
-    EVector bMax = bbox.MaxCoordinate();
-    OrderVectors(aMin, aMax);
-
-
-    if(aMax.X < bMin.X || aMin.X > bMax.X){
-        return false;
-    }
-
-    if(aMax.Y < bMin.Y || aMin.Y > bMax.Y){
-        return false;
-    }
-
-    // Calculate half extents along x axis for each object
-    FixedPointInt aExtentX = (aMax.X - aMin.X) / 2.0_fp;
-    FixedPointInt bExtentX = (bMax.X - bMin.X) / 2.0_fp;
-
-    FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
-
-    FixedPointInt aExtentY = (aMax.Y - aMin.Y) / 2.0_fp;
-    FixedPointInt bExtentY = (bMax.Y - bMin.Y) / 2.0_fp;
-
-    FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
-
-
-    EVector ev;
-    if (xOverlap > yOverlap){
-
-        if (n.X.Value < 0){
-            ev.X = 1.0_fp;
-        }else{
-            ev.X = -1.0_fp;
-        }
-
-        cd.Penetration = xOverlap;
-    }else{
-        if (n.Y.Value < 0){
-            ev.Y = 1.0_fp;
-        }else{
-            ev.Y = -1.0_fp;
-        }
-
-        cd.Penetration = yOverlap;
-    }
-
-    cd.Normal = ev;
-    return true;
-}
 
 bool CollisionDectector::AabbVsAabb(CollisionData& cd){
     // does the ordering matter? Something seems funky with all collision resolution except when small object collides with bottom of big object
 
 
     // todo: rename; but this is the vector from Entity1 to entity2
-    EVector n = cd.Entity1->Transform.Position - cd.Entity2->Transform.Position;
+    EVector n = cd.Entity2->Transform.Position - cd.Entity1->Transform.Position;
+
+    SGE::Debugger::Instance().WriteMessage("xxxxxxxxxxxxxxxxxxxxx");
+    SGE::Debugger::Instance().WriteMessage(
+       "e1 pos: ("
+       + std::to_string(((int)cd.Entity1->Transform.Position.X))
+                                           + ", "
+       + std::to_string(((int)cd.Entity1->Transform.Position.Y))
+                + ")");
+
+    SGE::Debugger::Instance().WriteMessage(
+       "e2 pos: ("
+       + std::to_string(((int)cd.Entity2->Transform.Position.X))
+                                           + ", "
+       + std::to_string(((int)cd.Entity2->Transform.Position.Y))
+                + ")");
+
+    SGE::Debugger::Instance().WriteMessage("n.X: " + std::to_string((int) n.X));
+    SGE::Debugger::Instance().WriteMessage("n.Y: " + std::to_string((int) n.Y));
+
 
     Aabb abox = cd.Entity1->GetRoughAabb();
     Aabb bbox = cd.Entity2->GetRoughAabb();
 
     EVector aMin = abox.MinCoordinate();
     EVector aMax = abox.MaxCoordinate();
-    OrderVectors(aMin, aMax);
-
 
     EVector bMin = bbox.MinCoordinate();
     EVector bMax = bbox.MaxCoordinate();
-    OrderVectors(aMin, aMax);
-
-
-    if(aMax.X < bMin.X || aMin.X > bMax.X){
-        return false;
-    }
-
-    if(aMax.Y < bMin.Y || aMin.Y > bMax.Y){
-        return false;
-    }
 
     // Calculate half extents along x axis for each object
-    FixedPointInt aExtentX = (aMax.X - aMin.X) / 2.0_fp;
-    FixedPointInt bExtentX = (bMax.X - bMin.X) / 2.0_fp;
+    FixedPointInt aExtentX = (aMax.X - aMin.X).abs() / 2.0_fp;
+    FixedPointInt bExtentX = (bMax.X - bMin.X).abs() / 2.0_fp;
 
-    FixedPointInt xOverlap = aExtentX + bExtentX - n.X.abs();
+    FixedPointInt xOverlap = aExtentX + bExtentX - (n.X.abs());
 
-    FixedPointInt aExtentY = (aMax.Y - aMin.Y) / 2.0_fp;
-    FixedPointInt bExtentY = (bMax.Y - bMin.Y) / 2.0_fp;
+    FixedPointInt aExtentY = (aMax.Y - aMin.Y).abs() / 2.0_fp;
+    FixedPointInt bExtentY = (bMax.Y - bMin.Y).abs() / 2.0_fp;
 
-    FixedPointInt yOverlap = aExtentY + bExtentY - n.Y.abs();
+    FixedPointInt yOverlap = aExtentY + bExtentY - (n.Y.abs());
 
+    if (yOverlap > 0.0_fp || xOverlap > 0.0_fp){
+            SGE::Debugger::Instance().WriteMessage("no collision");
+        return false;
+    }
+
+    SGE::Debugger::Instance().WriteMessage("XX collision");
 
     EVector ev;
-    if (xOverlap > yOverlap){
+    if (xOverlap >= yOverlap){
 
-        if (n.X.Value < 0){
+        if (n.X.Value <= 0){
             ev.X = 1.0_fp;
         }else{
             ev.X = -1.0_fp;
@@ -210,7 +170,7 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
 
         cd.Penetration = xOverlap;
     }else{
-        if (n.Y.Value < 0){
+        if (n.Y.Value <= 0){
             ev.Y = 1.0_fp;
         }else{
             ev.Y = -1.0_fp;
