@@ -3936,19 +3936,20 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1553753537 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1553831604 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
 	"CollisionDectector.h"
 	"CollisionData.h"
 	<memory>
+	<unordered_map>
 	<map>
 	<utility>
 	"Debugger.h"
 	<algorithm>
 
-1553753461 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
+1553824617 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
 	"FixedPointInt.h"
 	"CollisionData.h"
@@ -4235,7 +4236,7 @@
 1553698753 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\body.cpp
 	"Body.h"
 
-1553753549 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
+1553786050 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\body.h
 	"Physics/MaterialData.h"
 	"Physics/MassData.h"
 	"TransformData.h"
@@ -4244,10 +4245,10 @@
 	"ShapeData.h"
 	"Aabb.h"
 
-1553655151 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
+1553831469 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\materialdata.h
 	"FixedPointInt.h"
 
-1553753334 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
+1553831665 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\materialdata.cpp
 	"MaterialData.h"
 
 1552491959 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\massdata.h
@@ -4328,7 +4329,7 @@
 1551163133 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector.cpp
 	"EVector.h"
 
-1553639836 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
+1553828110 c:\users\ericr\dev\simplegameengine\simplegameengine\include\math\evector.h
 	"FixedPointInt.h"
 
 1551161005 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorassignmentoperators.cpp
@@ -4346,7 +4347,7 @@
 	"catch.hpp"
 	"EVector.h"
 
-1552491824 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
+1553829649 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormodificationoperators.cpp
 	"EVector.h"
 
 1551200872 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectorselfmodificationoperators.cpp
@@ -4356,7 +4357,7 @@
 	"catch.hpp"
 	"EVector.h"
 
-1551235275 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormathoperations.cpp
+1553785313 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\evector\evectormathoperations.cpp
 	"EVector.h"
 
 1551234882 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\evector\evectormathoperationstests.cpp
@@ -4446,8 +4447,9 @@
 	"EVector.h"
 	"Body.h"
 
-1553563392 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmathfunctions.cpp
+1553822967 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmathfunctions.cpp
 	"FixedPointInt.h"
+	<cmath>
 
 1553269954 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\math\fixedpointinttests\fixedpointintmathfunctionstests.cpp
 	"catch.hpp"

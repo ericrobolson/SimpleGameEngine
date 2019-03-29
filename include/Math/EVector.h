@@ -27,6 +27,8 @@ class EVector
         EVector operator -(const EVector& rhs);
         EVector operator +(const EVector& rhs);
         EVector operator *(const FixedPointInt& rhs);
+        EVector operator /(const FixedPointInt& rhs); // todo:
+        EVector operator /(const EVector& rhs); // todo:
 
         // Self modification operators
         EVector& operator -=(const EVector& rhs);
@@ -39,6 +41,8 @@ class EVector
 
         // Math functions
         FixedPointInt dot(const EVector& rhs);
+        FixedPointInt magnitude();
+        void Normalize();
 };
 
 

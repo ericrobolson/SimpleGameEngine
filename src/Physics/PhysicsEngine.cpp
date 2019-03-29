@@ -4,6 +4,7 @@
 #include "CollisionDectector.h"
 #include "CollisionData.h"
 #include <memory>
+#include <unordered_map>
 #include <map>
 #include <utility>
 #include "Debugger.h"
@@ -11,9 +12,6 @@
 
 using namespace SGE_Physics;
 
-PhysicsEngine::PhysicsEngine()
-{
-}
 
 PhysicsEngine::~PhysicsEngine()
 {
@@ -28,6 +26,20 @@ void OrderPair(int& a, int& b){
         a = b;
         b = i;
     }
+}
+
+void ApplyFriction(Body& body, FixedPointInt otherEntityFriction){
+
+    FixedPointInt friction = (body.Material.Friction + otherEntityFriction) / 2.0_fp;
+
+    EVector frictionVector = body.Velocity / body.Velocity; // scale it so we just get the direction
+
+    // ensure that it's facing the right way; if pointing same direction need to flip so it applies opposite force
+    if (frictionVector.dot(body.Velocity) >= 0.0_fp){
+        frictionVector = -frictionVector;
+    }
+
+    body.Velocity += frictionVector * friction * body.Mass.InverseMass();
 }
 
 void PhysicsEngine::ResolveCollision(CollisionData& cd){
@@ -54,6 +66,8 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
     cd.Entity1->Velocity -= impulse * cd.Entity1->Mass.InverseMass();
     cd.Entity2->Velocity += impulse * cd.Entity2->Mass.InverseMass();
+
+    return;
 }
 
 
@@ -63,13 +77,10 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
     // E.g. you pass in valid data, then when this is done running it leaves it in a valid state.
 
     EVector gravityVector;
-    gravityVector.Y = (PhysicsEngine::GetGravity() / hz);
+    gravityVector = (PhysicsEngine::GetGravity() / hz);
 
     // Get all entities from ECS which have a physics body
     std::vector<int> matchingEntityIds = ecs.Search<PhysicsBodyComponent>();
-
-    // Reset the total mass in the system
-    _totalMassInSystem.Value = 0;
 
     // Build buckettree
     bucketTree.FlushBuckets();
@@ -107,8 +118,12 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
     }
 
     // loop until all collisions are resolved, or X number of iterations have completed
+    // NOTE: reduce counter for performance increases, but you'll lose out on collision resolution accuracy
     bool noCollisions;
     int counter = 20;
+
+    // keep a list of entities to apply friction to
+    std::unordered_map<int, FixedPointInt> entitiesThatGetFriction;
 
     do{
         noCollisions = true;
@@ -184,6 +199,11 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
                 if (collided){
                     ResolveCollision(collisionData);
                     noCollisions = false;
+
+                    // Note: apply friction after calculating the collision vectors, as otherwise it would lead to incorrect calculations
+                    // use iterators to get entity ids as the other ids have been ordered
+                    entitiesThatGetFriction.insert({*it, component2->Body.Material.Friction});
+                    entitiesThatGetFriction.insert({*it2, component->Body.Material.Friction});
                 }
            }
         }
@@ -191,6 +211,19 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
     counter--;
     }while(counter > 0 && noCollisions == false);
 
+    // Apply friction
+    std::unordered_map<int, FixedPointInt>::iterator frictionEntity;
+    for (frictionEntity = entitiesThatGetFriction.begin(); frictionEntity != entitiesThatGetFriction.end(); frictionEntity++){
+        int i = frictionEntity->first;
+        std::shared_ptr<PhysicsBodyComponent> component = ecs.GetComponent<PhysicsBodyComponent>(i);
+
+        if (component == nullptr){
+            continue;
+        }
+
+        // Note: since friction is always a decreasing force, it will never result in a collision as collisions have been resolved
+        ApplyFriction(component->Body, frictionEntity->second);
+    }
 
     // Apply velocities and recalculate bucketTree
     bucketTree.FlushBuckets();

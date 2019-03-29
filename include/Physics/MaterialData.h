@@ -25,6 +25,8 @@ namespace SGE_Physics{
 
             FixedPointInt Density;
             FixedPointInt Restitution;
+
+            FixedPointInt Friction; // the friction to apply
     };
 }
 
