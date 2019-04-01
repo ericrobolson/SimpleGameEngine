@@ -106,13 +106,7 @@ void OrderVectors(EVector& a, EVector& b){
 }
 
 
-bool CollisionDectector::AabbVsAabb(CollisionData& cd){
-    // does the ordering matter? Something seems funky with all collision resolution except when small object collides with bottom of big object
-
-
-    // todo: rename; but this is the vector from Entity1 to entity2
-    EVector n = cd.Entity2->Transform.Position - cd.Entity1->Transform.Position;
-
+void Debug(CollisionData& cd, EVector n, FixedPointInt xOverlap, FixedPointInt yOverlap, FixedPointInt aExtentX, FixedPointInt aExtentY, FixedPointInt bExtentX, FixedPointInt bExtentY){
     SGE::Debugger::Instance().WriteMessage("xxxxxxxxxxxxxxxxxxxxx");
     SGE::Debugger::Instance().WriteMessage(
        "e1 pos: ("
@@ -121,7 +115,7 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
        + std::to_string(((int)cd.Entity1->Transform.Position.Y))
                 + ")");
 
-    SGE::Debugger::Instance().WriteMessage(
+   SGE::Debugger::Instance().WriteMessage(
        "e2 pos: ("
        + std::to_string(((int)cd.Entity2->Transform.Position.X))
                                            + ", "
@@ -131,9 +125,54 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
     SGE::Debugger::Instance().WriteMessage("n.X: " + std::to_string((int) n.X));
     SGE::Debugger::Instance().WriteMessage("n.Y: " + std::to_string((int) n.Y));
 
+    SGE::Debugger::Instance().WriteMessage("aExtent: ("
+                                           + std::to_string((int) aExtentX)
+                                           + ", "
+                                           + std::to_string((int) aExtentY)
+                                           + ")"
+                                           );
 
-    Aabb abox = cd.Entity1->GetRoughAabb();
-    Aabb bbox = cd.Entity2->GetRoughAabb();
+     SGE::Debugger::Instance().WriteMessage("bExtent: ("
+                                           + std::to_string((int) bExtentX)
+                                           + ", "
+                                           + std::to_string((int) bExtentY)
+                                           + ")"
+                                           );
+    SGE::Debugger::Instance().WriteMessage("xOverlap: " + std::to_string((int) xOverlap));
+    SGE::Debugger::Instance().WriteMessage("yOverlap: " + std::to_string((int) yOverlap));
+
+}
+
+bool CollisionDectector::AabbVsAabb(CollisionData& cd){
+    // does the ordering matter? Something seems funky with all collision resolution except when small object collides with bottom of big object
+
+    // todo: rename; but this is the vector from Entity1 to entity2
+    EVector n = cd.Entity2->Transform.Position - cd.Entity1->Transform.Position;
+
+
+    Aabb abox, bbox;
+
+    // order them so that bbox is always the right most entity
+    if (cd.Entity1->Transform.Position > cd.Entity2->Transform.Position){
+        bbox = cd.Entity1->GetRoughAabb();
+        abox = cd.Entity2->GetRoughAabb();
+
+        std::shared_ptr<Body> bodyPtr = cd.Entity1;
+
+        cd.Entity1 = cd.Entity2;
+        cd.Entity2 = bodyPtr;
+    }
+    else{
+        abox = cd.Entity1->GetRoughAabb();
+        bbox = cd.Entity2->GetRoughAabb();
+    }
+
+    // issue: when one is inside the other?
+    if (AabbVsAabb(abox, bbox) == false){
+            SGE::Debugger::Instance().WriteMessage("no collision");
+
+        return false;
+    }
 
     EVector aMin = abox.MinCoordinate();
     EVector aMax = abox.MaxCoordinate();
@@ -142,27 +181,18 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
     EVector bMax = bbox.MaxCoordinate();
 
     // Calculate half extents along x axis for each object
-    FixedPointInt aExtentX = (aMax.X - aMin.X).abs() / 2.0_fp;
-    FixedPointInt bExtentX = (bMax.X - bMin.X).abs() / 2.0_fp;
 
-    FixedPointInt xOverlap = aExtentX + bExtentX - (n.X.abs());
+    FixedPointInt xOverlap = abox.HalfWidth + bbox.HalfWidth - (n.X.abs());
 
-    FixedPointInt aExtentY = (aMax.Y - aMin.Y).abs() / 2.0_fp;
-    FixedPointInt bExtentY = (bMax.Y - bMin.Y).abs() / 2.0_fp;
+    FixedPointInt yOverlap = abox.HalfHeight + bbox.HalfHeight - (n.Y.abs());
 
-    FixedPointInt yOverlap = aExtentY + bExtentY - (n.Y.abs());
-
-    if (yOverlap > 0.0_fp || xOverlap > 0.0_fp){
-            SGE::Debugger::Instance().WriteMessage("no collision");
-        return false;
-    }
 
     SGE::Debugger::Instance().WriteMessage("XX collision");
 
     EVector ev;
-    if (xOverlap >= yOverlap){
+    if (xOverlap > yOverlap){
 
-        if (n.X.Value <= 0){
+        if (n.X.Value < 0){
             ev.X = 1.0_fp;
         }else{
             ev.X = -1.0_fp;
@@ -170,7 +200,7 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
 
         cd.Penetration = xOverlap;
     }else{
-        if (n.Y.Value <= 0){
+        if (n.Y.Value < 0){
             ev.Y = 1.0_fp;
         }else{
             ev.Y = -1.0_fp;

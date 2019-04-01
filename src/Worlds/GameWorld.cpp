@@ -62,7 +62,7 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.GravityScale = 1.0_fp;
     }
 
-    std::shared_ptr<int> entityId = nullptr;// = entityComponentManager.AddEntity();
+    std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
 
     if (entityId != nullptr){
         int id = *entityId.get();

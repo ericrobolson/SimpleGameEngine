@@ -5,6 +5,7 @@
 #include "Physics/Circle.h"
 #include "CollisionData.h"
 #include "Body.h"
+#include <memory>
 using namespace SGE_Physics;
 
 
@@ -26,18 +27,33 @@ TEST_CASE("CollisionDectector::AabbVsAabb() No intersection bodies returns false
 
     CollisionData cd;
 
-    cd.Entity1 = new Body();
-    SetupBody(*cd.Entity1, 2.0_fp, 2.0_fp, 0.0_fp, 0.0_fp);
+    cd.Entity1 = std::make_shared<Body>();
+    cd.Entity2 = std::make_shared<Body>();
 
-    cd.Entity2 = new Body();
-    SetupBody(*cd.Entity2, 2.0_fp, 2.0_fp, 1.0_fp, 10.0_fp);
+    SetupBody(*cd.Entity1, 10.0_fp, 10.0_fp, 1.0_fp, 10.0_fp);
+    SetupBody(*cd.Entity2, 50.0_fp, 300.0_fp, 15.0_fp, 600.0_fp);
 
     REQUIRE(CollisionDectector::AabbVsAabb(cd) == false);
 
+    // tests using actual data
+    SetupBody(*cd.Entity1, 10.0_fp, 10.0_fp, 450.0_fp, 543.0_fp);
+    SetupBody(*cd.Entity2, 50.0_fp, 300.0_fp, 15.0_fp, 600.0_fp);
+
+    REQUIRE(CollisionDectector::AabbVsAabb(cd) == false);
+    //
+
+    SetupBody(*cd.Entity1, 10.0_fp, 10.0_fp, 450.0_fp, 612.0_fp);
+    SetupBody(*cd.Entity2, 50.0_fp, 300.0_fp, 15.0_fp, 600.0_fp);
+
+    REQUIRE(CollisionDectector::AabbVsAabb(cd) == true);
+
+
+    // todo: write up tests
     // usse actual data to check for collisions
 
     /*
-// note: go through each of these and check to make sure that they return a position
+// note: go through each of these and check to make sure that they return a position and/or a valid collision
+// uses player object, and the big object
     e1 pos: (450, 543)
 e2 pos: (15, 600)
 n.X: -435

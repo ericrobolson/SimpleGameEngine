@@ -39,6 +39,12 @@ class EVector
         bool operator ==(const EVector& rhs) const;
         bool operator !=(const EVector& rhs) const;
 
+        // GT && LT operators based on which is closest towards origin
+        bool operator <(const EVector& rhs) const;
+        bool operator >(const EVector& rhs) const;
+        bool operator >=(const EVector& rhs) const;
+        bool operator <=(const EVector& rhs) const;
+
         // Math functions
         FixedPointInt dot(const EVector& rhs);
         FixedPointInt magnitude();

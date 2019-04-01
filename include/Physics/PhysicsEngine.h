@@ -21,13 +21,15 @@ class PhysicsEngine
 
     public:
         PhysicsEngine(){
-            _gravity.Y = 2.0_fp;
+           // _gravity.Y = 2.0_fp;
         };
 
         virtual ~PhysicsEngine();
 
+        //todo: allow setting of gravity?
+
         /// Get the gravity
-        EVector GetGravity(){ // todo: change to vector?
+        EVector GetGravity(){
             return _gravity;
         }
 
