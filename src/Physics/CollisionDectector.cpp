@@ -28,6 +28,11 @@ bool CollisionDectector::AabbVsAabb( Aabb a, Aabb b )
     EVector bMin = b.MinCoordinate();
     EVector bMax = b.MaxCoordinate();
 
+    if (aMax < bMax && aMax > bMin || aMin > bMin && aMin < bMax){
+        return true;
+    }
+
+
   // Exit with no intersection if found separated along an axis
   if(aMax.X < bMin.X || aMin.X > bMax.X){
     return false;
@@ -58,12 +63,17 @@ bool CollisionDectector::CircleVsCircle(Circle a, Circle b){
 }
 
 bool CollisionDectector::CheckCollision(CollisionData& cd){
+
+    // broad phase check before diving into specific checks
+    if (AabbVsAabb(cd.Entity1.GetRoughAabb(), cd.Entity2.GetRoughAabb()) == false){
+        return false;
+    }
+
     return AabbVsAabb(cd);
 
 
-
-    ShapeData::ShapeTypes entity1ShapeType = cd.Entity1->Shape.ShapeType;
-    ShapeData::ShapeTypes entity2ShapeType = cd.Entity2->Shape.ShapeType;
+    ShapeData::ShapeTypes entity1ShapeType = cd.Entity1.Shape.ShapeType;
+    ShapeData::ShapeTypes entity2ShapeType = cd.Entity2.Shape.ShapeType;
 
     // Check the collision depending on the entity shapes
     if (entity1ShapeType == entity2ShapeType){
@@ -105,7 +115,7 @@ void OrderVectors(EVector& a, EVector& b){
     }
 }
 
-
+/*
 void Debug(CollisionData& cd, EVector n, FixedPointInt xOverlap, FixedPointInt yOverlap, FixedPointInt aExtentX, FixedPointInt aExtentY, FixedPointInt bExtentX, FixedPointInt bExtentY){
     SGE::Debugger::Instance().WriteMessage("xxxxxxxxxxxxxxxxxxxxx");
     SGE::Debugger::Instance().WriteMessage(
@@ -142,43 +152,23 @@ void Debug(CollisionData& cd, EVector n, FixedPointInt xOverlap, FixedPointInt y
     SGE::Debugger::Instance().WriteMessage("yOverlap: " + std::to_string((int) yOverlap));
 
 }
-
+*/
 bool CollisionDectector::AabbVsAabb(CollisionData& cd){
     // does the ordering matter? Something seems funky with all collision resolution except when small object collides with bottom of big object
 
     // todo: rename; but this is the vector from Entity1 to entity2
-    EVector n = cd.Entity2->Transform.Position - cd.Entity1->Transform.Position;
+    EVector n = cd.Entity2.Transform.Position - cd.Entity1.Transform.Position;
 
 
     Aabb abox, bbox;
 
-    // order them so that bbox is always the right most entity
-    if (cd.Entity1->Transform.Position > cd.Entity2->Transform.Position){
-        bbox = cd.Entity1->GetRoughAabb();
-        abox = cd.Entity2->GetRoughAabb();
-
-        std::shared_ptr<Body> bodyPtr = cd.Entity1;
-
-        cd.Entity1 = cd.Entity2;
-        cd.Entity2 = bodyPtr;
-    }
-    else{
-        abox = cd.Entity1->GetRoughAabb();
-        bbox = cd.Entity2->GetRoughAabb();
-    }
+    abox = cd.Entity1.GetRoughAabb();
+    bbox = cd.Entity2.GetRoughAabb();
 
     // issue: when one is inside the other?
     if (AabbVsAabb(abox, bbox) == false){
-            SGE::Debugger::Instance().WriteMessage("no collision");
-
         return false;
     }
-
-    EVector aMin = abox.MinCoordinate();
-    EVector aMax = abox.MaxCoordinate();
-
-    EVector bMin = bbox.MinCoordinate();
-    EVector bMax = bbox.MaxCoordinate();
 
     // Calculate half extents along x axis for each object
 
@@ -186,28 +176,34 @@ bool CollisionDectector::AabbVsAabb(CollisionData& cd){
 
     FixedPointInt yOverlap = abox.HalfHeight + bbox.HalfHeight - (n.Y.abs());
 
-
-    SGE::Debugger::Instance().WriteMessage("XX collision");
-
     EVector ev;
+    // note: issue with normal calculations when one object is project inside another
+
     if (xOverlap > yOverlap){
 
         if (n.X.Value < 0){
-            ev.X = 1.0_fp;
-        }else{
             ev.X = -1.0_fp;
+        }else{
+            ev.X = 1.0_fp;
         }
 
         cd.Penetration = xOverlap;
     }else{
         if (n.Y.Value < 0){
-            ev.Y = 1.0_fp;
-        }else{
             ev.Y = -1.0_fp;
+        }else{
+            ev.Y = 1.0_fp;
         }
 
         cd.Penetration = yOverlap;
     }
+
+    // flip normals if one object is inside the other
+    if (bbox.MinCoordinate() >= abox.MaxCoordinate()){
+    //    ev = -ev;
+    }
+
+
 
     cd.Normal = ev;
     return true;

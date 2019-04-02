@@ -3936,7 +3936,7 @@
 1550760636 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\rigidbody.h
 	<memory>
 
-1554131826 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
+1554145528 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\physicsengine.cpp
 	"PhysicsEngine.h"
 	"Aabb.h"
 	"PhysicsBodyComponent.h"
@@ -3949,7 +3949,7 @@
 	"Debugger.h"
 	<algorithm>
 
-1554131449 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
+1554219725 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
 	"FixedPointInt.h"
 	"CollisionData.h"
@@ -4180,7 +4180,7 @@
 	<algorithm>
 	<cassert>
 
-1554132028 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1554219687 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
 	"FixedPointInt.h"
@@ -4442,10 +4442,10 @@
 	<set>
 	<vector>
 
-1553840323 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondata.cpp
+1554145300 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondata.cpp
 	"CollisionData.h"
 
-1553840306 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondata.h
+1554145319 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\collisiondata.h
 	<memory>
 	"FixedPointInt.h"
 	"EVector.h"

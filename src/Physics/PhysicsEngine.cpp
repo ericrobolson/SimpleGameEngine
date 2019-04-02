@@ -44,7 +44,7 @@ void ApplyFriction(Body& body, FixedPointInt otherEntityFriction){
 
 void PhysicsEngine::ResolveCollision(CollisionData& cd){
 
-    EVector relativeVelocity = cd.Entity2->Velocity - cd.Entity1->Velocity;
+    EVector relativeVelocity = cd.Entity2.Velocity - cd.Entity1.Velocity;
 
     // Calculate relative velocity in terms of the normal
     FixedPointInt velocityAlongNormal = relativeVelocity.dot(cd.Normal);
@@ -55,17 +55,18 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     }
 
     // Calculate restitution
-    FixedPointInt e = FixedPointInt::minimum(cd.Entity1->Material.Restitution, cd.Entity2->Material.Restitution);
+    FixedPointInt e = FixedPointInt::minimum(cd.Entity1.Material.Restitution, cd.Entity2.Material.Restitution);
 
     // Calculate impulse scalar
     FixedPointInt j = -(1.0_fp + e) * velocityAlongNormal;
-    j /= (cd.Entity1->Mass.InverseMass() + cd.Entity2->Mass.InverseMass());
+    j /= (cd.Entity1.Mass.InverseMass() + cd.Entity2.Mass.InverseMass());
 
     // Apply impulse and scale it by the mass of the two objects
     EVector impulse = cd.Normal * j;
 
-    cd.Entity1->Velocity -= impulse * cd.Entity1->Mass.InverseMass();
-    cd.Entity2->Velocity += impulse * cd.Entity2->Mass.InverseMass();
+    cd.Entity1.Velocity -= impulse * cd.Entity1.Mass.InverseMass();
+    cd.Entity2.Velocity += impulse * cd.Entity2.Mass.InverseMass();
+
 
     return;
 }
@@ -178,9 +179,15 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
                 }
 
                 // Check if there was a collision
-                CollisionData collisionData;;
-                collisionData.Entity1 = std::make_shared<Body>(component->Body);
-                collisionData.Entity2 = std::make_shared<Body>(component2->Body);
+                CollisionData* cdPtr = nullptr;
+
+                if (component->Body.Transform.Position > component2->Body.Transform.Position){
+                    cdPtr = new CollisionData(component2->Body, component->Body);
+                }else{
+                    cdPtr = new CollisionData(component->Body, component2->Body);
+                }
+
+
 
                 // Get the original positions
                 EVector entity1OriginalPosition = component->Body.Transform.Position;
@@ -190,14 +197,14 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
                 component->Body.Transform.Position += component->Body.Velocity;
                 component2->Body.Transform.Position += component2->Body.Velocity;
 
-                bool collided = CollisionDectector::CheckCollision(collisionData);
+                bool collided = CollisionDectector::CheckCollision(*cdPtr);
 
                 // Reset original positions
                 component->Body.Transform.Position = entity1OriginalPosition;
                 component2->Body.Transform.Position = entity2OriginalPosition;
 
                 if (collided){
-                    ResolveCollision(collisionData);
+                    ResolveCollision(*cdPtr);
                     noCollisions = false;
 
                     // Note: apply friction after calculating the collision vectors, as otherwise it would lead to incorrect calculations
@@ -210,6 +217,8 @@ void PhysicsEngine::UpdatePhysics(FixedPointInt hz, ECS::EntityComponentManager 
                     i = component->Body.Material.Friction;
                     entitiesThatGetFriction.insert({*it2, i});
                 }
+
+                delete cdPtr;
            }
         }
 
