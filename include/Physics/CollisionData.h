@@ -10,11 +10,11 @@ namespace SGE_Physics{
 class CollisionData
 {
     public:
-        CollisionData();
+        CollisionData(Body& entity1, Body& entity2);
         virtual ~CollisionData();
 
-        Body* Entity1;
-        Body* Entity2;
+        Body& Entity1;
+        Body& Entity2;
 
         FixedPointInt Penetration;
         EVector Normal;

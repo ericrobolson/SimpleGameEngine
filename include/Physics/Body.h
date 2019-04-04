@@ -8,6 +8,7 @@
 #include "EVector.h"
 #include "ShapeData.h"
 #include "Aabb.h"
+#include <vector>
 
 using namespace SGE_Math;
 
@@ -40,6 +41,18 @@ namespace SGE_Physics{
             ShapeData Shape;
 
             Aabb GetRoughAabb();
+            std::vector<EVector> GetPoints(){
+                std::vector<EVector> points = Shape.GetPoints();
+
+                std::vector<EVector>::iterator it;
+
+                for (it = points.begin(); it < points.end(); it++){
+                    *it += Transform.Position;
+                }
+
+
+                return points; // note: doesn't actually apply transforms yet}
+            };
 
             TransformData Transform;
 

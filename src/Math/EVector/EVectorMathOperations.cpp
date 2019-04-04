@@ -16,11 +16,39 @@ FixedPointInt EVector::magnitude(){
     return fp;
 }
 
+// sqrt 6.1 = 2.46981780705
+// 601 - 24.5153013443
+
 
 void EVector::Normalize(){
     //todo: test
 
-    EVector vec = *this / magnitude();
-    X = vec.X;
-    Y = vec.Y;
+    FixedPointInt magnitude;
+    magnitude = this->magnitude();
+
+    X = X / magnitude;
+    Y = Y / magnitude;
+}
+
+EVector::Projection EVector::project(std::vector<EVector> points){
+    // Note: The axis (or 'this') must be normalized for it to calculate properly
+
+    Projection p;
+
+    int i = 0;
+
+    p.Min = this->dot(points[i]);
+    p.Max = p.Min;
+
+    for (i = 1; i < points.size(); i++){
+        FixedPointInt proj = this->dot(points[i]);
+
+        if (proj < p.Min){
+            p.Min = proj;
+        }else if (proj > p.Max){
+            p.Max = proj;
+        }
+    }
+
+    return p;
 }

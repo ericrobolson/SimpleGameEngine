@@ -8,3 +8,23 @@ bool EVector::operator !=(const EVector& rhs) const{
 bool EVector::operator ==(const EVector& rhs) const{
     return (this->X == rhs.X && this->Y == rhs.Y);
 }
+
+
+bool EVector::operator <(const EVector& rhs) const{
+    return (this->X < rhs.X && this->Y < rhs.Y);
+}
+
+
+bool EVector::operator >(const EVector& rhs) const{
+    return (this->X > rhs.X && this->Y > rhs.Y);
+}
+
+
+bool EVector::operator >=(const EVector& rhs) const{
+    return (this->X >= rhs.X && this->Y >= rhs.Y);
+}
+
+
+bool EVector::operator <=(const EVector& rhs) const{
+    return (this->X <= rhs.X && this->Y <= rhs.Y);
+}

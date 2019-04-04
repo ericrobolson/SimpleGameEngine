@@ -2,7 +2,7 @@
 #define EVECTOR_H
 
 #include "FixedPointInt.h"
-
+#include <vector>
 /// Euclidean Vector
 
 namespace SGE_Math{
@@ -39,9 +39,24 @@ class EVector
         bool operator ==(const EVector& rhs) const;
         bool operator !=(const EVector& rhs) const;
 
+        // GT && LT operators based on which is closest towards origin
+        bool operator <(const EVector& rhs) const;
+        bool operator >(const EVector& rhs) const;
+        bool operator >=(const EVector& rhs) const;
+        bool operator <=(const EVector& rhs) const;
+
         // Math functions
         FixedPointInt dot(const EVector& rhs);
         FixedPointInt magnitude();
+
+        class Projection{
+        public:
+            FixedPointInt Min;
+            FixedPointInt Max;
+        };
+
+        Projection project(std::vector<EVector> points); // project the given points onto the vector
+
         void Normalize();
 };
 
