@@ -67,7 +67,6 @@ void PhysicsEngine::ResolveCollision(CollisionData& cd){
     cd.Entity1.Velocity -= impulse * cd.Entity1.Mass.InverseMass();
     cd.Entity2.Velocity += impulse * cd.Entity2.Mass.InverseMass();
 
-
     return;
 }
 

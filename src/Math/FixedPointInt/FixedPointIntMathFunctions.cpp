@@ -21,25 +21,11 @@ FixedPointInt FixedPointInt::sqrt(){
         return 0.0_fp;
     }
 
-    int_fast64_t t,q,b,r;
+    FixedPointInt fp = *this;// / 4.0_fp;
 
-    r = this->Value;
-    b = 0x40000000;
-    q = 0;
+    long double i = fp.Value / _scalingFactor;
 
-    while( b >= 256 ) {
-        t = q + b;
-        if( r >= t ) {
-          r = r - t;
-          q = t + b;
-        }
-        r = r * 2;     /* shift left  1 bit */
-        b = b / 2;     /* shift right 1 bit */
-    }
-    q = q / 256;     /* shift right 8 bits */
-
-    FixedPointInt fp;
-    fp.Value = q;
+    fp.SetValueFromDouble(std::sqrt(i));
 
     return fp;
 

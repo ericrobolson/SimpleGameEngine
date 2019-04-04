@@ -32,12 +32,12 @@ void MaterialData::SetMaterialType(MaterialType mType){
     case (MaterialData::MaterialType::Rock):
         Density = rockPhysicalDensity;
         Restitution = 0.1_fp;
-        Friction = 0.9_fp;
+        Friction = 0.8_fp;
 
         break;
     case (MaterialData::MaterialType::Wood):
         Density = oakActualDensity;
-        Restitution = 0.2_fp;
+        Restitution = 0.1_fp;
         Friction = 0.5_fp;
         break;
     case (MaterialData::MaterialType::Metal):
@@ -63,7 +63,7 @@ void MaterialData::SetMaterialType(MaterialType mType){
     case (MaterialData::MaterialType::StaticObject):
         Density = 0.0_fp;
         Restitution = 0.4_fp;
-        Friction = 0.7_fp;
+        Friction = 0.4_fp;
         break;
 
     }
