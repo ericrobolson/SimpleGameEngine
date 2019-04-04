@@ -150,56 +150,35 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::Buck
 
             SDL_SetRenderDrawColor(_renderer, 255, 0, 0, 255);
 
+            std::vector<EVector> points = body->Body.GetPoints();
 
-            SDL_Rect sdlRect;
+            int pointsToDraw = points.size() + 1;
 
-            sdlRect.x = ((int)body->Body.Transform.Position.X);
-            sdlRect.y = ((int)body->Body.Transform.Position.Y);
-
-            SGE_Physics::Aabb aabb = body->Body.GetRoughAabb();
-
-            int w = (int)(aabb.MaxCoordinate().X - aabb.MinCoordinate().X);
-            int h = (int)(aabb.MaxCoordinate().Y - aabb.MinCoordinate().Y);
-
-            sdlRect.w = (w);
-            sdlRect.h = (h);
-
-            SDL_RenderDrawRect(_renderer, &sdlRect);
+            SDL_Point linePoints[pointsToDraw];
 
 
-           // ThreadPool::Instance().submit([this, &ecs, entityId](){
-           //                                     ProcessJob(ecs, entityId);
-           //                                 });
+
+            // Draw each line on the shape
+            for (int i = 0; i < points.size(); i++){
+                EVector a = points[i];
+
+                linePoints[i].x = (int)a.X;
+                linePoints[i].y = (int)a.Y;
+            }
+
+            linePoints[pointsToDraw - 1].x = (int)points[0].X;
+            linePoints[pointsToDraw - 1].y = (int)points[0].Y;
+
+            SDL_RenderDrawLines(_renderer, linePoints, pointsToDraw);
         }
 
 
     lock.unlock();
 
-    /*
-    std::vector<int> entityIds = ecs.Search<VisibleComponent>(); // change to visible component?
-
-    while (entityIds.empty() == false){
-        int entityId = entityIds.back();
-        entityIds.pop_back();
-
-        ThreadPool::Instance().submit([this, &ecs, entityId](){
-                                            ProcessJob(ecs, entityId);
-                                        });
-    }
-*/
     std::future<bool> isDone = ThreadPool::Instance().submit([](){
                                                         return true;
                                                         });
     isDone.get();
-
-    // Draw maze
-    lock.lock();
-
-
-
-    lock.unlock();
-
-
 
     // Swap buffers.
     lock.lock();

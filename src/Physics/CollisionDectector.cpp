@@ -156,13 +156,15 @@ static bool PolygonVsPolygon(CollisionData& cd){
 
 bool CollisionDectector::CheckCollision(CollisionData& cd){
 
-    return (PolygonVsPolygon(cd));
 
 
     // broad phase check before diving into specific checks
     if (AabbVsAabb(cd.Entity1.GetRoughAabb(), cd.Entity2.GetRoughAabb()) == false){
         return false;
     }
+
+        return (PolygonVsPolygon(cd));
+
 
     return AabbVsAabb(cd);
 

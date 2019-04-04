@@ -3821,7 +3821,7 @@
 	<future>
 	<memory>
 
-1553738431 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
+1554356797 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem.h"
@@ -3890,7 +3890,7 @@
 	"SystemTimer.h"
 	<time.h>
 
-1554354581 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1554357096 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -3949,7 +3949,7 @@
 	"Debugger.h"
 	<algorithm>
 
-1554354721 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
+1554357053 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\physicsengine.h
 	"EntityComponentManager.h"
 	"FixedPointInt.h"
 	"CollisionData.h"
@@ -4180,7 +4180,7 @@
 	<algorithm>
 	<cassert>
 
-1554355031 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
+1554356823 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\collisiondectector.cpp
 	"CollisionDectector.h"
 	<cmath>
 	"FixedPointInt.h"
@@ -4455,7 +4455,7 @@
 	"EVector.h"
 	"Body.h"
 
-1554355057 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmathfunctions.cpp
+1554355870 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\math\fixedpointint\fixedpointintmathfunctions.cpp
 	"FixedPointInt.h"
 	<cmath>
 

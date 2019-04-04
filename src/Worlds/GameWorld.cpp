@@ -106,6 +106,8 @@ bool GameWorld::Process(){
         _physicsTimer.ResetClock();
     }
 
+    // todo: Interpolate graphics with physics engine?
+
     if (_systemTimer.CanRun(60.0_fp)){
         // Input
         _inputSystem.Process(entityComponentManager);
