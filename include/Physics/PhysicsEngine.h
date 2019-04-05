@@ -21,7 +21,7 @@ class PhysicsEngine
 
     public:
         PhysicsEngine(){
-            _gravity.Y = 4.0_fp;
+            //_gravity.Y = 0.1_fp;
         };
 
         virtual ~PhysicsEngine();

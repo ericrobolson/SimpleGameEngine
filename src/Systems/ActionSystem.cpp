@@ -17,14 +17,26 @@ ActionSystem::~ActionSystem()
 }
 
 
+void ApplyMoveSpeed(FixedPointInt& vectorAxis, FixedPointInt maxMoveSpeed, FixedPointInt moveSpeed){
+    vectorAxis += moveSpeed;
+
+    if (vectorAxis > maxMoveSpeed){
+        vectorAxis = maxMoveSpeed;
+    } else if (vectorAxis < -maxMoveSpeed){
+        vectorAxis = -maxMoveSpeed;
+    }
+}
+
 bool ActionSystem::Process(ECS::EntityComponentManager &ecs){
 
     // Get player entities
 
     // do boundary checks, e.g. if moving faster than X speed left, where X is the max normal move speed, don't do anything
 
-     FixedPointInt moveSpeed = 0.03_fp;
-     FixedPointInt jumpSpeed = 50.0_fp;
+    FixedPointInt baseMoveSpeed = 0.03_fp * 2.0_fp; // should be even, as it's divided by 2
+    FixedPointInt baseMaxMoveSpeed = baseMoveSpeed * 40.0_fp;
+    FixedPointInt baseMoveReduction = 4.0_fp;
+
 
     // get entities
     std::vector<int> matchingEntityIds = ecs.Search<PlayerComponent>();
@@ -38,20 +50,27 @@ bool ActionSystem::Process(ECS::EntityComponentManager &ecs){
             continue;
         }
 
+        FixedPointInt moveSpeed = baseMoveSpeed;
+        FixedPointInt maxMoveSpeed = baseMaxMoveSpeed;
+
+        if (InputState::Instance().Button1IsPressed){
+            maxMoveSpeed = baseMaxMoveSpeed / baseMoveReduction;
+        }
+
         if (InputState::Instance().ButtonLeftIsPressed){
-            component->Body.Velocity.X -= moveSpeed;
+            ApplyMoveSpeed(component->Body.Velocity.X, maxMoveSpeed, -moveSpeed);
         }
 
         if (InputState::Instance().ButtonRightIsPressed){
-            component->Body.Velocity.X += moveSpeed;
+            ApplyMoveSpeed(component->Body.Velocity.X, maxMoveSpeed, moveSpeed);
         }
 
         if (InputState::Instance().ButtonUpIsPressed){
-            component->Body.Force.Y = -jumpSpeed;
+            ApplyMoveSpeed(component->Body.Velocity.Y, maxMoveSpeed, -moveSpeed);
         }
 
         if (InputState::Instance().ButtonDownIsPressed){
-            component->Body.Velocity.Y += moveSpeed;
+            ApplyMoveSpeed(component->Body.Velocity.Y, maxMoveSpeed, moveSpeed);
         }
     }
 

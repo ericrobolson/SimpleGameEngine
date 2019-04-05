@@ -94,7 +94,12 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
             }else if (_keyMapper.Escape == key){
                 InputState::Instance().Exit = true;
                 _exit = true;
+            }else if (key == SDLK_SPACE){
+                InputState::Instance().Button1IsPressed = true;
             }
+
+
+
         }
          if (event.type == SDL_KEYUP) {
             if (_keyMapper.Up == key){
@@ -111,7 +116,10 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                 InputState::Instance().Button5IsPressed = false;
             }else if (_keyMapper.PreviousCard == key){
                 InputState::Instance().Button6IsPressed = false;
+            }else if (key == SDLK_SPACE){
+                InputState::Instance().Button1IsPressed = false;
             }
+
 
         }
         else if (event.type == SDL_MOUSEBUTTONDOWN){

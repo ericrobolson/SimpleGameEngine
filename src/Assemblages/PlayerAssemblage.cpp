@@ -26,7 +26,6 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
 
         PlayerComponent& playerComponent = ecs.AddComponent<PlayerComponent>(id);
 
-
         PhysicsBodyComponent& body = ecs.AddComponent<PhysicsBodyComponent>(id);
 
         SGE_Physics::Aabb aabb;

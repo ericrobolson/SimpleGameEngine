@@ -30,6 +30,8 @@ class InputState
 
         bool Button9IsPressed;
 
+        bool AnyKeyPressed();
+
         bool Exit;
 
         void Reset();

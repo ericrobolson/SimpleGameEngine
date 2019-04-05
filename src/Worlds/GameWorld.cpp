@@ -97,14 +97,35 @@ bool GameWorld::Process(){
 
     SGE_Physics::BucketTree& bt = *_bucketTree.get();
 
-    // Physics loop
-    FixedPointInt physicsHz = 60.0_fp;
-    if (_physicsTimer.CanRun(physicsHz)){
 
-        _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
+    bool moveKeyPressed = InputState::Instance().ButtonDownIsPressed
+        || InputState::Instance().ButtonUpIsPressed
+        || InputState::Instance().ButtonLeftIsPressed
+        || InputState::Instance().ButtonRightIsPressed
+        ;
 
-        _physicsTimer.ResetClock();
+    if (moveKeyPressed){
+        // Physics loop
+        FixedPointInt physicsHz = 120.0_fp;
+        if (_physicsTimer.CanRun(physicsHz)){
+
+            _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
+
+            _physicsTimer.ResetClock();
+        }
+    }else{
+        // move physics slowly
+        // Physics loop
+        FixedPointInt physicsHz = 15.0_fp;
+        if (_physicsTimer.CanRun(physicsHz)){
+
+            _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
+
+            _physicsTimer.ResetClock();
+        }
     }
+
+
 
     // todo: Interpolate graphics with physics engine?
 

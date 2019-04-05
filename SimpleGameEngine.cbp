@@ -154,7 +154,6 @@
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
 		</Linker>
 		<Unit filename="include/Assemblages/PlayerAssemblage.h" />
-		<Unit filename="include/Assemblages/SolidObjectAssemblage.h" />
 		<Unit filename="include/Audio/Operator.h" />
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />

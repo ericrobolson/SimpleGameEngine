@@ -9,6 +9,11 @@ FixedPointInt EVector::dot(const EVector& rhs){
     return fp;
 }
 
+void EVector::Reset(){
+    this->X = 0.0_fp;
+    this->Y = 0.0_fp;
+}
+
 FixedPointInt EVector::magnitude(){
     //todo: test
     FixedPointInt fp;

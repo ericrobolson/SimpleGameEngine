@@ -47,6 +47,7 @@ class EVector
 
         // Math functions
         FixedPointInt dot(const EVector& rhs);
+        void Reset();
         FixedPointInt magnitude();
 
         class Projection{
