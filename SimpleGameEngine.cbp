@@ -158,6 +158,7 @@
 		<Unit filename="include/BaseComponent.h" />
 		<Unit filename="include/BaseSystem.h" />
 		<Unit filename="include/BaseWorld.h" />
+		<Unit filename="include/Components/ActorComponent.h" />
 		<Unit filename="include/Components/PhysicsBodyComponent.h" />
 		<Unit filename="include/Components/PlayerComponent.h" />
 		<Unit filename="include/Debugger/Debugger.h" />
@@ -199,6 +200,7 @@
 		<Unit filename="src/BaseComponent.cpp" />
 		<Unit filename="src/BaseSystem.cpp" />
 		<Unit filename="src/BaseWorld.cpp" />
+		<Unit filename="src/Components/ActorComponent.cpp" />
 		<Unit filename="src/Components/PhysicsBodyComponent.cpp" />
 		<Unit filename="src/Components/PlayerComponent.cpp" />
 		<Unit filename="src/Debugger/Debugger.cpp" />

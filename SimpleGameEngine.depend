@@ -3642,11 +3642,12 @@
 	<mutex>
 	<queue>
 
-1554475473 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
+1555077746 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\assemblages\playerassemblage.cpp
 	"PlayerAssemblage.h"
 	<memory>
 	"EntityComponentManager.h"
 	"PlayerComponent.h"
+	"ActorComponent.h"
 	"PhysicsBodyComponent.h"
 	"Aabb.h"
 
@@ -3890,7 +3891,7 @@
 	"SystemTimer.h"
 	<time.h>
 
-1554477380 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1554492731 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -4489,16 +4490,22 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1554477269 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\actionsystem.cpp
+1555078143 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\actionsystem.cpp
 	"ActionSystem.h"
 	"InputState.h"
 	<memory>
 	<vector>
-	"PlayerComponent.h"
 	"PhysicsBodyComponent.h"
 	<memory>
 	"RandomNumberGenerator.h"
+	"ActorComponent.h"
 
 1553753401 c:\users\ericr\dev\simplegameengine\simplegameengine\include\physics\constants.h
 	"FixedPointInt.h"
+
+1555077489 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\actorcomponent.cpp
+	"ActorComponent.h"
+
+1555078040 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\actorcomponent.h
+	"BaseComponent.h"
 

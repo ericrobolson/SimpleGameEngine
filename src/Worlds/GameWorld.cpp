@@ -34,7 +34,7 @@ GameWorld::GameWorld() : BaseWorld()
     maxCoordinate.X = 900.0_fp;
     maxCoordinate.Y = 900.0_fp;
 
-    int levels = 4;
+    int levels = 3;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -57,9 +57,7 @@ GameWorld::GameWorld() : BaseWorld()
         body.Body.Transform.Position.X = 15.0_fp;
         body.Body.Transform.Position.Y = 600.0_fp;
 
-        body.Body.Mass.Mass = 0.0_fp;
         body.Body.Material.SetMaterialType(SGE_Physics::MaterialData::MaterialType::StaticObject);
-        body.Body.GravityScale = 1.0_fp;
     }
 
     std::shared_ptr<int> entityId = entityComponentManager.AddEntity();
@@ -104,7 +102,7 @@ bool GameWorld::Process(){
         || InputState::Instance().ButtonRightIsPressed
         ;
 
-    if (moveKeyPressed){
+    if (InputState::Instance().AnyKeyPressed()){
         // Physics loop
         FixedPointInt physicsHz = 120.0_fp;
         if (_physicsTimer.CanRun(physicsHz)){
