@@ -29,6 +29,25 @@ void InputState::Reset(){
     Exit = false;
 }
 
+bool InputState::AnyKeyPressed(){
+    return (
+        Button1IsPressed
+        || Button2IsPressed
+        || Button3IsPressed
+        || Button4IsPressed
+        || Button5IsPressed
+        || Button6IsPressed
+        || Button7IsPressed
+        || Button8IsPressed
+        || Button9IsPressed
+
+        || ButtonUpIsPressed
+        || ButtonDownIsPressed
+        || ButtonLeftIsPressed
+        || ButtonRightIsPressed
+    );
+}
+
 InputState::~InputState()
 {
     //dtor

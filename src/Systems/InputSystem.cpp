@@ -9,6 +9,8 @@
 #include <future>
 #include <fstream>
 #include "StringOperations.h"
+#include "PlayerComponent.h"
+#include "ActorComponent.h"
 
 InputSystem::InputSystem() : BaseSystem()
 {
@@ -57,12 +59,21 @@ InputSystem::InputSystem() : BaseSystem()
         }
 
         file.close();
-
     }
 
 
 }
 
+
+void SetAction(bool buttonIsPressed, ActorComponent::ButtonState& button){
+    if (buttonIsPressed){
+        button = ActorComponent::ButtonState::Pressed;
+    }else if (button == ActorComponent::ButtonState::Pressed){
+        button = ActorComponent::ButtonState::Released;
+    }else{
+        button = ActorComponent::ButtonState::Empty;
+    }
+}
 
 bool InputSystem::Process(ECS::EntityComponentManager &ecs){
     SDL_Event event;
@@ -94,7 +105,12 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
             }else if (_keyMapper.Escape == key){
                 InputState::Instance().Exit = true;
                 _exit = true;
+            }else if (key == SDLK_SPACE){
+                InputState::Instance().Button1IsPressed = true;
             }
+
+
+
         }
          if (event.type == SDL_KEYUP) {
             if (_keyMapper.Up == key){
@@ -111,7 +127,10 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
                 InputState::Instance().Button5IsPressed = false;
             }else if (_keyMapper.PreviousCard == key){
                 InputState::Instance().Button6IsPressed = false;
+            }else if (key == SDLK_SPACE){
+                InputState::Instance().Button1IsPressed = false;
             }
+
 
         }
         else if (event.type == SDL_MOUSEBUTTONDOWN){
@@ -138,6 +157,27 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
 
         // Set the cursor position
         SDL_GetMouseState(&InputState::Instance().CursorX, &InputState::Instance().CursorY);
+    }
+
+
+    std::vector<int> matchingEntityIds = ecs.Search<PlayerComponent>();
+
+
+    std::vector<int>::iterator it;
+    for (it = matchingEntityIds.begin(); it != matchingEntityIds.end(); it++){
+        std::shared_ptr<ActorComponent> actorComponent = ecs.GetComponent<ActorComponent>(*it);
+
+        if (actorComponent == nullptr){
+                    continue;
+        }
+
+
+        SetAction(InputState::Instance().ButtonDownIsPressed, actorComponent->LeftStick.DownButton);
+        SetAction(InputState::Instance().ButtonUpIsPressed, actorComponent->LeftStick.UpButton);
+        SetAction(InputState::Instance().ButtonLeftIsPressed, actorComponent->LeftStick.LeftButton);
+        SetAction(InputState::Instance().ButtonRightIsPressed, actorComponent->LeftStick.RightButton);
+
+        SetAction(InputState::Instance().Button1IsPressed, actorComponent->PrimaryButtons.AButton);
     }
 
     return !_exit;

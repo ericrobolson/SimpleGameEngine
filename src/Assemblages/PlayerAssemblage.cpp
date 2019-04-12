@@ -4,7 +4,7 @@
 #include "EntityComponentManager.h"
 
 #include "PlayerComponent.h"
-
+#include "ActorComponent.h"
 #include "PhysicsBodyComponent.h"
 #include "Aabb.h"
 PlayerAssemblage::PlayerAssemblage()
@@ -26,6 +26,7 @@ std::shared_ptr<int> PlayerAssemblage::BuildPlayer(ECS::EntityComponentManager &
 
         PlayerComponent& playerComponent = ecs.AddComponent<PlayerComponent>(id);
 
+        ecs.AddComponent<ActorComponent>(id);
 
         PhysicsBodyComponent& body = ecs.AddComponent<PhysicsBodyComponent>(id);
 
