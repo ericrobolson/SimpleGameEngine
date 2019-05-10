@@ -39,6 +39,7 @@
 					<Add directory="include/Physics" />
 					<Add directory="include/Math" />
 					<Add directory="include/Audio" />
+					<Add directory="include/Patterns" />
 				</Compiler>
 				<Linker>
 					<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
@@ -84,6 +85,7 @@
 					<Add directory="include/Physics" />
 					<Add directory="include/Math" />
 					<Add directory="include/Audio" />
+					<Add directory="include/Patterns" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -131,6 +133,7 @@
 					<Add directory="include/Physics" />
 					<Add directory="include/Math" />
 					<Add directory="include/Audio" />
+					<Add directory="include/Patterns" />
 				</Compiler>
 				<Linker>
 					<Add library="C:/TDM-GCC-32/include/GL/libglfw3.a" />
@@ -170,6 +173,7 @@
 		<Unit filename="include/Math/EVector.h" />
 		<Unit filename="include/Math/FixedPointInt.h" />
 		<Unit filename="include/Math/RandomNumberGenerator.h" />
+		<Unit filename="include/Patterns/CommandPattern.h" />
 		<Unit filename="include/Physics/Aabb.h" />
 		<Unit filename="include/Physics/Body.h" />
 		<Unit filename="include/Physics/BucketTree.h" />

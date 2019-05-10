@@ -22,7 +22,7 @@ void SetupBody(Body& body, FixedPointInt aabbHh, FixedPointInt aabbHw,FixedPoint
     body.Initialize(MaterialData::MaterialType::Metal, entity1Position, a);
 
 }
-
+/*
 TEST_CASE("CollisionDectector::AabbVsAabb() No intersection bodies returns false."){
 
     CollisionData cd;
@@ -103,7 +103,6 @@ n.Y: -14
 no collision
     */
 
-}
 
 
 

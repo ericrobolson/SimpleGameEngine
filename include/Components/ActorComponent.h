@@ -3,7 +3,7 @@
 
 #include "BaseComponent.h"
 
-
+/// A class which abstracts inputs out. It groups inputs by a controller layout, as to make sure that every game developed can utilize a controller effectively.
 class ActorComponent : public BaseComponent
 {
     public:

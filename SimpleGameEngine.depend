@@ -3838,7 +3838,7 @@
 	"EVector.h"
 	"Aabb.h"
 
-1554477176 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
+1557458823 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -3850,6 +3850,8 @@
 	<future>
 	<fstream>
 	"StringOperations.h"
+	"PlayerComponent.h"
+	"ActorComponent.h"
 
 1550715594 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\movementsystem.cpp
 	<list>
@@ -4506,6 +4508,6 @@
 1555077489 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\actorcomponent.cpp
 	"ActorComponent.h"
 
-1555078040 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\actorcomponent.h
+1555078931 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\actorcomponent.h
 	"BaseComponent.h"
 

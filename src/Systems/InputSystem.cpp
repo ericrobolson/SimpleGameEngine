@@ -12,6 +12,7 @@
 #include "PlayerComponent.h"
 #include "ActorComponent.h"
 
+
 InputSystem::InputSystem() : BaseSystem()
 {
     if (SDL_WasInit(SDL_INIT_EVENTS) == 0){
