@@ -23,9 +23,12 @@ void SetupBody(Body& body, FixedPointInt aabbHh, FixedPointInt aabbHw,FixedPoint
 
 }
 
+
+
+/*
 TEST_CASE("CollisionDectector::AabbVsAabb() No intersection bodies returns false."){
 
-    CollisionData cd;
+//    CollisionData cd;
 
     cd.Entity1 = std::make_shared<Body>();
     cd.Entity2 = std::make_shared<Body>();
@@ -103,7 +106,7 @@ n.Y: -14
 no collision
     */
 
-}
+
 
 
 

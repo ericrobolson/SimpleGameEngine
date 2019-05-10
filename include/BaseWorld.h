@@ -8,7 +8,7 @@ class BaseWorld
         BaseWorld();
         virtual ~BaseWorld();
         virtual bool Process();
-
+    protected:
         ECS::EntityComponentManager entityComponentManager;
 };
 

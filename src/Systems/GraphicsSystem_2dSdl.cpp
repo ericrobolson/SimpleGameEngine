@@ -1,6 +1,6 @@
 #include <SDL.h>
 #include <list>
-#include "GraphicsSystem.h"
+#include "GraphicsSystem_2dSdl.h"
 #include "EntityComponentManager.h"
 #include <math.h>
 #include <future>
@@ -17,7 +17,7 @@ const int SCREEN_BITSPERPIXEL = 32;
 const int SCREEN_HEIGHT = 640;
 
 // Initialize SDL
-GraphicsSystem::GraphicsSystem() : BaseSystem()
+GraphicsSystem_2dSdl::GraphicsSystem_2dSdl() : BaseSystem()
 {
     std::unique_lock<std::mutex> lock(_resourceMutex);
     if (SDL_WasInit(SDL_INIT_VIDEO) == 0){
@@ -34,7 +34,7 @@ GraphicsSystem::GraphicsSystem() : BaseSystem()
 
 
 
-void GraphicsSystem::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
+void GraphicsSystem_2dSdl::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
     /*
@@ -127,7 +127,7 @@ void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer)
 
 
 
-bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
+bool GraphicsSystem_2dSdl::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
     SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
@@ -187,7 +187,7 @@ bool GraphicsSystem::Process(ECS::EntityComponentManager &ecs, SGE_Physics::Buck
     return true;
 }
 
-GraphicsSystem::~GraphicsSystem()
+GraphicsSystem_2dSdl::~GraphicsSystem_2dSdl()
 {
     std::unique_lock<std::mutex> lock(_resourceMutex);
     // Cleanup SDL

@@ -6,15 +6,14 @@
 #include "BucketTree.h"
 #include <mutex>
 
-class GraphicsSystem : public BaseSystem
+#include <vector>
+
+class GraphicsSystem_2dSdl : public BaseSystem
 {
     public:
-        GraphicsSystem();
-        virtual ~GraphicsSystem();
+        GraphicsSystem_2dSdl();
+        virtual ~GraphicsSystem_2dSdl();
         bool Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree);
-        SDL_Renderer* GetRenderer();
-        bool DrawHitboxes;
-        bool DebugMode = true;
     private:
         void ProcessJob(ECS::EntityComponentManager &ecs, int entityId);
         std::mutex _resourceMutex;

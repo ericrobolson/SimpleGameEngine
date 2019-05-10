@@ -187,13 +187,15 @@
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/InputState.h" />
 		<Unit filename="include/Systems/ActionSystem.h" />
-		<Unit filename="include/Systems/GraphicsSystem.h" />
+		<Unit filename="include/Systems/GraphicsSystem_2dSdl.h" />
+		<Unit filename="include/Systems/GraphicsSystem_3d.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Systems/NetworkSystem.h" />
 		<Unit filename="include/Systems/SystemTimer.h" />
 		<Unit filename="include/Threading/SafeQueue.h" />
 		<Unit filename="include/Threading/ThreadPool.h" />
-		<Unit filename="include/Worlds/GameWorld.h" />
+		<Unit filename="include/Worlds/GameWorld_2d.h" />
+		<Unit filename="include/Worlds/GameWorld_3d.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Assemblages/PlayerAssemblage.cpp" />
 		<Unit filename="src/Audio/Operator.cpp" />
@@ -237,11 +239,13 @@
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/ActionSystem.cpp" />
-		<Unit filename="src/Systems/GraphicsSystem.cpp" />
+		<Unit filename="src/Systems/GraphicsSystem_2dSdl.cpp" />
+		<Unit filename="src/Systems/GraphicsSystem_3d.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />
 		<Unit filename="src/Systems/NetworkSystem.cpp" />
 		<Unit filename="src/Systems/SystemTimer.cpp" />
-		<Unit filename="src/Worlds/GameWorld.cpp" />
+		<Unit filename="src/Worlds/GameWorld_2d.cpp" />
+		<Unit filename="src/Worlds/GameWorld_3d.cpp" />
 		<Unit filename="tests/EntityComponentManager/EntityComponentManagerTests.cpp">
 			<Option target="Testing" />
 		</Unit>

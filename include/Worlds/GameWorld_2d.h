@@ -3,7 +3,7 @@
 #include <time.h>
 
 #include "BaseWorld.h"
-#include "GraphicsSystem.h"
+#include "GraphicsSystem_2dSdl.h"
 #include "InputSystem.h"
 #include "SystemTimer.h"
 #include "PhysicsEngine.h"
@@ -11,15 +11,15 @@
 #include "BucketTree.h"
 #include <memory>
 
-class GameWorld : public BaseWorld
+class GameWorld_2d : public BaseWorld
 {
     public:
-        GameWorld();
-        virtual ~GameWorld();
+        GameWorld_2d();
+        virtual ~GameWorld_2d();
         virtual bool Process();
 
     private:
-        GraphicsSystem _graphicsSystem;
+        GraphicsSystem_2dSdl _graphicsSystem;
         InputSystem _inputSystem;
         SGE_Physics::PhysicsEngine _physicsEngine;
         ActionSystem _actionSystem;

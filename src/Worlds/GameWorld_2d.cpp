@@ -1,4 +1,4 @@
-#include "GameWorld.h"
+#include "GameWorld_2d.h"
 #include "InputState.h"
 #include <stdio.h>
 #include <time.h>
@@ -19,11 +19,9 @@
 #include <iostream>
 
 
-GameWorld::GameWorld() : BaseWorld()
+GameWorld_2d::GameWorld_2d() : BaseWorld()
 {
     SGE_Math::RandomNumberGenerator::Instance().Seed(3);
-
-    _graphicsSystem.DrawHitboxes = true;
 
     _cycleClock = clock();
 
@@ -86,12 +84,12 @@ GameWorld::GameWorld() : BaseWorld()
 //    loader.LoadLevel("room_001", entityComponentManager);
 }
 
-GameWorld::~GameWorld()
+GameWorld_2d::~GameWorld_2d()
 {
     _bucketTree.reset();
 }
 
-bool GameWorld::Process(){
+bool GameWorld_2d::Process(){
 
     SGE_Physics::BucketTree& bt = *_bucketTree.get();
 

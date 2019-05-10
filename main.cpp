@@ -5,7 +5,8 @@
 #include <exception>
 #include <iostream>
 
-#include "Worlds/GameWorld.h"
+#include "Worlds/GameWorld_2d.h"
+#include "Worlds/GameWorld_3d.h"
 #include "ThreadPool.h"
 
 #include "FixedPointInt.h"
@@ -30,11 +31,11 @@ int main( int argc, char* args[] )
         return 0;
     }
 
-    GameWorld gameWorld;
+
+    //GameWorld_2d gameWorld;
+    GameWorld_3d gameWorld;
 
     while(gameWorld.Process()){}
-
-
 
     SDL_Quit();
 
