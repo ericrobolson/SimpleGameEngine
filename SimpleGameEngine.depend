@@ -3559,22 +3559,23 @@
 
 1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basecomponent.h
 
-1553306614 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
+1557460764 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
 	<exception>
 	<iostream>
-	"Worlds/GameWorld.h"
+	"Worlds/GameWorld_2d.h"
+	"Worlds/GameWorld_3d.h"
 	"ThreadPool.h"
 	"FixedPointInt.h"
 	"catch.hpp"
 	<iostream>
 
-1553740153 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
+1557460162 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld.h
 	<time.h>
 	"BaseWorld.h"
-	"GraphicsSystem.h"
+	"GraphicsSystem_2dSdl.h"
 	"InputSystem.h"
 	"SystemTimer.h"
 	"PhysicsEngine.h"
@@ -3582,7 +3583,7 @@
 	"BucketTree.h"
 	<memory>
 
-1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
+1557460725 c:\users\ericr\dev\simplegameengine\simplegameengine\include\baseworld.h
 	"EntityComponentManager.h"
 
 1551286292 c:\users\ericr\dev\simplegameengine\simplegameengine\include\entitycomponentmanager.h
@@ -3596,12 +3597,13 @@
 	<thread>
 	<mutex>
 
-1553526195 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem.h
+1557460007 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem.h
 	<SDL.h>
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 	"BucketTree.h"
 	<mutex>
+	<vector>
 
 1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basesystem.h
 	"EntityComponentManager.h"
@@ -3838,7 +3840,7 @@
 	"EVector.h"
 	"Aabb.h"
 
-1554477176 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
+1557459027 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\inputsystem.cpp
 	<SDL.h>
 	"InputSystem.h"
 	"InputState.h"
@@ -3850,6 +3852,8 @@
 	<future>
 	<fstream>
 	"StringOperations.h"
+	"PlayerComponent.h"
+	"ActorComponent.h"
 
 1550715594 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\movementsystem.cpp
 	<list>
@@ -3891,7 +3895,7 @@
 	"SystemTimer.h"
 	<time.h>
 
-1554492731 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
+1557459496 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld.cpp
 	"GameWorld.h"
 	"InputState.h"
 	<stdio.h>
@@ -4223,7 +4227,7 @@
 1550976616 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\physics\coordinate.cpp
 	"Coordinate.h"
 
-1553875381 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
+1557459098 source:c:\users\ericr\dev\simplegameengine\simplegameengine\tests\physics\collisiondectectortests.cpp
 	"catch.hpp"
 	"CollisionDectector.h"
 	"Aabb.h"
@@ -4506,6 +4510,82 @@
 1555077489 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\components\actorcomponent.cpp
 	"ActorComponent.h"
 
-1555078040 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\actorcomponent.h
+1557459027 c:\users\ericr\dev\simplegameengine\simplegameengine\include\components\actorcomponent.h
 	"BaseComponent.h"
+
+1557460007 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_2dsdl.h
+	<SDL.h>
+	"BaseSystem.h"
+	"EntityComponentManager.h"
+	"BucketTree.h"
+	<mutex>
+	<vector>
+
+1557460076 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_2dsdl.cpp
+	<SDL.h>
+	<list>
+	"GraphicsSystem_2dSdl.h"
+	"EntityComponentManager.h"
+	<math.h>
+	<future>
+	"ThreadPool.h"
+	"InputState.h"
+	<mutex>
+	"GameState.h"
+	"PhysicsBodyComponent.h"
+	"Debugger.h"
+	"EVector.h"
+	"Aabb.h"
+
+1557460212 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_2d.cpp
+	"GameWorld_2d.h"
+	"InputState.h"
+	<stdio.h>
+	<time.h>
+	<thread>
+	<memory>
+	<PlayerAssemblage.h>
+	"GameState.h"
+	"LevelLoader.h"
+	"SystemTimer.h"
+	"Debugger.h"
+	"BucketTree.h"
+	"Aabb.h"
+	"RandomNumberGenerator.h"
+	"PhysicsBodyComponent.h"
+	"InputState.h"
+	<iostream>
+
+1557460184 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld_2d.h
+	<time.h>
+	"BaseWorld.h"
+	"GraphicsSystem_2dSdl.h"
+	"InputSystem.h"
+	"SystemTimer.h"
+	"PhysicsEngine.h"
+	"ActionSystem.h"
+	"BucketTree.h"
+	<memory>
+
+1557461215 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_3d.cpp
+	"GraphicsSystem_3d.h"
+	"Debugger.h"
+
+1557461040 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
+	"EntityComponentManager.h"
+	"BaseSystem.h"
+
+1557461378 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_3d.cpp
+	"GameWorld_3d.h"
+	"RandomNumberGenerator.h"
+	"InputState.h"
+
+1557460555 c:\users\ericr\dev\simplegameengine\simplegameengine\include\worlds\gameworld_3d.h
+	<time.h>
+	"BaseWorld.h"
+	"InputSystem.h"
+	"SystemTimer.h"
+	"ActionSystem.h"
+	"GraphicsSystem_3d.h"
+	<memory>
 
