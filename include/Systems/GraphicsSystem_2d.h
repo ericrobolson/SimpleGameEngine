@@ -8,11 +8,11 @@
 
 #include <vector>
 
-class GraphicsSystem_2dSdl : public BaseSystem
+class GraphicsSystem_2d : public BaseSystem
 {
     public:
-        GraphicsSystem_2dSdl();
-        virtual ~GraphicsSystem_2dSdl();
+        GraphicsSystem_2d();
+        virtual ~GraphicsSystem_2d();
         bool Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree);
     private:
         void ProcessJob(ECS::EntityComponentManager &ecs, int entityId);

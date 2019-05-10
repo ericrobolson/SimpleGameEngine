@@ -32,8 +32,8 @@ int main( int argc, char* args[] )
     }
 
 
-    //GameWorld_2d gameWorld;
-    GameWorld_3d gameWorld;
+    GameWorld_2d gameWorld;
+    //GameWorld_3d gameWorld;
 
     while(gameWorld.Process()){}
 

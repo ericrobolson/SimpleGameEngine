@@ -178,6 +178,8 @@ bool InputSystem::Process(ECS::EntityComponentManager &ecs){
         SetAction(InputState::Instance().ButtonRightIsPressed, actorComponent->LeftStick.RightButton);
 
         SetAction(InputState::Instance().Button1IsPressed, actorComponent->PrimaryButtons.AButton);
+        SetAction(InputState::Instance().Button2IsPressed, actorComponent->PrimaryButtons.RTrigger);
+
     }
 
     return !_exit;

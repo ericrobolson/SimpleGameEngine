@@ -1,14 +1,12 @@
 #ifndef GRAPHICSSYSTEM_3D_H
 #define GRAPHICSSYSTEM_3D_H
 
-
 #include "EntityComponentManager.h"
 #include "BaseSystem.h"
-#define GL_GLEXT_PROTOTYPES
-
 
 #include <SDL.h>
-#include <SDL_opengl.h>
+//#include <SDL_opengl.h>
+//#include <SDL_opengles2.h>
 
 class GraphicsSystem_3d
 {
@@ -17,11 +15,7 @@ class GraphicsSystem_3d
         virtual ~GraphicsSystem_3d();
         bool Process(ECS::EntityComponentManager &ecs);
     private:
-        void DrawScrene();
-
-        SDL_Window* _sdlWindow;
-        SDL_GLContext* _glContext;
-        GLuint _vao, _vbo;
+        void DrawScene();
 
 };
 
