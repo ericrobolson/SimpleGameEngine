@@ -4571,9 +4571,11 @@
 	"GraphicsSystem_3d.h"
 	"Debugger.h"
 
-1557461040 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
+1557470747 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
 	"EntityComponentManager.h"
 	"BaseSystem.h"
+	<SDL.h>
+	<SDL_opengl.h>
 
 1557461378 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_3d.cpp
 	"GameWorld_3d.h"
@@ -4588,4 +4590,20 @@
 	"ActionSystem.h"
 	"GraphicsSystem_3d.h"
 	<memory>
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_opengl.h
+	"SDL_config.h"
+	"gl_mangle.h"
+	<windows.h>
+	"SDL_opengl_glext.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_opengl_glext.h
+	<windows.h>
+	<stddef.h>
+	<inttypes.h>
+	<inttypes.h>
+	<inttypes.h>
+	<stdint.h>
+	<stdint.h>
+	<inttypes.h>
 
