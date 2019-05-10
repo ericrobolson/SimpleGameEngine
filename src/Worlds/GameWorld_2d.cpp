@@ -29,10 +29,10 @@ GameWorld_2d::GameWorld_2d() : BaseWorld()
     minCoordinate.X = 0.0_fp;
     minCoordinate.Y = 0.0_fp;
 
-    maxCoordinate.X = 900.0_fp;
-    maxCoordinate.Y = 900.0_fp;
+    maxCoordinate.X = 2560.0_fp;
+    maxCoordinate.Y = 1440.0_fp;
 
-    int levels = 3;
+    int levels = 4;
 
     _bucketTree = std::make_shared<SGE_Physics::BucketTree>(levels, minCoordinate, maxCoordinate);
 
@@ -90,52 +90,40 @@ GameWorld_2d::~GameWorld_2d()
 }
 
 bool GameWorld_2d::Process(){
-
     SGE_Physics::BucketTree& bt = *_bucketTree.get();
 
+    // Run physics
+    if (_physicsTimer.CanRun(_physicsHz)){
+        _physicsEngine.UpdatePhysics(_systemHz, entityComponentManager, bt);
+        _physicsTimer.ResetClock();
+    }
 
-    bool moveKeyPressed = InputState::Instance().ButtonDownIsPressed
-        || InputState::Instance().ButtonUpIsPressed
-        || InputState::Instance().ButtonLeftIsPressed
-        || InputState::Instance().ButtonRightIsPressed
-        ;
+    // Input, output, actions and else should be ran at the same HZ. Otherwise, you may end up slightly out of sync on each player's machine.
+    if (_systemTimer.CanRun(_systemHz)){
+        // Input
+        _inputSystem.Process(entityComponentManager);
+        _physicsEngine.UpdatePhysics(_systemHz, entityComponentManager, bt);
 
-    if (InputState::Instance().AnyKeyPressed()){
-        // Physics loop
-        FixedPointInt physicsHz = 120.0_fp;
-        if (_physicsTimer.CanRun(physicsHz)){
+        // Network I/O
+        _networkSystem.Process(entityComponentManager);
 
-            _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
+        // AI / Actor input resolution
+        // todo
 
-            _physicsTimer.ResetClock();
-        }
-    }else{
-        // move physics slowly
-        // Physics loop
-        FixedPointInt physicsHz = 15.0_fp;
-        if (_physicsTimer.CanRun(physicsHz)){
+        // Resolve actions, collisions and resolutions
+        _actionSystem.Process(entityComponentManager);
 
-            _physicsEngine.UpdatePhysics(physicsHz, entityComponentManager, bt);
-
-            _physicsTimer.ResetClock();
-        }
+        _systemTimer.ResetClock();
     }
 
 
+    // GFX loop
+    if (_gfxTimer.CanRun(_gfxHz)){
+        // todo: Interpolate graphics with physics engine?
 
-    // todo: Interpolate graphics with physics engine?
+        _graphicsSystem.Process(entityComponentManager, bt);
 
-    if (_systemTimer.CanRun(60.0_fp)){
-        // Input
-        _inputSystem.Process(entityComponentManager);
-        _actionSystem.Process(entityComponentManager);
-
-        // Graphics
-        // this smells...
-        bool finishedProcessing = true;
-        while(_graphicsSystem.Process(entityComponentManager, bt) != finishedProcessing);
-
-        _systemTimer.ResetClock();
+        _gfxTimer.ResetClock();
     }
 
     if (InputState::Instance().Exit == true){

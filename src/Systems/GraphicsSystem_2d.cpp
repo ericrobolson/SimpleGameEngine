@@ -1,6 +1,6 @@
 #include <SDL.h>
 #include <list>
-#include "GraphicsSystem_2dSdl.h"
+#include "GraphicsSystem_2d.h"
 #include "EntityComponentManager.h"
 #include <math.h>
 #include <future>
@@ -12,12 +12,13 @@
 #include "Debugger.h"
 #include "EVector.h"
 #include "Aabb.h"
-const int SCREEN_WIDTH = 860;
+const int SCREEN_WIDTH = 2560;
+const int SCREEN_HEIGHT = 1440;
+
 const int SCREEN_BITSPERPIXEL = 32;
-const int SCREEN_HEIGHT = 640;
 
 // Initialize SDL
-GraphicsSystem_2dSdl::GraphicsSystem_2dSdl() : BaseSystem()
+GraphicsSystem_2d::GraphicsSystem_2d() : BaseSystem()
 {
     std::unique_lock<std::mutex> lock(_resourceMutex);
     if (SDL_WasInit(SDL_INIT_VIDEO) == 0){
@@ -28,13 +29,13 @@ GraphicsSystem_2dSdl::GraphicsSystem_2dSdl() : BaseSystem()
     _window = nullptr;
     _renderer = nullptr;
 
-    _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN );
+    _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP );
     _renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 
 
-void GraphicsSystem_2dSdl::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
+void GraphicsSystem_2d::ProcessJob(ECS::EntityComponentManager &ecs, int entityId){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
     /*
@@ -125,9 +126,13 @@ void DrawBucketTree(SGE_Physics::BucketTree& bucketTree, SDL_Renderer* renderer)
 
 }
 
+// For interpolation:
+// must be variable
+// e.g. support interpolation at any frame rate higher than the physics engine one. From physicsHz + 1 to 144hz as that's max supported.
+// e.g. support interpolation at any frame rate higher than the physics engine one. From physicsHz + 1 to 144hz as that's max supported.
 
 
-bool GraphicsSystem_2dSdl::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
+bool GraphicsSystem_2d::Process(ECS::EntityComponentManager &ecs, SGE_Physics::BucketTree& bucketTree){
     std::unique_lock<std::mutex> lock(_resourceMutex);
 
     SDL_SetRenderDrawColor(_renderer, 34,139,34, 255);  // Dark green.
@@ -187,7 +192,7 @@ bool GraphicsSystem_2dSdl::Process(ECS::EntityComponentManager &ecs, SGE_Physics
     return true;
 }
 
-GraphicsSystem_2dSdl::~GraphicsSystem_2dSdl()
+GraphicsSystem_2d::~GraphicsSystem_2d()
 {
     std::unique_lock<std::mutex> lock(_resourceMutex);
     // Cleanup SDL

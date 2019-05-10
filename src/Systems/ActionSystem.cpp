@@ -33,7 +33,7 @@ bool ActionSystem::Process(ECS::EntityComponentManager &ecs){
 
     // do boundary checks, e.g. if moving faster than X speed left, where X is the max normal move speed, don't do anything
 
-    FixedPointInt baseMoveSpeed = 0.02_fp * 2.0_fp; // should be even, as it's divided by 2
+    FixedPointInt baseMoveSpeed = 0.08_fp * 2.0_fp; // should be even, as it's divided by 2
     FixedPointInt baseMaxMoveSpeed = baseMoveSpeed * 40.0_fp;
     FixedPointInt baseMoveReduction = 4.0_fp;
 
@@ -72,6 +72,31 @@ bool ActionSystem::Process(ECS::EntityComponentManager &ecs){
 
         if (actorComponent->LeftStick.DownButton == ActorComponent::ButtonState::Pressed){
             ApplyMoveSpeed(physicsComponent->Body.Velocity.Y, maxMoveSpeed, moveSpeed);
+        }
+
+        if (actorComponent->PrimaryButtons.RTrigger == ActorComponent::ButtonState::Pressed){
+
+            std::shared_ptr<int> entityId = ecs.AddEntity();
+
+            if (entityId != nullptr){
+            int id = *entityId.get();
+
+            PhysicsBodyComponent& body = ecs.AddComponent<PhysicsBodyComponent>(id);
+
+            SGE_Physics::Aabb aabb;
+            aabb.HalfHeight = 3.5_fp;
+            aabb.HalfWidth = 3.5_fp;
+
+            EVector position;
+
+
+
+            position.X.Value = InputState::Instance().CursorX * 100;
+            position.Y.Value = InputState::Instance().CursorY * 100;
+
+            body.Body.Initialize(SGE_Physics::MaterialData::MaterialType::Rock, position, aabb);
+        }
+
         }
     }
 

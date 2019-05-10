@@ -187,7 +187,7 @@
 		<Unit filename="include/State/GameState.h" />
 		<Unit filename="include/State/InputState.h" />
 		<Unit filename="include/Systems/ActionSystem.h" />
-		<Unit filename="include/Systems/GraphicsSystem_2dSdl.h" />
+		<Unit filename="include/Systems/GraphicsSystem_2d.h" />
 		<Unit filename="include/Systems/GraphicsSystem_3d.h" />
 		<Unit filename="include/Systems/InputSystem.h" />
 		<Unit filename="include/Systems/NetworkSystem.h" />
@@ -239,7 +239,7 @@
 		<Unit filename="src/State/GameState.cpp" />
 		<Unit filename="src/State/InputState.cpp" />
 		<Unit filename="src/Systems/ActionSystem.cpp" />
-		<Unit filename="src/Systems/GraphicsSystem_2dSdl.cpp" />
+		<Unit filename="src/Systems/GraphicsSystem_2d.cpp" />
 		<Unit filename="src/Systems/GraphicsSystem_3d.cpp" />
 		<Unit filename="src/Systems/InputSystem.cpp" />
 		<Unit filename="src/Systems/NetworkSystem.cpp" />
