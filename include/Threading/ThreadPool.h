@@ -76,7 +76,7 @@ class ThreadPool {
              //   threads = 1;
             }
 
-            threads = 1; // todo: right now there's some sort of issue when threads > 1
+           // threads = 1; // todo: right now there's some sort of issue when threads > 1
 
             static ThreadPool *instance = new ThreadPool(threads);
             return *instance;

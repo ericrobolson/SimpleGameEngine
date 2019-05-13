@@ -3,6 +3,8 @@
 
 #include "EntityComponentManager.h"
 #include "BaseSystem.h"
+#include <mutex>
+
 
 #include <SDL.h>
 //#include <SDL_opengl.h>
@@ -16,6 +18,11 @@ class GraphicsSystem_3d
         bool Process(ECS::EntityComponentManager &ecs);
     private:
         void DrawScene();
+
+        std::mutex _resourceMutex;
+        SDL_Window* _window;
+        SDL_Renderer* _renderer;  // Holds rendering surface properties.
+
 
 };
 

@@ -147,12 +147,15 @@
 			<Add option="-std=c++1z" />
 			<Add directory="C:/TDM-GCC-32/include" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/include/SDL2" />
+			<Add directory="C:/VulkanSDK/1.1.106.0/Include" />
 		</Compiler>
 		<Linker>
-			<Add option="-lmingw32 -lSDL2main -lSDL2 -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid -static-libgcc" />
+			<Add option="-lmingw32 -lvulkan-1 -lSDL2main -lSDL2  -lm -ldinput8 -ldxguid -ldxerr8 -luser32 -lgdi32 -lwinmm -limm32 -lole32 -loleaut32 -lshell32 -lversion -luuid -static-libgcc -lgdi32" />
 			<Add directory="C:/TDM-GCC-32/lib" />
 			<Add directory="C:/mingw_dev_lib32bit/i686-w64-mingw32/lib" />
+			<Add directory="C:/VulkanSDK/1.1.106.0/Lib32" />
 		</Linker>
+		<Unit filename="README.txt.txt" />
 		<Unit filename="include/Assemblages/PlayerAssemblage.h" />
 		<Unit filename="include/Audio/Operator.h" />
 		<Unit filename="include/BaseComponent.h" />
