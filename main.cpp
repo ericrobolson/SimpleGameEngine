@@ -10,6 +10,7 @@
 #include "ThreadPool.h"
 
 #include "FixedPointInt.h"
+#include <string>
 
 using namespace std;
 
@@ -19,11 +20,18 @@ using namespace std;
 #include <iostream>
 #else
 
+
+
 int main( int argc, char* args[] )
 {
+
+    // debugging
+    //
+
     ThreadPool::Instance();
 
     cout << 1.21_fp << endl;
+
 
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0){
@@ -32,8 +40,8 @@ int main( int argc, char* args[] )
     }
 
 
-    GameWorld_2d gameWorld;
-    //GameWorld_3d gameWorld;
+    //GameWorld_2d gameWorld;
+    GameWorld_3d gameWorld;
 
     while(gameWorld.Process()){}
 

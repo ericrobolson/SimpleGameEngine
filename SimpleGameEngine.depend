@@ -3559,7 +3559,7 @@
 
 1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\basecomponent.h
 
-1557475605 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
+1557709928 source:c:\users\ericr\dev\simplegameengine\simplegameengine\main.cpp
 	<SDL.h>
 	<chrono>
 	<thread>
@@ -3569,6 +3569,7 @@
 	"Worlds/GameWorld_3d.h"
 	"ThreadPool.h"
 	"FixedPointInt.h"
+	<string>
 	"catch.hpp"
 	<iostream>
 
@@ -3630,7 +3631,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1548999917 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\threadpool.h
+1557504785 c:\users\ericr\dev\simplegameengine\simplegameengine\include\threading\threadpool.h
 	<functional>
 	<future>
 	<mutex>
@@ -4494,7 +4495,7 @@
 	"BaseSystem.h"
 	"EntityComponentManager.h"
 
-1557481812 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\actionsystem.cpp
+1557482589 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\actionsystem.cpp
 	"ActionSystem.h"
 	"InputState.h"
 	<memory>
@@ -4568,13 +4569,28 @@
 	"NetworkSystem.h"
 	<memory>
 
-1557479402 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_3d.cpp
+1557711093 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_3d.cpp
 	"GraphicsSystem_3d.h"
 	"Debugger.h"
+	<SDL.h>
+	<list>
+	"EntityComponentManager.h"
+	<math.h>
+	<future>
+	"ThreadPool.h"
+	"InputState.h"
+	<mutex>
+	"GameState.h"
+	"PhysicsBodyComponent.h"
+	"EVector.h"
+	"Aabb.h"
+	<SDL_vulkan.h>
+	<vulkan/vulkan.h>
 
-1557479466 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
+1557710186 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
 	"EntityComponentManager.h"
 	"BaseSystem.h"
+	<mutex>
 	<SDL.h>
 
 1557461378 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_3d.cpp
@@ -4638,7 +4654,7 @@
 	<mutex>
 	<vector>
 
-1557482408 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_2d.cpp
+1557538814 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_2d.cpp
 	<SDL.h>
 	<list>
 	"GraphicsSystem_2d.h"
@@ -4653,4 +4669,64 @@
 	"Debugger.h"
 	"EVector.h"
 	"Aabb.h"
+
+1519925811 c:\mingw_dev_lib32bit\i686-w64-mingw32\include\sdl2\sdl_vulkan.h
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan.h
+	"vk_platform.h"
+	"vulkan_core.h"
+	"vulkan_android.h"
+	<zircon/types.h>
+	"vulkan_fuchsia.h"
+	"vulkan_ios.h"
+	"vulkan_macos.h"
+	"vulkan_metal.h"
+	"vulkan_vi.h"
+	<wayland-client.h>
+	"vulkan_wayland.h"
+	<windows.h>
+	"vulkan_win32.h"
+	<xcb/xcb.h>
+	"vulkan_xcb.h"
+	<X11/Xlib.h>
+	"vulkan_xlib.h"
+	<X11/Xlib.h>
+	<X11/extensions/Xrandr.h>
+	"vulkan_xlib_xrandr.h"
+	<ggp_c/vulkan_types.h>
+	"vulkan_ggp.h"
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vk_platform.h
+	<stddef.h>
+	<stdint.h>
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_core.h
+	"vk_platform.h"
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_android.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_fuchsia.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_ios.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_macos.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_metal.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_vi.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_wayland.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_win32.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_xcb.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_xlib.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_xlib_xrandr.h
+
+1555449914 c:\vulkansdk\1.1.106.0\include\vulkan\vulkan_ggp.h
 
