@@ -15,33 +15,18 @@
 #include <SDL_vulkan.h>
 #include <vulkan/vulkan.h>
 
-const int SCREEN_WIDTH = 2560;
-const int SCREEN_HEIGHT = 1440;
+const int SCREEN_WIDTH = 1920;
+const int SCREEN_HEIGHT = 1080;
 
 const int SCREEN_BITSPERPIXEL = 32;
 
 
-GraphicsSystem_3d::GraphicsSystem_3d()
-{
-    std::unique_lock<std::mutex> lock(_resourceMutex);
-    if (SDL_WasInit(SDL_INIT_VIDEO) == 0){
-        SDL_Init(SDL_INIT_VIDEO);
-    }
-
-    // Possibly move the renderer & window out to a static object, so there's only one? but then, why would we need more than one graphics system?
-    _window = nullptr;
-    _renderer = nullptr;
-
-    _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP | SDL_WINDOW_VULKAN );
-
-
-
-
+void VulkanInit(SDL_Window* window, VkInstance& instance){
     // init settings n stuff; https://www.gamedev.net/forums/topic/699117-vulkan-with-sdl2-getting-started/?do=findComment&comment=5391959
     uint32_t extensionCount;
-    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, nullptr);
+    SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, nullptr);
     std::vector<const char *> extensionNames(extensionCount);
-    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, extensionNames.data());
+    SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, extensionNames.data());
 
     VkApplicationInfo appInfo {};
     // TODO: fill this out
@@ -71,7 +56,6 @@ GraphicsSystem_3d::GraphicsSystem_3d()
     info.ppEnabledExtensionNames = extensionNames.data();
 
     VkResult res;
-    VkInstance instance;
     res = vkCreateInstance(&info, nullptr, &instance);
     if (res != VK_SUCCESS) {
       // do some error checking
@@ -84,14 +68,39 @@ GraphicsSystem_3d::GraphicsSystem_3d()
 
     VkSurfaceKHR surface;
 
-    SDL_Vulkan_CreateSurface(_window, instance, &surface);
+    SDL_Vulkan_CreateSurface(window, instance, &surface);
+}
 
-    //renderer = SDL_CreateRenderer(_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 
+
+GraphicsSystem_3d::GraphicsSystem_3d()
+{
+    std::unique_lock<std::mutex> lock(_resourceMutex);
+
+    // Initialize SDL
+    if (SDL_WasInit(SDL_INIT_VIDEO) == 0){
+        SDL_Init(SDL_INIT_VIDEO);
+    }
+
+    _window = nullptr;
+    _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_VULKAN );
+
+
+    VulkanInit(_window, _instance);
 }
 
 GraphicsSystem_3d::~GraphicsSystem_3d()
 {
+    std::unique_lock<std::mutex> lock(_resourceMutex);
+
+    // Cleanup Vulkan
+    vkDestroyInstance(_instance, nullptr);
+
+    // Cleanup SDL
+    if (_window != nullptr){
+        SDL_DestroyWindow(_window);
+        _window = nullptr;
+    }
 }
 
 
@@ -100,10 +109,13 @@ bool GraphicsSystem_3d::Process(ECS::EntityComponentManager& ecs){
     SGE::Debugger::Instance().WriteMessage("yo");
     DrawScene();
     return true;
-
 }
 
 
 void GraphicsSystem_3d::DrawScene(){
+    std::unique_lock<std::mutex> lock(_resourceMutex);
 
+    VkSurfaceKHR surface;
+
+    SDL_Vulkan_CreateSurface(_window, _instance, &surface);
 }
