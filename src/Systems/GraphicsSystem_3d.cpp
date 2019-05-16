@@ -22,49 +22,44 @@ const int SCREEN_BITSPERPIXEL = 32;
 
 
 void VulkanInit(SDL_Window* window, VkInstance& instance){
-    // init settings n stuff; https://www.gamedev.net/forums/topic/699117-vulkan-with-sdl2-getting-started/?do=findComment&comment=5391959
+    // Application info
+    VkApplicationInfo appInfo = {
+    .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
+    .pNext = NULL,
+    .pApplicationName = "SGE",
+    .applicationVersion = VK_MAKE_VERSION(1,0,0),
+    .pEngineName = "SGE",
+    .engineVersion = VK_MAKE_VERSION(1,0,0),
+    .apiVersion = VK_API_VERSION_1_0,
+    };
+
+    // Vulkan create info
+    VkInstanceCreateInfo createInfo  {};
+    createInfo.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
+    createInfo.pApplicationInfo = &appInfo;
+
+    // Get extensions
     uint32_t extensionCount;
     SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, nullptr);
     std::vector<const char *> extensionNames(extensionCount);
     SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, extensionNames.data());
 
-    VkApplicationInfo appInfo {};
-    // TODO: fill this out
+    createInfo .enabledExtensionCount = extensionNames.size();
+    createInfo .ppEnabledExtensionNames = extensionNames.data();
 
+    // Get layers
     std::vector<const char *> layerNames {};
-    // uncomment below if you want to use validation layers
-    // layerNames.push_back("VK_LAYER_LUNARG_standard_validation");
+    createInfo .enabledLayerCount = layerNames.size();
 
-    // clean up?
-    VkApplicationInfo app = {
-    .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
-    .pNext = NULL,
-    .pApplicationName = "SGE",
-    .applicationVersion = 0,
-    .pEngineName = "SGE",
-    .engineVersion = 0,
-    .apiVersion = VK_API_VERSION_1_0,
-    };
-
-
-    VkInstanceCreateInfo info {};
-    info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-    info.pApplicationInfo = &appInfo;
-    info.enabledLayerCount = layerNames.size();
-    info.ppEnabledLayerNames = layerNames.data();
-    info.enabledExtensionCount = extensionNames.size();
-    info.ppEnabledExtensionNames = extensionNames.data();
-
-    VkResult res;
-    res = vkCreateInstance(&info, nullptr, &instance);
-    if (res != VK_SUCCESS) {
-      // do some error checking
+    if (layerNames.empty() == false){
+        createInfo .ppEnabledLayerNames = layerNames.data();
     }
 
-    // select physical device:
-  //  VkPhysicalDevice *physical_devices = malloc(sizeof(VkPhysicalDevice) * gpu_count);
-  //  err = vkEnumeratePhysicalDevices(demo->inst, &gpu_count, physical_devices);
-  //  demo->gpu = physical_devices[0];
+    // Create instance
+    if (vkCreateInstance(&createInfo , nullptr, &instance) != VK_SUCCESS) {
+      // do some error checking
+      throw "Failed to create Vulkan instance.";
+    }
 
     VkSurfaceKHR surface;
 
