@@ -4569,7 +4569,7 @@
 	"NetworkSystem.h"
 	<memory>
 
-1557711093 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_3d.cpp
+1557980741 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\systems\graphicssystem_3d.cpp
 	"GraphicsSystem_3d.h"
 	"Debugger.h"
 	<SDL.h>
@@ -4587,10 +4587,11 @@
 	<SDL_vulkan.h>
 	<vulkan/vulkan.h>
 
-1557710186 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
+1557845405 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
 	"EntityComponentManager.h"
 	"BaseSystem.h"
 	<mutex>
+	<vulkan/vulkan.h>
 	<SDL.h>
 
 1557461378 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_3d.cpp

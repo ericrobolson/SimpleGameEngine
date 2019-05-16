@@ -4,6 +4,7 @@
 #include "EntityComponentManager.h"
 #include "BaseSystem.h"
 #include <mutex>
+#include <vulkan/vulkan.h>
 
 
 #include <SDL.h>
@@ -21,7 +22,7 @@ class GraphicsSystem_3d
 
         std::mutex _resourceMutex;
         SDL_Window* _window;
-        SDL_Renderer* _renderer;  // Holds rendering surface properties.
+        VkInstance _instance;
 
 
 };
