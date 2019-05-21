@@ -30,8 +30,13 @@ int main( int argc, char* args[] )
 
     ThreadPool::Instance();
 
-    cout << 1.21_fp << endl;
 
+
+    #ifdef NDEBUG
+        cout << "NotDebug" << endl;
+    #else
+        cout << "Debug" << endl;
+    #endif
 
 
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0){

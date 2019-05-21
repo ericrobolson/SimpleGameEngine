@@ -15,13 +15,30 @@
 #include <SDL_vulkan.h>
 #include <vulkan/vulkan.h>
 
+
+#ifdef NDEBUG
+    const bool enableValidationLayers = false;
+#else
+    const bool enableValidationLayers = true;
+#endif
+
+#define VK vulkan;
+
 const int SCREEN_WIDTH = 1920;
 const int SCREEN_HEIGHT = 1080;
 
 const int SCREEN_BITSPERPIXEL = 32;
 
 
-void VulkanInit(SDL_Window* window, VkInstance& instance){
+
+
+void GraphicsSystem_3d::VulkanInit(){
+    if (enableValidationLayers && !checkValidationLayerSupport()){
+        throw "VK: validation layers requested, but not available.";
+    }
+
+
+
     // Application info
     VkApplicationInfo appInfo = {
     .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
@@ -40,9 +57,9 @@ void VulkanInit(SDL_Window* window, VkInstance& instance){
 
     // Get extensions
     uint32_t extensionCount;
-    SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, nullptr);
+    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, nullptr);
     std::vector<const char *> extensionNames(extensionCount);
-    SDL_Vulkan_GetInstanceExtensions(window, &extensionCount, extensionNames.data());
+    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, extensionNames.data());
 
     createInfo .enabledExtensionCount = extensionNames.size();
     createInfo .ppEnabledExtensionNames = extensionNames.data();
@@ -56,14 +73,14 @@ void VulkanInit(SDL_Window* window, VkInstance& instance){
     }
 
     // Create instance
-    if (vkCreateInstance(&createInfo , nullptr, &instance) != VK_SUCCESS) {
+    if (vkCreateInstance(&createInfo , nullptr, &_instance) != VK_SUCCESS) {
       // do some error checking
-      throw "Failed to create Vulkan instance.";
+      throw "VK: Failed to create Vulkan instance.";
     }
 
     VkSurfaceKHR surface;
 
-    SDL_Vulkan_CreateSurface(window, instance, &surface);
+    SDL_Vulkan_CreateSurface(_window, _instance, &surface);
 }
 
 
@@ -81,7 +98,7 @@ GraphicsSystem_3d::GraphicsSystem_3d()
     _window = SDL_CreateWindow( "Game", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_VULKAN );
 
 
-    VulkanInit(_window, _instance);
+    VulkanInit();
 }
 
 GraphicsSystem_3d::~GraphicsSystem_3d()
@@ -101,7 +118,6 @@ GraphicsSystem_3d::~GraphicsSystem_3d()
 
 
 bool GraphicsSystem_3d::Process(ECS::EntityComponentManager& ecs){
-    SGE::Debugger::Instance().WriteMessage("yo");
     DrawScene();
     return true;
 }
@@ -113,4 +129,30 @@ void GraphicsSystem_3d::DrawScene(){
     VkSurfaceKHR surface;
 
     SDL_Vulkan_CreateSurface(_window, _instance, &surface);
+}
+
+bool GraphicsSystem_3d::checkValidationLayerSupport(){
+    uint32_t layerCount;
+    vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+
+    std::vector<VkLayerProperties> availableLayers(layerCount);
+    vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+
+    for (const char* layerName : availableLayers.data()) {
+        bool layerFound = false;
+
+        for (const auto& layerProperties : availableLayers) {
+            if (strcmp(layerName, layerProperties.layerName) == 0) {
+                layerFound = true;
+                break;
+            }
+        }
+
+        if (!layerFound) {
+            return false;
+        }
+    }
+
+    return true;
+
 }

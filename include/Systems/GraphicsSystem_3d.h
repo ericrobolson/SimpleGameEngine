@@ -20,6 +20,10 @@ class GraphicsSystem_3d
     private:
         void DrawScene();
 
+        bool checkValidationLayerSupport();
+        void VulkanInit();
+
+
         std::mutex _resourceMutex;
         SDL_Window* _window;
         VkInstance _instance;
