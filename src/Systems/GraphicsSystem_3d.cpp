@@ -14,6 +14,7 @@
 #include "Aabb.h"
 #include <SDL_vulkan.h>
 #include <vulkan/vulkan.h>
+#include <cstring>
 
 
 #ifdef NDEBUG
@@ -30,15 +31,21 @@ const int SCREEN_HEIGHT = 1080;
 const int SCREEN_BITSPERPIXEL = 32;
 
 
+std::vector<const char*> GraphicsSystem_3d::getRequiredExtensions() {
+    uint32_t extensionCount;
+    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, nullptr);
+    std::vector<const char *> extensionNames(extensionCount);
+    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, extensionNames.data());
+
+    if (enableValidationLayers) {
+        extensionNames.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
+    }
+
+    return extensionNames;
+}
 
 
 void GraphicsSystem_3d::VulkanInit(){
-    if (enableValidationLayers && !checkValidationLayerSupport()){
-        throw "VK: validation layers requested, but not available.";
-    }
-
-
-
     // Application info
     VkApplicationInfo appInfo = {
     .sType = VK_STRUCTURE_TYPE_APPLICATION_INFO,
@@ -56,11 +63,7 @@ void GraphicsSystem_3d::VulkanInit(){
     createInfo.pApplicationInfo = &appInfo;
 
     // Get extensions
-    uint32_t extensionCount;
-    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, nullptr);
-    std::vector<const char *> extensionNames(extensionCount);
-    SDL_Vulkan_GetInstanceExtensions(_window, &extensionCount, extensionNames.data());
-
+    std::vector<const char*> extensionNames = getRequiredExtensions();
     createInfo .enabledExtensionCount = extensionNames.size();
     createInfo .ppEnabledExtensionNames = extensionNames.data();
 
@@ -68,9 +71,14 @@ void GraphicsSystem_3d::VulkanInit(){
     std::vector<const char *> layerNames {};
     createInfo .enabledLayerCount = layerNames.size();
 
+    if (enableValidationLayers && !checkValidationLayerSupport(layerNames)){
+        throw "VK: validation layers requested, but not available.";
+    }
+
     if (layerNames.empty() == false){
         createInfo .ppEnabledLayerNames = layerNames.data();
     }
+
 
     // Create instance
     if (vkCreateInstance(&createInfo , nullptr, &_instance) != VK_SUCCESS) {
@@ -131,18 +139,52 @@ void GraphicsSystem_3d::DrawScene(){
     SDL_Vulkan_CreateSurface(_window, _instance, &surface);
 }
 
-bool GraphicsSystem_3d::checkValidationLayerSupport(){
+bool AreSame(std::string c1, std::string c2){
+
+    if (c1.size() != c2.size()){
+        return false;
+    }
+
+    std::vector<const char *>::iterator it;
+
+    int length = c1.size();
+
+    for (int i = 0; i < length; i++){
+        if (c1[i] != c2[i]){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+
+
+bool GraphicsSystem_3d::checkValidationLayerSupport(std::vector<const char *> requestedLayers){
+    if (requestedLayers.size() == 0){
+        return true;
+    }
+
     uint32_t layerCount;
     vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
 
     std::vector<VkLayerProperties> availableLayers(layerCount);
     vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
 
-    for (const char* layerName : availableLayers.data()) {
+    //todo: may be an issue here when layers are enabled
+    for (int i =0; i < layerCount; i++){
+        std::string layerName = availableLayers[i].layerName;
+        SGE::Debugger::Instance().WriteMessage(layerName);
+
         bool layerFound = false;
 
-        for (const auto& layerProperties : availableLayers) {
-            if (strcmp(layerName, layerProperties.layerName) == 0) {
+        int requestedLayersCount = requestedLayers.size();
+
+        for (int j = 0; j < requestedLayersCount; j++){
+        std::string actualLayer = requestedLayers[j];
+
+        if (AreSame(layerName, actualLayer) == true) {
                 layerFound = true;
                 break;
             }
@@ -151,6 +193,7 @@ bool GraphicsSystem_3d::checkValidationLayerSupport(){
         if (!layerFound) {
             return false;
         }
+
     }
 
     return true;

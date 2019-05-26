@@ -4538,7 +4538,7 @@
 	"EVector.h"
 	"Aabb.h"
 
-1557482534 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_2d.cpp
+1558539532 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_2d.cpp
 	"GameWorld_2d.h"
 	"InputState.h"
 	<stdio.h>
@@ -4587,11 +4587,13 @@
 	<SDL_vulkan.h>
 	<vulkan/vulkan.h>
 
-1558450725 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
+1558889800 c:\users\ericr\dev\simplegameengine\simplegameengine\include\systems\graphicssystem_3d.h
 	"EntityComponentManager.h"
 	"BaseSystem.h"
 	<mutex>
 	<vulkan/vulkan.h>
+	<vector>
+	<string>
 	<SDL.h>
 
 1557461378 source:c:\users\ericr\dev\simplegameengine\simplegameengine\src\worlds\gameworld_3d.cpp

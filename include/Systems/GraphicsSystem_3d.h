@@ -5,7 +5,8 @@
 #include "BaseSystem.h"
 #include <mutex>
 #include <vulkan/vulkan.h>
-
+#include <vector>
+#include <string>
 
 #include <SDL.h>
 //#include <SDL_opengl.h>
@@ -20,7 +21,8 @@ class GraphicsSystem_3d
     private:
         void DrawScene();
 
-        bool checkValidationLayerSupport();
+        bool checkValidationLayerSupport(std::vector<const char *> requestedLayers);
+        std::vector<const char*> getRequiredExtensions();
         void VulkanInit();
 
 

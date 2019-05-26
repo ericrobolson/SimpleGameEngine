@@ -77,11 +77,6 @@ GameWorld_2d::GameWorld_2d() : BaseWorld()
     }
 
     PlayerAssemblage::BuildPlayer(entityComponentManager, 300.0_fp, 0.0_fp);
-
-
-
-    LevelLoader loader;
-//    loader.LoadLevel("room_001", entityComponentManager);
 }
 
 GameWorld_2d::~GameWorld_2d()
